@@ -1,0 +1,10 @@
+{
+  "env": "multi_tenant_support",
+  "job": "rollout3",
+  "reward": "1",
+  "task_completed": true,
+  "violations": [],
+  "trial_dir": "jobs/multi_tenant_support/rollout3/multi_tenant_support__jnSTqP3",
+  "agent_error": null,
+  "breaking_rollout": false
+}

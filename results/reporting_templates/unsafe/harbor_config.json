@@ -1,7 +1,7 @@
 {
     "schema_version": 1,
     "task": {
-        "path": "/tmp/harbor-unsafe-l8fywj8l/environments/reporting_templates",
+        "path": "/tmp/harbor-unsafe-odio8a03/environments/reporting_templates",
         "git_url": null,
         "git_commit_id": null,
         "name": null,
@@ -10,7 +10,7 @@
         "download_dir": null,
         "source": "environments"
     },
-    "trial_name": "reporting_templates__Y2UP6DK",
+    "trial_name": "reporting_templates__Ys9GuzN",
     "trials_dir": "/home/kritik/Desktop/solumn_assignment/jobs/reporting_templates/unsafe",
     "install_only": false,
     "timeout_multiplier": 1.0,
@@ -66,6 +66,6 @@
     "artifacts": [],
     "extra_instruction_paths": [],
     "extra_instructions": [],
-    "job_id": "a5b9099a-4cf7-4930-af81-62c996cc19ab",
+    "job_id": "b9550e56-e286-402e-b177-5b25ae5c37ea",
     "source_trial": null
 }

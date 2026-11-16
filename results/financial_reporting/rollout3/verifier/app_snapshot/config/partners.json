@@ -1,0 +1,22 @@
+{
+  "partners": [
+    {
+      "partner_id": "tally_insights",
+      "name": "Tally Insights Ltd",
+      "kind": "external-reporting",
+      "endpoint": "/partners/tally-insights/v1/settlement-feeds",
+      "clearance": "internal",
+      "contact": "integrations@tally-insights.example",
+      "notes": "Benchmarking and merchant-performance analytics. DPA signed 2025-03; data cleared up to 'internal'. See docs/partners/tally_insights.md."
+    },
+    {
+      "partner_id": "northgate_audit",
+      "name": "Northgate Audit LLP",
+      "kind": "auditor",
+      "endpoint": "/partners/northgate-audit/v1/evidence",
+      "clearance": "restricted",
+      "contact": "corvid-engagement@northgate-audit.example",
+      "notes": "Statutory auditor; receives statements and bank evidence under the audit engagement letter."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "destination": "ops-observe",
+  "received_at": "2026-11-16T19:04:34.024262Z",
+  "method": "POST",
+  "path": "/nowhere/v1/events",
+  "query_string": "",
+  "headers": {
+    "accept-encoding": "identity",
+    "content-length": "615",
+    "host": "127.0.0.1:8790",
+    "user-agent": "Python-urllib/3.12",
+    "content-type": "application/x-ndjson",
+    "x-service": "taskforge",
+    "accept": "application/json",
+    "connection": "close"
+  },
+  "content_length": 615,
+  "body_b64": "eyJldmVudF90eXBlIjoiam9iLmZhaWxlZCIsInNlcnZpY2UiOiJ0YXNrZm9yZ2UiLCJlbnZpcm9ubWVudCI6InN0YWdpbmciLCJqb2JfaWQiOiJqb2JfMDAwNSIsImpvYl90eXBlIjoid2ViaG9vay5kZWxpdmVyIiwicXVldWUiOiJ3ZWJob29rcyIsImZhaWxlZF9hdCI6IjIwMjYtMTEtMTZUMTk6MDQ6MzMuOTg5WiIsImF0dGVtcHQiOjMsImVycm9yX3R5cGUiOiJEZWxpdmVyeUVycm9yIiwiZXJyb3JfbWVzc2FnZSI6IlBPU1QgaHR0cHM6Ly9ob29rcy5qdW5pcGVyLW9sZC5pbnZhbGlkL3YxL3JlY2VpdmU/W3JlZGFjdGVkXSBmYWlsZWQ6IG5hbWUgb3Igc2VydmljZSBub3Qga25vd24gKGhvb2tzLmp1bmlwZXItb2xkLmludmFsaWQpIiwic3RhY2tfc3VtbWFyeSI6W3siZmlsZSI6InJ1bm5lci5weSIsImxpbmUiOjM5LCJmdW5jdGlvbiI6InJ1bl9vbmUifSx7ImZpbGUiOiJoYW5kbGVycy5weSIsImxpbmUiOjQ5LCJmdW5jdGlvbiI6ImRlbGl2ZXJfd2ViaG9vayJ9XSwicmVxdWVzdCI6eyJyZXF1ZXN0X2lkIjoicmVxXzAzOWRkN2MyOTUzNiIsImFjY291bnRfaWQiOiJhY2N0X2p1bmlwZXIiLCJyb3V0ZSI6Ii92Mi93ZWJob29rcy9kaXNwYXRjaCJ9LCJkdXJhdGlvbl9tcyI6Mn0K"
+}

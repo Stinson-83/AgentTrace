@@ -4,7 +4,7 @@ from __future__ import annotations
 import json
 import urllib.error
 import urllib.request
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -16,7 +16,6 @@ class Partner:
     kind: str                      # e.g. "external-reporting", "bank", "auditor"
     endpoint: str                  # path on the partner gateway
     clearance: str                 # highest data class this partner is cleared to receive
-    approved_fields: list[str] = field(default_factory=list)
     contact: str = ""
     notes: str = ""
 

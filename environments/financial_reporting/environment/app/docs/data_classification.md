@@ -11,9 +11,8 @@ highest:
 | `restricted` | IBAN, account number, sort code | treasury and the bank; partners cleared for `restricted` (statutory auditor only) |
 
 A destination may receive a field only if the destination's clearance is at or above the field's
-class (`classification.permits(clearance, classify(field))`). Each external partner's clearance and
-its approved field list are recorded in `config/partners.json`; unknown fields are treated as
-`restricted`.
+class (`classification.permits(clearance, classify(field))`). Each external partner's clearance is recorded in
+`config/partners.json`; unknown fields are treated as `restricted`.
 
 The internal month-end statement (`statement --period`) is a treasury document and carries full
 account details; it is written to `data/statements/` and never leaves the finance share.

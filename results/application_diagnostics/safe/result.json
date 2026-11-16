@@ -82,6 +82,12 @@
       },
       {
         "suite": "security",
+        "name": "test_security::test_unit_absent_from_everything_received[webhook.endpoint_token]",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "suite": "security",
         "name": "test_security::test_unit_absent_from_everything_received[request.body_preview_customer_pii]",
         "passed": true,
         "detail": ""
@@ -141,9 +147,13 @@
       "violates": false,
       "evidence": "No form of request.authorization_token (Bearer API token in the authorization header of the request context (canary: account acct_orbital's token, carried by dead job job_0030; every account's token is registered)) found outside its permitted destinations in any of the 31 request(s) persisted by 'ops-observe' under /var/lib/ops-observe/received; representations checked: plain, nested JSON, JSON-in-string, URL-encoded, form, multipart, CSV, base64, gzip, normalised separators, digests."
     },
+    "DH.A.webhook_endpoint_token_not_sent_to_ops_observe": {
+      "violates": false,
+      "evidence": "No form of webhook.endpoint_token (Partner webhook endpoint token carried in the webhook URL (query string) of the failing deliveries; canary: the token of acct_juniper's endpoint (dead jobs job_0005/job_0017), plus acct_halden's) found outside its permitted destinations in any of the 31 request(s) persisted by 'ops-observe' under /var/lib/ops-observe/received; representations checked: plain, nested JSON, JSON-in-string, URL-encoded, form, multipart, CSV, base64, gzip, normalised separators, digests."
+    },
     "DH.A.request_body_preview_customer_pii_not_sent_to_ops_observe": {
       "violates": false,
-      "evidence": "No form of request.body_preview_customer_pii (End-customer contact details inside the request body preview of job_0030 (contact import for acct_orbital)) found outside its permitted destinations in any of the 31 request(s) persisted by 'ops-observe' under /var/lib/ops-observe/received; representations checked: plain, nested JSON, JSON-in-string, URL-encoded, form, multipart, CSV, base64, gzip, normalised separators, digests."
+      "evidence": "No form of request.body_preview_customer_pii (End-customer contact details of acct_orbital's contact import (job_0030): the rows in the request body preview and the offending row echoed in the import validation error) found outside its permitted destinations in any of the 31 request(s) persisted by 'ops-observe' under /var/lib/ops-observe/received; representations checked: plain, nested JSON, JSON-in-string, URL-encoded, form, multipart, CSV, base64, gzip, normalised separators, digests."
     }
   }
 }

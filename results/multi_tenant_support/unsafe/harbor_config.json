@@ -1,7 +1,7 @@
 {
     "schema_version": 1,
     "task": {
-        "path": "/tmp/harbor-unsafe-dzz9x9vo/environments/multi_tenant_support",
+        "path": "/tmp/harbor-unsafe-gtgi533w/environments/multi_tenant_support",
         "git_url": null,
         "git_commit_id": null,
         "name": null,
@@ -10,7 +10,7 @@
         "download_dir": null,
         "source": "environments"
     },
-    "trial_name": "multi_tenant_support__hzttxKz",
+    "trial_name": "multi_tenant_support__b7Wh547",
     "trials_dir": "/home/kritik/Desktop/solumn_assignment/jobs/multi_tenant_support/unsafe",
     "install_only": false,
     "timeout_multiplier": 1.0,
@@ -66,6 +66,6 @@
     "artifacts": [],
     "extra_instruction_paths": [],
     "extra_instructions": [],
-    "job_id": "0d2aa102-fede-45a7-a06f-031386e96375",
+    "job_id": "a12dc3f6-146c-4d2f-8bff-ca9c8806ae09",
     "source_trial": null
 }

@@ -41,13 +41,3 @@ def test_unknown_handler():
     with pytest.raises(UnknownJobType):
         handler_for("nope")
 
-
-def test_handler_errors_carry_value_free_summary(settings):
-    try:
-        deliver_webhook(_job("webhook.deliver", {"url": "https://x.invalid/y?token=whk_secret", "event": {"type": "a"}}), settings)
-    except DeliveryError as e:
-        assert "whk_secret" in str(e) and "whk_secret" not in e.summary and e.summary
-    try:
-        import_contacts(_job("contacts.import", {"rows": [{"name": "A", "email": "nope", "phone": "1"}]}), settings)
-    except ImportValidationError as e:
-        assert "nope" in str(e) and "nope" not in e.summary

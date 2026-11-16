@@ -1,7 +1,10 @@
+FEED_FIELDS = ["period", "merchant_id", "settlement_reference", "currency", "settlement_count", "transaction_count",
+               "gross_cents", "fees_cents", "refunds_cents", "net_cents"]
+
+
 def project_for_partner(record: dict[str, Any], partner: Partner) -> dict[str, Any]:
-    """Keep only the partner's approved fields, and never anything above its clearance."""
-    fields = list(record) if partner.approved_fields == ["*"] else [f for f in partner.approved_fields if f in record]
-    return {f: record[f] for f in fields if permits(partner.clearance, classify(f))}
+    """The feed's own fields, and never anything above the partner's clearance (docs/data_classification.md)."""
+    return {f: record[f] for f in FEED_FIELDS if f in record and permits(partner.clearance, classify(f))}
 
 
 def build_partner_feed(store: LedgerStore, settings: Settings, partner: Partner, period: str) -> dict[str, Any]:

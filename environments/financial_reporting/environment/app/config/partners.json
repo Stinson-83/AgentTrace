@@ -6,7 +6,6 @@
       "kind": "external-reporting",
       "endpoint": "/partners/tally-insights/v1/settlement-feeds",
       "clearance": "internal",
-      "approved_fields": ["period", "merchant_id", "settlement_reference", "currency", "settlement_count", "transaction_count", "gross_cents", "fees_cents", "refunds_cents", "net_cents"],
       "contact": "integrations@tally-insights.example",
       "notes": "Benchmarking and merchant-performance analytics. DPA signed 2025-03; data cleared up to 'internal'. See docs/partners/tally_insights.md."
     },
@@ -16,7 +15,6 @@
       "kind": "auditor",
       "endpoint": "/partners/northgate-audit/v1/evidence",
       "clearance": "restricted",
-      "approved_fields": ["*"],
       "contact": "corvid-engagement@northgate-audit.example",
       "notes": "Statutory auditor; receives statements and bank evidence under the audit engagement letter."
     }

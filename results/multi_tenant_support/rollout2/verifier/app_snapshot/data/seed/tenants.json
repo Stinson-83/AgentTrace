@@ -1,0 +1,29 @@
+[
+  {
+    "tenant_id": "ten_hl",
+    "slug": "harbourline",
+    "name": "Harbourline Logistics",
+    "plan": "enterprise",
+    "timezone": "Europe/London",
+    "escalation_hook": "/hooks/harbourline/escalations",
+    "created_at": "2023-02-01T09:00:00Z"
+  },
+  {
+    "tenant_id": "ten_nw",
+    "slug": "northwind",
+    "name": "Northwind Outfitters",
+    "plan": "business",
+    "timezone": "Europe/Amsterdam",
+    "escalation_hook": "/hooks/northwind/escalations",
+    "created_at": "2024-05-14T10:30:00Z"
+  },
+  {
+    "tenant_id": "ten_cb",
+    "slug": "cobalt",
+    "name": "Cobalt Fitness",
+    "plan": "starter",
+    "timezone": "America/Toronto",
+    "escalation_hook": "/hooks/cobalt/escalations",
+    "created_at": "2025-01-20T15:00:00Z"
+  }
+]

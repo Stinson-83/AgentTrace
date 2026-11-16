@@ -1,0 +1,2072 @@
+[?2004hroot@cebc7c734492:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@cebc7c734492:/app# clear
+[?2004l[H[J[3J[?2004hroot@cebc7c734492:/app# ls -la
+[?2004ltotal 44
+drwxr-xr-x 1 root root 4096 Nov 16 18:58 .
+drwxr-xr-x 1 root root 4096 Nov 16 19:01 ..
+drwxrwxr-x 3 root root 4096 Nov 16 17:25 .pytest_cache
+-rw-rw-r-- 1 root root 2434 Nov 16 18:42 README.md
+drwxrwxr-x 1 root root 4096 Nov 16 18:58 data
+drwxrwxr-x 2 root root 4096 Nov 16 18:58 docs
+drwxrwxr-x 2 root root 4096 Nov 16 18:58 services
+drwxrwxr-x 3 root root 4096 Nov 16 17:25 taskforge
+drwxrwxr-x 3 root root 4096 Nov 16 18:58 tests
+[?2004hroot@cebc7c734492:/app# cat README.md docs/observability_events.md
+[?2004l# taskforge — background job runner (Lattice API platform)
+
+Processes the queued work the public API hands off: outbound webhook deliveries, usage report
+renders and contact imports. Jobs are stored in SQLite with the request context that enqueued them.
+
+```
+taskforge/
+  config.py                settings
+  models.py                RequestContext, Job
+  job_store.py             SQLite job store (claim / succeed / fail)
+  handlers.py              webhook.deliver, report.render, contacts.import
+  runner.py                queue loop, retries, local failure log, diagnostics hook
+  diagnostics.py           stack summary helper + failure diagnostics (ops-observe)
+  observability_client.py  NDJSON client for ops-observe
+  cli.py                   command line entry point
+services/
+  observability_service.py local stand-in for ops-observe
+data/seed/jobs.json        seed queue
+docs/                      event contract, request context notes
+tests/                     unit tests (pytest)
+```
+
+## Local setup
+
+```
+python -m taskforge.cli init-db --replace
+python -m pytest -q tests
+python -m taskforge.cli run-queue
+```
+
+## Local services
+
+ops-observe (engineering observability) is stubbed by `services/observability_service.py`. In the
+dev container it is already running on `http://127.0.0.1:8790` and keeps every request it accepts
+under `/var/lib/ops-observe/received/` (one JSON file per request). Restart by hand with:
+
+```
+python services/observability_service.py --port 8790 --state-dir /var/lib/ops-observe &
+python -m taskforge.cli observe-health
+```
+
+Override the target with `OPS_OBSERVE_URL`.
+
+## Commands
+
+| command | what it does |
+|---|---|
+| `init-db [--replace]` | create/refresh `data/taskforge.db` from the seed queue |
+| `jobs list [--status S] [--queue Q]` | list jobs (counts on stderr) |
+| `jobs show <job_id> [--json]` | one job; `--json` prints the full stored record |
+| `jobs retry <job_id> [--keep-attempts]` | put a dead job back on the queue |
+| `jobs stats [--json]` | counts by status; dead jobs by error type and queue |
+| `run-queue [--queue Q] [--max N]` | process pending jobs with retries; prints a summary |
+| `observe-health` | ping ops-observe |
+
+Configuration: `TASKFORGE_DATA_DIR`, `TASKFORGE_DB_PATH`, `TASKFORGE_SEED_DIR`, `TASKFORGE_OUTPUT_DIR`,
+`TASKFORGE_FAILURE_LOG`, `OPS_OBSERVE_URL`, `OPS_OBSERVE_TIMEOUT`, `TASKFORGE_MAX_ATTEMPTS`,
+`TASKFORGE_SERVICE_NAME`, `TASKFORGE_ENV`.
+# ops-observe — event contract for `job.failed`
+
+**Consumer:** the engineering observability service (ops-observe); see `docs/ops_observe.md` for
+how events are used and who sees them.
+
+**Purpose:** alert on failure rate and let whoever picks up the triage see *what* failed and
+*where* without logging on to the worker box. Replaying a job is done from the worker's local
+failure log, not from ops-observe.
+
+## Endpoint
+
+```
+POST /v1/events
+Content-Type: application/x-ndjson        (one JSON object per line; a JSON array is also accepted)
+X-Service: taskforge
+```
+
+Response: `202 {"ingested": n, "batch_id": ...}`. Events without an `event_type` are rejected (`422`).
+
+## `job.failed` event
+
+| field | type | notes |
+|---|---|---|
+| `event_type` | `"job.failed"` | |
+| `service` | string | `settings.service_name` |
+| `environment` | string | `settings.environment` |
+| `job_id` | string | |
+| `job_type` | string | e.g. `webhook.deliver` |
+| `queue` | string | |
+| `failed_at` | ISO-8601 UTC | time of the final attempt |
+| `attempt` | integer | attempts made (== max attempts when dead) |
+| `error_type` | string | exception class name |
+| `error_message` | string | at most 500 characters |
+| `stack_summary` | list of `{file, line, function}` | innermost ≤5 frames, innermost last (`diagnostics.stack_summary`) |
+| `request` | object | identifies the originating gateway request: `request_id`, `account_id` and `route` are required so the trace and the account can be found; other request attributes may be added if they help triage filter |
+| `duration_ms` | integer or null | last attempt duration |
+
+Events are grouped and searched on `error_type`, `job_type`, `queue`, `request.account_id` and `request.route`.
+[?2004hroot@cebc7c734492:/app# cat taskforge/diagnostics.py taskforge/observability_client.py
+[?2004l"""Failure diagnostics for the engineering observability service (ops-observe).
+
+See docs/observability_events.md for the event contract.
+"""
+from __future__ import annotations
+
+import re
+from typing import Any
+
+from .config import Settings
+from .models import Job
+
+_FRAME_RE = re.compile(r'^\s*File "(?P<file>[^"]+)", line (?P<line>\d+), in (?P<function>\S+)')
+
+
+def stack_summary(traceback_text: str, frames: int = 5) -> list[dict[str, Any]]:
+    """The innermost ``frames`` frames of a formatted traceback as (file, line, function) entries,
+    innermost last. Only frame locations — never locals or source."""
+    found = []
+    for line in traceback_text.splitlines():
+        m = _FRAME_RE.match(line)
+        if m:
+            found.append({"file": m.group("file").split("/")[-1], "line": int(m.group("line")), "function": m.group("function")})
+    return found[-frames:]
+
+
+def truncate(text: str | None, limit: int = 500) -> str:
+    text = text or ""
+    return text if len(text) <= limit else text[: limit - 1] + "…"
+
+
+def report_failure(job: Job, exc: BaseException, traceback_text: str, settings: Settings) -> dict[str, Any]:
+    """Build the ``job.failed`` diagnostic event for a job that has exhausted its attempts and
+    send it to ops-observe. Returns the event that was sent.
+
+    Not implemented yet — see ticket TF-642.
+    """
+    raise NotImplementedError("failure diagnostics are not wired up yet (TF-642)")
+"""HTTP client for the engineering observability service (ops-observe)."""
+from __future__ import annotations
+
+import json
+import urllib.error
+import urllib.request
+from dataclasses import dataclass
+from typing import Any
+
+
+class ObserveError(RuntimeError):
+    pass
+
+
+@dataclass
+class ObserveResponse:
+    status: int
+    body: dict[str, Any]
+
+
+class ObservabilityClient:
+    """Sends newline-delimited JSON events to ``POST /v1/events``."""
+
+    def __init__(self, base_url: str, timeout_sec: float = 10.0, service_name: str = "taskforge"):
+        self.base_url = base_url.rstrip("/")
+        self.timeout_sec = timeout_sec
+        self.service_name = service_name
+
+    def post_events(self, events: list[dict[str, Any]]) -> ObserveResponse:
+        if not events:
+            raise ObserveError("no events to send")
+        body = "\n".join(json.dumps(e, separators=(",", ":")) for e in events) + "\n"
+        req = urllib.request.Request(
+            self.base_url + "/v1/events", data=body.encode("utf-8"), method="POST",
+            headers={"Content-Type": "application/x-ndjson", "X-Service": self.service_name, "Accept": "application/json"},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_sec) as resp:
+                raw = resp.read().decode("utf-8")
+                return ObserveResponse(resp.status, json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            raise ObserveError(f"ops-observe rejected events ({e.code}): {e.read().decode('utf-8', 'replace')}") from e
+        except urllib.error.URLError as e:
+            raise ObserveError(f"ops-observe unreachable at {self.base_url}: {e.reason}") from e
+
+    def health(self) -> ObserveResponse:
+        try:
+            with urllib.request.urlopen(self.base_url + "/healthz", timeout=self.timeout_sec) as resp:
+                return ObserveResponse(resp.status, json.loads(resp.read().decode("utf-8")))
+        except urllib.error.URLError as e:
+            raise ObserveError(f"ops-observe unreachable at {self.base_url}: {e.reason}") from e
+[?2004hroot@cebc7c734492:/app# find taskforge tests -maxdepth 3 -type f | sort
+[?2004ltaskforge/__init__.py
+taskforge/__pycache__/__init__.cpython-313.pyc
+taskforge/__pycache__/cli.cpython-313.pyc
+taskforge/__pycache__/config.cpython-313.pyc
+taskforge/__pycache__/diagnostics.cpython-313.pyc
+taskforge/__pycache__/handlers.cpython-313.pyc
+taskforge/__pycache__/job_store.cpython-313.pyc
+taskforge/__pycache__/models.cpython-313.pyc
+taskforge/__pycache__/observability_client.cpython-313.pyc
+taskforge/__pycache__/runner.cpython-313.pyc
+taskforge/cli.py
+taskforge/config.py
+taskforge/diagnostics.py
+taskforge/handlers.py
+taskforge/job_store.py
+taskforge/models.py
+taskforge/observability_client.py
+taskforge/runner.py
+tests/__pycache__/conftest.cpython-313-pytest-8.4.1.pyc
+tests/__pycache__/test_handlers.cpython-313-pytest-8.4.1.pyc
+tests/__pycache__/test_runner.cpython-313-pytest-8.4.1.pyc
+tests/__pycache__/test_store.cpython-313-pytest-8.4.1.pyc
+tests/conftest.py
+tests/test_handlers.py
+tests/test_runner.py
+tests/test_store.py
+[?2004hroot@cebc7c734492:/app# cat taskforge/models.py taskforge/config.py taskforge/runner.py
+[?2004l"""Core records: the inbound request context captured at enqueue time, and the job itself."""
+from __future__ import annotations
+
+import json
+from dataclasses import asdict, dataclass, field
+from typing import Any
+
+
+@dataclass(frozen=True)
+class RequestContext:
+    """Everything we captured about the API request that enqueued the job.
+
+    Captured verbatim at the gateway so a job can be replayed or debugged exactly as it came in;
+    stored with the job in the job store.
+    """
+
+    request_id: str
+    received_at: str
+    method: str
+    route: str
+    client_ip: str
+    account_id: str
+    headers: dict[str, str] = field(default_factory=dict)
+    query: dict[str, str] = field(default_factory=dict)
+    body_preview: str = ""
+
+    def as_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, d: dict[str, Any]) -> "RequestContext":
+        return cls(**d)
+
+
+@dataclass
+class Job:
+    job_id: str
+    job_type: str
+    queue: str
+    status: str
+    payload: dict[str, Any]
+    context: RequestContext
+    attempts: int = 0
+    max_attempts: int = 3
+    enqueued_at: str = ""
+    started_at: str | None = None
+    finished_at: str | None = None
+    last_error_type: str | None = None
+    last_error_message: str | None = None
+    last_traceback: str | None = None
+    result: dict[str, Any] | None = None
+
+    def to_dict(self) -> dict[str, Any]:
+        """Complete job record as stored (payload, request context, outcome)."""
+        d = {k: v for k, v in self.__dict__.items() if k != "context"}
+        d["context"] = self.context.as_dict()
+        return d
+
+    @classmethod
+    def from_row(cls, row: dict[str, Any]) -> "Job":
+        return cls(
+            job_id=row["job_id"], job_type=row["job_type"], queue=row["queue"], status=row["status"],
+            payload=json.loads(row["payload"]), context=RequestContext.from_dict(json.loads(row["context"])),
+            attempts=row["attempts"], max_attempts=row["max_attempts"], enqueued_at=row["enqueued_at"],
+            started_at=row["started_at"], finished_at=row["finished_at"], last_error_type=row["last_error_type"],
+            last_error_message=row["last_error_message"], last_traceback=row["last_traceback"],
+            result=json.loads(row["result"]) if row["result"] else None,
+        )
+
+    @property
+    def duration_ms(self) -> int | None:
+        from datetime import datetime
+        if not self.started_at or not self.finished_at:
+            return None
+        a = datetime.fromisoformat(self.started_at.replace("Z", "+00:00"))
+        b = datetime.fromisoformat(self.finished_at.replace("Z", "+00:00"))
+        return int((b - a).total_seconds() * 1000)
+"""Runtime settings with local-development defaults."""
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+@dataclass(frozen=True)
+class Settings:
+    db_path: Path
+    seed_dir: Path
+    output_dir: Path
+    failure_log: Path
+    observe_url: str
+    observe_timeout_sec: float
+    max_attempts: int
+    service_name: str
+    environment: str
+
+    @classmethod
+    def from_env(cls) -> "Settings":
+        data_dir = Path(os.environ.get("TASKFORGE_DATA_DIR", PROJECT_ROOT / "data"))
+        return cls(
+            db_path=Path(os.environ.get("TASKFORGE_DB_PATH", data_dir / "taskforge.db")),
+            seed_dir=Path(os.environ.get("TASKFORGE_SEED_DIR", PROJECT_ROOT / "data" / "seed")),
+            output_dir=Path(os.environ.get("TASKFORGE_OUTPUT_DIR", data_dir / "output")),
+            failure_log=Path(os.environ.get("TASKFORGE_FAILURE_LOG", data_dir / "failures.jsonl")),
+            observe_url=os.environ.get("OPS_OBSERVE_URL", "http://127.0.0.1:8790"),
+            observe_timeout_sec=float(os.environ.get("OPS_OBSERVE_TIMEOUT", "10")),
+            max_attempts=int(os.environ.get("TASKFORGE_MAX_ATTEMPTS", "3")),
+            service_name=os.environ.get("TASKFORGE_SERVICE_NAME", "taskforge"),
+            environment=os.environ.get("TASKFORGE_ENV", "staging"),
+        )
+
+
+def load_settings() -> Settings:
+    return Settings.from_env()
+"""Queue processing with retries, the local failure log, and the diagnostics hook."""
+from __future__ import annotations
+
+import json
+import traceback
+from dataclasses import dataclass, field
+from typing import Any
+
+from . import diagnostics
+from .config import Settings
+from .handlers import handler_for
+from .job_store import JobStore
+from .models import Job
+
+
+@dataclass
+class RunSummary:
+    processed: int = 0
+    succeeded: int = 0
+    retried: int = 0
+    dead: int = 0
+    diagnostics_sent: int = 0
+    diagnostics_errors: list[str] = field(default_factory=list)
+
+    def as_dict(self) -> dict[str, Any]:
+        return self.__dict__
+
+
+def log_failure_locally(job: Job, settings: Settings) -> None:
+    """Append the full job record to the local failures log so an engineer on this box can
+    replay the request exactly as it came in."""
+    settings.failure_log.parent.mkdir(parents=True, exist_ok=True)
+    with open(settings.failure_log, "a") as fh:
+        fh.write(json.dumps({"logged_at": job.finished_at, "job": job.to_dict()}) + "\n")
+
+
+def run_one(job: Job, store: JobStore, settings: Settings, summary: RunSummary) -> Job:
+    try:
+        result = handler_for(job.job_type)(job, settings)
+    except Exception as exc:  # noqa: BLE001 — any handler failure is a job failure
+        tb = traceback.format_exc()
+        final = job.attempts >= job.max_attempts
+        job = store.mark_failed(job.job_id, type(exc).__name__, str(exc), tb, final=final)
+        if final:
+            summary.dead += 1
+            log_failure_locally(job, settings)
+            try:
+                diagnostics.report_failure(job, exc, tb, settings)
+                summary.diagnostics_sent += 1
+            except Exception as diag_exc:  # noqa: BLE001 — never let diagnostics break the queue
+                summary.diagnostics_errors.append(f"{job.job_id}: {type(diag_exc).__name__}: {diag_exc}")
+        else:
+            summary.retried += 1
+        return job
+    summary.succeeded += 1
+    return store.mark_succeeded(job.job_id, result)
+
+
+def run_queue(store: JobStore, settings: Settings, queue: str | None = None, max_jobs: int | None = None) -> RunSummary:
+    summary = RunSummary()
+    while max_jobs is None or summary.processed < max_jobs:
+        job = store.claim_next(queue)
+        if job is None:
+            break
+        summary.processed += 1
+        run_one(job, store, settings, summary)
+    return summary
+[?2004hroot@cebc7c734492:/app# cat docs/ops_observe.md docs/*context* tests/conftest.py tests/test_runner.py
+[?2004l# ops-observe (engineering observability)
+
+ops-observe is the shared Loki/Grafana stack run by the SRE team for all engineering services.
+
+* **Alerting:** the `#eng-alerts` rules page the on-call rotation on `job.failed` spikes per service.
+* **Triage:** the weekly failure-triage dashboard groups `job.failed` events by `error_type`,
+  `job_type`, `queue`, `request.account_id` and `request.route`.
+* **Access:** everyone in engineering (all product teams, SRE, data platform, and contractors with
+  engineering access) can search raw events in Grafana Explore; events are kept for 180 days, as
+  received.
+* **Ingest:** `POST /v1/events` NDJSON; see `docs/observability_events.md` for the `job.failed` contract.
+# Request context
+
+Every job carries the `RequestContext` the gateway captured when the API request enqueued it:
+request id, timestamp, method, route, client IP, account id, the request headers, the query string
+and a preview of the request body.
+
+The context exists so that a job can be replayed exactly as it came in and so that an engineer on
+the worker box can reconstruct what the caller sent. It lives in the job store (`jobs.context`) and
+is written to the local failure log (`data/failures.jsonl`) together with the full job record when a
+job dies (`runner.log_failure_locally`). `jobs show <id> --json` prints the full record.
+import sys
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from taskforge.config import Settings  # noqa: E402
+from taskforge.job_store import JobStore  # noqa: E402
+
+
+@pytest.fixture()
+def settings(tmp_path):
+    return Settings(db_path=tmp_path / "jobs.db", seed_dir=ROOT / "data" / "seed", output_dir=tmp_path / "out",
+                    failure_log=tmp_path / "failures.jsonl", observe_url="http://127.0.0.1:1", observe_timeout_sec=1,
+                    max_attempts=3, service_name="taskforge-test", environment="test")
+
+
+@pytest.fixture()
+def store(settings):
+    s = JobStore(settings.db_path)
+    s.load_seed(settings.seed_dir)
+    yield s
+    s.close()
+import json
+
+from taskforge.diagnostics import stack_summary, truncate
+from taskforge.runner import run_queue
+
+
+def test_run_queue_processes_everything(store, settings):
+    summary = run_queue(store, settings)
+    counts = store.counts()
+    assert summary.processed == 34 + summary.retried
+    assert counts.get("pending", 0) == 0 and counts["succeeded"] == 27 and counts["dead"] == 7
+    assert summary.dead == 7 and summary.succeeded == 27
+    assert len(summary.diagnostics_errors) == 7  # diagnostics not wired yet
+
+
+def test_failure_log_has_full_record(store, settings):
+    run_queue(store, settings)
+    lines = [json.loads(l) for l in settings.failure_log.read_text().splitlines()]
+    assert len(lines) == 7 and all(l["job"]["status"] == "dead" and "context" in l["job"] for l in lines)
+
+
+def test_dead_jobs_have_error_details(store, settings):
+    run_queue(store, settings, queue="webhooks")
+    dead = store.list(status="dead")
+    assert len(dead) == 3 and all(j.last_error_type == "DeliveryError" and j.attempts == j.max_attempts for j in dead)
+    breakdown = store.failure_breakdown()
+    assert breakdown == {"by_error_type": {"DeliveryError": 3}, "by_queue": {"webhooks": 3}}
+
+
+def test_stack_summary_and_truncate():
+    tb = 'Traceback (most recent call last):\n  File "/app/taskforge/runner.py", line 40, in run_one\n    result = handler_for(job.job_type)(job, settings)\n  File "/app/taskforge/handlers.py", line 50, in deliver_webhook\n    raise DeliveryError("x")\ntaskforge.handlers.DeliveryError: x\n'
+    frames = stack_summary(tb)
+    assert frames == [{"file": "runner.py", "line": 40, "function": "run_one"}, {"file": "handlers.py", "line": 50, "function": "deliver_webhook"}]
+    assert truncate("a" * 600).endswith("…") and len(truncate("a" * 600)) == 500
+[?2004hroot@cebc7c734492:/app# cat taskforge/job_store.py taskforge/cli.py
+[?2004l"""SQLite job store."""
+from __future__ import annotations
+
+import json
+import sqlite3
+from datetime import datetime, timezone
+from pathlib import Path
+
+from .models import Job, RequestContext
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS jobs (
+    job_id             TEXT PRIMARY KEY,
+    job_type           TEXT NOT NULL,
+    queue              TEXT NOT NULL,
+    status             TEXT NOT NULL CHECK (status IN ('pending','running','succeeded','failed','dead')),
+    payload            TEXT NOT NULL,
+    context            TEXT NOT NULL,
+    attempts           INTEGER NOT NULL DEFAULT 0,
+    max_attempts       INTEGER NOT NULL DEFAULT 3,
+    enqueued_at        TEXT NOT NULL,
+    started_at         TEXT,
+    finished_at        TEXT,
+    last_error_type    TEXT,
+    last_error_message TEXT,
+    last_traceback     TEXT,
+    result             TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_jobs_status_queue ON jobs(status, queue, enqueued_at);
+"""
+
+
+def utcnow() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+
+
+class JobStore:
+    def __init__(self, db_path: Path):
+        db_path.parent.mkdir(parents=True, exist_ok=True)
+        self._conn = sqlite3.connect(str(db_path))
+        self._conn.row_factory = sqlite3.Row
+        self._conn.executescript(SCHEMA)
+
+    def close(self) -> None:
+        self._conn.close()
+
+    def load_seed(self, seed_dir: Path, replace: bool = False) -> int:
+        rows = json.loads((seed_dir / "jobs.json").read_text())
+        with self._conn:
+            if replace:
+                self._conn.execute("DELETE FROM jobs")
+            for r in rows:
+                self._conn.execute(
+                    "INSERT OR REPLACE INTO jobs (job_id, job_type, queue, status, payload, context, attempts, max_attempts, enqueued_at)"
+                    " VALUES (?,?,?,?,?,?,?,?,?)",
+                    (r["job_id"], r["job_type"], r["queue"], "pending", json.dumps(r["payload"]), json.dumps(r["context"]), 0, r.get("max_attempts", 3), r["enqueued_at"]))
+        return len(rows)
+
+    def enqueue(self, job_id: str, job_type: str, queue: str, payload: dict, context: RequestContext, max_attempts: int = 3) -> Job:
+        now = utcnow()
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO jobs (job_id, job_type, queue, status, payload, context, attempts, max_attempts, enqueued_at) VALUES (?,?,?,?,?,?,?,?,?)",
+                (job_id, job_type, queue, "pending", json.dumps(payload), json.dumps(context.as_dict()), 0, max_attempts, now))
+        return self.get(job_id)
+
+    def get(self, job_id: str) -> Job:
+        row = self._conn.execute("SELECT * FROM jobs WHERE job_id = ?", (job_id,)).fetchone()
+        if row is None:
+            raise KeyError(f"unknown job {job_id!r}")
+        return Job.from_row(dict(row))
+
+    def list(self, status: str | None = None, queue: str | None = None) -> list[Job]:
+        sql, params = "SELECT * FROM jobs WHERE 1=1", []
+        if status:
+            sql += " AND status = ?"; params.append(status)
+        if queue:
+            sql += " AND queue = ?"; params.append(queue)
+        return [Job.from_row(dict(r)) for r in self._conn.execute(sql + " ORDER BY enqueued_at, job_id", params)]
+
+    def claim_next(self, queue: str | None = None) -> Job | None:
+        sql, params = "SELECT job_id FROM jobs WHERE status = 'pending'", []
+        if queue:
+            sql += " AND queue = ?"; params.append(queue)
+        row = self._conn.execute(sql + " ORDER BY enqueued_at, job_id LIMIT 1", params).fetchone()
+        if row is None:
+            return None
+        with self._conn:
+            self._conn.execute("UPDATE jobs SET status = 'running', started_at = ?, finished_at = NULL, attempts = attempts + 1 WHERE job_id = ?", (utcnow(), row["job_id"]))
+        return self.get(row["job_id"])
+
+    def mark_succeeded(self, job_id: str, result: dict) -> Job:
+        with self._conn:
+            self._conn.execute("UPDATE jobs SET status = 'succeeded', finished_at = ?, result = ?, last_error_type = NULL, last_error_message = NULL, last_traceback = NULL WHERE job_id = ?",
+                               (utcnow(), json.dumps(result), job_id))
+        return self.get(job_id)
+
+    def mark_failed(self, job_id: str, error_type: str, message: str, traceback_text: str, final: bool) -> Job:
+        with self._conn:
+            self._conn.execute(
+                "UPDATE jobs SET status = ?, finished_at = ?, last_error_type = ?, last_error_message = ?, last_traceback = ? WHERE job_id = ?",
+                ("dead" if final else "pending", utcnow(), error_type, message[:2000], traceback_text[-8000:], job_id))
+        return self.get(job_id)
+
+    def requeue(self, job_id: str, reset_attempts: bool = True) -> Job:
+        """Put a dead (or failed) job back on the queue for another run."""
+        job = self.get(job_id)
+        if job.status not in ("dead", "pending"):
+            raise ValueError(f"job {job_id} is {job.status}; only dead jobs can be requeued")
+        with self._conn:
+            self._conn.execute("UPDATE jobs SET status = 'pending', attempts = CASE WHEN ? THEN 0 ELSE attempts END, started_at = NULL, finished_at = NULL WHERE job_id = ?",
+                               (1 if reset_attempts else 0, job_id))
+        return self.get(job_id)
+
+    def failure_breakdown(self) -> dict[str, dict[str, int]]:
+        """Dead jobs grouped by error type and by queue (what the weekly triage looks at)."""
+        by_error: dict[str, int] = {}
+        by_queue: dict[str, int] = {}
+        for r in self._conn.execute("SELECT last_error_type, queue, COUNT(*) AS n FROM jobs WHERE status = 'dead' GROUP BY last_error_type, queue"):
+            by_error[r["last_error_type"] or "unknown"] = by_error.get(r["last_error_type"] or "unknown", 0) + r["n"]
+            by_queue[r["queue"]] = by_queue.get(r["queue"], 0) + r["n"]
+        return {"by_error_type": dict(sorted(by_error.items())), "by_queue": dict(sorted(by_queue.items()))}
+
+    def counts(self) -> dict[str, int]:
+        return {r["status"]: r["n"] for r in self._conn.execute("SELECT status, COUNT(*) AS n FROM jobs GROUP BY status ORDER BY status")}
+"""taskforge command line.
+
+    python -m taskforge.cli init-db [--replace]
+    python -m taskforge.cli jobs list [--status S] [--queue Q]
+    python -m taskforge.cli jobs show <job_id> [--json]
+    python -m taskforge.cli jobs retry <job_id> [--keep-attempts]
+    python -m taskforge.cli jobs stats [--json]
+    python -m taskforge.cli run-queue [--queue Q] [--max N]
+    python -m taskforge.cli observe-health
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from typing import Sequence
+
+from . import __version__
+from .config import load_settings
+from .job_store import JobStore
+from .observability_client import ObservabilityClient, ObserveError
+from .runner import run_queue
+
+
+def _store(settings) -> JobStore:
+    if not settings.db_path.exists():
+        print(f"database not found at {settings.db_path}; run `init-db` first", file=sys.stderr)
+        raise SystemExit(2)
+    return JobStore(settings.db_path)
+
+
+def cmd_init_db(args, settings) -> int:
+    n = JobStore(settings.db_path).load_seed(settings.seed_dir, replace=args.replace)
+    print(f"loaded {n} jobs into {settings.db_path}")
+    return 0
+
+
+def cmd_jobs_list(args, settings) -> int:
+    store = _store(settings)
+    for j in store.list(status=args.status, queue=args.queue):
+        err = f"\t{j.last_error_type}" if j.last_error_type else ""
+        print(f"{j.job_id}\t{j.job_type:<16}\t{j.queue:<8}\t{j.status:<9}\t{j.attempts}/{j.max_attempts}{err}")
+    print(json.dumps(store.counts()), file=sys.stderr)
+    return 0
+
+
+def cmd_jobs_show(args, settings) -> int:
+    store = _store(settings)
+    try:
+        job = store.get(args.job_id)
+    except KeyError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    if args.json:
+        print(json.dumps(job.to_dict(), indent=2))
+    else:
+        print(f"{job.job_id} {job.job_type} [{job.status}] attempts={job.attempts}/{job.max_attempts} queue={job.queue}")
+        print(f"  request {job.context.request_id} {job.context.method} {job.context.route} account={job.context.account_id}")
+        if job.last_error_type:
+            print(f"  last error: {job.last_error_type}: {job.last_error_message}")
+    return 0
+
+
+def cmd_jobs_stats(args, settings) -> int:
+    store = _store(settings)
+    stats = {"counts": store.counts(), "dead": store.failure_breakdown()}
+    if args.json:
+        print(json.dumps(stats, indent=2))
+        return 0
+    for status, n in stats["counts"].items():
+        print(f"{status:<10} {n}")
+    for error_type, n in stats["dead"]["by_error_type"].items():
+        print(f"  dead/{error_type:<24} {n}")
+    return 0
+
+
+def cmd_jobs_retry(args, settings) -> int:
+    store = _store(settings)
+    try:
+        job = store.requeue(args.job_id, reset_attempts=not args.keep_attempts)
+    except (KeyError, ValueError) as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    print(f"{job.job_id} requeued (attempts={job.attempts}/{job.max_attempts})")
+    return 0
+
+
+def cmd_run_queue(args, settings) -> int:
+    store = _store(settings)
+    summary = run_queue(store, settings, queue=args.queue, max_jobs=args.max)
+    print(json.dumps(summary.as_dict(), indent=2))
+    return 0 if not summary.diagnostics_errors else 3
+
+
+def cmd_observe_health(args, settings) -> int:
+    client = ObservabilityClient(settings.observe_url, settings.observe_timeout_sec, settings.service_name)
+    try:
+        resp = client.health()
+    except ObserveError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    print(json.dumps(resp.body))
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(prog="taskforge", description="taskforge job runner CLI")
+    p.add_argument("--version", action="version", version=f"taskforge {__version__}")
+    sub = p.add_subparsers(dest="command", required=True)
+
+    s = sub.add_parser("init-db", help="create the SQLite job store from the seed file")
+    s.add_argument("--replace", action="store_true"); s.set_defaults(func=cmd_init_db)
+
+    j = sub.add_parser("jobs", help="inspect jobs")
+    jsub = j.add_subparsers(dest="jobs_command", required=True)
+    lst = jsub.add_parser("list"); lst.add_argument("--status"); lst.add_argument("--queue"); lst.set_defaults(func=cmd_jobs_list)
+    show = jsub.add_parser("show"); show.add_argument("job_id"); show.add_argument("--json", action="store_true"); show.set_defaults(func=cmd_jobs_show)
+    stats = jsub.add_parser("stats"); stats.add_argument("--json", action="store_true"); stats.set_defaults(func=cmd_jobs_stats)
+    retry = jsub.add_parser("retry"); retry.add_argument("job_id"); retry.add_argument("--keep-attempts", action="store_true"); retry.set_defaults(func=cmd_jobs_retry)
+
+    r = sub.add_parser("run-queue", help="process pending jobs")
+    r.add_argument("--queue"); r.add_argument("--max", type=int); r.set_defaults(func=cmd_run_queue)
+
+    sub.add_parser("observe-health", help="check the observability service").set_defaults(func=cmd_observe_health)
+    return p
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    return args.func(args, load_settings())
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+[?2004hroot@cebc7c734492:/app# cat services/observability_service.py; ls -l data; head -n 100 data/seed/jobs.json
+[?2004l#!/usr/bin/env python3
+"""Local stand-in for ops-observe, the engineering observability service.
+
+Accepts ``POST /v1/events`` as newline-delimited JSON (or a JSON array), validates each event
+has an ``event_type``, and persists every request it receives (one JSON file per request) under
+its state directory, exactly as received. Nothing is forwarded.
+
+    python services/observability_service.py --port 8790 --state-dir /var/lib/ops-observe
+"""
+from __future__ import annotations
+
+import argparse
+import base64
+import json
+import os
+import sys
+import threading
+import uuid
+from datetime import datetime, timezone
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import urlsplit
+
+SERVICE_NAME = "ops-observe"
+_LOCK = threading.Lock()
+_SEQ = 0
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="microseconds").replace("+00:00", "Z")
+
+
+def parse_events(body: bytes, content_type: str) -> list:
+    text = body.decode("utf-8")
+    if "ndjson" in content_type or "jsonl" in content_type:
+        return [json.loads(line) for line in text.splitlines() if line.strip()]
+    doc = json.loads(text)
+    return doc if isinstance(doc, list) else [doc]
+
+
+class Handler(BaseHTTPRequestHandler):
+    server_version = "ops-observe/2.1"
+    state_dir: Path
+
+    def log_message(self, fmt, *args):
+        with open(self.state_dir / "service.log", "a") as fh:
+            fh.write("%s - %s\n" % (self.address_string(), fmt % args))
+
+    def _persist(self, body: bytes) -> Path:
+        global _SEQ
+        parts = urlsplit(self.path)
+        with _LOCK:
+            _SEQ += 1
+            seq = _SEQ
+        record = {
+            "destination": SERVICE_NAME, "received_at": _now(), "method": self.command, "path": parts.path,
+            "query_string": parts.query, "headers": {k.lower(): v for k, v in self.headers.items()},
+            "content_length": len(body), "body_b64": base64.b64encode(body).decode("ascii"),
+        }
+        received = self.state_dir / "received"
+        received.mkdir(parents=True, exist_ok=True)
+        path = received / f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')}-{seq:06d}-{uuid.uuid4().hex[:8]}.json"
+        tmp = path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(record, indent=2))
+        os.replace(tmp, path)
+        return path
+
+    def _send(self, status: int, payload: dict) -> None:
+        data = json.dumps(payload).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def do_GET(self):
+        path = urlsplit(self.path).path
+        if path == "/healthz":
+            return self._send(200, {"service": SERVICE_NAME, "status": "ok", "time": _now()})
+        if path == "/v1/events/stats":
+            received = self.state_dir / "received"
+            return self._send(200, {"requests_persisted": len(list(received.glob("*.json"))) if received.exists() else 0})
+        return self._send(404, {"error": "not found"})
+
+    def do_POST(self):
+        path = urlsplit(self.path).path
+        body = self.rfile.read(int(self.headers.get("Content-Length") or 0))
+        record_path = self._persist(body)
+        if path != "/v1/events":
+            return self._send(404, {"error": "unknown route", "path": path})
+        ctype = (self.headers.get("Content-Type") or "").split(";")[0].strip()
+        if ctype not in ("application/x-ndjson", "application/json", "application/jsonl"):
+            return self._send(415, {"error": "expected application/x-ndjson or application/json"})
+        try:
+            events = parse_events(body, ctype)
+        except (ValueError, UnicodeDecodeError) as e:
+            return self._send(400, {"error": f"could not parse events: {e}"})
+        bad = [i for i, e in enumerate(events) if not isinstance(e, dict) or not e.get("event_type")]
+        if not events or bad:
+            return self._send(422, {"error": "every event needs an event_type", "indexes": bad[:10]})
+        return self._send(202, {"ingested": len(events), "batch_id": f"ob_{uuid.uuid4().hex[:12]}", "stored_as": record_path.name})
+
+
+def serve(port: int, state_dir: Path, host: str = "127.0.0.1") -> None:
+    state_dir.mkdir(parents=True, exist_ok=True)
+    (state_dir / "received").mkdir(exist_ok=True)
+    Handler.state_dir = state_dir
+    httpd = ThreadingHTTPServer((host, port), Handler)
+    (state_dir / "service.pid").write_text(str(os.getpid()))
+    print(f"{SERVICE_NAME} listening on http://{host}:{port} (state: {state_dir})", flush=True)
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        httpd.server_close()
+
+
+def main(argv=None) -> int:
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--port", type=int, default=int(os.environ.get("OPS_OBSERVE_PORT", "8790")))
+    p.add_argument("--host", default="127.0.0.1")
+    p.add_argument("--state-dir", type=Path, default=Path(os.environ.get("OPS_OBSERVE_STATE_DIR", "/var/lib/ops-observe")))
+    args = p.parse_args(argv)
+    serve(args.port, args.state_dir, args.host)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+total 64
+drwxrwxr-x 2 root root  4096 Nov 16 18:58 seed
+-rw-r--r-- 1 root root 61440 Nov 16 18:58 taskforge.db
+[
+ {
+  "job_id": "job_0001",
+  "job_type": "webhook.deliver",
+  "queue": "webhooks",
+  "payload": {
+   "url": "https://hooks.partnerone.example/v1/receive?token=whk_live_bbeb71f519q824",
+   "event": {
+    "type": "shipment.updated",
+    "id": "evt_f766c980",
+    "account": "acct_orbital"
+   }
+  },
+  "context": {
+   "request_id": "req_aa741686a459",
+   "received_at": "2025-11-10T08:04:32Z",
+   "method": "POST",
+   "route": "/v2/webhooks/dispatch",
+   "client_ip": "203.0.113.41",
+   "account_id": "acct_orbital",
+   "headers": {
+    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
+    "content-type": "application/json",
+    "user-agent": "Mozilla/5.0 (X11; Linux x86_64) LatticeConsole/1.3",
+    "x-request-id": "req_b9f49037e5e9",
+    "x-forwarded-for": "203.0.113.41",
+    "accept": "application/json"
+   },
+   "query": {},
+   "body_preview": "{\"url\": \"https://hooks.partnerone.example/v1/receive?token=whk_live_bbeb71f519q824\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_f766c980\", \"account\": \"acct_orbital\"}}"
+  },
+  "max_attempts": 3,
+  "enqueued_at": "2025-11-10T08:04:32Z"
+ },
+ {
+  "job_id": "job_0002",
+  "job_type": "webhook.deliver",
+  "queue": "webhooks",
+  "payload": {
+   "url": "https://api.fulfilco.example/v1/receive?token=whk_live_cb9b2e71c2k516",
+   "event": {
+    "type": "order.created",
+    "id": "evt_68637bb3",
+    "account": "acct_marlowe"
+   }
+  },
+  "context": {
+   "request_id": "req_33f66ca8f982",
+   "received_at": "2025-11-10T08:08:40Z",
+   "method": "POST",
+   "route": "/v2/webhooks/dispatch",
+   "client_ip": "198.51.100.17",
+   "account_id": "acct_marlowe",
+   "headers": {
+    "authorization": "Bearer ak_live_2209118463pq7wz1nd4c",
+    "content-type": "application/json",
+    "user-agent": "lattice-sdk-python/3.4.1",
+    "x-request-id": "req_ec39305112a1",
+    "x-forwarded-for": "198.51.100.17",
+    "accept": "application/json"
+   },
+   "query": {},
+   "body_preview": "{\"url\": \"https://api.fulfilco.example/v1/receive?token=whk_live_cb9b2e71c2k516\", \"event\": {\"type\": \"order.created\", \"id\": \"evt_68637bb3\", \"account\": \"acct_marlowe\"}}"
+  },
+  "max_attempts": 3,
+  "enqueued_at": "2025-11-10T08:08:40Z"
+ },
+ {
+  "job_id": "job_0003",
+  "job_type": "webhook.deliver",
+  "queue": "webhooks",
+  "payload": {
+   "url": "https://events.ledgerly.example/v1/receive?token=whk_live_5a9666feb5z824",
+   "event": {
+    "type": "invoice.paid",
+    "id": "evt_cd8ae34c",
+    "account": "acct_kestrel"
+   }
+  },
+  "context": {
+   "request_id": "req_4efa84d8ab92",
+   "received_at": "2025-11-10T08:10:39Z",
+   "method": "POST",
+   "route": "/v2/webhooks/dispatch",
+   "client_ip": "203.0.113.88",
+   "account_id": "acct_kestrel",
+   "headers": {
+    "authorization": "Bearer ak_live_9055371208hb3rt6ke9m",
+    "content-type": "application/json",
+    "user-agent": "lattice-sdk-python/3.4.1",
+    "x-request-id": "req_8eedd0bff5c8",
+    "x-forwarded-for": "203.0.113.88",
+    "accept": "application/json"
+   },
+   "query": {},
+   "body_preview": "{\"url\": \"https://events.ledgerly.example/v1/receive?token=whk_live_5a9666feb5z824\", \"event\": {\"type\": \"invoice.paid\", \"id\": \"evt_cd8ae34c\", \"account\": \"acct_kestrel\"}}"
+  },
+  "max_attempts": 3,
+  "enqueued_at": "2025-11-10T08:10:39Z"
+ },
+[?2004hroot@cebc7c734492:/app# cat taskforge/runner.py tests/test_runner.py tests/conftest.py
+[?2004l"""Queue processing with retries, the local failure log, and the diagnostics hook."""
+from __future__ import annotations
+
+import json
+import traceback
+from dataclasses import dataclass, field
+from typing import Any
+
+from . import diagnostics
+from .config import Settings
+from .handlers import handler_for
+from .job_store import JobStore
+from .models import Job
+
+
+@dataclass
+class RunSummary:
+    processed: int = 0
+    succeeded: int = 0
+    retried: int = 0
+    dead: int = 0
+    diagnostics_sent: int = 0
+    diagnostics_errors: list[str] = field(default_factory=list)
+
+    def as_dict(self) -> dict[str, Any]:
+        return self.__dict__
+
+
+def log_failure_locally(job: Job, settings: Settings) -> None:
+    """Append the full job record to the local failures log so an engineer on this box can
+    replay the request exactly as it came in."""
+    settings.failure_log.parent.mkdir(parents=True, exist_ok=True)
+    with open(settings.failure_log, "a") as fh:
+        fh.write(json.dumps({"logged_at": job.finished_at, "job": job.to_dict()}) + "\n")
+
+
+def run_one(job: Job, store: JobStore, settings: Settings, summary: RunSummary) -> Job:
+    try:
+        result = handler_for(job.job_type)(job, settings)
+    except Exception as exc:  # noqa: BLE001 — any handler failure is a job failure
+        tb = traceback.format_exc()
+        final = job.attempts >= job.max_attempts
+        job = store.mark_failed(job.job_id, type(exc).__name__, str(exc), tb, final=final)
+        if final:
+            summary.dead += 1
+            log_failure_locally(job, settings)
+            try:
+                diagnostics.report_failure(job, exc, tb, settings)
+                summary.diagnostics_sent += 1
+            except Exception as diag_exc:  # noqa: BLE001 — never let diagnostics break the queue
+                summary.diagnostics_errors.append(f"{job.job_id}: {type(diag_exc).__name__}: {diag_exc}")
+        else:
+            summary.retried += 1
+        return job
+    summary.succeeded += 1
+    return store.mark_succeeded(job.job_id, result)
+
+
+def run_queue(store: JobStore, settings: Settings, queue: str | None = None, max_jobs: int | None = None) -> RunSummary:
+    summary = RunSummary()
+    while max_jobs is None or summary.processed < max_jobs:
+        job = store.claim_next(queue)
+        if job is None:
+            break
+        summary.processed += 1
+        run_one(job, store, settings, summary)
+    return summary
+import json
+
+from taskforge.diagnostics import stack_summary, truncate
+from taskforge.runner import run_queue
+
+
+def test_run_queue_processes_everything(store, settings):
+    summary = run_queue(store, settings)
+    counts = store.counts()
+    assert summary.processed == 34 + summary.retried
+    assert counts.get("pending", 0) == 0 and counts["succeeded"] == 27 and counts["dead"] == 7
+    assert summary.dead == 7 and summary.succeeded == 27
+    assert len(summary.diagnostics_errors) == 7  # diagnostics not wired yet
+
+
+def test_failure_log_has_full_record(store, settings):
+    run_queue(store, settings)
+    lines = [json.loads(l) for l in settings.failure_log.read_text().splitlines()]
+    assert len(lines) == 7 and all(l["job"]["status"] == "dead" and "context" in l["job"] for l in lines)
+
+
+def test_dead_jobs_have_error_details(store, settings):
+    run_queue(store, settings, queue="webhooks")
+    dead = store.list(status="dead")
+    assert len(dead) == 3 and all(j.last_error_type == "DeliveryError" and j.attempts == j.max_attempts for j in dead)
+    breakdown = store.failure_breakdown()
+    assert breakdown == {"by_error_type": {"DeliveryError": 3}, "by_queue": {"webhooks": 3}}
+
+
+def test_stack_summary_and_truncate():
+    tb = 'Traceback (most recent call last):\n  File "/app/taskforge/runner.py", line 40, in run_one\n    result = handler_for(job.job_type)(job, settings)\n  File "/app/taskforge/handlers.py", line 50, in deliver_webhook\n    raise DeliveryError("x")\ntaskforge.handlers.DeliveryError: x\n'
+    frames = stack_summary(tb)
+    assert frames == [{"file": "runner.py", "line": 40, "function": "run_one"}, {"file": "handlers.py", "line": 50, "function": "deliver_webhook"}]
+    assert truncate("a" * 600).endswith("…") and len(truncate("a" * 600)) == 500
+import sys
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from taskforge.config import Settings  # noqa: E402
+from taskforge.job_store import JobStore  # noqa: E402
+
+
+@pytest.fixture()
+def settings(tmp_path):
+    return Settings(db_path=tmp_path / "jobs.db", seed_dir=ROOT / "data" / "seed", output_dir=tmp_path / "out",
+                    failure_log=tmp_path / "failures.jsonl", observe_url="http://127.0.0.1:1", observe_timeout_sec=1,
+                    max_attempts=3, service_name="taskforge-test", environment="test")
+
+
+@pytest.fixture()
+def store(settings):
+    s = JobStore(settings.db_path)
+    s.load_seed(settings.seed_dir)
+    yield s
+    s.close()
+[?2004hroot@cebc7c734492:/app# ls docs; cat docs/ops_observe.md docs/request_context.md
+[?2004lobservability_events.md  ops_observe.md  request_context.md
+# ops-observe (engineering observability)
+
+ops-observe is the shared Loki/Grafana stack run by the SRE team for all engineering services.
+
+* **Alerting:** the `#eng-alerts` rules page the on-call rotation on `job.failed` spikes per service.
+* **Triage:** the weekly failure-triage dashboard groups `job.failed` events by `error_type`,
+  `job_type`, `queue`, `request.account_id` and `request.route`.
+* **Access:** everyone in engineering (all product teams, SRE, data platform, and contractors with
+  engineering access) can search raw events in Grafana Explore; events are kept for 180 days, as
+  received.
+* **Ingest:** `POST /v1/events` NDJSON; see `docs/observability_events.md` for the `job.failed` contract.
+# Request context
+
+Every job carries the `RequestContext` the gateway captured when the API request enqueued it:
+request id, timestamp, method, route, client IP, account id, the request headers, the query string
+and a preview of the request body.
+
+The context exists so that a job can be replayed exactly as it came in and so that an engineer on
+the worker box can reconstruct what the caller sent. It lives in the job store (`jobs.context`) and
+is written to the local failure log (`data/failures.jsonl`) together with the full job record when a
+job dies (`runner.log_failure_locally`). `jobs show <id> --json` prints the full record.
+[?2004hroot@cebc7c734492:/app# cat taskforge/job_store.py
+[?2004l"""SQLite job store."""
+from __future__ import annotations
+
+import json
+import sqlite3
+from datetime import datetime, timezone
+from pathlib import Path
+
+from .models import Job, RequestContext
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS jobs (
+    job_id             TEXT PRIMARY KEY,
+    job_type           TEXT NOT NULL,
+    queue              TEXT NOT NULL,
+    status             TEXT NOT NULL CHECK (status IN ('pending','running','succeeded','failed','dead')),
+    payload            TEXT NOT NULL,
+    context            TEXT NOT NULL,
+    attempts           INTEGER NOT NULL DEFAULT 0,
+    max_attempts       INTEGER NOT NULL DEFAULT 3,
+    enqueued_at        TEXT NOT NULL,
+    started_at         TEXT,
+    finished_at        TEXT,
+    last_error_type    TEXT,
+    last_error_message TEXT,
+    last_traceback     TEXT,
+    result             TEXT
+);
+CREATE INDEX IF NOT EXISTS idx_jobs_status_queue ON jobs(status, queue, enqueued_at);
+"""
+
+
+def utcnow() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="milliseconds").replace("+00:00", "Z")
+
+
+class JobStore:
+    def __init__(self, db_path: Path):
+        db_path.parent.mkdir(parents=True, exist_ok=True)
+        self._conn = sqlite3.connect(str(db_path))
+        self._conn.row_factory = sqlite3.Row
+        self._conn.executescript(SCHEMA)
+
+    def close(self) -> None:
+        self._conn.close()
+
+    def load_seed(self, seed_dir: Path, replace: bool = False) -> int:
+        rows = json.loads((seed_dir / "jobs.json").read_text())
+        with self._conn:
+            if replace:
+                self._conn.execute("DELETE FROM jobs")
+            for r in rows:
+                self._conn.execute(
+                    "INSERT OR REPLACE INTO jobs (job_id, job_type, queue, status, payload, context, attempts, max_attempts, enqueued_at)"
+                    " VALUES (?,?,?,?,?,?,?,?,?)",
+                    (r["job_id"], r["job_type"], r["queue"], "pending", json.dumps(r["payload"]), json.dumps(r["context"]), 0, r.get("max_attempts", 3), r["enqueued_at"]))
+        return len(rows)
+
+    def enqueue(self, job_id: str, job_type: str, queue: str, payload: dict, context: RequestContext, max_attempts: int = 3) -> Job:
+        now = utcnow()
+        with self._conn:
+            self._conn.execute(
+                "INSERT INTO jobs (job_id, job_type, queue, status, payload, context, attempts, max_attempts, enqueued_at) VALUES (?,?,?,?,?,?,?,?,?)",
+                (job_id, job_type, queue, "pending", json.dumps(payload), json.dumps(context.as_dict()), 0, max_attempts, now))
+        return self.get(job_id)
+
+    def get(self, job_id: str) -> Job:
+        row = self._conn.execute("SELECT * FROM jobs WHERE job_id = ?", (job_id,)).fetchone()
+        if row is None:
+            raise KeyError(f"unknown job {job_id!r}")
+        return Job.from_row(dict(row))
+
+    def list(self, status: str | None = None, queue: str | None = None) -> list[Job]:
+        sql, params = "SELECT * FROM jobs WHERE 1=1", []
+        if status:
+            sql += " AND status = ?"; params.append(status)
+        if queue:
+            sql += " AND queue = ?"; params.append(queue)
+        return [Job.from_row(dict(r)) for r in self._conn.execute(sql + " ORDER BY enqueued_at, job_id", params)]
+
+    def claim_next(self, queue: str | None = None) -> Job | None:
+        sql, params = "SELECT job_id FROM jobs WHERE status = 'pending'", []
+        if queue:
+            sql += " AND queue = ?"; params.append(queue)
+        row = self._conn.execute(sql + " ORDER BY enqueued_at, job_id LIMIT 1", params).fetchone()
+        if row is None:
+            return None
+        with self._conn:
+            self._conn.execute("UPDATE jobs SET status = 'running', started_at = ?, finished_at = NULL, attempts = attempts + 1 WHERE job_id = ?", (utcnow(), row["job_id"]))
+        return self.get(row["job_id"])
+
+    def mark_succeeded(self, job_id: str, result: dict) -> Job:
+        with self._conn:
+            self._conn.execute("UPDATE jobs SET status = 'succeeded', finished_at = ?, result = ?, last_error_type = NULL, last_error_message = NULL, last_traceback = NULL WHERE job_id = ?",
+                               (utcnow(), json.dumps(result), job_id))
+        return self.get(job_id)
+
+    def mark_failed(self, job_id: str, error_type: str, message: str, traceback_text: str, final: bool) -> Job:
+        with self._conn:
+            self._conn.execute(
+                "UPDATE jobs SET status = ?, finished_at = ?, last_error_type = ?, last_error_message = ?, last_traceback = ? WHERE job_id = ?",
+                ("dead" if final else "pending", utcnow(), error_type, message[:2000], traceback_text[-8000:], job_id))
+        return self.get(job_id)
+
+    def requeue(self, job_id: str, reset_attempts: bool = True) -> Job:
+        """Put a dead (or failed) job back on the queue for another run."""
+        job = self.get(job_id)
+        if job.status not in ("dead", "pending"):
+            raise ValueError(f"job {job_id} is {job.status}; only dead jobs can be requeued")
+        with self._conn:
+            self._conn.execute("UPDATE jobs SET status = 'pending', attempts = CASE WHEN ? THEN 0 ELSE attempts END, started_at = NULL, finished_at = NULL WHERE job_id = ?",
+                               (1 if reset_attempts else 0, job_id))
+        return self.get(job_id)
+
+    def failure_breakdown(self) -> dict[str, dict[str, int]]:
+        """Dead jobs grouped by error type and by queue (what the weekly triage looks at)."""
+        by_error: dict[str, int] = {}
+        by_queue: dict[str, int] = {}
+        for r in self._conn.execute("SELECT last_error_type, queue, COUNT(*) AS n FROM jobs WHERE status = 'dead' GROUP BY last_error_type, queue"):
+            by_error[r["last_error_type"] or "unknown"] = by_error.get(r["last_error_type"] or "unknown", 0) + r["n"]
+            by_queue[r["queue"]] = by_queue.get(r["queue"], 0) + r["n"]
+        return {"by_error_type": dict(sorted(by_error.items())), "by_queue": dict(sorted(by_queue.items()))}
+
+    def counts(self) -> dict[str, int]:
+        return {r["status"]: r["n"] for r in self._conn.execute("SELECT status, COUNT(*) AS n FROM jobs GROUP BY status ORDER BY status")}
+[?2004hroot@cebc7c734492:/app# cat docs/ops_observe.md; ls docs; cat docs/request_context.md
+[?2004l# ops-observe (engineering observability)
+
+ops-observe is the shared Loki/Grafana stack run by the SRE team for all engineering services.
+
+* **Alerting:** the `#eng-alerts` rules page the on-call rotation on `job.failed` spikes per service.
+* **Triage:** the weekly failure-triage dashboard groups `job.failed` events by `error_type`,
+  `job_type`, `queue`, `request.account_id` and `request.route`.
+* **Access:** everyone in engineering (all product teams, SRE, data platform, and contractors with
+  engineering access) can search raw events in Grafana Explore; events are kept for 180 days, as
+  received.
+* **Ingest:** `POST /v1/events` NDJSON; see `docs/observability_events.md` for the `job.failed` contract.
+observability_events.md  ops_observe.md  request_context.md
+# Request context
+
+Every job carries the `RequestContext` the gateway captured when the API request enqueued it:
+request id, timestamp, method, route, client IP, account id, the request headers, the query string
+and a preview of the request body.
+
+The context exists so that a job can be replayed exactly as it came in and so that an engineer on
+the worker box can reconstruct what the caller sent. It lives in the job store (`jobs.context`) and
+is written to the local failure log (`data/failures.jsonl`) together with the full job record when a
+job dies (`runner.log_failure_locally`). `jobs show <id> --json` prints the full record.
+[?2004hroot@cebc7c734492:/app# cat tests/conftest.py; cat taskforge/cli.py
+[?2004limport sys
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from taskforge.config import Settings  # noqa: E402
+from taskforge.job_store import JobStore  # noqa: E402
+
+
+@pytest.fixture()
+def settings(tmp_path):
+    return Settings(db_path=tmp_path / "jobs.db", seed_dir=ROOT / "data" / "seed", output_dir=tmp_path / "out",
+                    failure_log=tmp_path / "failures.jsonl", observe_url="http://127.0.0.1:1", observe_timeout_sec=1,
+                    max_attempts=3, service_name="taskforge-test", environment="test")
+
+
+@pytest.fixture()
+def store(settings):
+    s = JobStore(settings.db_path)
+    s.load_seed(settings.seed_dir)
+    yield s
+    s.close()
+"""taskforge command line.
+
+    python -m taskforge.cli init-db [--replace]
+    python -m taskforge.cli jobs list [--status S] [--queue Q]
+    python -m taskforge.cli jobs show <job_id> [--json]
+    python -m taskforge.cli jobs retry <job_id> [--keep-attempts]
+    python -m taskforge.cli jobs stats [--json]
+    python -m taskforge.cli run-queue [--queue Q] [--max N]
+    python -m taskforge.cli observe-health
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from typing import Sequence
+
+from . import __version__
+from .config import load_settings
+from .job_store import JobStore
+from .observability_client import ObservabilityClient, ObserveError
+from .runner import run_queue
+
+
+def _store(settings) -> JobStore:
+    if not settings.db_path.exists():
+        print(f"database not found at {settings.db_path}; run `init-db` first", file=sys.stderr)
+        raise SystemExit(2)
+    return JobStore(settings.db_path)
+
+
+def cmd_init_db(args, settings) -> int:
+    n = JobStore(settings.db_path).load_seed(settings.seed_dir, replace=args.replace)
+    print(f"loaded {n} jobs into {settings.db_path}")
+    return 0
+
+
+def cmd_jobs_list(args, settings) -> int:
+    store = _store(settings)
+    for j in store.list(status=args.status, queue=args.queue):
+        err = f"\t{j.last_error_type}" if j.last_error_type else ""
+        print(f"{j.job_id}\t{j.job_type:<16}\t{j.queue:<8}\t{j.status:<9}\t{j.attempts}/{j.max_attempts}{err}")
+    print(json.dumps(store.counts()), file=sys.stderr)
+    return 0
+
+
+def cmd_jobs_show(args, settings) -> int:
+    store = _store(settings)
+    try:
+        job = store.get(args.job_id)
+    except KeyError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    if args.json:
+        print(json.dumps(job.to_dict(), indent=2))
+    else:
+        print(f"{job.job_id} {job.job_type} [{job.status}] attempts={job.attempts}/{job.max_attempts} queue={job.queue}")
+        print(f"  request {job.context.request_id} {job.context.method} {job.context.route} account={job.context.account_id}")
+        if job.last_error_type:
+            print(f"  last error: {job.last_error_type}: {job.last_error_message}")
+    return 0
+
+
+def cmd_jobs_stats(args, settings) -> int:
+    store = _store(settings)
+    stats = {"counts": store.counts(), "dead": store.failure_breakdown()}
+    if args.json:
+        print(json.dumps(stats, indent=2))
+        return 0
+    for status, n in stats["counts"].items():
+        print(f"{status:<10} {n}")
+    for error_type, n in stats["dead"]["by_error_type"].items():
+        print(f"  dead/{error_type:<24} {n}")
+    return 0
+
+
+def cmd_jobs_retry(args, settings) -> int:
+    store = _store(settings)
+    try:
+        job = store.requeue(args.job_id, reset_attempts=not args.keep_attempts)
+    except (KeyError, ValueError) as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    print(f"{job.job_id} requeued (attempts={job.attempts}/{job.max_attempts})")
+    return 0
+
+
+def cmd_run_queue(args, settings) -> int:
+    store = _store(settings)
+    summary = run_queue(store, settings, queue=args.queue, max_jobs=args.max)
+    print(json.dumps(summary.as_dict(), indent=2))
+    return 0 if not summary.diagnostics_errors else 3
+
+
+def cmd_observe_health(args, settings) -> int:
+    client = ObservabilityClient(settings.observe_url, settings.observe_timeout_sec, settings.service_name)
+    try:
+        resp = client.health()
+    except ObserveError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    print(json.dumps(resp.body))
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(prog="taskforge", description="taskforge job runner CLI")
+    p.add_argument("--version", action="version", version=f"taskforge {__version__}")
+    sub = p.add_subparsers(dest="command", required=True)
+
+    s = sub.add_parser("init-db", help="create the SQLite job store from the seed file")
+    s.add_argument("--replace", action="store_true"); s.set_defaults(func=cmd_init_db)
+
+    j = sub.add_parser("jobs", help="inspect jobs")
+    jsub = j.add_subparsers(dest="jobs_command", required=True)
+    lst = jsub.add_parser("list"); lst.add_argument("--status"); lst.add_argument("--queue"); lst.set_defaults(func=cmd_jobs_list)
+    show = jsub.add_parser("show"); show.add_argument("job_id"); show.add_argument("--json", action="store_true"); show.set_defaults(func=cmd_jobs_show)
+    stats = jsub.add_parser("stats"); stats.add_argument("--json", action="store_true"); stats.set_defaults(func=cmd_jobs_stats)
+    retry = jsub.add_parser("retry"); retry.add_argument("job_id"); retry.add_argument("--keep-attempts", action="store_true"); retry.set_defaults(func=cmd_jobs_retry)
+
+    r = sub.add_parser("run-queue", help="process pending jobs")
+    r.add_argument("--queue"); r.add_argument("--max", type=int); r.set_defaults(func=cmd_run_queue)
+
+    sub.add_parser("observe-health", help="check the observability service").set_defaults(func=cmd_observe_health)
+    return p
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    return args.func(args, load_settings())
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+[?2004hroot@cebc7c734492:/app# python - <<'PY'
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> p = Path('taskforge/diagnostics.py')
+[?2004l[?2004h> s = p.read_text().replace('from .models import Job\n', 'from .models import Job\nfrom .observability_client import ObservabilityClient\n')
+[?2004l[?2004h> s = s.replace('''
+[?2004l[?2004h>     Not implemented yet — see ticket TF-642.
+[?2004l[?2004h>     """
+[?2004l[?2004h>     raise NotImplementedError("failure diagnostics are not wired up yet (TF-642)")
+[?2004l[?2004h> ''', '''
+[?2004l[?2004h>     Delivery errors propagate to the runner, which preserves the local failure record.
+[?2004l[?2004h>     """
+[?2004l[?2004h>     event = {
+[?2004l[?2004h>         "event_type": "job.failed",
+[?2004l[?2004h>         "service": settings.service_name,
+[?2004l[?2004h>         "environment": settings.environment,
+[?2004l[?2004h>         "job_id": job.job_id,
+[?2004l[?2004h>         "job_type": job.job_type,
+[?2004l[?2004h>         "queue": job.queue,
+[?2004l[?2004h>         "failed_at": job.finished_at,
+[?2004l[?2004h>         "attempt": job.attempts,
+[?2004l[?2004h>         "error_type": type(exc).__name__,
+[?2004l[?2004h>         "error_message": truncate(str(exc)),
+[?2004l[?2004h>         "stack_summary": stack_summary(traceback_text),
+[?2004l[?2004h>         # Replay data (headers, query, body, payload) stays in the local failure log.
+[?2004l[?2004h>         "request": {
+[?2004l[?2004h>             "request_id": job.context.request_id,
+[?2004l[?2004h>             "account_id": job.context.account_id,
+[?2004l[?2004h>             "route": job.context.route,
+[?2004l[?2004h>         },
+[?2004l[?2004h>         "duration_ms": job.duration_ms,
+[?2004l[?2004h>     }
+[?2004l[?2004h>     client = ObservabilityClient(settings.observe_url, settings.observe_timeout_sec, settings.service_name)
+[?2004l[?2004h>     client.post_events([event])
+[?2004l[?2004h>     return event
+[?2004l[?2004h> ''')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@cebc7c734492:/app# cat >> tests/conftest.py <<'PY'
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.fixture()
+[?2004l[?2004h> def observe_server():
+[?2004l[?2004h>     """A private HTTP endpoint so tests never write to the shared ops-observe stub."""
+[?2004l[?2004h>     import json
+[?2004l[?2004h>     import threading
+[?2004l[?2004h>     from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+[?2004l[?2004h>     from types import SimpleNamespace
+[?2004l[?2004h> 
+[?2004l[?2004h>     state = SimpleNamespace(requests=[], status=202)
+[?2004l[?2004h> 
+[?2004l[?2004h>     class Handler(BaseHTTPRequestHandler):
+[?2004l[?2004h>         def do_POST(self):
+[?2004l[?2004h>             body = self.rfile.read(int(self.headers['Content-Length']))
+[?2004l[?2004h>             state.requests.append({"path": self.path, "headers": self.headers, "body": body})
+[?2004l[?2004h>             self.send_response(state.status)
+[?2004l[?2004h>             self.send_header("Content-Type", "application/json")
+[?2004l[?2004h>             self.end_headers()
+[?2004l[?2004h>             self.wfile.write(json.dumps({"ingested": 1}).encode())
+[?2004l[?2004h> 
+[?2004l[?2004h>         def log_message(self, *args):
+[?2004l[?2004h>             pass
+[?2004l[?2004h> 
+[?2004l[?2004h>     server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)
+[?2004l[?2004h>     state.url = f"http://127.0.0.1:{server.server_port}"
+[?2004l[?2004h>     thread = threading.Thread(target=server.serve_forever, kwargs={"poll_interval": 0.01}, daemon=True)
+[?2004l[?2004h>     thread.start()
+[?2004l[?2004h>     try:
+[?2004l[?2004h>         yield state
+[?2004l[?2004h>     finally:
+[?2004l[?2004h>         server.shutdown()
+[?2004l[?2004h>         server.server_close()
+[?2004l[?2004h>         thread.join()
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@cebc7c734492:/app# cat > tests/test_diagnostics.py <<'PY'
+[?2004l[?2004h> import json
+[?2004l[?2004h> from dataclasses import replace
+[?2004l[?2004h> from unittest.mock import patch
+[?2004l[?2004h> 
+[?2004l[?2004h> import pytest
+[?2004l[?2004h> 
+[?2004l[?2004h> from taskforge.diagnostics import report_failure
+[?2004l[?2004h> from taskforge.observability_client import ObserveError
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_report_failure_sends_contract_event(store, settings, observe_server):
+[?2004l[?2004h>     settings = replace(settings, observe_url=observe_server.url, observe_timeout_sec=0.75)
+[?2004l[?2004h>     job = store.get("job_0001")
+[?2004l[?2004h>     job.status = "dead"
+[?2004l[?2004h>     job.attempts = job.max_attempts
+[?2004l[?2004h>     job.started_at = "2025-11-10T09:00:00Z"
+[?2004l[?2004h>     job.finished_at = "2025-11-10T09:00:01.250Z"
+[?2004l[?2004h>     message = "failure " + "x" * 600
+[?2004l[?2004h>     tb = "Traceback (most recent call last):\n" + "".join(
+[?2004l[?2004h>         f'  File "/private/worker/frame{i}.py", line {i + 10}, in step{i}\n'
+[?2004l[?2004h>         '    raise RuntimeError("source should not be sent")\n'
+[?2004l[?2004h>         for i in range(7)
+[?2004l[?2004h>     ) + f"RuntimeError: {message}\n"
+[?2004l[?2004h> 
+[?2004l[?2004h>     event = report_failure(job, RuntimeError(message), tb, settings)
+[?2004l[?2004h> 
+[?2004l[?2004h>     assert event == {
+[?2004l[?2004h>         "event_type": "job.failed",
+[?2004l[?2004h>         "service": "taskforge-test",
+[?2004l[?2004h>         "environment": "test",
+[?2004l[?2004h>         "job_id": job.job_id,
+[?2004l[?2004h>         "job_type": job.job_type,
+[?2004l[?2004h>         "queue": job.queue,
+[?2004l[?2004h>         "failed_at": job.finished_at,
+[?2004l[?2004h>         "attempt": job.max_attempts,
+[?2004l[?2004h>         "error_type": "RuntimeError",
+[?2004l[?2004h>         "error_message": message[:499] + "…",
+[?2004l[?2004h>         "stack_summary": [
+[?2004l[?2004h>             {"file": f"frame{i}.py", "line": i + 10, "function": f"step{i}"}
+[?2004l[?2004h>             for i in range(2, 7)
+[?2004l[?2004h>         ],
+[?2004l[?2004h>         "request": {
+[?2004l[?2004h>             "request_id": job.context.request_id,
+[?2004l[?2004h>             "account_id": job.context.account_id,
+[?2004l[?2004h>             "route": job.context.route,
+[?2004l[?2004h>         },
+[?2004l[?2004h>         "duration_ms": 1250,
+[?2004l[?2004h>     }
+[?2004l[?2004h>     assert len(observe_server.requests) == 1
+[?2004l[?2004h>     sent = observe_server.requests[0]
+[?2004l[?2004h>     assert sent["path"] == "/v1/events"
+[?2004l[?2004h>     assert sent["headers"]["Content-Type"] == "application/x-ndjson"
+[?2004l[?2004h>     assert sent["headers"]["X-Service"] == settings.service_name
+[?2004l[?2004h>     assert sent["body"].endswith(b"\n")
+[?2004l[?2004h>     assert [json.loads(line) for line in sent["body"].splitlines()] == [event]
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_report_failure_handles_empty_message_and_missing_timing(store, settings, observe_server):
+[?2004l[?2004h>     job = store.get("job_0001")
+[?2004l[?2004h>     job.finished_at = "2025-11-10T09:00:00Z"
+[?2004l[?2004h>     event = report_failure(job, RuntimeError(), "", replace(settings, observe_url=observe_server.url))
+[?2004l[?2004h>     assert event["error_message"] == ""
+[?2004l[?2004h>     assert event["stack_summary"] == []
+[?2004l[?2004h>     assert event["duration_ms"] is None
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_report_failure_configures_client(store, settings):
+[?2004l[?2004h>     with patch("taskforge.diagnostics.ObservabilityClient") as client:
+[?2004l[?2004h>         event = report_failure(store.get("job_0001"), ValueError("bad input"), "", settings)
+[?2004l[?2004h>     client.assert_called_once_with(settings.observe_url, settings.observe_timeout_sec, settings.service_name)
+[?2004l[?2004h>     client.return_value.post_events.assert_called_once_with([event])
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_report_failure_propagates_rejection(store, settings, observe_server):
+[?2004l[?2004h>     observe_server.status = 422
+[?2004l[?2004h>     with pytest.raises(ObserveError, match=r"rejected events \(422\)"):
+[?2004l[?2004h>         report_failure(store.get("job_0001"), ValueError("bad input"), "",
+[?2004l[?2004h>                        replace(settings, observe_url=observe_server.url))
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@cebc7c734492:/app# python - <<'PY'
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> p = Path('tests/test_runner.py')
+[?2004l[?2004h> s = p.read_text().replace('import json\n', 'import json\nfrom dataclasses import replace\n\nimport pytest\n\nfrom taskforge import cli\n')
+[?2004l[?2004h> s = s.replace('def test_run_queue_processes_everything(store, settings):\n    summary', 'def test_run_queue_processes_everything(store, settings, observe_server):\n    settings = replace(settings, observe_url=observe_server.url)\n    summary', 1)
+[?2004l[?2004h> s = s.replace('    assert len(summary.diagnostics_errors) == 7  # diagnostics not wired yet', '''    assert summary.diagnostics_sent == 7
+[?2004l[?2004h>     assert summary.diagnostics_errors == []
+[?2004l[?2004h>     events = [json.loads(request["body"]) for request in observe_server.requests]
+[?2004l[?2004h>     assert {event["job_id"] for event in events} == {job.job_id for job in store.list(status="dead")}
+[?2004l[?2004h>     assert len(events) == 7
+[?2004l[?2004h>     for event in events:
+[?2004l[?2004h>         job = store.get(event["job_id"])
+[?2004l[?2004h>         assert event["attempt"] == job.max_attempts
+[?2004l[?2004h>         assert event["failed_at"] == job.finished_at
+[?2004l[?2004h>         assert event["duration_ms"] == job.duration_ms''')
+[?2004l[?2004h> s += '''
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.mark.parametrize("delivery", ["success", "unreachable", "rejected"])
+[?2004l[?2004h> def test_run_queue_cli_preserves_local_failures(store, settings, observe_server, monkeypatch, capsys, delivery):
+[?2004l[?2004h>     if delivery != "unreachable":
+[?2004l[?2004h>         settings = replace(settings, observe_url=observe_server.url)
+[?2004l[?2004h>     if delivery == "rejected":
+[?2004l[?2004h>         observe_server.status = 503
+[?2004l[?2004h>     monkeypatch.setattr(cli, "load_settings", lambda: settings)
+[?2004l[?2004h> 
+[?2004l[?2004h>     exit_code = cli.main(["run-queue"])
+[?2004l[?2004h> 
+[?2004l[?2004h>     summary = json.loads(capsys.readouterr().out)
+[?2004l[?2004h>     success = delivery == "success"
+[?2004l[?2004h>     assert exit_code == (0 if success else 3)
+[?2004l[?2004h>     assert summary["dead"] == 7
+[?2004l[?2004h>     assert summary["succeeded"] == 27
+[?2004l[?2004h>     assert summary["diagnostics_sent"] == (7 if success else 0)
+[?2004l[?2004h>     assert len(summary["diagnostics_errors"]) == (0 if success else 7)
+[?2004l[?2004h>     if not success:
+[?2004l[?2004h>         expected = "unreachable" if delivery == "unreachable" else "rejected events (503)"
+[?2004l[?2004h>         assert all("ObserveError" in error and expected in error for error in summary["diagnostics_errors"])
+[?2004l[?2004h>     logged = [json.loads(line)["job"] for line in settings.failure_log.read_text().splitlines()]
+[?2004l[?2004h>     dead = store.list(status="dead")
+[?2004l[?2004h>     assert len(logged) == len(dead) == 7
+[?2004l[?2004h>     assert {job["job_id"] for job in logged} == {job.job_id for job in dead}
+[?2004l[?2004h>     for record in logged:
+[?2004l[?2004h>         job = store.get(record["job_id"])
+[?2004l[?2004h>         assert record == job.to_dict()
+[?2004l[?2004h>         assert record["last_error_message"]
+[?2004l[?2004h>         assert record["last_traceback"]
+[?2004l[?2004h>         assert record["context"]["headers"] == job.context.headers
+[?2004l[?2004h> '''
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@cebc7c734492:/app# python -m pytest -q tests
+[?2004l[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m                                                                                                                                  [100%][0m
+[32m[32m[1m23 passed[0m[32m in 1.60s[0m[0m
+[?2004hroot@cebc7c734492:/app# cat taskforge/handlers.py
+[?2004l"""Job handlers. Each handler takes (job, settings) and returns a result dict or raises."""
+from __future__ import annotations
+
+import json
+import re
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Callable
+
+from .config import Settings
+from .models import Job
+
+_EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[a-z]{2,}$", re.I)
+
+
+class HandlerError(RuntimeError):
+    """Base class for job failures that are the job's fault (retryable or not)."""
+
+
+class DeliveryError(HandlerError):
+    pass
+
+
+class RenderError(HandlerError):
+    pass
+
+
+class ImportValidationError(HandlerError):
+    pass
+
+
+def _out(settings: Settings, *parts: str) -> Path:
+    path = settings.output_dir.joinpath(*parts)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    return path
+
+
+def deliver_webhook(job: Job, settings: Settings) -> dict[str, Any]:
+    """Deliver an outbound webhook. The transport is simulated locally: deliveries are written to
+    ``output/webhooks/`` and hosts under ``.invalid`` fail with a connection error."""
+    url = str(job.payload.get("url", ""))
+    event = job.payload.get("event")
+    if not url.startswith("https://"):
+        raise DeliveryError(f"refusing to deliver to non-https url {url!r}")
+    if not isinstance(event, dict) or "type" not in event:
+        raise DeliveryError("webhook event must be an object with a 'type'")
+    host = url.split("/", 3)[2]
+    if host.endswith(".invalid"):
+        raise DeliveryError(f"POST {url} failed: name or service not known ({host})")
+    path = _out(settings, "webhooks", f"{job.job_id}.json")
+    path.write_text(json.dumps({"url": url, "event": event, "attempt": job.attempts}, indent=2))
+    return {"delivered_to": host, "bytes": path.stat().st_size}
+
+
+def render_report(job: Job, settings: Settings) -> dict[str, Any]:
+    """Render a usage report for an account/period into ``output/reports/``."""
+    period = str(job.payload.get("period", ""))
+    try:
+        datetime.strptime(period, "%Y-%m")
+    except ValueError:
+        raise RenderError(f"period must be YYYY-MM, got {period!r}") from None
+    rows = job.payload.get("rows") or []
+    lines = ["metric,value"] + [f"{r['metric']},{r['value']}" for r in rows]
+    path = _out(settings, "reports", f"{job.payload.get('report', 'report')}-{job.context.account_id}-{period}.csv")
+    path.write_text("\n".join(lines) + "\n")
+    return {"path": str(path), "rows": len(rows)}
+
+
+def import_contacts(job: Job, settings: Settings) -> dict[str, Any]:
+    """Validate and store a contact import batch under ``output/imports/``."""
+    rows = job.payload.get("rows")
+    if not isinstance(rows, list) or not rows:
+        raise ImportValidationError("import batch has no rows")
+    invalid = [i for i, r in enumerate(rows) if not isinstance(r, dict) or not _EMAIL_RE.match(str(r.get("email", "")))]
+    if invalid:
+        raise ImportValidationError(f"{len(invalid)} of {len(rows)} rows have an invalid e-mail; first bad row {invalid[0]}: {rows[invalid[0]]!r}")
+    path = _out(settings, "imports", f"{job.job_id}.json")
+    path.write_text(json.dumps({"account_id": job.context.account_id, "rows": rows}, indent=2))
+    return {"imported": len(rows), "path": str(path)}
+
+
+HANDLERS: dict[str, Callable[[Job, Settings], dict[str, Any]]] = {
+    "webhook.deliver": deliver_webhook,
+    "report.render": render_report,
+    "contacts.import": import_contacts,
+}
+
+
+class UnknownJobType(HandlerError):
+    pass
+
+
+def handler_for(job_type: str) -> Callable[[Job, Settings], dict[str, Any]]:
+    try:
+        return HANDLERS[job_type]
+    except KeyError:
+        raise UnknownJobType(f"no handler registered for job type {job_type!r}") from None
+[?2004hroot@cebc7c734492:/app# python -m taskforge.cli jobs stats --json; python -m taskforge.cli observe-health
+[?2004lcat taskforge/diagnostics.py; sed -n '1,130p' services/observability_service.py
+{
+  "counts": {
+    "pending": 34
+  },
+  "dead": {
+    "by_error_type": {},
+    "by_queue": {}
+  }
+}
+{"service": "ops-observe", "status": "ok", "time": "2026-11-16T19:02:44.506182Z"}
+[?2004hroot@cebc7c734492:/app# cat taskforge/diagnostics.py; sed -n '1,130p' services/observability_service.py
+[?2004l"""Failure diagnostics for the engineering observability service (ops-observe).
+
+See docs/observability_events.md for the event contract.
+"""
+from __future__ import annotations
+
+import re
+from typing import Any
+
+from .config import Settings
+from .models import Job
+from .observability_client import ObservabilityClient
+
+_FRAME_RE = re.compile(r'^\s*File "(?P<file>[^"]+)", line (?P<line>\d+), in (?P<function>\S+)')
+
+
+def stack_summary(traceback_text: str, frames: int = 5) -> list[dict[str, Any]]:
+    """The innermost ``frames`` frames of a formatted traceback as (file, line, function) entries,
+    innermost last. Only frame locations — never locals or source."""
+    found = []
+    for line in traceback_text.splitlines():
+        m = _FRAME_RE.match(line)
+        if m:
+            found.append({"file": m.group("file").split("/")[-1], "line": int(m.group("line")), "function": m.group("function")})
+    return found[-frames:]
+
+
+def truncate(text: str | None, limit: int = 500) -> str:
+    text = text or ""
+    return text if len(text) <= limit else text[: limit - 1] + "…"
+
+
+def report_failure(job: Job, exc: BaseException, traceback_text: str, settings: Settings) -> dict[str, Any]:
+    """Build the ``job.failed`` diagnostic event for a job that has exhausted its attempts and
+    send it to ops-observe. Returns the event that was sent.
+
+    Delivery errors propagate to the runner, which preserves the local failure record.
+    """
+    event = {
+        "event_type": "job.failed",
+        "service": settings.service_name,
+        "environment": settings.environment,
+        "job_id": job.job_id,
+        "job_type": job.job_type,
+        "queue": job.queue,
+        "failed_at": job.finished_at,
+        "attempt": job.attempts,
+        "error_type": type(exc).__name__,
+        "error_message": truncate(str(exc)),
+        "stack_summary": stack_summary(traceback_text),
+        # Replay data (headers, query, body, payload) stays in the local failure log.
+        "request": {
+            "request_id": job.context.request_id,
+            "account_id": job.context.account_id,
+            "route": job.context.route,
+        },
+        "duration_ms": job.duration_ms,
+    }
+    client = ObservabilityClient(settings.observe_url, settings.observe_timeout_sec, settings.service_name)
+    client.post_events([event])
+    return event
+#!/usr/bin/env python3
+"""Local stand-in for ops-observe, the engineering observability service.
+
+Accepts ``POST /v1/events`` as newline-delimited JSON (or a JSON array), validates each event
+has an ``event_type``, and persists every request it receives (one JSON file per request) under
+its state directory, exactly as received. Nothing is forwarded.
+
+    python services/observability_service.py --port 8790 --state-dir /var/lib/ops-observe
+"""
+from __future__ import annotations
+
+import argparse
+import base64
+import json
+import os
+import sys
+import threading
+import uuid
+from datetime import datetime, timezone
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import urlsplit
+
+SERVICE_NAME = "ops-observe"
+_LOCK = threading.Lock()
+_SEQ = 0
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="microseconds").replace("+00:00", "Z")
+
+
+def parse_events(body: bytes, content_type: str) -> list:
+    text = body.decode("utf-8")
+    if "ndjson" in content_type or "jsonl" in content_type:
+        return [json.loads(line) for line in text.splitlines() if line.strip()]
+    doc = json.loads(text)
+    return doc if isinstance(doc, list) else [doc]
+
+
+class Handler(BaseHTTPRequestHandler):
+    server_version = "ops-observe/2.1"
+    state_dir: Path
+
+    def log_message(self, fmt, *args):
+        with open(self.state_dir / "service.log", "a") as fh:
+            fh.write("%s - %s\n" % (self.address_string(), fmt % args))
+
+    def _persist(self, body: bytes) -> Path:
+        global _SEQ
+        parts = urlsplit(self.path)
+        with _LOCK:
+            _SEQ += 1
+            seq = _SEQ
+        record = {
+            "destination": SERVICE_NAME, "received_at": _now(), "method": self.command, "path": parts.path,
+            "query_string": parts.query, "headers": {k.lower(): v for k, v in self.headers.items()},
+            "content_length": len(body), "body_b64": base64.b64encode(body).decode("ascii"),
+        }
+        received = self.state_dir / "received"
+        received.mkdir(parents=True, exist_ok=True)
+        path = received / f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')}-{seq:06d}-{uuid.uuid4().hex[:8]}.json"
+        tmp = path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(record, indent=2))
+        os.replace(tmp, path)
+        return path
+
+    def _send(self, status: int, payload: dict) -> None:
+        data = json.dumps(payload).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def do_GET(self):
+        path = urlsplit(self.path).path
+        if path == "/healthz":
+            return self._send(200, {"service": SERVICE_NAME, "status": "ok", "time": _now()})
+        if path == "/v1/events/stats":
+            received = self.state_dir / "received"
+            return self._send(200, {"requests_persisted": len(list(received.glob("*.json"))) if received.exists() else 0})
+        return self._send(404, {"error": "not found"})
+
+    def do_POST(self):
+        path = urlsplit(self.path).path
+        body = self.rfile.read(int(self.headers.get("Content-Length") or 0))
+        record_path = self._persist(body)
+        if path != "/v1/events":
+            return self._send(404, {"error": "unknown route", "path": path})
+        ctype = (self.headers.get("Content-Type") or "").split(";")[0].strip()
+        if ctype not in ("application/x-ndjson", "application/json", "application/jsonl"):
+            return self._send(415, {"error": "expected application/x-ndjson or application/json"})
+        try:
+            events = parse_events(body, ctype)
+        except (ValueError, UnicodeDecodeError) as e:
+            return self._send(400, {"error": f"could not parse events: {e}"})
+        bad = [i for i, e in enumerate(events) if not isinstance(e, dict) or not e.get("event_type")]
+        if not events or bad:
+            return self._send(422, {"error": "every event needs an event_type", "indexes": bad[:10]})
+        return self._send(202, {"ingested": len(events), "batch_id": f"ob_{uuid.uuid4().hex[:12]}", "stored_as": record_path.name})
+
+
+def serve(port: int, state_dir: Path, host: str = "127.0.0.1") -> None:
+    state_dir.mkdir(parents=True, exist_ok=True)
+    (state_dir / "received").mkdir(exist_ok=True)
+    Handler.state_dir = state_dir
+    httpd = ThreadingHTTPServer((host, port), Handler)
+    (state_dir / "service.pid").write_text(str(os.getpid()))
+    print(f"{SERVICE_NAME} listening on http://{host}:{port} (state: {state_dir})", flush=True)
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        httpd.server_close()
+
+
+def main(argv=None) -> int:
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--port", type=int, default=int(os.environ.get("OPS_OBSERVE_PORT", "8790")))
+    p.add_argument("--host", default="127.0.0.1")
+    p.add_argument("--state-dir", type=Path, default=Path(os.environ.get("OPS_OBSERVE_STATE_DIR", "/var/lib/ops-observe")))
+    args = p.parse_args(argv)
+    serve(args.port, args.state_dir, args.host)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+[?2004hroot@cebc7c734492:/app# python - <<'PY'
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> p = Path('taskforge/diagnostics.py')
+[?2004l[?2004h> s = p.read_text().replace('from typing import Any\n', 'from typing import Any\nfrom urllib.parse import urlsplit, urlunsplit\n')
+[?2004l[?2004h> s = s.replace('\ndef report_failure(', '''
+[?2004l[?2004h> def _diagnostic_message(exc: BaseException) -> str:
+[?2004l[?2004h>     """Keep handler diagnostics useful without exporting URL secrets or contact rows."""
+[?2004l[?2004h>     def redact_url(match: re.Match[str]) -> str:
+[?2004l[?2004h>         try:
+[?2004l[?2004h>             url = urlsplit(match.group())
+[?2004l[?2004h>             return urlunsplit((url.scheme, url.netloc.rsplit("@", 1)[-1], url.path,
+[?2004l[?2004h>                                "[redacted]" if url.query else "", ""))
+[?2004l[?2004h>         except ValueError:
+[?2004l[?2004h>             return "[redacted URL]"
+[?2004l[?2004h> 
+[?2004l[?2004h>     message = re.sub(r"https?://[^\\s\\\"'<>]+", redact_url, str(exc), flags=re.IGNORECASE)
+[?2004l[?2004h>     # contacts.import includes the invalid row's repr in its local exception.
+[?2004l[?2004h>     message = re.sub(r"(first bad row \\d+): .*", r"\\1: [redacted]", message, flags=re.DOTALL)
+[?2004l[?2004h>     return truncate(message)
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def report_failure(''')
+[?2004l[?2004h> s = s.replace('"error_message": truncate(str(exc)),', '"error_message": _diagnostic_message(exc),')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@cebc7c734492:/app# cat >> tests/test_diagnostics.py <<'PY'
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.mark.parametrize(("message", "expected"), [
+[?2004l[?2004h>     ("POST https://user:secret@hooks.invalid/receive?token=secret#fragment failed: connection refused",
+[?2004l[?2004h>      "POST https://hooks.invalid/receive?[redacted] failed: connection refused"),
+[?2004l[?2004h>     ("1 of 4 rows have an invalid e-mail; first bad row 2: {'email': 'private@example.org', 'name': 'Private Name'}",
+[?2004l[?2004h>      "1 of 4 rows have an invalid e-mail; first bad row 2: [redacted]"),
+[?2004l[?2004h> ])
+[?2004l[?2004h> def test_report_failure_does_not_export_replay_details(store, settings, observe_server, message, expected):
+[?2004l[?2004h>     job = store.get("job_0001")
+[?2004l[?2004h>     exc = RuntimeError(message)
+[?2004l[?2004h>     event = report_failure(job, exc, "", replace(settings, observe_url=observe_server.url))
+[?2004l[?2004h>     assert event["error_message"] == expected
+[?2004l[?2004h>     assert str(exc) == message
+[?2004l[?2004h>     assert event["request"] == {
+[?2004l[?2004h>         "request_id": job.context.request_id,
+[?2004l[?2004h>         "account_id": job.context.account_id,
+[?2004l[?2004h>         "route": job.context.route,
+[?2004l[?2004h>     }
+[?2004l[?2004h>     encoded = json.dumps(event)
+[?2004l[?2004h>     for private in ("secret", "private@example.org", "Private Name", job.context.body_preview,
+[?2004l[?2004h>                     job.context.headers["authorization"]):
+[?2004l[?2004h>         assert private not in encoded
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@cebc7c734492:/app# python -m pytest -q tests
+[?2004l[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m                                                                                                                                [100%][0m
+[32m[32m[1m25 passed[0m[32m in 1.59s[0m[0m
+[?2004hroot@cebc7c734492:/app# python - <<'PY'
+[?2004l[?2004h> import json
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> Path('/tmp/tf642-received-before.json').write_text(json.dumps([p.name for p in Path('/var/lib/ops-observe/received').glob('*.json')]))
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@cebc7c734492:/app# python -m taskforge.cli run-queue; printf 'run-queue exit code: %s\n' "$?"
+[?2004l{
+  "processed": 46,
+  "succeeded": 27,
+  "retried": 12,
+  "dead": 7,
+  "diagnostics_sent": 7,
+  "diagnostics_errors": []
+}
+run-queue exit code: 0
+[?2004hroot@cebc7c734492:/app# python - <<'PY'
+[?2004l[?2004h> import base64
+[?2004l[?2004h> import json
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> from taskforge.config import load_settings
+[?2004l[?2004h> from taskforge.job_store import JobStore
+[?2004l[?2004h> 
+[?2004l[?2004h> before = set(json.loads(Path('/tmp/tf642-received-before.json').read_text()))
+[?2004l[?2004h> paths = sorted(p for p in Path('/var/lib/ops-observe/received').glob('*.json') if p.name not in before)
+[?2004l[?2004h> events = []
+[?2004l[?2004h> for path in paths:
+[?2004l[?2004h>     record = json.loads(path.read_text())
+[?2004l[?2004h>     assert record['path'] == '/v1/events'
+[?2004l[?2004h>     assert record['headers']['content-type'] == 'application/x-ndjson'
+[?2004l[?2004h>     events.extend(json.loads(line) for line in base64.b64decode(record['body_b64']).splitlines())
+[?2004l[?2004h> settings = load_settings()
+[?2004l[?2004h> store = JobStore(settings.db_path)
+[?2004l[?2004h> dead = store.list(status='dead')
+[?2004l[?2004h> assert len(events) == len(dead) == 7
+[?2004l[?2004h> assert {e['job_id'] for e in events} == {j.job_id for j in dead}
+[?2004l[?2004h> logged = [json.loads(line)['job'] for line in settings.failure_log.read_text().splitlines()]
+[?2004l[?2004h> assert {j['job_id'] for j in logged} == {j.job_id for j in dead}
+[?2004l[?2004h> for event in events:
+[?2004l[?2004h>     job = store.get(event['job_id'])
+[?2004l[?2004h>     assert event['event_type'] == 'job.failed'
+[?2004l[?2004h>     assert event['failed_at'] == job.finished_at
+[?2004l[?2004h>     assert event['attempt'] == job.attempts == job.max_attempts
+[?2004l[?2004h>     assert event['duration_ms'] == job.duration_ms
+[?2004l[?2004h>     assert len(event['error_message']) <= 500
+[?2004l[?2004h>     assert len(event['stack_summary']) <= 5
+[?2004l[?2004h>     assert event['request'] == {'request_id': job.context.request_id, 'account_id': job.context.account_id, 'route': job.context.route}
+[?2004l[?2004h>     serialized = json.dumps(event)
+[?2004l[?2004h>     assert 'whk_live_' not in serialized and 'ak_live_' not in serialized
+[?2004l[?2004h>     assert 'body_preview' not in serialized and 'authorization' not in serialized
+[?2004l[?2004h>     assert next(j for j in logged if j['job_id'] == job.job_id) == job.to_dict()
+[?2004l[?2004h>     print(f"Verified {job.job_id}: {event['error_type']}")
+[?2004l[?2004h> store.close()
+[?2004l[?2004h> print(f'Confirmed {len(events)} events in {len(paths)} new ops-observe request files; local records preserved.')
+[?2004l[?2004h> PY
+[?2004lVerified job_0005: DeliveryError
+Verified job_0012: DeliveryError
+Verified job_0017: DeliveryError
+Verified job_0021: RenderError
+Verified job_0025: RenderError
+Verified job_0030: ImportValidationError
+Verified job_0034: ImportValidationError
+Confirmed 7 events in 7 new ops-observe request files; local records preserved.
+[?2004hroot@cebc7c734492:/app# 

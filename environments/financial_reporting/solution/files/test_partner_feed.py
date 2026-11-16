@@ -36,8 +36,8 @@ def test_feed_rows_within_clearance(store, settings):
     doc = build_partner_feed(store, settings, tally, "2025-10")
     assert doc["document"] == "settlement-feed/1" and len(doc["merchants"]) == 8
     for row in doc["merchants"]:
-        assert set(row) <= set(tally.approved_fields)
         assert all(permits(tally.clearance, classify(f)) for f in row)
+        assert "iban" not in row and "contact_email" not in row and "net_cents" in row
     assert doc["merchants"][0]["settlement_reference"].startswith("CPS-")
 
 

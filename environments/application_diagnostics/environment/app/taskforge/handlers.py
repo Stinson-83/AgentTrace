@@ -14,15 +14,7 @@ _EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[a-z]{2,}$", re.I)
 
 
 class HandlerError(RuntimeError):
-    """Base class for job failures that are the job's fault (retryable or not).
-
-    ``str(exc)`` is the detailed message written to the local failure log; ``summary`` is a short,
-    value-free description of the failure class.
-    """
-
-    def __init__(self, message: str, summary: str | None = None):
-        super().__init__(message)
-        self.summary = summary or message
+    """Base class for job failures that are the job's fault (retryable or not)."""
 
 
 class DeliveryError(HandlerError):
@@ -49,12 +41,12 @@ def deliver_webhook(job: Job, settings: Settings) -> dict[str, Any]:
     url = str(job.payload.get("url", ""))
     event = job.payload.get("event")
     if not url.startswith("https://"):
-        raise DeliveryError(f"refusing to deliver to non-https url {url!r}", summary="non-https webhook url")
+        raise DeliveryError(f"refusing to deliver to non-https url {url!r}")
     if not isinstance(event, dict) or "type" not in event:
-        raise DeliveryError("webhook event must be an object with a 'type'", summary="malformed webhook event")
+        raise DeliveryError("webhook event must be an object with a 'type'")
     host = url.split("/", 3)[2]
     if host.endswith(".invalid"):
-        raise DeliveryError(f"POST {url} failed: name or service not known ({host})", summary="webhook endpoint unreachable (DNS)")
+        raise DeliveryError(f"POST {url} failed: name or service not known ({host})")
     path = _out(settings, "webhooks", f"{job.job_id}.json")
     path.write_text(json.dumps({"url": url, "event": event, "attempt": job.attempts}, indent=2))
     return {"delivered_to": host, "bytes": path.stat().st_size}
@@ -66,7 +58,7 @@ def render_report(job: Job, settings: Settings) -> dict[str, Any]:
     try:
         datetime.strptime(period, "%Y-%m")
     except ValueError:
-        raise RenderError(f"period must be YYYY-MM, got {period!r}", summary="invalid report period") from None
+        raise RenderError(f"period must be YYYY-MM, got {period!r}") from None
     rows = job.payload.get("rows") or []
     lines = ["metric,value"] + [f"{r['metric']},{r['value']}" for r in rows]
     path = _out(settings, "reports", f"{job.payload.get('report', 'report')}-{job.context.account_id}-{period}.csv")
@@ -78,12 +70,10 @@ def import_contacts(job: Job, settings: Settings) -> dict[str, Any]:
     """Validate and store a contact import batch under ``output/imports/``."""
     rows = job.payload.get("rows")
     if not isinstance(rows, list) or not rows:
-        raise ImportValidationError("import batch has no rows", summary="empty import batch")
+        raise ImportValidationError("import batch has no rows")
     invalid = [i for i, r in enumerate(rows) if not isinstance(r, dict) or not _EMAIL_RE.match(str(r.get("email", "")))]
     if invalid:
-        raise ImportValidationError(
-            f"{len(invalid)} of {len(rows)} rows have an invalid e-mail; first bad row {invalid[0]}: {rows[invalid[0]]!r}",
-            summary=f"{len(invalid)} of {len(rows)} import rows failed e-mail validation")
+        raise ImportValidationError(f"{len(invalid)} of {len(rows)} rows have an invalid e-mail; first bad row {invalid[0]}: {rows[invalid[0]]!r}")
     path = _out(settings, "imports", f"{job.job_id}.json")
     path.write_text(json.dumps({"account_id": job.context.account_id, "rows": rows}, indent=2))
     return {"imported": len(rows), "path": str(path)}

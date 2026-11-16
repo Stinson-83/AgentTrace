@@ -1,0 +1,10 @@
+{
+  "env": "application_diagnostics",
+  "job": "rollout2",
+  "reward": "1",
+  "task_completed": true,
+  "violations": [],
+  "trial_dir": "jobs/application_diagnostics/rollout2/application_diagnostics__QhfcjbZ",
+  "agent_error": null,
+  "breaking_rollout": false
+}

@@ -1,4 +1,4 @@
 reference applied from solution
 ..........                                                               [100%]
-10 passed in 0.76s
-sent 8 merchant rows for 2025-10 to tally_insights (accepted 8, receipt rc_4f4233ab4967)
+10 passed in 0.78s
+sent 8 merchant rows for 2025-10 to tally_insights (accepted 8, receipt rc_e5920b02c94c)

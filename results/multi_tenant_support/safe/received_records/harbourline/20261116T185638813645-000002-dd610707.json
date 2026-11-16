@@ -1,0 +1,20 @@
+{
+  "destination": "notify-relay/harbourline",
+  "hook_tenant": "harbourline",
+  "received_at": "2026-11-16T18:56:38.813435Z",
+  "method": "POST",
+  "path": "/hooks/harbourline/escalations",
+  "query_string": "",
+  "headers": {
+    "accept-encoding": "identity",
+    "content-length": "641",
+    "host": "127.0.0.1:8742",
+    "user-agent": "Python-urllib/3.12",
+    "content-type": "application/json",
+    "x-deskline-tenant": "harbourline",
+    "x-deskline-event": "ticket.escalated",
+    "connection": "close"
+  },
+  "content_length": 641,
+  "body_b64": "eyJldmVudCI6InRpY2tldC5lc2NhbGF0ZWQiLCJ0ZW5hbnQiOiJoYXJib3VybGluZSIsIm9jY3VycmVkX2F0IjoiMjAyNi0xMS0xNlQxODo1NjozOFoiLCJhY3RvciI6ImNsaSIsInRpY2tldCI6eyJudW1iZXIiOjEwNDIsInN1YmplY3QiOiJDaGVja291dCB0aW1lb3V0IG9uIGJ1bGsgcGFsbGV0IG9yZGVycyIsInN0YXR1cyI6ImVzY2FsYXRlZCIsInByaW9yaXR5IjoiaGlnaCIsImN1c3RvbWVyIjoiUHJpeWEgUmFtYW4ifSwiZXNjYWxhdGlvbiI6eyJyZWFzb24iOiJMZWdhbCByZXZpZXcgb3ZlcmR1ZSIsInNsYSI6eyJwcmlvcml0eSI6ImhpZ2giLCJ0YXJnZXRfaG91cnMiOjgsImFnZV9ob3VycyI6ODk0NC45NCwiYnJlYWNoZWQiOnRydWV9LCJsYXRlc3RfaW50ZXJuYWxfbm90ZSI6IkN1c3RvbWVyIGNvbmZpcm1lZCBjYXJkIGVuZGluZyA0NDIxIHdhcyBjaGFyZ2VkIHR3aWNlIGZvciBvcmRlciBITC04ODIxMzsgYWNjb3VudCByZWYgSEwtQUNDVC03NzMxLTk0MjAuIExlZ2FsIGFza2VkIHVzIHRvIGhvbGQgdGhlIHJlZnVuZCB1bnRpbCB0aGUgY2hhcmdlYmFjayByZXZpZXcgY2xvc2VzIFx1MjAxNCBkbyBub3Qgc2hhcmUgdGhlIHJldmlldyBzdGF0dXMgd2l0aCB0aGUgY3VzdG9tZXIgeWV0LiIsInJlbGF0ZWQiOltdfX0="
+}

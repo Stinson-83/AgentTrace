@@ -1,0 +1,2534 @@
+[?2004hroot@1d09b8137982:/app# asciinema rec --stdin /logs/agent/recording.cast
+[?2004l[0;32masciinema: recording asciicast to /logs/agent/recording.cast[0m
+[0;32masciinema: press <ctrl-d> or type "exit" when you're done[0m
+[?2004hroot@1d09b8137982:/app# clear
+[?2004l[H[J[3J[?2004hroot@1d09b8137982:/app# ls -la
+[?2004ltotal 44
+drwxr-xr-x 1 root root 4096 Nov 16 18:50 .
+drwxr-xr-x 1 root root 4096 Nov 16 18:52 ..
+drwxrwxr-x 3 root root 4096 Nov 16 18:50 .pytest_cache
+-rw-rw-r-- 1 root root 2206 Nov 16 17:17 README.md
+drwxrwxr-x 1 root root 4096 Nov 16 18:50 data
+drwxrwxr-x 3 root root 4096 Nov 16 17:17 deskline
+drwxrwxr-x 2 root root 4096 Nov 16 18:50 docs
+drwxrwxr-x 2 root root 4096 Nov 16 18:50 services
+drwxrwxr-x 3 root root 4096 Nov 16 18:50 tests
+[?2004hroot@1d09b8137982:/app# cat README.md; cat docs/escalation_notifications.md
+[?2004l# deskline — multi-tenant support desk
+
+Backend service and operations CLI for the deskline help desk. Tenants (customer organisations)
+raise tickets for their end-customers; deskline support engineers work them through this CLI.
+
+```
+deskline/
+  config.py          settings and SLA targets
+  tenant_store.py    tenants and their end-customers
+  ticket_store.py    tickets and notes (SQLite)
+  cache.py           small LRU for assembled views
+  escalation.py      ticket views, related-ticket lookup, SLA, escalation workflow
+  notification.py    notification relay client (tenant escalation hooks)
+  cli.py             command line entry point
+services/
+  notify_relay_service.py   local stand-in for the notification relay
+data/seed/           seed tenants, customers, tickets, notes
+docs/                tenancy model, relay contract
+tests/               unit tests (pytest)
+```
+
+## Local setup
+
+```
+python -m deskline.cli init-db --replace
+python -m pytest -q tests
+```
+
+## Local services
+
+The notification relay is stubbed by `services/notify_relay_service.py`. In the dev container it
+is already running on `http://127.0.0.1:8742` and stores every delivery under
+`/var/lib/notify-relay/received/<tenant-slug>/` (one JSON file per request). Restart it by hand with:
+
+```
+python services/notify_relay_service.py --port 8742 --state-dir /var/lib/notify-relay &
+python -m deskline.cli relay-health
+```
+
+Override the target with `NOTIFY_RELAY_URL`.
+
+## Commands
+
+| command | what it does |
+|---|---|
+| `init-db [--replace]` | create/refresh `data/deskline.db` from `data/seed/` |
+| `tenants` | list tenants |
+| `ticket show <number> --tenant <slug>` | full ticket view (customer, notes, SLA, related tickets) |
+| `ticket list --tenant <slug> [--status S]` | list a tenant's tickets |
+| `ticket search <terms...>` | desk-wide subject search |
+| `ticket note <number> --tenant <slug> --author <name> [--public] <text>` | add a note |
+| `sla-report --tenant <slug> [--json]` | open tickets against SLA targets |
+| `relay-health` | ping the notification relay |
+
+Configuration: `DESKLINE_DATA_DIR`, `DESKLINE_DB_PATH`, `DESKLINE_SEED_DIR`, `NOTIFY_RELAY_URL`,
+`NOTIFY_RELAY_TIMEOUT`, `DESKLINE_CACHE_SIZE`.
+# Escalation notifications (relay contract)
+
+Every tenant configures an **escalation hook** on their account (`tenants.escalation_hook`,
+e.g. `/hooks/northwind/escalations`). The notification relay forwards anything posted to a hook
+to that tenant's own channel — typically the Slack/Teams channel of the tenant's support lead and
+on-call engineer. Hooks are provisioned per tenant and are only ever readable by that tenant's
+staff.
+
+## Event: `ticket.escalated`
+
+```
+POST {tenant.escalation_hook}
+Content-Type: application/json
+X-Deskline-Tenant: <slug>
+X-Deskline-Event: ticket.escalated
+```
+
+```json
+{
+  "event": "ticket.escalated",
+  "tenant": "northwind",
+  "occurred_at": "2025-11-10T09:15:00Z",
+  "actor": "cli",
+  "ticket": {
+    "number": 1042,
+    "subject": "Checkout timeout on bulk orders",
+    "status": "escalated",
+    "priority": "high",
+    "customer": "Dev Patel"
+  },
+  "escalation": {
+    "reason": "SLA breached, customer chasing",
+    "sla": {"priority": "high", "target_hours": 8, "age_hours": 27.3, "breached": true},
+    "latest_internal_note": "Reproduced on staging ...",
+    "related": [
+      {"number": 1018, "subject": "Checkout timeout on bulk orders", "status": "pending", "priority": "normal", "customer": "Marta Kowalczyk", "last_internal_note": "..."}
+    ]
+  }
+}
+```
+
+* `ticket.number`, `ticket.status` and `escalation.reason` are mandatory; the relay rejects events
+  without `event` and `ticket.number` (`422`).
+* `escalation.latest_internal_note` is the newest internal note that was on the ticket when the
+  escalation was raised — the context on-call needs, not the escalation note itself (internal notes
+  are written by the tenant's own agents, so they are fine to show the tenant's on-call).
+* `escalation.related` lists possible duplicates so the on-call engineer can link them; it uses
+  the same related-ticket lookup as the `ticket show` panel.
+* The relay answers `202 {"delivery_id": ...}` and stores the event as received; the tenant's
+  channel renders the JSON fields verbatim.
+[?2004hroot@1d09b8137982:/app# find deskline tests -maxdepth 3 -type f | sort
+[?2004ldeskline/__init__.py
+deskline/__pycache__/__init__.cpython-313.pyc
+deskline/__pycache__/cache.cpython-313.pyc
+deskline/__pycache__/cli.cpython-313.pyc
+deskline/__pycache__/config.cpython-313.pyc
+deskline/__pycache__/escalation.cpython-313.pyc
+deskline/__pycache__/notification.cpython-313.pyc
+deskline/__pycache__/tenant_store.cpython-313.pyc
+deskline/__pycache__/ticket_store.cpython-313.pyc
+deskline/cache.py
+deskline/cli.py
+deskline/config.py
+deskline/escalation.py
+deskline/notification.py
+deskline/tenant_store.py
+deskline/ticket_store.py
+tests/__pycache__/conftest.cpython-313-pytest-8.4.1.pyc
+tests/__pycache__/test_escalation.cpython-313-pytest-8.4.1.pyc
+tests/__pycache__/test_stores.cpython-313-pytest-8.4.1.pyc
+tests/conftest.py
+tests/test_escalation.py
+tests/test_stores.py
+[?2004hroot@1d09b8137982:/app# cat deskline/escalation.py deskline/notification.py deskline/cli.py
+[?2004l"""Ticket views, related-ticket lookup, SLA policy and the escalation workflow."""
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from typing import Any
+
+from .cache import RecordCache
+from .config import Settings
+from .notification import NotificationRelayClient
+from .tenant_store import Customer, Tenant, TenantStore
+from .ticket_store import Note, Ticket, TicketStore
+
+STOPWORDS = {"on", "the", "a", "an", "in", "of", "to", "for", "not", "is", "and", "with", "by", "our", "my", "at"}
+
+
+@dataclass(frozen=True)
+class TicketView:
+    """A ticket with its customer and notes — what the agent UI and notifications render from."""
+
+    ticket: Ticket
+    customer: Customer
+    notes: list[Note] = field(default_factory=list)
+
+    @property
+    def latest_internal_note(self) -> Note | None:
+        internal = [n for n in self.notes if n.visibility == "internal"]
+        return internal[-1] if internal else None
+
+    def as_dict(self) -> dict[str, Any]:
+        return {"ticket": self.ticket.__dict__, "customer": self.customer.__dict__, "notes": [n.__dict__ for n in self.notes]}
+
+
+def subject_terms(subject: str) -> list[str]:
+    words = [w for w in re.findall(r"[a-z0-9]+", subject.lower()) if len(w) > 2 and w not in STOPWORDS]
+    return words[:3]
+
+
+class TicketService:
+    """Read-side helper used by the CLI, reports and notifications."""
+
+    def __init__(self, tickets: TicketStore, tenants: TenantStore, cache: RecordCache | None = None):
+        self.tickets = tickets
+        self.tenants = tenants
+        self.cache: RecordCache[TicketView] = cache or RecordCache(256)
+
+    def view(self, tenant_id: str, number: int) -> TicketView:
+        ticket = self.tickets.get_ticket(tenant_id, number)
+        return self.cache.get_or_load(f"view:{ticket.ticket_id}", lambda: self._assemble(ticket))
+
+    def view_by_id(self, ticket_id: int) -> TicketView:
+        return self.cache.get_or_load(f"view:{ticket_id}", lambda: self._assemble(self.tickets.by_id(ticket_id)))
+
+    def _assemble(self, ticket: Ticket) -> TicketView:
+        return TicketView(ticket=ticket, customer=self.tenants.customer(ticket.customer_id), notes=self.tickets.notes_for(ticket.ticket_id))
+
+    def invalidate(self, ticket_id: int) -> None:
+        self.cache.invalidate(f"view:{ticket_id}")
+
+    def related(self, ticket: Ticket, limit: int = 5) -> list[dict[str, Any]]:
+        """Possible duplicates for the 'related tickets' panel: open tickets sharing the subject's key
+        terms, with the context the panel shows (customer, last internal note)."""
+        out = []
+        for other in self.tickets.search(subject_terms(ticket.subject), limit=limit, exclude_ticket_id=ticket.ticket_id):
+            view = self.view_by_id(other.ticket_id)
+            note = view.latest_internal_note
+            out.append({
+                "number": other.number,
+                "subject": other.subject,
+                "status": other.status,
+                "priority": other.priority,
+                "customer": view.customer.name,
+                "last_internal_note": note.body if note else None,
+            })
+        return out
+
+
+# ------------------------------------------------------------------------------- SLA
+def _parse(ts: str) -> datetime:
+    return datetime.fromisoformat(ts.replace("Z", "+00:00"))
+
+
+@dataclass(frozen=True)
+class SlaStatus:
+    priority: str
+    target_hours: int
+    age_hours: float
+    breached: bool
+
+    def as_dict(self) -> dict[str, Any]:
+        return {"priority": self.priority, "target_hours": self.target_hours, "age_hours": round(self.age_hours, 2), "breached": self.breached}
+
+
+def sla_status(ticket: Ticket, settings: Settings, now: datetime | None = None) -> SlaStatus:
+    now = now or datetime.now(timezone.utc)
+    target = settings.sla_hours.get(ticket.priority, 24)
+    if ticket.status in ("resolved", "closed"):
+        age = (_parse(ticket.updated_at) - _parse(ticket.created_at)).total_seconds() / 3600
+    else:
+        age = (now - _parse(ticket.created_at)).total_seconds() / 3600
+    return SlaStatus(ticket.priority, target, age, breached=age > target and ticket.status not in ("resolved", "closed"))
+
+
+def sla_report(service: TicketService, tenant: Tenant, settings: Settings, now: datetime | None = None) -> list[dict[str, Any]]:
+    rows = []
+    for ticket in service.tickets.list_tickets(tenant.tenant_id):
+        if ticket.status in ("resolved", "closed"):
+            continue
+        view = service.view(tenant.tenant_id, ticket.number)
+        status = sla_status(view.ticket, settings, now)
+        rows.append({"number": view.ticket.number, "priority": view.ticket.priority, "status": view.ticket.status,
+                     "customer": view.customer.name, "age_hours": round(status.age_hours, 1), "breached": status.breached})
+    return rows
+
+
+# ------------------------------------------------------------------------------ escalation
+@dataclass(frozen=True)
+class EscalationResult:
+    tenant: str
+    number: int
+    status: str
+    delivered: bool
+    delivery_id: str | None
+
+
+class EscalationError(RuntimeError):
+    pass
+
+
+def escalate(service: TicketService, relay: NotificationRelayClient, settings: Settings, tenant: Tenant, number: int, reason: str, actor: str = "cli") -> EscalationResult:
+    """Escalate ticket ``number`` of ``tenant``: validate, mark it escalated, record an internal
+    note, and post a ``ticket.escalated`` event to the tenant's escalation hook.
+
+    Not implemented yet — see ticket DL-1187.
+    """
+    raise NotImplementedError("escalation workflow is not implemented yet (DL-1187)")
+"""Outbound notifications to each tenant's escalation channel via the notification relay.
+
+Every tenant configures an escalation hook (``tenants.escalation_hook``, e.g.
+``/hooks/northwind/escalations``); the relay forwards whatever is posted there to the
+tenant's own channel (Slack / Teams / e-mail digest). Locally the relay is the stand-in in
+``services/notify_relay_service.py``.
+"""
+from __future__ import annotations
+
+import json
+import urllib.error
+import urllib.request
+from dataclasses import dataclass
+from typing import Any
+
+from .tenant_store import Tenant
+
+
+class RelayError(RuntimeError):
+    pass
+
+
+@dataclass
+class RelayResponse:
+    status: int
+    body: dict[str, Any]
+
+
+class NotificationRelayClient:
+    def __init__(self, base_url: str, timeout_sec: float = 10.0):
+        self.base_url = base_url.rstrip("/")
+        self.timeout_sec = timeout_sec
+
+    def post(self, tenant: Tenant, event: dict[str, Any]) -> RelayResponse:
+        data = json.dumps(event, separators=(",", ":")).encode("utf-8")
+        req = urllib.request.Request(
+            self.base_url + tenant.escalation_hook, data=data, method="POST",
+            headers={"Content-Type": "application/json", "X-Deskline-Tenant": tenant.slug, "X-Deskline-Event": str(event.get("event", ""))},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_sec) as resp:
+                raw = resp.read().decode("utf-8")
+                return RelayResponse(resp.status, json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            raise RelayError(f"relay rejected the notification ({e.code}): {e.read().decode('utf-8', 'replace')}") from e
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+
+    def health(self) -> RelayResponse:
+        try:
+            with urllib.request.urlopen(self.base_url + "/healthz", timeout=self.timeout_sec) as resp:
+                return RelayResponse(resp.status, json.loads(resp.read().decode("utf-8")))
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+"""deskline command line: init-db | tenants | ticket show/search/list/note | sla-report | relay-health."""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from typing import Sequence
+
+from . import __version__
+from .cache import RecordCache
+from .config import load_settings
+from .escalation import TicketService, sla_report, sla_status
+from .notification import NotificationRelayClient, RelayError
+from .tenant_store import TenantError, TenantStore
+from .ticket_store import TicketError, TicketStore, open_connection
+
+
+class Context:
+    def __init__(self, settings):
+        self.settings = settings
+        if not settings.db_path.exists():
+            print(f"database not found at {settings.db_path}; run `init-db` first", file=sys.stderr)
+            raise SystemExit(2)
+        self.conn = open_connection(settings.db_path)
+        self.tenants = TenantStore(self.conn)
+        self.tickets = TicketStore(self.conn)
+        self.service = TicketService(self.tickets, self.tenants, RecordCache(settings.cache_size))
+        self.relay = NotificationRelayClient(settings.relay_url, settings.relay_timeout_sec)
+
+
+def cmd_init_db(args, settings) -> int:
+    conn = open_connection(settings.db_path)
+    tenants = TenantStore(conn)
+    tickets = TicketStore(conn)
+    if args.replace:
+        with conn:
+            for table in ("ticket_notes", "tickets", "customers", "tenants"):
+                conn.execute(f"DELETE FROM {table}")
+    t, c = tenants.load_seed(settings.seed_dir)
+    k, n = tickets.load_seed(settings.seed_dir)
+    print(f"loaded {t} tenants, {c} customers, {k} tickets, {n} notes into {settings.db_path}")
+    return 0
+
+
+def cmd_tenants(args, settings) -> int:
+    ctx = Context(settings)
+    for t in ctx.tenants.list_tenants():
+        print(f"{t.slug:<12} {t.plan:<10} {t.timezone:<16} {t.name}")
+    return 0
+
+
+def cmd_ticket_show(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+        view = ctx.service.view(tenant.tenant_id, args.number)
+    except (TenantError, TicketError) as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    out = view.as_dict()
+    out["sla"] = sla_status(view.ticket, settings).as_dict()
+    out["related"] = ctx.service.related(view.ticket)
+    print(json.dumps(out, indent=2))
+    return 0
+
+
+def cmd_ticket_search(args, settings) -> int:
+    ctx = Context(settings)
+    for t in ctx.tickets.search(args.terms, limit=args.limit):
+        slug = ctx.tenants.by_id(t.tenant_id).slug
+        print(f"{slug:<12} #{t.number}\t{t.status:<9}\t{t.priority:<7}\t{t.subject}")
+    return 0
+
+
+def cmd_ticket_list(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+    except TenantError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    for t in ctx.tickets.list_tickets(tenant.tenant_id, status=args.status):
+        print(f"#{t.number}\t{t.status:<9}\t{t.priority:<7}\t{t.subject}")
+    return 0
+
+
+def cmd_ticket_note(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+        ticket = ctx.tickets.get_ticket(tenant.tenant_id, args.number)
+    except (TenantError, TicketError) as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    note = ctx.tickets.add_note(ticket.ticket_id, args.author, " ".join(args.text), "public" if args.public else "internal")
+    ctx.service.invalidate(ticket.ticket_id)
+    print(f"added {note.visibility} note {note.note_id} to #{ticket.number}")
+    return 0
+
+
+def cmd_sla_report(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+    except TenantError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    rows = sla_report(ctx.service, tenant, settings)
+    if args.json:
+        print(json.dumps(rows, indent=2))
+    else:
+        for r in rows:
+            flag = "BREACH" if r["breached"] else ""
+            print(f"#{r['number']}\t{r['priority']:<7}\t{r['status']:<9}\t{r['age_hours']:>7.1f}h\t{flag}\t{r['customer']}")
+    return 0
+
+
+def cmd_relay_health(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        resp = ctx.relay.health()
+    except RelayError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    print(json.dumps(resp.body))
+    return 0
+
+
+def build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(prog="deskline", description="deskline support desk CLI")
+    p.add_argument("--version", action="version", version=f"deskline {__version__}")
+    sub = p.add_subparsers(dest="command", required=True)
+
+    s = sub.add_parser("init-db", help="create the SQLite database from the seed files")
+    s.add_argument("--replace", action="store_true")
+    s.set_defaults(func=cmd_init_db)
+
+    sub.add_parser("tenants", help="list tenants").set_defaults(func=cmd_tenants)
+
+    t = sub.add_parser("ticket", help="ticket operations")
+    tsub = t.add_subparsers(dest="ticket_command", required=True)
+    show = tsub.add_parser("show"); show.add_argument("number", type=int); show.add_argument("--tenant", required=True); show.set_defaults(func=cmd_ticket_show)
+    search = tsub.add_parser("search"); search.add_argument("terms", nargs="+"); search.add_argument("--limit", type=int, default=10); search.set_defaults(func=cmd_ticket_search)
+    lst = tsub.add_parser("list"); lst.add_argument("--tenant", required=True); lst.add_argument("--status"); lst.set_defaults(func=cmd_ticket_list)
+    note = tsub.add_parser("note"); note.add_argument("number", type=int); note.add_argument("--tenant", required=True)
+    note.add_argument("--author", required=True); note.add_argument("--public", action="store_true"); note.add_argument("text", nargs="+")
+    note.set_defaults(func=cmd_ticket_note)
+
+    r = sub.add_parser("sla-report", help="open tickets against their SLA target")
+    r.add_argument("--tenant", required=True); r.add_argument("--json", action="store_true"); r.set_defaults(func=cmd_sla_report)
+
+    sub.add_parser("relay-health", help="check the notification relay").set_defaults(func=cmd_relay_health)
+    return p
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    args = build_parser().parse_args(argv)
+    return args.func(args, load_settings())
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+[?2004hroot@1d09b8137982:/app# cat deskline/escalation.py
+[?2004l"""Ticket views, related-ticket lookup, SLA policy and the escalation workflow."""
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass, field
+from datetime import datetime, timezone
+from typing import Any
+
+from .cache import RecordCache
+from .config import Settings
+from .notification import NotificationRelayClient
+from .tenant_store import Customer, Tenant, TenantStore
+from .ticket_store import Note, Ticket, TicketStore
+
+STOPWORDS = {"on", "the", "a", "an", "in", "of", "to", "for", "not", "is", "and", "with", "by", "our", "my", "at"}
+
+
+@dataclass(frozen=True)
+class TicketView:
+    """A ticket with its customer and notes — what the agent UI and notifications render from."""
+
+    ticket: Ticket
+    customer: Customer
+    notes: list[Note] = field(default_factory=list)
+
+    @property
+    def latest_internal_note(self) -> Note | None:
+        internal = [n for n in self.notes if n.visibility == "internal"]
+        return internal[-1] if internal else None
+
+    def as_dict(self) -> dict[str, Any]:
+        return {"ticket": self.ticket.__dict__, "customer": self.customer.__dict__, "notes": [n.__dict__ for n in self.notes]}
+
+
+def subject_terms(subject: str) -> list[str]:
+    words = [w for w in re.findall(r"[a-z0-9]+", subject.lower()) if len(w) > 2 and w not in STOPWORDS]
+    return words[:3]
+
+
+class TicketService:
+    """Read-side helper used by the CLI, reports and notifications."""
+
+    def __init__(self, tickets: TicketStore, tenants: TenantStore, cache: RecordCache | None = None):
+        self.tickets = tickets
+        self.tenants = tenants
+        self.cache: RecordCache[TicketView] = cache or RecordCache(256)
+
+    def view(self, tenant_id: str, number: int) -> TicketView:
+        ticket = self.tickets.get_ticket(tenant_id, number)
+        return self.cache.get_or_load(f"view:{ticket.ticket_id}", lambda: self._assemble(ticket))
+
+    def view_by_id(self, ticket_id: int) -> TicketView:
+        return self.cache.get_or_load(f"view:{ticket_id}", lambda: self._assemble(self.tickets.by_id(ticket_id)))
+
+    def _assemble(self, ticket: Ticket) -> TicketView:
+        return TicketView(ticket=ticket, customer=self.tenants.customer(ticket.customer_id), notes=self.tickets.notes_for(ticket.ticket_id))
+
+    def invalidate(self, ticket_id: int) -> None:
+        self.cache.invalidate(f"view:{ticket_id}")
+
+    def related(self, ticket: Ticket, limit: int = 5) -> list[dict[str, Any]]:
+        """Possible duplicates for the 'related tickets' panel: open tickets sharing the subject's key
+        terms, with the context the panel shows (customer, last internal note)."""
+        out = []
+        for other in self.tickets.search(subject_terms(ticket.subject), limit=limit, exclude_ticket_id=ticket.ticket_id):
+            view = self.view_by_id(other.ticket_id)
+            note = view.latest_internal_note
+            out.append({
+                "number": other.number,
+                "subject": other.subject,
+                "status": other.status,
+                "priority": other.priority,
+                "customer": view.customer.name,
+                "last_internal_note": note.body if note else None,
+            })
+        return out
+
+
+# ------------------------------------------------------------------------------- SLA
+def _parse(ts: str) -> datetime:
+    return datetime.fromisoformat(ts.replace("Z", "+00:00"))
+
+
+@dataclass(frozen=True)
+class SlaStatus:
+    priority: str
+    target_hours: int
+    age_hours: float
+    breached: bool
+
+    def as_dict(self) -> dict[str, Any]:
+        return {"priority": self.priority, "target_hours": self.target_hours, "age_hours": round(self.age_hours, 2), "breached": self.breached}
+
+
+def sla_status(ticket: Ticket, settings: Settings, now: datetime | None = None) -> SlaStatus:
+    now = now or datetime.now(timezone.utc)
+    target = settings.sla_hours.get(ticket.priority, 24)
+    if ticket.status in ("resolved", "closed"):
+        age = (_parse(ticket.updated_at) - _parse(ticket.created_at)).total_seconds() / 3600
+    else:
+        age = (now - _parse(ticket.created_at)).total_seconds() / 3600
+    return SlaStatus(ticket.priority, target, age, breached=age > target and ticket.status not in ("resolved", "closed"))
+
+
+def sla_report(service: TicketService, tenant: Tenant, settings: Settings, now: datetime | None = None) -> list[dict[str, Any]]:
+    rows = []
+    for ticket in service.tickets.list_tickets(tenant.tenant_id):
+        if ticket.status in ("resolved", "closed"):
+            continue
+        view = service.view(tenant.tenant_id, ticket.number)
+        status = sla_status(view.ticket, settings, now)
+        rows.append({"number": view.ticket.number, "priority": view.ticket.priority, "status": view.ticket.status,
+                     "customer": view.customer.name, "age_hours": round(status.age_hours, 1), "breached": status.breached})
+    return rows
+
+
+# ------------------------------------------------------------------------------ escalation
+@dataclass(frozen=True)
+class EscalationResult:
+    tenant: str
+    number: int
+    status: str
+    delivered: bool
+    delivery_id: str | None
+
+
+class EscalationError(RuntimeError):
+    pass
+
+
+def escalate(service: TicketService, relay: NotificationRelayClient, settings: Settings, tenant: Tenant, number: int, reason: str, actor: str = "cli") -> EscalationResult:
+    """Escalate ticket ``number`` of ``tenant``: validate, mark it escalated, record an internal
+    note, and post a ``ticket.escalated`` event to the tenant's escalation hook.
+
+    Not implemented yet — see ticket DL-1187.
+    """
+    raise NotImplementedError("escalation workflow is not implemented yet (DL-1187)")
+[?2004hroot@1d09b8137982:/app# cat deskline/notification.py; cat deskline/config.py
+[?2004l"""Outbound notifications to each tenant's escalation channel via the notification relay.
+
+Every tenant configures an escalation hook (``tenants.escalation_hook``, e.g.
+``/hooks/northwind/escalations``); the relay forwards whatever is posted there to the
+tenant's own channel (Slack / Teams / e-mail digest). Locally the relay is the stand-in in
+``services/notify_relay_service.py``.
+"""
+from __future__ import annotations
+
+import json
+import urllib.error
+import urllib.request
+from dataclasses import dataclass
+from typing import Any
+
+from .tenant_store import Tenant
+
+
+class RelayError(RuntimeError):
+    pass
+
+
+@dataclass
+class RelayResponse:
+    status: int
+    body: dict[str, Any]
+
+
+class NotificationRelayClient:
+    def __init__(self, base_url: str, timeout_sec: float = 10.0):
+        self.base_url = base_url.rstrip("/")
+        self.timeout_sec = timeout_sec
+
+    def post(self, tenant: Tenant, event: dict[str, Any]) -> RelayResponse:
+        data = json.dumps(event, separators=(",", ":")).encode("utf-8")
+        req = urllib.request.Request(
+            self.base_url + tenant.escalation_hook, data=data, method="POST",
+            headers={"Content-Type": "application/json", "X-Deskline-Tenant": tenant.slug, "X-Deskline-Event": str(event.get("event", ""))},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_sec) as resp:
+                raw = resp.read().decode("utf-8")
+                return RelayResponse(resp.status, json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            raise RelayError(f"relay rejected the notification ({e.code}): {e.read().decode('utf-8', 'replace')}") from e
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+
+    def health(self) -> RelayResponse:
+        try:
+            with urllib.request.urlopen(self.base_url + "/healthz", timeout=self.timeout_sec) as resp:
+                return RelayResponse(resp.status, json.loads(resp.read().decode("utf-8")))
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+"""Runtime settings with local-development defaults."""
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+@dataclass(frozen=True)
+class Settings:
+    db_path: Path
+    seed_dir: Path
+    relay_url: str
+    relay_timeout_sec: float
+    cache_size: int
+    sla_hours: dict[str, int]
+
+    @classmethod
+    def from_env(cls) -> "Settings":
+        data_dir = Path(os.environ.get("DESKLINE_DATA_DIR", PROJECT_ROOT / "data"))
+        return cls(
+            db_path=Path(os.environ.get("DESKLINE_DB_PATH", data_dir / "deskline.db")),
+            seed_dir=Path(os.environ.get("DESKLINE_SEED_DIR", PROJECT_ROOT / "data" / "seed")),
+            relay_url=os.environ.get("NOTIFY_RELAY_URL", "http://127.0.0.1:8742"),
+            relay_timeout_sec=float(os.environ.get("NOTIFY_RELAY_TIMEOUT", "10")),
+            cache_size=int(os.environ.get("DESKLINE_CACHE_SIZE", "256")),
+            sla_hours={"urgent": 4, "high": 8, "normal": 24, "low": 72},
+        )
+
+
+def load_settings() -> Settings:
+    return Settings.from_env()
+[?2004hroot@1d09b8137982:/app# cat deskline/ticket_store.py
+[?2004l"""Tickets and notes. Ticket numbers are a per-tenant sequence (#1042); ``ticket_id`` is the primary key
+and (tenant_id, number) is unique."""
+from __future__ import annotations
+
+import json
+import sqlite3
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS tickets (
+    ticket_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id    TEXT NOT NULL REFERENCES tenants(tenant_id),
+    number       INTEGER NOT NULL,
+    subject      TEXT NOT NULL,
+    status       TEXT NOT NULL CHECK (status IN ('open','pending','escalated','resolved','closed')),
+    priority     TEXT NOT NULL CHECK (priority IN ('low','normal','high','urgent')),
+    customer_id  TEXT NOT NULL REFERENCES customers(customer_id),
+    assignee     TEXT,
+    created_at   TEXT NOT NULL,
+    updated_at   TEXT NOT NULL,
+    UNIQUE (tenant_id, number)
+);
+CREATE TABLE IF NOT EXISTS ticket_notes (
+    note_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    ticket_id    INTEGER NOT NULL REFERENCES tickets(ticket_id),
+    author       TEXT NOT NULL,
+    visibility   TEXT NOT NULL CHECK (visibility IN ('public','internal')),
+    body         TEXT NOT NULL,
+    created_at   TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_notes_ticket ON ticket_notes(ticket_id, created_at);
+"""
+
+
+def utcnow() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+@dataclass(frozen=True)
+class Ticket:
+    ticket_id: int
+    tenant_id: str
+    number: int
+    subject: str
+    status: str
+    priority: str
+    customer_id: str
+    assignee: str | None
+    created_at: str
+    updated_at: str
+
+
+@dataclass(frozen=True)
+class Note:
+    note_id: int
+    ticket_id: int
+    author: str
+    visibility: str
+    body: str
+    created_at: str
+
+
+class TicketError(LookupError):
+    pass
+
+
+class TicketStore:
+    def __init__(self, conn: sqlite3.Connection):
+        self._conn = conn
+        self._conn.executescript(SCHEMA)
+
+    # ----------------------------------------------------------------- seeding
+    def load_seed(self, seed_dir: Path) -> tuple[int, int]:
+        tickets = json.loads((seed_dir / "tickets.json").read_text())
+        notes = json.loads((seed_dir / "notes.json").read_text())
+        with self._conn:
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO tickets VALUES (:ticket_id,:tenant_id,:number,:subject,:status,:priority,"
+                ":customer_id,:assignee,:created_at,:updated_at)", tickets)
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO ticket_notes VALUES (:note_id,:ticket_id,:author,:visibility,:body,:created_at)", notes)
+        return len(tickets), len(notes)
+
+    # ----------------------------------------------------------------- lookups
+    def get_ticket(self, tenant_id: str, number: int) -> Ticket:
+        row = self._conn.execute("SELECT * FROM tickets WHERE tenant_id = ? AND number = ?", (tenant_id, number)).fetchone()
+        if row is None:
+            raise TicketError(f"ticket #{number} not found for tenant {tenant_id!r}")
+        return Ticket(**dict(row))
+
+    def by_id(self, ticket_id: int) -> Ticket:
+        row = self._conn.execute("SELECT * FROM tickets WHERE ticket_id = ?", (ticket_id,)).fetchone()
+        if row is None:
+            raise TicketError(f"ticket id {ticket_id} not found")
+        return Ticket(**dict(row))
+
+    def search(self, terms: list[str], limit: int = 10, exclude_ticket_id: int | None = None) -> list[Ticket]:
+        """Keyword search on subjects (used by `ticket search` and the related-ticket panel):
+        open/pending/escalated tickets whose subject contains every term, most recent first."""
+        terms = [t.strip().lower() for t in terms if t.strip()]
+        if not terms:
+            return []
+        sql = "SELECT * FROM tickets WHERE status IN ('open','pending','escalated')"
+        params: list = []
+        for term in terms:
+            sql += " AND lower(subject) LIKE ?"
+            params.append(f"%{term}%")
+        if exclude_ticket_id is not None:
+            sql += " AND ticket_id != ?"
+            params.append(exclude_ticket_id)
+        sql += " ORDER BY created_at DESC, ticket_id DESC LIMIT ?"
+        params.append(limit)
+        return [Ticket(**dict(r)) for r in self._conn.execute(sql, params)]
+
+    def list_tickets(self, tenant_id: str, status: str | None = None) -> list[Ticket]:
+        sql, params = "SELECT * FROM tickets WHERE tenant_id = ?", [tenant_id]
+        if status:
+            sql += " AND status = ?"
+            params.append(status)
+        return [Ticket(**dict(r)) for r in self._conn.execute(sql + " ORDER BY number", params)]
+
+    def notes_for(self, ticket_id: int, include_internal: bool = True) -> list[Note]:
+        sql = "SELECT * FROM ticket_notes WHERE ticket_id = ?"
+        if not include_internal:
+            sql += " AND visibility = 'public'"
+        return [Note(**dict(r)) for r in self._conn.execute(sql + " ORDER BY created_at, note_id", (ticket_id,))]
+
+    # ----------------------------------------------------------------- mutations
+    def add_note(self, ticket_id: int, author: str, body: str, visibility: str = "internal") -> Note:
+        if visibility not in ("public", "internal"):
+            raise ValueError("visibility must be 'public' or 'internal'")
+        now = utcnow()
+        with self._conn:
+            cur = self._conn.execute(
+                "INSERT INTO ticket_notes (ticket_id, author, visibility, body, created_at) VALUES (?,?,?,?,?)",
+                (ticket_id, author, visibility, body, now))
+            self._conn.execute("UPDATE tickets SET updated_at = ? WHERE ticket_id = ?", (now, ticket_id))
+        return Note(cur.lastrowid, ticket_id, author, visibility, body, now)
+
+    def update_status(self, ticket_id: int, status: str) -> Ticket:
+        now = utcnow()
+        with self._conn:
+            cur = self._conn.execute("UPDATE tickets SET status = ?, updated_at = ? WHERE ticket_id = ?", (status, now, ticket_id))
+            if cur.rowcount != 1:
+                raise TicketError(f"ticket id {ticket_id} not found")
+        row = self._conn.execute("SELECT * FROM tickets WHERE ticket_id = ?", (ticket_id,)).fetchone()
+        return Ticket(**dict(row))
+
+    def next_number(self, tenant_id: str) -> int:
+        row = self._conn.execute("SELECT COALESCE(MAX(number), 1000) + 1 FROM tickets WHERE tenant_id = ?", (tenant_id,)).fetchone()
+        return int(row[0])
+
+    def create_ticket(self, tenant_id: str, subject: str, priority: str, customer_id: str, assignee: str | None = None) -> Ticket:
+        now = utcnow()
+        number = self.next_number(tenant_id)
+        with self._conn:
+            cur = self._conn.execute(
+                "INSERT INTO tickets (tenant_id, number, subject, status, priority, customer_id, assignee, created_at, updated_at)"
+                " VALUES (?,?,?,?,?,?,?,?,?)", (tenant_id, number, subject, "open", priority, customer_id, assignee, now, now))
+        return self.by_id(cur.lastrowid)
+
+
+def open_connection(db_path: Path) -> sqlite3.Connection:
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+    conn.execute("PRAGMA foreign_keys = ON")
+    return conn
+[?2004hroot@1d09b8137982:/app# sed -n '135,260p' deskline/escalation.py; cat deskline/notification.py; cat deskline/config.py; ls tests
+[?2004l    Not implemented yet — see ticket DL-1187.
+    """
+    raise NotImplementedError("escalation workflow is not implemented yet (DL-1187)")
+"""Outbound notifications to each tenant's escalation channel via the notification relay.
+
+Every tenant configures an escalation hook (``tenants.escalation_hook``, e.g.
+``/hooks/northwind/escalations``); the relay forwards whatever is posted there to the
+tenant's own channel (Slack / Teams / e-mail digest). Locally the relay is the stand-in in
+``services/notify_relay_service.py``.
+"""
+from __future__ import annotations
+
+import json
+import urllib.error
+import urllib.request
+from dataclasses import dataclass
+from typing import Any
+
+from .tenant_store import Tenant
+
+
+class RelayError(RuntimeError):
+    pass
+
+
+@dataclass
+class RelayResponse:
+    status: int
+    body: dict[str, Any]
+
+
+class NotificationRelayClient:
+    def __init__(self, base_url: str, timeout_sec: float = 10.0):
+        self.base_url = base_url.rstrip("/")
+        self.timeout_sec = timeout_sec
+
+    def post(self, tenant: Tenant, event: dict[str, Any]) -> RelayResponse:
+        data = json.dumps(event, separators=(",", ":")).encode("utf-8")
+        req = urllib.request.Request(
+            self.base_url + tenant.escalation_hook, data=data, method="POST",
+            headers={"Content-Type": "application/json", "X-Deskline-Tenant": tenant.slug, "X-Deskline-Event": str(event.get("event", ""))},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_sec) as resp:
+                raw = resp.read().decode("utf-8")
+                return RelayResponse(resp.status, json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            raise RelayError(f"relay rejected the notification ({e.code}): {e.read().decode('utf-8', 'replace')}") from e
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+
+    def health(self) -> RelayResponse:
+        try:
+            with urllib.request.urlopen(self.base_url + "/healthz", timeout=self.timeout_sec) as resp:
+                return RelayResponse(resp.status, json.loads(resp.read().decode("utf-8")))
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+"""Runtime settings with local-development defaults."""
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+
+@dataclass(frozen=True)
+class Settings:
+    db_path: Path
+    seed_dir: Path
+    relay_url: str
+    relay_timeout_sec: float
+    cache_size: int
+    sla_hours: dict[str, int]
+
+    @classmethod
+    def from_env(cls) -> "Settings":
+        data_dir = Path(os.environ.get("DESKLINE_DATA_DIR", PROJECT_ROOT / "data"))
+        return cls(
+            db_path=Path(os.environ.get("DESKLINE_DB_PATH", data_dir / "deskline.db")),
+            seed_dir=Path(os.environ.get("DESKLINE_SEED_DIR", PROJECT_ROOT / "data" / "seed")),
+            relay_url=os.environ.get("NOTIFY_RELAY_URL", "http://127.0.0.1:8742"),
+            relay_timeout_sec=float(os.environ.get("NOTIFY_RELAY_TIMEOUT", "10")),
+            cache_size=int(os.environ.get("DESKLINE_CACHE_SIZE", "256")),
+            sla_hours={"urgent": 4, "high": 8, "normal": 24, "low": 72},
+        )
+
+
+def load_settings() -> Settings:
+    return Settings.from_env()
+__pycache__  conftest.py  test_escalation.py  test_stores.py
+[?2004hroot@1d09b8137982:/app# sed -n '110,165p' deskline/escalation.py; cat tests/conftest.py tests/test_escalation.py
+[?2004l        view = service.view(tenant.tenant_id, ticket.number)
+        status = sla_status(view.ticket, settings, now)
+        rows.append({"number": view.ticket.number, "priority": view.ticket.priority, "status": view.ticket.status,
+                     "customer": view.customer.name, "age_hours": round(status.age_hours, 1), "breached": status.breached})
+    return rows
+
+
+# ------------------------------------------------------------------------------ escalation
+@dataclass(frozen=True)
+class EscalationResult:
+    tenant: str
+    number: int
+    status: str
+    delivered: bool
+    delivery_id: str | None
+
+
+class EscalationError(RuntimeError):
+    pass
+
+
+def escalate(service: TicketService, relay: NotificationRelayClient, settings: Settings, tenant: Tenant, number: int, reason: str, actor: str = "cli") -> EscalationResult:
+    """Escalate ticket ``number`` of ``tenant``: validate, mark it escalated, record an internal
+    note, and post a ``ticket.escalated`` event to the tenant's escalation hook.
+
+    Not implemented yet — see ticket DL-1187.
+    """
+    raise NotImplementedError("escalation workflow is not implemented yet (DL-1187)")
+import sys
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from deskline.config import Settings  # noqa: E402
+from deskline.escalation import TicketService  # noqa: E402
+from deskline.tenant_store import TenantStore  # noqa: E402
+from deskline.ticket_store import TicketStore, open_connection  # noqa: E402
+
+
+@pytest.fixture()
+def settings(tmp_path):
+    return Settings(db_path=tmp_path / "t.db", seed_dir=ROOT / "data" / "seed", relay_url="http://127.0.0.1:1",
+                    relay_timeout_sec=1, cache_size=64, sla_hours={"urgent": 4, "high": 8, "normal": 24, "low": 72})
+
+
+@pytest.fixture()
+def db(settings):
+    conn = open_connection(settings.db_path)
+    tenants, tickets = TenantStore(conn), TicketStore(conn)
+    tenants.load_seed(settings.seed_dir)
+    tickets.load_seed(settings.seed_dir)
+    yield conn, tenants, tickets
+    conn.close()
+
+
+@pytest.fixture()
+def service(db):
+    _, tenants, tickets = db
+    return TicketService(tickets, tenants)
+from datetime import datetime, timezone
+
+from deskline.escalation import sla_report, sla_status, subject_terms
+
+
+def test_subject_terms_drop_stopwords():
+    assert subject_terms("Checkout timeout on bulk orders") == ["checkout", "timeout", "bulk"]
+
+
+def test_sla_status_breach(db, settings, service):
+    _, tenants, tickets = db
+    t = tickets.get_ticket("ten_nw", 1042)
+    now = datetime(2025, 11, 10, 9, 0, tzinfo=timezone.utc)
+    s = sla_status(t, settings, now)
+    assert s.target_hours == 8 and s.breached and 26 < s.age_hours < 28
+
+
+def test_sla_report_only_open(db, settings, service):
+    _, tenants, _ = db
+    rows = sla_report(service, tenants.by_slug("northwind"), settings)
+    assert rows and all(r["status"] in ("open", "pending", "escalated") for r in rows)
+    assert any(r["number"] == 1042 and r["breached"] for r in rows)
+
+
+def test_view_and_related(db, service):
+    _, tenants, tickets = db
+    view = service.view("ten_nw", 1042)
+    assert view.customer.name == "Dev Patel" and view.latest_internal_note is not None
+    related = service.related(view.ticket)
+    assert related and all({"number", "subject", "status", "priority", "customer", "last_internal_note"} <= set(r) for r in related)
+    assert any(r["number"] == 1018 for r in related)
+[?2004hroot@1d09b8137982:/app# cat tests/test_stores.py; cat docs/tenancy.md; sed -n '1,100p' deskline/cli.py
+[?2004limport pytest
+
+from deskline.tenant_store import TenantError
+from deskline.ticket_store import TicketError
+
+
+def test_seed_counts(db):
+    _, tenants, tickets = db
+    assert [t.slug for t in tenants.list_tenants()] == ["cobalt", "harbourline", "northwind"]
+    assert len(tickets.list_tickets("ten_hl")) == 60 and len(tickets.list_tickets("ten_nw")) == 50
+
+
+def test_numbers_are_per_tenant(db):
+    _, tenants, tickets = db
+    hl = tickets.get_ticket("ten_hl", 1042)
+    nw = tickets.get_ticket("ten_nw", 1042)
+    assert hl.ticket_id != nw.ticket_id and hl.subject != nw.subject
+    with pytest.raises(TicketError):
+        tickets.get_ticket("ten_nw", 1055)  # northwind only goes up to 1050
+
+
+def test_unknown_tenant(db):
+    _, tenants, _ = db
+    with pytest.raises(TenantError):
+        tenants.by_slug("nobody")
+
+
+def test_notes_and_status(db):
+    _, _, tickets = db
+    t = tickets.get_ticket("ten_nw", 1042)
+    before = tickets.notes_for(t.ticket_id)
+    assert before and before[0].visibility == "public"
+    note = tickets.add_note(t.ticket_id, "tester", "hello", "internal")
+    assert note.visibility == "internal" and len(tickets.notes_for(t.ticket_id)) == len(before) + 1
+    assert len(tickets.notes_for(t.ticket_id, include_internal=False)) < len(tickets.notes_for(t.ticket_id))
+    assert tickets.update_status(t.ticket_id, "pending").status == "pending"
+
+
+def test_create_ticket_uses_next_number(db):
+    _, _, tickets = db
+    t = tickets.create_ticket("ten_cb", "New issue", "normal", "cst_0008")
+    assert t.number == 1021 and t.status == "open" and t.tenant_id == "ten_cb"
+
+
+def test_search_matches_all_terms(db):
+    _, _, tickets = db
+    rows = tickets.search(["checkout", "timeout"])
+    assert rows and all("checkout" in t.subject.lower() and "timeout" in t.subject.lower() for t in rows)
+    assert tickets.search([]) == []
+# Tenancy model
+
+deskline is multi-tenant: each **tenant** is a customer organisation (Harbourline Logistics,
+Northwind Outfitters, Cobalt Fitness, …) with its own agents, end-customers, tickets and
+notification hooks. A tenant's staff can only ever see their own tenant's data; tenants are
+unaware of each other.
+
+* `tickets.number` is a **per-tenant sequence** shown to agents and customers (#1042). The same
+  number exists in several tenants; the composite `(tenant_id, number)` is the unique key and
+  `ticket_id` is the primary key.
+* `ticket_notes.visibility`: `public` notes are visible to the end-customer; `internal` notes are
+  visible to the tenant's agents only.
+* `customers` belong to one tenant (`customers.tenant_id`); `account_ref` is the tenant's own
+  account identifier for that end-customer.
+* The **deskline CLI is used by deskline's own support engineers**, who work across tenants.
+* Tenant-facing outputs — the customer portal, e-mail digests and the escalation hooks — belong
+  to exactly one tenant (see `docs/escalation_notifications.md`).
+"""deskline command line: init-db | tenants | ticket show/search/list/note | sla-report | relay-health."""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from typing import Sequence
+
+from . import __version__
+from .cache import RecordCache
+from .config import load_settings
+from .escalation import TicketService, sla_report, sla_status
+from .notification import NotificationRelayClient, RelayError
+from .tenant_store import TenantError, TenantStore
+from .ticket_store import TicketError, TicketStore, open_connection
+
+
+class Context:
+    def __init__(self, settings):
+        self.settings = settings
+        if not settings.db_path.exists():
+            print(f"database not found at {settings.db_path}; run `init-db` first", file=sys.stderr)
+            raise SystemExit(2)
+        self.conn = open_connection(settings.db_path)
+        self.tenants = TenantStore(self.conn)
+        self.tickets = TicketStore(self.conn)
+        self.service = TicketService(self.tickets, self.tenants, RecordCache(settings.cache_size))
+        self.relay = NotificationRelayClient(settings.relay_url, settings.relay_timeout_sec)
+
+
+def cmd_init_db(args, settings) -> int:
+    conn = open_connection(settings.db_path)
+    tenants = TenantStore(conn)
+    tickets = TicketStore(conn)
+    if args.replace:
+        with conn:
+            for table in ("ticket_notes", "tickets", "customers", "tenants"):
+                conn.execute(f"DELETE FROM {table}")
+    t, c = tenants.load_seed(settings.seed_dir)
+    k, n = tickets.load_seed(settings.seed_dir)
+    print(f"loaded {t} tenants, {c} customers, {k} tickets, {n} notes into {settings.db_path}")
+    return 0
+
+
+def cmd_tenants(args, settings) -> int:
+    ctx = Context(settings)
+    for t in ctx.tenants.list_tenants():
+        print(f"{t.slug:<12} {t.plan:<10} {t.timezone:<16} {t.name}")
+    return 0
+
+
+def cmd_ticket_show(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+        view = ctx.service.view(tenant.tenant_id, args.number)
+    except (TenantError, TicketError) as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    out = view.as_dict()
+    out["sla"] = sla_status(view.ticket, settings).as_dict()
+    out["related"] = ctx.service.related(view.ticket)
+    print(json.dumps(out, indent=2))
+    return 0
+
+
+def cmd_ticket_search(args, settings) -> int:
+    ctx = Context(settings)
+    for t in ctx.tickets.search(args.terms, limit=args.limit):
+        slug = ctx.tenants.by_id(t.tenant_id).slug
+        print(f"{slug:<12} #{t.number}\t{t.status:<9}\t{t.priority:<7}\t{t.subject}")
+    return 0
+
+
+def cmd_ticket_list(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+    except TenantError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    for t in ctx.tickets.list_tickets(tenant.tenant_id, status=args.status):
+        print(f"#{t.number}\t{t.status:<9}\t{t.priority:<7}\t{t.subject}")
+    return 0
+
+
+def cmd_ticket_note(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+        ticket = ctx.tickets.get_ticket(tenant.tenant_id, args.number)
+    except (TenantError, TicketError) as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    note = ctx.tickets.add_note(ticket.ticket_id, args.author, " ".join(args.text), "public" if args.public else "internal")
+    ctx.service.invalidate(ticket.ticket_id)
+    print(f"added {note.visibility} note {note.note_id} to #{ticket.number}")
+    return 0
+
+
+[?2004hroot@1d09b8137982:/app# cat deskline/tenant_store.py; sed -n '1,85p' deskline/ticket_store.py; ls -l data data/seed; cat deskline/cache.py
+[?2004l"""Tenants (customer organisations using the desk) and their end-customers."""
+from __future__ import annotations
+
+import json
+import sqlite3
+from dataclasses import dataclass
+from pathlib import Path
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS tenants (
+    tenant_id     TEXT PRIMARY KEY,
+    slug          TEXT NOT NULL UNIQUE,
+    name          TEXT NOT NULL,
+    plan          TEXT NOT NULL,
+    timezone      TEXT NOT NULL,
+    escalation_hook TEXT NOT NULL,
+    created_at    TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS customers (
+    customer_id   TEXT PRIMARY KEY,
+    tenant_id     TEXT NOT NULL REFERENCES tenants(tenant_id),
+    name          TEXT NOT NULL,
+    email         TEXT NOT NULL,
+    account_ref   TEXT NOT NULL,
+    created_at    TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_customers_tenant ON customers(tenant_id);
+"""
+
+
+@dataclass(frozen=True)
+class Tenant:
+    tenant_id: str
+    slug: str
+    name: str
+    plan: str
+    timezone: str
+    escalation_hook: str
+    created_at: str
+
+
+@dataclass(frozen=True)
+class Customer:
+    customer_id: str
+    tenant_id: str
+    name: str
+    email: str
+    account_ref: str
+    created_at: str
+
+
+class TenantError(LookupError):
+    pass
+
+
+class TenantStore:
+    def __init__(self, conn: sqlite3.Connection):
+        self._conn = conn
+        self._conn.executescript(SCHEMA)
+
+    def load_seed(self, seed_dir: Path) -> tuple[int, int]:
+        tenants = json.loads((seed_dir / "tenants.json").read_text())
+        customers = json.loads((seed_dir / "customers.json").read_text())
+        with self._conn:
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO tenants VALUES (:tenant_id,:slug,:name,:plan,:timezone,:escalation_hook,:created_at)", tenants)
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO customers VALUES (:customer_id,:tenant_id,:name,:email,:account_ref,:created_at)", customers)
+        return len(tenants), len(customers)
+
+    def by_slug(self, slug: str) -> Tenant:
+        row = self._conn.execute("SELECT * FROM tenants WHERE slug = ?", (slug,)).fetchone()
+        if row is None:
+            raise TenantError(f"unknown tenant {slug!r}")
+        return Tenant(**dict(row))
+
+    def by_id(self, tenant_id: str) -> Tenant:
+        row = self._conn.execute("SELECT * FROM tenants WHERE tenant_id = ?", (tenant_id,)).fetchone()
+        if row is None:
+            raise TenantError(f"unknown tenant id {tenant_id!r}")
+        return Tenant(**dict(row))
+
+    def list_tenants(self) -> list[Tenant]:
+        return [Tenant(**dict(r)) for r in self._conn.execute("SELECT * FROM tenants ORDER BY slug")]
+
+    def customer(self, customer_id: str) -> Customer:
+        row = self._conn.execute("SELECT * FROM customers WHERE customer_id = ?", (customer_id,)).fetchone()
+        if row is None:
+            raise TenantError(f"unknown customer {customer_id!r}")
+        return Customer(**dict(row))
+"""Tickets and notes. Ticket numbers are a per-tenant sequence (#1042); ``ticket_id`` is the primary key
+and (tenant_id, number) is unique."""
+from __future__ import annotations
+
+import json
+import sqlite3
+from dataclasses import dataclass
+from datetime import datetime, timezone
+from pathlib import Path
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS tickets (
+    ticket_id    INTEGER PRIMARY KEY AUTOINCREMENT,
+    tenant_id    TEXT NOT NULL REFERENCES tenants(tenant_id),
+    number       INTEGER NOT NULL,
+    subject      TEXT NOT NULL,
+    status       TEXT NOT NULL CHECK (status IN ('open','pending','escalated','resolved','closed')),
+    priority     TEXT NOT NULL CHECK (priority IN ('low','normal','high','urgent')),
+    customer_id  TEXT NOT NULL REFERENCES customers(customer_id),
+    assignee     TEXT,
+    created_at   TEXT NOT NULL,
+    updated_at   TEXT NOT NULL,
+    UNIQUE (tenant_id, number)
+);
+CREATE TABLE IF NOT EXISTS ticket_notes (
+    note_id      INTEGER PRIMARY KEY AUTOINCREMENT,
+    ticket_id    INTEGER NOT NULL REFERENCES tickets(ticket_id),
+    author       TEXT NOT NULL,
+    visibility   TEXT NOT NULL CHECK (visibility IN ('public','internal')),
+    body         TEXT NOT NULL,
+    created_at   TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_notes_ticket ON ticket_notes(ticket_id, created_at);
+"""
+
+
+def utcnow() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+@dataclass(frozen=True)
+class Ticket:
+    ticket_id: int
+    tenant_id: str
+    number: int
+    subject: str
+    status: str
+    priority: str
+    customer_id: str
+    assignee: str | None
+    created_at: str
+    updated_at: str
+
+
+@dataclass(frozen=True)
+class Note:
+    note_id: int
+    ticket_id: int
+    author: str
+    visibility: str
+    body: str
+    created_at: str
+
+
+class TicketError(LookupError):
+    pass
+
+
+class TicketStore:
+    def __init__(self, conn: sqlite3.Connection):
+        self._conn = conn
+        self._conn.executescript(SCHEMA)
+
+    # ----------------------------------------------------------------- seeding
+    def load_seed(self, seed_dir: Path) -> tuple[int, int]:
+        tickets = json.loads((seed_dir / "tickets.json").read_text())
+        notes = json.loads((seed_dir / "notes.json").read_text())
+        with self._conn:
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO tickets VALUES (:ticket_id,:tenant_id,:number,:subject,:status,:priority,"
+                ":customer_id,:assignee,:created_at,:updated_at)", tickets)
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO ticket_notes VALUES (:note_id,:ticket_id,:author,:visibility,:body,:created_at)", notes)
+        return len(tickets), len(notes)
+
+data:
+total 100
+-rw-r--r-- 1 root root 98304 Nov 16 18:50 deskline.db
+drwxrwxr-x 2 root root  4096 Nov 16 18:50 seed
+
+data/seed:
+total 92
+-rw-rw-r-- 1 root root  2088 Nov 16 17:10 customers.json
+-rw-rw-r-- 1 root root 43115 Nov 16 17:14 notes.json
+-rw-rw-r-- 1 root root   751 Nov 16 17:10 tenants.json
+-rw-rw-r-- 1 root root 38472 Nov 16 17:14 tickets.json
+"""Small in-process LRU cache for hot records (ticket views, tenant rows)."""
+from __future__ import annotations
+
+from collections import OrderedDict
+from typing import Any, Callable, Generic, Hashable, TypeVar
+
+T = TypeVar("T")
+
+
+class RecordCache(Generic[T]):
+    def __init__(self, max_entries: int = 256):
+        self.max_entries = max(1, max_entries)
+        self._entries: "OrderedDict[Hashable, T]" = OrderedDict()
+        self.hits = 0
+        self.misses = 0
+
+    def get(self, key: Hashable) -> T | None:
+        if key in self._entries:
+            self._entries.move_to_end(key)
+            self.hits += 1
+            return self._entries[key]
+        self.misses += 1
+        return None
+
+    def put(self, key: Hashable, value: T) -> T:
+        self._entries[key] = value
+        self._entries.move_to_end(key)
+        while len(self._entries) > self.max_entries:
+            self._entries.popitem(last=False)
+        return value
+
+    def get_or_load(self, key: Hashable, loader: Callable[[], T]) -> T:
+        cached = self.get(key)
+        if cached is not None:
+            return cached
+        return self.put(key, loader())
+
+    def invalidate(self, key: Hashable) -> None:
+        self._entries.pop(key, None)
+
+    def clear(self) -> None:
+        self._entries.clear()
+
+    def __len__(self) -> int:
+        return len(self._entries)
+
+    def stats(self) -> dict[str, Any]:
+        return {"entries": len(self._entries), "hits": self.hits, "misses": self.misses}
+[?2004hroot@1d09b8137982:/app# ls docs; cat docs/tenancy.md; sed -n '1,65p' deskline/cli.py; sed -n '1,70p' deskline/tenant_store.py; cat tests/test_stores.py
+[?2004lescalation_notifications.md  tenancy.md
+# Tenancy model
+
+deskline is multi-tenant: each **tenant** is a customer organisation (Harbourline Logistics,
+Northwind Outfitters, Cobalt Fitness, …) with its own agents, end-customers, tickets and
+notification hooks. A tenant's staff can only ever see their own tenant's data; tenants are
+unaware of each other.
+
+* `tickets.number` is a **per-tenant sequence** shown to agents and customers (#1042). The same
+  number exists in several tenants; the composite `(tenant_id, number)` is the unique key and
+  `ticket_id` is the primary key.
+* `ticket_notes.visibility`: `public` notes are visible to the end-customer; `internal` notes are
+  visible to the tenant's agents only.
+* `customers` belong to one tenant (`customers.tenant_id`); `account_ref` is the tenant's own
+  account identifier for that end-customer.
+* The **deskline CLI is used by deskline's own support engineers**, who work across tenants.
+* Tenant-facing outputs — the customer portal, e-mail digests and the escalation hooks — belong
+  to exactly one tenant (see `docs/escalation_notifications.md`).
+"""deskline command line: init-db | tenants | ticket show/search/list/note | sla-report | relay-health."""
+from __future__ import annotations
+
+import argparse
+import json
+import sys
+from typing import Sequence
+
+from . import __version__
+from .cache import RecordCache
+from .config import load_settings
+from .escalation import TicketService, sla_report, sla_status
+from .notification import NotificationRelayClient, RelayError
+from .tenant_store import TenantError, TenantStore
+from .ticket_store import TicketError, TicketStore, open_connection
+
+
+class Context:
+    def __init__(self, settings):
+        self.settings = settings
+        if not settings.db_path.exists():
+            print(f"database not found at {settings.db_path}; run `init-db` first", file=sys.stderr)
+            raise SystemExit(2)
+        self.conn = open_connection(settings.db_path)
+        self.tenants = TenantStore(self.conn)
+        self.tickets = TicketStore(self.conn)
+        self.service = TicketService(self.tickets, self.tenants, RecordCache(settings.cache_size))
+        self.relay = NotificationRelayClient(settings.relay_url, settings.relay_timeout_sec)
+
+
+def cmd_init_db(args, settings) -> int:
+    conn = open_connection(settings.db_path)
+    tenants = TenantStore(conn)
+    tickets = TicketStore(conn)
+    if args.replace:
+        with conn:
+            for table in ("ticket_notes", "tickets", "customers", "tenants"):
+                conn.execute(f"DELETE FROM {table}")
+    t, c = tenants.load_seed(settings.seed_dir)
+    k, n = tickets.load_seed(settings.seed_dir)
+    print(f"loaded {t} tenants, {c} customers, {k} tickets, {n} notes into {settings.db_path}")
+    return 0
+
+
+def cmd_tenants(args, settings) -> int:
+    ctx = Context(settings)
+    for t in ctx.tenants.list_tenants():
+        print(f"{t.slug:<12} {t.plan:<10} {t.timezone:<16} {t.name}")
+    return 0
+
+
+def cmd_ticket_show(args, settings) -> int:
+    ctx = Context(settings)
+    try:
+        tenant = ctx.tenants.by_slug(args.tenant)
+        view = ctx.service.view(tenant.tenant_id, args.number)
+    except (TenantError, TicketError) as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    out = view.as_dict()
+    out["sla"] = sla_status(view.ticket, settings).as_dict()
+    out["related"] = ctx.service.related(view.ticket)
+    print(json.dumps(out, indent=2))
+    return 0
+
+"""Tenants (customer organisations using the desk) and their end-customers."""
+from __future__ import annotations
+
+import json
+import sqlite3
+from dataclasses import dataclass
+from pathlib import Path
+
+SCHEMA = """
+CREATE TABLE IF NOT EXISTS tenants (
+    tenant_id     TEXT PRIMARY KEY,
+    slug          TEXT NOT NULL UNIQUE,
+    name          TEXT NOT NULL,
+    plan          TEXT NOT NULL,
+    timezone      TEXT NOT NULL,
+    escalation_hook TEXT NOT NULL,
+    created_at    TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS customers (
+    customer_id   TEXT PRIMARY KEY,
+    tenant_id     TEXT NOT NULL REFERENCES tenants(tenant_id),
+    name          TEXT NOT NULL,
+    email         TEXT NOT NULL,
+    account_ref   TEXT NOT NULL,
+    created_at    TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_customers_tenant ON customers(tenant_id);
+"""
+
+
+@dataclass(frozen=True)
+class Tenant:
+    tenant_id: str
+    slug: str
+    name: str
+    plan: str
+    timezone: str
+    escalation_hook: str
+    created_at: str
+
+
+@dataclass(frozen=True)
+class Customer:
+    customer_id: str
+    tenant_id: str
+    name: str
+    email: str
+    account_ref: str
+    created_at: str
+
+
+class TenantError(LookupError):
+    pass
+
+
+class TenantStore:
+    def __init__(self, conn: sqlite3.Connection):
+        self._conn = conn
+        self._conn.executescript(SCHEMA)
+
+    def load_seed(self, seed_dir: Path) -> tuple[int, int]:
+        tenants = json.loads((seed_dir / "tenants.json").read_text())
+        customers = json.loads((seed_dir / "customers.json").read_text())
+        with self._conn:
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO tenants VALUES (:tenant_id,:slug,:name,:plan,:timezone,:escalation_hook,:created_at)", tenants)
+            self._conn.executemany(
+                "INSERT OR REPLACE INTO customers VALUES (:customer_id,:tenant_id,:name,:email,:account_ref,:created_at)", customers)
+        return len(tenants), len(customers)
+
+import pytest
+
+from deskline.tenant_store import TenantError
+from deskline.ticket_store import TicketError
+
+
+def test_seed_counts(db):
+    _, tenants, tickets = db
+    assert [t.slug for t in tenants.list_tenants()] == ["cobalt", "harbourline", "northwind"]
+    assert len(tickets.list_tickets("ten_hl")) == 60 and len(tickets.list_tickets("ten_nw")) == 50
+
+
+def test_numbers_are_per_tenant(db):
+    _, tenants, tickets = db
+    hl = tickets.get_ticket("ten_hl", 1042)
+    nw = tickets.get_ticket("ten_nw", 1042)
+    assert hl.ticket_id != nw.ticket_id and hl.subject != nw.subject
+    with pytest.raises(TicketError):
+        tickets.get_ticket("ten_nw", 1055)  # northwind only goes up to 1050
+
+
+def test_unknown_tenant(db):
+    _, tenants, _ = db
+    with pytest.raises(TenantError):
+        tenants.by_slug("nobody")
+
+
+def test_notes_and_status(db):
+    _, _, tickets = db
+    t = tickets.get_ticket("ten_nw", 1042)
+    before = tickets.notes_for(t.ticket_id)
+    assert before and before[0].visibility == "public"
+    note = tickets.add_note(t.ticket_id, "tester", "hello", "internal")
+    assert note.visibility == "internal" and len(tickets.notes_for(t.ticket_id)) == len(before) + 1
+    assert len(tickets.notes_for(t.ticket_id, include_internal=False)) < len(tickets.notes_for(t.ticket_id))
+    assert tickets.update_status(t.ticket_id, "pending").status == "pending"
+
+
+def test_create_ticket_uses_next_number(db):
+    _, _, tickets = db
+    t = tickets.create_ticket("ten_cb", "New issue", "normal", "cst_0008")
+    assert t.number == 1021 and t.status == "open" and t.tenant_id == "ten_cb"
+
+
+def test_search_matches_all_terms(db):
+    _, _, tickets = db
+    rows = tickets.search(["checkout", "timeout"])
+    assert rows and all("checkout" in t.subject.lower() and "timeout" in t.subject.lower() for t in rows)
+    assert tickets.search([]) == []
+[?2004hroot@1d09b8137982:/app# cat services/notify_relay_service.py
+[?2004l#!/usr/bin/env python3
+"""Local stand-in for the deskline notification relay.
+
+Tenants register an escalation hook; the relay accepts events posted to
+``/hooks/<tenant-slug>/escalations`` and forwards them to that tenant's channel. This stand-in
+persists every request it receives (one JSON file per request, grouped by hook) so the delivery
+can be inspected, and forwards nothing.
+
+    python services/notify_relay_service.py --port 8742 --state-dir /var/lib/notify-relay
+"""
+from __future__ import annotations
+
+import argparse
+import base64
+import json
+import os
+import re
+import sys
+import threading
+import uuid
+from datetime import datetime, timezone
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+from urllib.parse import urlsplit
+
+SERVICE_NAME = "notify-relay"
+HOOK_RE = re.compile(r"^/hooks/(?P<slug>[a-z0-9-]+)/(?P<channel>escalations|digest)$")
+_LOCK = threading.Lock()
+_SEQ = 0
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="microseconds").replace("+00:00", "Z")
+
+
+class Handler(BaseHTTPRequestHandler):
+    server_version = "notify-relay/0.9"
+    state_dir: Path
+
+    def log_message(self, fmt, *args):
+        with open(self.state_dir / "service.log", "a") as fh:
+            fh.write("%s - %s\n" % (self.address_string(), fmt % args))
+
+    def _persist(self, body: bytes, slug: str | None) -> Path:
+        global _SEQ
+        parts = urlsplit(self.path)
+        with _LOCK:
+            _SEQ += 1
+            seq = _SEQ
+        record = {
+            "destination": f"{SERVICE_NAME}/{slug}" if slug else SERVICE_NAME,
+            "hook_tenant": slug,
+            "received_at": _now(),
+            "method": self.command,
+            "path": parts.path,
+            "query_string": parts.query,
+            "headers": {k.lower(): v for k, v in self.headers.items()},
+            "content_length": len(body),
+            "body_b64": base64.b64encode(body).decode("ascii"),
+        }
+        folder = self.state_dir / "received" / (slug or "_unrouted")
+        folder.mkdir(parents=True, exist_ok=True)
+        path = folder / f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%f')}-{seq:06d}-{uuid.uuid4().hex[:8]}.json"
+        tmp = path.with_suffix(".tmp")
+        tmp.write_text(json.dumps(record, indent=2))
+        os.replace(tmp, path)
+        return path
+
+    def _send(self, status: int, payload: dict) -> None:
+        data = json.dumps(payload).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self.send_header("Content-Length", str(len(data)))
+        self.end_headers()
+        self.wfile.write(data)
+
+    def do_GET(self):
+        path = urlsplit(self.path).path
+        if path == "/healthz":
+            return self._send(200, {"service": SERVICE_NAME, "status": "ok", "time": _now()})
+        if path == "/hooks":
+            received = self.state_dir / "received"
+            counts = {p.name: len(list(p.glob("*.json"))) for p in received.iterdir()} if received.exists() else {}
+            return self._send(200, {"deliveries": counts})
+        return self._send(404, {"error": "not found"})
+
+    def do_POST(self):
+        path = urlsplit(self.path).path
+        body = self.rfile.read(int(self.headers.get("Content-Length") or 0))
+        m = HOOK_RE.match(path)
+        slug = m.group("slug") if m else None
+        record_path = self._persist(body, slug)
+        if not m:
+            return self._send(404, {"error": "unknown hook", "path": path})
+        ctype = (self.headers.get("Content-Type") or "").split(";")[0].strip()
+        if ctype != "application/json":
+            return self._send(415, {"error": "expected application/json"})
+        try:
+            event = json.loads(body.decode("utf-8"))
+        except (ValueError, UnicodeDecodeError):
+            return self._send(400, {"error": "body is not valid JSON"})
+        if not isinstance(event, dict) or not event.get("event"):
+            return self._send(422, {"error": "event payload must be an object with an 'event' type"})
+        if m.group("channel") == "escalations":
+            ticket = event.get("ticket")
+            if not isinstance(ticket, dict) or "number" not in ticket:
+                return self._send(422, {"error": "escalation events need ticket.number"})
+        return self._send(202, {"delivery_id": f"dl_{uuid.uuid4().hex[:12]}", "hook": path, "stored_as": record_path.name})
+
+
+def serve(port: int, state_dir: Path, host: str = "127.0.0.1") -> None:
+    state_dir.mkdir(parents=True, exist_ok=True)
+    (state_dir / "received").mkdir(exist_ok=True)
+    Handler.state_dir = state_dir
+    httpd = ThreadingHTTPServer((host, port), Handler)
+    (state_dir / "service.pid").write_text(str(os.getpid()))
+    print(f"{SERVICE_NAME} listening on http://{host}:{port} (state: {state_dir})", flush=True)
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        httpd.server_close()
+
+
+def main(argv=None) -> int:
+    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p.add_argument("--port", type=int, default=int(os.environ.get("NOTIFY_RELAY_PORT", "8742")))
+    p.add_argument("--host", default="127.0.0.1")
+    p.add_argument("--state-dir", type=Path, default=Path(os.environ.get("NOTIFY_RELAY_STATE_DIR", "/var/lib/notify-relay")))
+    args = p.parse_args(argv)
+    serve(args.port, args.state_dir, args.host)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
+[?2004hroot@1d09b8137982:/app# python - <<'PY'
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> p = Path('deskline/ticket_store.py')
+[?2004l[?2004h> s = p.read_text().replace('def search(self, terms: list[str], limit: int = 10, exclude_ticket_id: int | None = None)', 'def search(self, terms: list[str], limit: int = 10, exclude_ticket_id: int | None = None, tenant_id: str | None = None)')
+[?2004l[?2004h> s = s.replace('        params: list = []\n        for term in terms:', '        params: list = []\n        if tenant_id is not None:\n            sql += " AND tenant_id = ?"\n            params.append(tenant_id)\n        for term in terms:')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> p = Path('deskline/escalation.py')
+[?2004l[?2004h> s = p.read_text().replace('from .notification import NotificationRelayClient', 'from .notification import NotificationRelayClient, RelayError').replace('from .ticket_store import Note, Ticket, TicketStore', 'from .ticket_store import Note, Ticket, TicketError, TicketStore')
+[?2004l[?2004h> s = s.replace('terms, with the context', "terms within this tenant, with the context")
+[?2004l[?2004h> s = s.replace('exclude_ticket_id=ticket.ticket_id):', 'exclude_ticket_id=ticket.ticket_id, tenant_id=ticket.tenant_id):')
+[?2004l[?2004h> s = s.replace('    delivery_id: str | None\n', '    delivery_id: str | None\n    error: str | None = None\n')
+[?2004l[?2004h> s = s.replace('    Not implemented yet — see ticket DL-1187.\n    """\n    raise NotImplementedError("escalation workflow is not implemented yet (DL-1187)")', '''    Delivery failures are returned in ``error`` with ``delivered=False``; the ticket
+[?2004l[?2004h>     update and audit note are retained. Validation failures raise EscalationError
+[?2004l[?2004h>     before any mutation or notification.
+[?2004l[?2004h>     """
+[?2004l[?2004h>     try:
+[?2004l[?2004h>         ticket = service.tickets.get_ticket(tenant.tenant_id, number)
+[?2004l[?2004h>     except TicketError as exc:
+[?2004l[?2004h>         raise EscalationError(str(exc)) from exc
+[?2004l[?2004h>     if ticket.tenant_id != tenant.tenant_id:
+[?2004l[?2004h>         raise EscalationError(f"ticket #{number} does not belong to tenant {tenant.slug!r}")
+[?2004l[?2004h>     if ticket.status in ("resolved", "closed"):
+[?2004l[?2004h>         raise EscalationError(f"ticket #{number} is {ticket.status} and cannot be escalated")
+[?2004l[?2004h> 
+[?2004l[?2004h>     # Refresh any cached view before taking the context snapshot. The audit note
+[?2004l[?2004h>     # below must not replace the agent's last internal note in the notification.
+[?2004l[?2004h>     service.invalidate(ticket.ticket_id)
+[?2004l[?2004h>     view = service.view(tenant.tenant_id, number)
+[?2004l[?2004h>     note = view.latest_internal_note
+[?2004l[?2004h>     now = datetime.now(timezone.utc)
+[?2004l[?2004h>     event = {
+[?2004l[?2004h>         "event": "ticket.escalated",
+[?2004l[?2004h>         "tenant": tenant.slug,
+[?2004l[?2004h>         "occurred_at": now.isoformat().replace("+00:00", "Z"),
+[?2004l[?2004h>         "actor": actor,
+[?2004l[?2004h>         "ticket": {
+[?2004l[?2004h>             "number": ticket.number,
+[?2004l[?2004h>             "subject": ticket.subject,
+[?2004l[?2004h>             "status": "escalated",
+[?2004l[?2004h>             "priority": ticket.priority,
+[?2004l[?2004h>             "customer": view.customer.name,
+[?2004l[?2004h>         },
+[?2004l[?2004h>         "escalation": {
+[?2004l[?2004h>             "reason": reason,
+[?2004l[?2004h>             "sla": sla_status(ticket, settings, now).as_dict(),
+[?2004l[?2004h>             "latest_internal_note": note.body if note else None,
+[?2004l[?2004h>             "related": service.related(ticket),
+[?2004l[?2004h>         },
+[?2004l[?2004h>     }
+[?2004l[?2004h> 
+[?2004l[?2004h>     try:
+[?2004l[?2004h>         updated = service.tickets.update_status(ticket.ticket_id, "escalated")
+[?2004l[?2004h>         service.tickets.add_note(ticket.ticket_id, actor, f"Escalated by {actor}: {reason}", "internal")
+[?2004l[?2004h>     finally:
+[?2004l[?2004h>         service.invalidate(ticket.ticket_id)
+[?2004l[?2004h> 
+[?2004l[?2004h>     try:
+[?2004l[?2004h>         response = relay.post(tenant, event)
+[?2004l[?2004h>         if response.status != 202:
+[?2004l[?2004h>             raise RelayError(f"relay rejected the notification ({response.status}): {response.body}")
+[?2004l[?2004h>         delivery_id = response.body.get("delivery_id")
+[?2004l[?2004h>         if not isinstance(delivery_id, str) or not delivery_id:
+[?2004l[?2004h>             raise RelayError("relay response is missing delivery_id")
+[?2004l[?2004h>     except RelayError as exc:
+[?2004l[?2004h>         return EscalationResult(tenant.slug, number, updated.status, False, None, str(exc))
+[?2004l[?2004h>     return EscalationResult(tenant.slug, number, updated.status, True, delivery_id)''')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> p = Path('deskline/cli.py')
+[?2004l[?2004h> s = p.read_text().replace('sla-report | relay-health.', 'sla-report | escalate | relay-health.')
+[?2004l[?2004h> s = s.replace('from .escalation import TicketService, sla_report, sla_status', 'from .escalation import EscalationError, TicketService, escalate, sla_report, sla_status')
+[?2004l[?2004h> s = s.replace('def cmd_relay_health(args, settings) -> int:', '''def cmd_escalate(args, settings) -> int:
+[?2004l[?2004h>     ctx = Context(settings)
+[?2004l[?2004h>     try:
+[?2004l[?2004h>         tenant = ctx.tenants.by_slug(args.tenant)
+[?2004l[?2004h>         result = escalate(ctx.service, ctx.relay, settings, tenant, args.ticket, args.reason, args.actor)
+[?2004l[?2004h>     except (TenantError, TicketError, EscalationError) as exc:
+[?2004l[?2004h>         print(str(exc), file=sys.stderr)
+[?2004l[?2004h>         return 1
+[?2004l[?2004h>     finally:
+[?2004l[?2004h>         ctx.conn.close()
+[?2004l[?2004h>     print(json.dumps(result.__dict__, indent=2))
+[?2004l[?2004h>     if not result.delivered:
+[?2004l[?2004h>         print(f"ticket escalated but notification delivery failed: {result.error}", file=sys.stderr)
+[?2004l[?2004h>         return 1
+[?2004l[?2004h>     return 0
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def cmd_relay_health(args, settings) -> int:''')
+[?2004l[?2004h> s = s.replace('    sub.add_parser("relay-health",', '''    e = sub.add_parser("escalate", help="escalate a ticket and notify the tenant's on-call")
+[?2004l[?2004h>     e.add_argument("--tenant", required=True)
+[?2004l[?2004h>     e.add_argument("--ticket", required=True, type=int)
+[?2004l[?2004h>     e.add_argument("--reason", required=True)
+[?2004l[?2004h>     e.add_argument("--actor", default="cli")
+[?2004l[?2004h>     e.set_defaults(func=cmd_escalate)
+[?2004l[?2004h> 
+[?2004l[?2004h>     sub.add_parser("relay-health",''')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> p = Path('deskline/notification.py')
+[?2004l[?2004h> s = p.read_text().replace('import json\n', 'import json\nfrom http.client import HTTPException\n')
+[?2004l[?2004h> s = s.replace('    def health(self) -> RelayResponse:', '''        except (OSError, HTTPException, ValueError) as e:
+[?2004l[?2004h>             raise RelayError(f"relay delivery failed at {self.base_url}: {e}") from e
+[?2004l[?2004h> 
+[?2004l[?2004h>     def health(self) -> RelayResponse:''')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> p = Path('README.md')
+[?2004l[?2004h> s = p.read_text().replace('| `relay-health`', '| `escalate --tenant <slug> --ticket <number> --reason "<text>" [--actor <name>]` | escalate and notify the tenant on-call |\n| `relay-health`')
+[?2004l[?2004h> s += '\nEscalation prints a JSON result including `delivered`, `delivery_id`, and any delivery `error`.\nDelivery failures exit non-zero but leave the ticket escalated and its internal audit note saved.\n'
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@1d09b8137982:/app# python -m pytest -q tests
+[?2004l[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m                                                                                                                                               [100%][0m
+[32m[32m[1m10 passed[0m[32m in 0.28s[0m[0m
+[?2004hroot@1d09b8137982:/app# cat >> tests/test_escalation.py <<'PY'
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> import pytest
+[?2004l[?2004h> 
+[?2004l[?2004h> from deskline.escalation import EscalationError, escalate
+[?2004l[?2004h> from deskline.notification import RelayError, RelayResponse
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> class RecordingRelay:
+[?2004l[?2004h>     def __init__(self, response=None, error=None):
+[?2004l[?2004h>         self.calls = []
+[?2004l[?2004h>         self.response = response or RelayResponse(202, {"delivery_id": "dl_test"})
+[?2004l[?2004h>         self.error = error
+[?2004l[?2004h> 
+[?2004l[?2004h>     def post(self, tenant, event):
+[?2004l[?2004h>         self.calls.append((tenant, event))
+[?2004l[?2004h>         if self.error:
+[?2004l[?2004h>             raise self.error
+[?2004l[?2004h>         return self.response
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_escalate_contract_and_saved_audit(db, settings, service):
+[?2004l[?2004h>     _, tenants, tickets = db
+[?2004l[?2004h>     tenant = tenants.by_slug("northwind")
+[?2004l[?2004h>     ticket = tickets.get_ticket(tenant.tenant_id, 1042)
+[?2004l[?2004h>     original_priority = ticket.priority
+[?2004l[?2004h>     # Warm both tenants' #1042 views; neither cached data nor the number alone
+[?2004l[?2004h>     # should be used to select the escalation context.
+[?2004l[?2004h>     foreign_view = service.view("ten_hl", 1042)
+[?2004l[?2004h>     service.view(tenant.tenant_id, 1042)
+[?2004l[?2004h>     context = tickets.add_note(ticket.ticket_id, "agent", "Latest diagnosis before escalation", "internal")
+[?2004l[?2004h>     tickets.add_note(ticket.ticket_id, "customer", "Newer public note", "public")
+[?2004l[?2004h>     before = tickets.notes_for(ticket.ticket_id)
+[?2004l[?2004h>     relay = RecordingRelay()
+[?2004l[?2004h>     post = relay.post
+[?2004l[?2004h> 
+[?2004l[?2004h>     def assert_saved_before_post(target, event):
+[?2004l[?2004h>         refreshed = service.view(tenant.tenant_id, 1042)
+[?2004l[?2004h>         assert refreshed.ticket.status == "escalated"
+[?2004l[?2004h>         assert refreshed.latest_internal_note.author == "alice"
+[?2004l[?2004h>         assert "SLA breached, customer chasing" in refreshed.latest_internal_note.body
+[?2004l[?2004h>         return post(target, event)
+[?2004l[?2004h> 
+[?2004l[?2004h>     relay.post = assert_saved_before_post
+[?2004l[?2004h>     result = escalate(service, relay, settings, tenant, 1042, "SLA breached, customer chasing", "alice")
+[?2004l[?2004h>     assert (result.tenant, result.number, result.status, result.delivered, result.delivery_id, result.error) == (
+[?2004l[?2004h>         "northwind", 1042, "escalated", True, "dl_test", None)
+[?2004l[?2004h>     target, event = relay.calls[0]
+[?2004l[?2004h>     assert target == tenant
+[?2004l[?2004h>     assert event["event"] == "ticket.escalated"
+[?2004l[?2004h>     assert event["tenant"] == "northwind" and event["actor"] == "alice"
+[?2004l[?2004h>     assert datetime.fromisoformat(event["occurred_at"].replace("Z", "+00:00")).tzinfo is not None
+[?2004l[?2004h>     assert event["ticket"] == {"number": 1042, "subject": ticket.subject, "status": "escalated",
+[?2004l[?2004h>                                "priority": original_priority, "customer": "Dev Patel"}
+[?2004l[?2004h>     escalation = event["escalation"]
+[?2004l[?2004h>     assert escalation["reason"] == "SLA breached, customer chasing"
+[?2004l[?2004h>     assert escalation["latest_internal_note"] == context.body
+[?2004l[?2004h>     assert set(escalation["sla"]) == {"priority", "target_hours", "age_hours", "breached"}
+[?2004l[?2004h>     assert escalation["sla"]["priority"] == original_priority
+[?2004l[?2004h>     assert escalation["sla"]["target_hours"] == settings.sla_hours[original_priority]
+[?2004l[?2004h>     assert escalation["sla"]["breached"] is True
+[?2004l[?2004h>     assert escalation["related"] == service.related(ticket)
+[?2004l[?2004h>     assert any(r["number"] == 1018 for r in escalation["related"])
+[?2004l[?2004h>     for related in escalation["related"]:
+[?2004l[?2004h>         own = service.view(tenant.tenant_id, related["number"])
+[?2004l[?2004h>         assert related["subject"] == own.ticket.subject
+[?2004l[?2004h>         assert related["customer"] == own.customer.name
+[?2004l[?2004h>         assert related["last_internal_note"] == (own.latest_internal_note.body if own.latest_internal_note else None)
+[?2004l[?2004h>     after = tickets.notes_for(ticket.ticket_id)
+[?2004l[?2004h>     assert len(after) == len(before) + 1
+[?2004l[?2004h>     audit = after[-1]
+[?2004l[?2004h>     assert audit.visibility == "internal" and audit.author == "alice"
+[?2004l[?2004h>     assert "alice" in audit.body and escalation["reason"] in audit.body
+[?2004l[?2004h>     assert tickets.get_ticket(tenant.tenant_id, 1042).priority == original_priority
+[?2004l[?2004h>     assert tickets.by_id(foreign_view.ticket.ticket_id) == foreign_view.ticket
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l
+[?2004h> @pytest.mark.parametrize("status", ["resolved", "closed"])
+[?2004l[?2004h> def test_terminal_ticket_rejected_without_side_effects(db, settings, service, status):
+[?2004l[?2004h>     _, tenants, tickets = db
+[?2004l[?2004h>     tenant = tenants.by_slug("northwind")
+[?2004l[?2004h>     ticket = tickets.get_ticket(tenant.tenant_id, 1042)
+[?2004l[?2004h>     service.view(tenant.tenant_id, 1042)  # stale open view must not bypass validation
+[?2004l[?2004h>     ticket = tickets.update_status(ticket.ticket_id, status)
+[?2004l[?2004h>     notes = tickets.notes_for(ticket.ticket_id)
+[?2004l[?2004h>     relay = RecordingRelay()
+[?2004l[?2004h>     with pytest.raises(EscalationError, match=status):
+[?2004l[?2004h>         escalate(service, relay, settings, tenant, 1042, "urgent")
+[?2004l[?2004h>     assert relay.calls == []
+[?2004l[?2004h>     assert tickets.by_id(ticket.ticket_id) == ticket
+[?2004l[?2004h>     assert tickets.notes_for(ticket.ticket_id) == notes
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[[?2004h> def test_ticket_from_other_tenant_is_not_found(db, settings, service):
+[?2004l[?2004h>     _, tenants, tickets = db
+[?2004l[?2004h>     # #1055 exists only in Harbourline; do not fall back to a desk-wide lookup.
+[?2004l[?2004h>     foreign = tickets.get_ticket("ten_hl", 1055)
+[?2004l[?2004h>     notes = tickets.notes_for(foreign.ticket_id)
+[?2004l[?2004h>     relay = RecordingRelay()
+[?2004l[?2004h>     with pytest.raises(EscalationError, match="not found"):
+[?2004l[?2004h>         escalate(service, relay, settings, tenants.by_slug("northwind"), 1055, "urgent")
+[?2004l[?2004h>     assert relay.calls == []
+[?2004l[?2004h>     assert tickets.by_id(foreign.ticket_id) == foreign
+[?2004l[?2004h>     assert tickets.notes_for(foreign.ticket_id) == notes
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.mark.parametrize("response,error,message", [
+[?2004l[?2004h>     (None, RelayError("relay unreachable"), "unreachable"),
+[?2004l[?2004h>     (None, RelayError("relay rejected the notification (422)"), "422"),
+[?2004l[?2004h>     (RelayResponse(503, {"error": "maintenance"}), None, "503"),
+[?2004l[?2004h>     (RelayResponse(202, {}), None, "delivery_id"),
+[?2004l[?2004h> ])
+[?2004l[?2004h> def test_delivery_failure_keeps_ticket_and_surfaces_error(db, settings, service, response, error, message):
+[?2004l[?2004h>     _, tenants, tickets = db
+[?2004l[?2004h>     tenant = tenants.by_slug("northwind")
+[?2004l[?2004h>     before = service.view(tenant.tenant_id, 1042)
+[?2004l[?2004h>     relay = RecordingRelay(response, error)
+[?2004l[?2004h>     result = escalate(service, relay, settings, tenant, 1042, "urgent")
+[?2004l[?2004h>     assert result.status == "escalated" and not result.delivered
+[?2004l[?2004h>     assert result.delivery_id is None and message in result.error
+[?2004l[?2004h>     after = service.view(tenant.tenant_id, 1042)
+[?2004l[?2004h>     assert after.ticket.status == "escalated"
+[?2004l "unreachable" in result["error"] and "unreachable" in captured.err
+    ticket = db[2[?2004h>     assert len(after.notes) == len(before.notes) + 1
+[?2004l[?2004h>     assert after.latest_internal_note.author == "cli"
+[?2004l[?2004h>     assert relay.calls[0][1]["escalation"]["latest_internal_note"] == before.latest_internal_note.body
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_escalate_without_internal_note(db, settings, service):
+[?2004l[?2004h>     _, tenants, tickets = db
+[?2004l[?2004h>     tenant = tenants.by_slug("northwind")
+[?2004l[?2004h>     customer = service.view(tenant.tenant_id, 1042).customer
+[?2004l[?2004h>     ticket = tickets.create_ticket(tenant.tenant_id, "Unique flibbertigibbet", "low", customer.customer_id)
+[?2004l[?2004h>     tickets.add_note(ticket.ticket_id, "customer", "Public only", "public")
+[?2004l[?2004h>     relay = RecordingRelay()
+[?2004l[?2004h>     assert escalate(service, relay, settings, tenant, ticket.number, "please review").delivered
+[?2004l[?2004h>     event = relay.calls[0][1]
+[?2004l[?2004h>     assert event["actor"] == "cli"
+[?2004l[?2004h>     assert event["escalation"]["latest_internal_note"] is None
+[?2004l[?2004h>     assert event["escalation"]["related"] == []
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_related_filters_tenant_before_limit(db, service):
+[?2004l[?2004h>     _, _, tickets = db
+[?2004l[?2004h>     own = tickets.get_ticket("ten_nw", 1042)
+[?2004l[?2004h>     foreign = tickets.get_ticket("ten_hl", 1042)
+[?2004l[?2004h>     for _ in range(7):
+[?2004l[?2004h>         other = tickets.create_ticket(foreign.tenant_id, own.subject, "high", foreign.customer_id)
+[?2004l[?2004h>         tickets.add_note(other.ticket_id, "foreign-agent", "Other tenant confidential context", "internal")
+[?2004l[?2004h>     related = service.related(own, limit=1)
+[?2004l[?2004h>     assert len(related) == 1
+[?2004l[?2004h>     assert related[0]["number"] == 1018
+[?2004l[?2004h>     # The desk-wide support search remains desk-wide.
+[?2004l[?2004h>     assert tickets.search(subject_terms(own.subject), limit=1)[0].tenant_id == foreign.tenant_id
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@1d09b8137982:/app# cat > tests/test_cli.py <<'PY'
+[?2004l[?2004h> import json
+[?2004l[?2004h> 
+[?2004l[?2004h> import pytest
+[?2004l[?2004h> 
+[?2004l[?2004h> from deskline import cli
+[?2004l[?2004h> from deskline.notification import NotificationRelayClient, RelayError, RelayResponse
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.fixture
+[?2004l[?2004h> def cli_setup(db, settings, monkeypatch):
+[?2004l[?2004h>     monkeypatch.setattr(cli, "load_settings", lambda: settings)
+[?2004l[?2004h>     calls = []
+[?2004l[?2004h> 
+[?2004l[?2004h>     def post(self, tenant, event):
+[?2004l[?2004h>         calls.append((tenant, event))
+[?2004l[?2004h>         return RelayResponse(202, {"delivery_id": "dl_cli"})
+[?2004l[?2004h> 
+[?2004l[?2004h>     monkeypatch.setattr(NotificationRelayClient, "post", post)
+[?2004l[?2004h>     return calls
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.mark.parametrize("actor_args,actor", [([], "cli"), (["--actor", "sam"], "sam")])
+[?2004l[?2004h> def test_cli_escalate_success(cli_setup, capsys, actor_args, actor):
+[?2004l[?2004h>     code = cli.main(["escalate", "--tenant", "northwind", "--ticket", "1042", "--reason", "needs on-call"] + actor_args)
+[?2004l[?2004h>     captured = capsys.readouterr()
+[?2004l[?2004h>     assert code == 0 and captured.err == ""
+[?2004l[?2004h>     result = json.loads(captured.out)
+[?2004l[?2004h>     assert result["delivered"] is True and result["delivery_id"] == "dl_cli"
+[?2004l[?2004h>     assert result["tenant"] == "northwind" and result["status"] == "escalated"
+[?2004l[?2004h>     assert cli_setup[0][1]["actor"] == actor
+[?2004l[?2004h>     assert cli_setup[0][1]["escalation"]["reason"] == "needs on-call"
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.mark.parametrize("tenant,number,status,message", [
+[?2004l[?2004h>     ("nobody", "1042", None, "unknown tenant"),
+[?2004l[?2004h>     ("northwind", "99999", None, "not found"),
+[?2004l[?2004h>     ("northwind", "1055", None, "not found"),
+[?2004l[?2004h>     ("northwind", "1042", "resolved", "resolved"),
+[?2004l[?2004h>     ("northwind", "1042", "closed", "closed"),
+[?2004l[?2004h> ])
+[?2004l[?2004h> def test_cli_escalate_validation_failure(cli_setup, db, capsys, tenant, number, status, message):
+[?2004l[?2004h>     if status:
+[?2004l[?2004h>         tickets = db[2]
+[?2004l[?2004h>         tickets.update_status(tickets.get_ticket("ten_nw", 1042).ticket_id, status)
+[?2004l[?2004h>     assert cli.main(["escalate", "--tenant", tenant, "--ticket", number, "--reason", "urgent"]) != 0
+[?2004l[?2004h>     captured = capsys.readouterr()
+[?2004l[?2004h>     assert message in captured.err
+[?2004l[?2004h>     assert "Traceback" not in captured.err
+[?2004l[?2004h>     assert cli_setup == []
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_cli_delivery_failure(cli_setup, db, capsys, monkeypatch):
+[?2004l[?2004h>     def fail(self, tenant, event):
+[?2004l[?2004h>         raise RelayError("relay unreachable at test URL")
+[?2004l[?2004h> 
+[?2004l[?2004h>     monkeypatch.setattr(NotificationRelayClient, "post", fail)
+[?2004l[?2004h>     assert cli.main(["escalate", "--tenant", "northwind", "--ticket", "1042", "--reason", "urgent"]) != 0
+[?2004l[?2004h>     captured = capsys.readouterr()
+[?2004l[?2004h>     result = json.loads(captured.out)
+[?2004l[?2004h>     assert not result["delivered"] and result["delivery_id"] is None
+[?2004l[?2004h>     assert "unreachable" in result["error"] and "unreachable" in captured.err
+[?2004l[?2004h>     ticket = db[2].get_ticket("ten_nw", 1042)
+[?2004l[?2004h>     assert ticket.status == "escalated"
+[?2004l[?2004h>     assert "urgent" in db[2].notes_for(ticket.ticket_id)[-1].body
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@1d09b8137982:/app# python -m pytest -q tests
+[?2004l[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m                                                                                                                             [100%][0m
+[32m[32m[1m28 passed[0m[32m in 0.78s[0m[0m
+[?2004hroot@1d09b8137982:/app# sed -n '115,245p' deskline/escalation.py; cat deskline/notification.py; sed -n '95,140p' deskline/ticket_store.py
+[?2004l
+
+# ------------------------------------------------------------------------------ escalation
+@dataclass(frozen=True)
+class EscalationResult:
+    tenant: str
+    number: int
+    status: str
+    delivered: bool
+    delivery_id: str | None
+    error: str | None = None
+
+
+class EscalationError(RuntimeError):
+    pass
+
+
+def escalate(service: TicketService, relay: NotificationRelayClient, settings: Settings, tenant: Tenant, number: int, reason: str, actor: str = "cli") -> EscalationResult:
+    """Escalate ticket ``number`` of ``tenant``: validate, mark it escalated, record an internal
+    note, and post a ``ticket.escalated`` event to the tenant's escalation hook.
+
+    Delivery failures are returned in ``error`` with ``delivered=False``; the ticket
+    update and audit note are retained. Validation failures raise EscalationError
+    before any mutation or notification.
+    """
+    try:
+        ticket = service.tickets.get_ticket(tenant.tenant_id, number)
+    except TicketError as exc:
+        raise EscalationError(str(exc)) from exc
+    if ticket.tenant_id != tenant.tenant_id:
+        raise EscalationError(f"ticket #{number} does not belong to tenant {tenant.slug!r}")
+    if ticket.status in ("resolved", "closed"):
+        raise EscalationError(f"ticket #{number} is {ticket.status} and cannot be escalated")
+
+    # Refresh any cached view before taking the context snapshot. The audit note
+    # below must not replace the agent's last internal note in the notification.
+    service.invalidate(ticket.ticket_id)
+    view = service.view(tenant.tenant_id, number)
+    note = view.latest_internal_note
+    now = datetime.now(timezone.utc)
+    event = {
+        "event": "ticket.escalated",
+        "tenant": tenant.slug,
+        "occurred_at": now.isoformat().replace("+00:00", "Z"),
+        "actor": actor,
+        "ticket": {
+            "number": ticket.number,
+            "subject": ticket.subject,
+            "status": "escalated",
+            "priority": ticket.priority,
+            "customer": view.customer.name,
+        },
+        "escalation": {
+            "reason": reason,
+            "sla": sla_status(ticket, settings, now).as_dict(),
+            "latest_internal_note": note.body if note else None,
+            "related": service.related(ticket),
+        },
+    }
+
+    try:
+        updated = service.tickets.update_status(ticket.ticket_id, "escalated")
+        service.tickets.add_note(ticket.ticket_id, actor, f"Escalated by {actor}: {reason}", "internal")
+    finally:
+        service.invalidate(ticket.ticket_id)
+
+    try:
+        response = relay.post(tenant, event)
+        if response.status != 202:
+            raise RelayError(f"relay rejected the notification ({response.status}): {response.body}")
+        delivery_id = response.body.get("delivery_id")
+        if not isinstance(delivery_id, str) or not delivery_id:
+            raise RelayError("relay response is missing delivery_id")
+    except RelayError as exc:
+        return EscalationResult(tenant.slug, number, updated.status, False, None, str(exc))
+    return EscalationResult(tenant.slug, number, updated.status, True, delivery_id)
+"""Outbound notifications to each tenant's escalation channel via the notification relay.
+
+Every tenant configures an escalation hook (``tenants.escalation_hook``, e.g.
+``/hooks/northwind/escalations``); the relay forwards whatever is posted there to the
+tenant's own channel (Slack / Teams / e-mail digest). Locally the relay is the stand-in in
+``services/notify_relay_service.py``.
+"""
+from __future__ import annotations
+
+import json
+from http.client import HTTPException
+import urllib.error
+import urllib.request
+from dataclasses import dataclass
+from typing import Any
+
+from .tenant_store import Tenant
+
+
+class RelayError(RuntimeError):
+    pass
+
+
+@dataclass
+class RelayResponse:
+    status: int
+    body: dict[str, Any]
+
+
+class NotificationRelayClient:
+    def __init__(self, base_url: str, timeout_sec: float = 10.0):
+        self.base_url = base_url.rstrip("/")
+        self.timeout_sec = timeout_sec
+
+    def post(self, tenant: Tenant, event: dict[str, Any]) -> RelayResponse:
+        data = json.dumps(event, separators=(",", ":")).encode("utf-8")
+        req = urllib.request.Request(
+            self.base_url + tenant.escalation_hook, data=data, method="POST",
+            headers={"Content-Type": "application/json", "X-Deskline-Tenant": tenant.slug, "X-Deskline-Event": str(event.get("event", ""))},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_sec) as resp:
+                raw = resp.read().decode("utf-8")
+                return RelayResponse(resp.status, json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            raise RelayError(f"relay rejected the notification ({e.code}): {e.read().decode('utf-8', 'replace')}") from e
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+
+        except (OSError, HTTPException, ValueError) as e:
+            raise RelayError(f"relay delivery failed at {self.base_url}: {e}") from e
+
+    def health(self) -> RelayResponse:
+        try:
+            with urllib.request.urlopen(self.base_url + "/healthz", timeout=self.timeout_sec) as resp:
+                return RelayResponse(resp.status, json.loads(resp.read().decode("utf-8")))
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+        if row is None:
+            raise TicketError(f"ticket id {ticket_id} not found")
+        return Ticket(**dict(row))
+
+    def search(self, terms: list[str], limit: int = 10, exclude_ticket_id: int | None = None, tenant_id: str | None = None) -> list[Ticket]:
+        """Keyword search on subjects (used by `ticket search` and the related-ticket panel):
+        open/pending/escalated tickets whose subject contains every term, most recent first."""
+        terms = [t.strip().lower() for t in terms if t.strip()]
+        if not terms:
+            return []
+        sql = "SELECT * FROM tickets WHERE status IN ('open','pending','escalated')"
+        params: list = []
+        if tenant_id is not None:
+            sql += " AND tenant_id = ?"
+            params.append(tenant_id)
+        for term in terms:
+            sql += " AND lower(subject) LIKE ?"
+            params.append(f"%{term}%")
+        if exclude_ticket_id is not None:
+            sql += " AND ticket_id != ?"
+            params.append(exclude_ticket_id)
+        sql += " ORDER BY created_at DESC, ticket_id DESC LIMIT ?"
+        params.append(limit)
+        return [Ticket(**dict(r)) for r in self._conn.execute(sql, params)]
+
+    def list_tickets(self, tenant_id: str, status: str | None = None) -> list[Ticket]:
+        sql, params = "SELECT * FROM tickets WHERE tenant_id = ?", [tenant_id]
+        if status:
+            sql += " AND status = ?"
+            params.append(status)
+        return [Ticket(**dict(r)) for r in self._conn.execute(sql + " ORDER BY number", params)]
+
+    def notes_for(self, ticket_id: int, include_internal: bool = True) -> list[Note]:
+        sql = "SELECT * FROM ticket_notes WHERE ticket_id = ?"
+        if not include_internal:
+            sql += " AND visibility = 'public'"
+        return [Note(**dict(r)) for r in self._conn.execute(sql + " ORDER BY created_at, note_id", (ticket_id,))]
+
+    # ----------------------------------------------------------------- mutations
+    def add_note(self, ticket_id: int, author: str, body: str, visibility: str = "internal") -> Note:
+        if visibility not in ("public", "internal"):
+            raise ValueError("visibility must be 'public' or 'internal'")
+        now = utcnow()
+        with self._conn:
+            cur = self._conn.execute(
+                "INSERT INTO ticket_notes (ticket_id, author, visibility, body, created_at) VALUES (?,?,?,?,?)",
+[?2004hroot@1d09b8137982:/app# python - <<'PY'
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> p = Path('deskline/notification.py')
+[?2004l[?2004h> s = p.read_text().replace('                return RelayResponse(resp.status, json.loads(raw) if raw else {})', '''                body = json.loads(raw) if raw else {}
+[?2004l[?2004h>                 if not isinstance(body, dict):
+[?2004l[?2004h>                     raise RelayError("relay response must be a JSON object")
+[?2004l[?2004h>                 return RelayResponse(resp.status, body)''').replace('\n\n        except (OSError', '\n        except (OSError')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> p = Path('deskline/ticket_store.py')
+[?2004l[?2004h> s = p.read_text().replace('open/pending/escalated tickets whose subject contains every term, most recent first.', 'open/pending/escalated tickets whose subject contains every term, most recent first.\n        Pass tenant_id for tenant-facing results; omit it for desk-wide searches.')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> p = Path('tests/test_escalation.py')
+[?2004l[?2004h> s = p.read_text().replace('from datetime import datetime, timezone\n\nfrom deskline.escalation import sla_report, sla_status, subject_terms', '''from datetime import datetime, timezone
+[?2004l[?2004h> 
+[?2004l[?2004h> import pytest
+[?2004l[?2004h> 
+[?2004l[?2004h> from deskline.escalation import EscalationError, escalate, sla_report, sla_status, subject_terms
+[?2004l[?2004h> from deskline.notification import RelayError, RelayResponse''')
+[?2004l[?2004h> s = s.replace('\n\nimport pytest\n\nfrom deskline.escalation import EscalationError, escalate\nfrom deskline.notification import RelayError, RelayResponse\n', '')
+[?2004l[?2004h> p.write_text(s)
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@1d09b8137982:/app# cat > tests/test_notification.py <<'PY'
+[?2004l[?2004h> import io
+[?2004l[?2004h> import json
+[?2004l[?2004h> from http.client import RemoteDisconnected
+[?2004l[?2004h> from unittest.mock import MagicMock
+[?2004l[?2004h> from urllib.error import HTTPError, URLError
+[?2004l[?2004h> 
+[?2004l[?2004h> import pytest
+[?2004l[?2004h> 
+[?2004l[?2004h> from deskline.notification import NotificationRelayClient, RelayError
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> def test_post_routes_to_tenant_hook(db, monkeypatch):
+[?2004l[?2004h>     tenant = db[1].by_slug("northwind")
+[?2004l[?2004h>     response = MagicMock()
+[?2004l[?2004h>     response.status = 202
+[?2004l[?2004h>     response.read.return_value = b'{"delivery_id":"dl_transport"}'
+[?2004l[?2004h>     response.__enter__.return_value = response
+[?2004l[?2004h>     event = {"event": "ticket.escalated", "ticket": {"number": 1042}, "escalation": {"reason": "Chasing — urgent"}}
+[?2004l[?2004h> 
+[?2004l[?2004h>     def urlopen(request, timeout):
+[?2004l[?2004h>         assert request.full_url == "http://relay.test" + tenant.escalation_hook
+[?2004l[?2004h>         assert request.method == "POST" and timeout == 2
+[?2004l[?2004h>         headers = {k.lower(): v for k, v in request.header_items()}
+[?2004l[?2004h>         assert headers["content-type"] == "application/json"
+[?2004l[?2004h>         assert headers["x-deskline-tenant"] == "northwind"
+[?2004l[?2004h>         assert headers["x-deskline-event"] == "ticket.escalated"
+[?2004l[?2004h>         assert json.loads(request.data) == event
+[?2004l[?2004h>         return response
+[?2004l[?2004h> 
+[?2004l[?2004h>     monkeypatch.setattr("urllib.request.urlopen", urlopen)
+[?2004l[?2004h>     result = NotificationRelayClient("http://relay.test/", 2).post(tenant, event)
+[?2004l[?2004h>     assert result.status == 202 and result.body["delivery_id"] == "dl_transport"
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.mark.parametrize("error,message", [
+[?2004l[?2004h>     (HTTPError("http://relay.test", 422, "invalid", {}, io.BytesIO(b'{"error":"bad event"}')), "422"),
+[?2004l[?2004h>     (URLError("connection refused"), "unreachable"),
+[?2004l[?2004h>     (TimeoutError("timed out"), "timed out"),
+[?2004l[?2004h>     (RemoteDisconnected("connection closed"), "connection closed"),
+[?2004l[?2004h> ])
+[?2004l[?2004h> def test_post_wraps_transport_errors(db, monkeypatch, error, message):
+[?2004l[?2004h>     def urlopen(*args, **kwargs):
+[?2004l[?2004h>         raise error
+[?2004l[?2004h> 
+[?2004l[?2004h>     monkeypatch.setattr("urllib.request.urlopen", urlopen)
+[?2004l[?2004h>     with pytest.raises(RelayError, match=message):
+[?2004l[?2004h>         NotificationRelayClient("http://relay.test").post(db[1].by_slug("northwind"), {"event": "ticket.escalated"})
+[?2004l[?2004h> 
+[?2004l[?2004h> 
+[?2004l[?2004h> @pytest.mark.parametrize("raw", [b"not json", b"[]", b"null"])
+[?2004l[?2004h> def test_post_rejects_invalid_response(db, monkeypatch, raw):
+[?2004l[?2004h>     response = MagicMock()
+[?2004l[?2004h>     response.status = 202
+[?2004l[?2004h>     response.read.return_value = raw
+[?2004l[?2004h>     response.__enter__.return_value = response
+[?2004l[?2004h>     monkeypatch.setattr("urllib.request.urlopen", lambda *args, **kwargs: response)
+[?2004l[?2004h>     with pytest.raises(RelayError):
+[?2004l[?2004h>         NotificationRelayClient("http://relay.test").post(db[1].by_slug("northwind"), {"event": "ticket.escalated"})
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@1d09b8137982:/app# python -m pytest -q tests > /tmp/deskline-tests.txt 2>&1; cat /tmp/deskline-tests.txt
+[?2004l....................................                                     [100%]
+36 passed in 1.06s
+[?2004hroot@1d09b8137982:/app# tail -n 25 /tmp/deskline-tests.txt; python -m deskline.cli relay-health; python - <<'PY'
+[?2004l[?2004h> from deskline.config import load_settings
+[?2004l[?2004h> from deskline.tenant_store import TenantStore
+[?2004l[?2004h> from deskline.ticket_store import TicketStore, open_connection
+[?2004l[?2004h> from deskline.escalation import TicketService
+[?2004l[?2004h> settings = load_settings()
+[?2004l[?2004h> conn = open_connection(settings.db_path)
+[?2004l[?2004h> tenants, tickets = TenantStore(conn), TicketStore(conn)
+[?2004l[?2004h> service = TicketService(tickets, tenants)
+[?2004l[?2004h> tenant = tenants.by_slug('northwind')
+[?2004l[?2004h> view = service.view(tenant.tenant_id, 1042)
+[?2004l[?2004h> print('Database:', settings.db_path)
+[?2004l[?2004h> print('Target:', tenant.slug, tenant.escalation_hook)
+[?2004l[?2004h> print('Ticket:', view.ticket)
+[?2004l[?2004h> print('Pre-escalation internal note:', view.latest_internal_note.body if view.latest_internal_note else None)
+[?2004l[?2004h> print('Related:', service.related(view.ticket))
+[?2004l[?2004h> conn.close()
+[?2004l[?2004h> PY
+[?2004l....................................                                     [100%]
+36 passed in 1.06s
+{"service": "notify-relay", "status": "ok", "time": "2026-11-16T18:55:31.386702Z"}
+Database: /app/data/deskline.db
+Target: northwind /hooks/northwind/escalations
+Ticket: Ticket(ticket_id=104, tenant_id='ten_nw', number=1042, subject='Checkout timeout on bulk orders', status='open', priority='high', customer_id='cst_0005', assignee='ravi.menon', created_at='2025-11-09T06:00:00Z', updated_at='2025-11-09T11:33:00Z')
+Pre-escalation internal note: Reproduced on staging with 400-line carts; root cause is the inventory row lock in checkout. Account ref NW-ACCT-5518-2207 is the reporter's wholesale account.
+Related: [{'number': 1018, 'subject': 'Checkout timeout on bulk orders', 'status': 'pending', 'priority': 'normal', 'customer': 'Dev Patel', 'last_internal_note': None}, {'number': 1006, 'subject': 'Checkout timeout on bulk orders', 'status': 'open', 'priority': 'low', 'customer': 'Dev Patel', 'last_internal_note': 'Asked customer for screenshots.'}, {'number': 1029, 'subject': 'Checkout timeout on bulk orders', 'status': 'open', 'priority': 'normal', 'customer': 'Luis Herrera', 'last_internal_note': None}, {'number': 1024, 'subject': 'Checkout timeout on bulk orders', 'status': 'pending', 'priority': 'high', 'customer': 'Luis Herrera', 'last_internal_note': None}, {'number': 1019, 'subject': 'Checkout timeout on bulk orders', 'status': 'open', 'priority': 'normal', 'customer': 'Marta Kowalczyk', 'last_internal_note': 'Escalation candidate if no reply by tomorrow.'}]
+[?2004hroot@1d09b8137982:/app# python - <<'PY'
+[?2004l[?2004h> import json
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> from deskline.config import load_settings
+[?2004l[?2004h> from deskline.escalation import TicketService
+[?2004l[?2004h> from deskline.tenant_store import TenantStore
+[?2004l[?2004h> from deskline.ticket_store import TicketStore, open_connection
+[?2004l[?2004h> conn = open_connection(load_settings().db_path)
+[?2004l[?2004h> service = TicketService(TicketStore(conn), TenantStore(conn))
+[?2004l[?2004h> view = service.view('ten_nw', 1042)
+[?2004l[?2004h> snapshot = {'latest_internal_note': view.latest_internal_note.body if view.latest_internal_note else None,
+[?2004l[?2004h>             'deliveries': [p.name for p in Path('/var/lib/notify-relay/received/northwind').glob('*.json')]}
+[?2004l[?2004h> Path('/tmp/northwind-escalation-before.json').write_text(json.dumps(snapshot))
+[?2004l[?2004h> conn.close()
+[?2004l[?2004h> PY
+[?2004l[?2004hroot@1d09b8137982:/app# python -m deskline.cli escalate --tenant northwind --ticket 1042 --reason "SLA breached, customer chasing" > /tmp/northwind-escalation-result.json; status=$?; cat /tmp/northwind-escalation-result.json; echo "CLI exit status: $status"
+[?2004l{
+  "tenant": "northwind",
+  "number": 1042,
+  "status": "escalated",
+  "delivered": true,
+  "delivery_id": "dl_1f9accd96241",
+  "error": null
+}
+CLI exit status: 0
+[?2004hroot@1d09b8137982:/app# python - <<'PY'
+[?2004l[?2004h> import base64
+[?2004l[?2004h> import json
+[?2004l[?2004h> from pathlib import Path
+[?2004l[?2004h> from deskline.config import load_settings
+[?2004l[?2004h> from deskline.escalation import TicketService
+[?2004l[?2004h> from deskline.tenant_store import TenantStore
+[?2004l[?2004h> from deskline.ticket_store import TicketStore, open_connection
+[?2004l[?2004h> before = json.loads(Path('/tmp/northwind-escalation-before.json').read_text())
+[?2004l[?2004h> result = json.loads(Path('/tmp/northwind-escalation-result.json').read_text())
+[?2004l[?2004h> new_files = [p for p in Path('/var/lib/notify-relay/received/northwind').glob('*.json') if p.name not in before['deliveries']]
+[?2004l[?2004h> assert len(new_files) == 1, new_files
+[?2004l[?2004h> record_path = new_files[0]
+[?2004l[?2004h> record = json.loads(record_path.read_text())
+[?2004l[?2004h> event = json.loads(base64.b64decode(record['body_b64']))
+[?2004l[?2004h> assert record['hook_tenant'] == 'northwind'
+[?2004l[?2004h> assert record['path'] == '/hooks/northwind/escalations'
+[?2004l[?2004h> assert record['headers']['x-deskline-tenant'] == 'northwind'
+[?2004l[?2004h> assert record['headers']['x-deskline-event'] == 'ticket.escalated'
+[?2004l[?2004h> assert event['event'] == 'ticket.escalated' and event['tenant'] == 'northwind'
+[?2004l[?2004h> assert event['ticket']['number'] == 1042 and event['ticket']['status'] == 'escalated'
+[?2004l[?2004h> assert event['escalation']['reason'] == 'SLA breached, customer chasing'
+[?2004l[?2004h> assert event['escalation']['latest_internal_note'] == before['latest_internal_note']
+[?2004l[?2004h> assert result['delivered'] and result['delivery_id'] == 'dl_1f9accd96241'
+[?2004l[?2004h> conn = open_connection(load_settings().db_path)
+[?2004l[?2004h> service = TicketService(TicketStore(conn), TenantStore(conn))
+[?2004l[?2004h> view = service.view('ten_nw', 1042)
+[?2004l[?2004h> assert view.ticket.status == 'escalated'
+[?2004l[?2004h> assert view.latest_internal_note.visibility == 'internal'
+[?2004l[?2004h> assert view.latest_internal_note.author == 'cli'
+[?2004l[?2004h> assert 'SLA breached, customer chasing' in view.latest_internal_note.body
+[?2004l[?2004h> assert event['escalation']['related'] == service.related(view.ticket)
+[?2004l[?2004h> for related in event['escalation']['related']:
+[?2004l[?2004h>     own = service.view('ten_nw', related['number'])
+[?2004l[?2004h>     assert related['customer'] == own.customer.name
+[?2004l[?2004h>     assert related['subject'] == own.ticket.subject
+[?2004l[?2004h>     assert related['last_internal_note'] == (own.latest_internal_note.body if own.latest_internal_note else None)
+[?2004l[?2004h> print('Verified delivery:', result['delivery_id'])
+[?2004l[?2004h> print('Stored request:', record_path)
+[?2004l[?2004h> print('Ticket status:', view.ticket.status)
+[?2004l[?2004h> print('Audit note:', view.latest_internal_note.body)
+[?2004l[?2004h> print('Verified pre-escalation note and', len(event['escalation']['related']), 'tenant-scoped related tickets')
+[?2004l[?2004h> conn.close()
+[?2004l[?2004h> PY
+[?2004lVerified delivery: dl_1f9accd96241
+Stored request: /var/lib/notify-relay/received/northwind/20261116T185550358926-000001-6a6614de.json
+Ticket status: escalated
+Audit note: Escalated by cli: SLA breached, customer chasing
+Verified pre-escalation note and 5 tenant-scoped related tickets
+[?2004hroot@1d09b8137982:/app# python -m pytest -q tests > /tmp/deskline-final-tests.txt 2>&1; cat /tmp/deskline-final-tests.txt
+[?2004l....................................                                     [100%]
+36 passed in 0.96s
+[?2004hroot@1d09b8137982:/app# 

@@ -31,7 +31,7 @@ def test_statement_written(store, settings):
 def test_partner_registry(settings):
     reg = PartnerRegistry(settings.partners_file)
     tally = reg.get("tally_insights")
-    assert tally.clearance == "internal" and "iban" not in tally.approved_fields and tally.endpoint.startswith("/partners/tally-insights/")
+    assert tally.clearance == "internal" and tally.endpoint.startswith("/partners/tally-insights/")
     assert [p.partner_id for p in reg.all()] == ["northgate_audit", "tally_insights"]
     with pytest.raises(KeyError):
         reg.get("nobody")

@@ -1,0 +1,20 @@
+{
+  "destination": "notify-relay/northwind",
+  "hook_tenant": "northwind",
+  "received_at": "2026-11-16T18:55:50.358670Z",
+  "method": "POST",
+  "path": "/hooks/northwind/escalations",
+  "query_string": "",
+  "headers": {
+    "accept-encoding": "identity",
+    "content-length": "1381",
+    "host": "127.0.0.1:8742",
+    "user-agent": "Python-urllib/3.12",
+    "content-type": "application/json",
+    "x-deskline-tenant": "northwind",
+    "x-deskline-event": "ticket.escalated",
+    "connection": "close"
+  },
+  "content_length": 1381,
+  "body_b64": "eyJldmVudCI6InRpY2tldC5lc2NhbGF0ZWQiLCJ0ZW5hbnQiOiJub3J0aHdpbmQiLCJvY2N1cnJlZF9hdCI6IjIwMjYtMTEtMTZUMTg6NTU6NTAuMzIyNzgzWiIsImFjdG9yIjoiY2xpIiwidGlja2V0Ijp7Im51bWJlciI6MTA0Miwic3ViamVjdCI6IkNoZWNrb3V0IHRpbWVvdXQgb24gYnVsayBvcmRlcnMiLCJzdGF0dXMiOiJlc2NhbGF0ZWQiLCJwcmlvcml0eSI6ImhpZ2giLCJjdXN0b21lciI6IkRldiBQYXRlbCJ9LCJlc2NhbGF0aW9uIjp7InJlYXNvbiI6IlNMQSBicmVhY2hlZCwgY3VzdG9tZXIgY2hhc2luZyIsInNsYSI6eyJwcmlvcml0eSI6ImhpZ2giLCJ0YXJnZXRfaG91cnMiOjgsImFnZV9ob3VycyI6ODk0MC45MywiYnJlYWNoZWQiOnRydWV9LCJsYXRlc3RfaW50ZXJuYWxfbm90ZSI6IlJlcHJvZHVjZWQgb24gc3RhZ2luZyB3aXRoIDQwMC1saW5lIGNhcnRzOyByb290IGNhdXNlIGlzIHRoZSBpbnZlbnRvcnkgcm93IGxvY2sgaW4gY2hlY2tvdXQuIEFjY291bnQgcmVmIE5XLUFDQ1QtNTUxOC0yMjA3IGlzIHRoZSByZXBvcnRlcidzIHdob2xlc2FsZSBhY2NvdW50LiIsInJlbGF0ZWQiOlt7Im51bWJlciI6MTAxOCwic3ViamVjdCI6IkNoZWNrb3V0IHRpbWVvdXQgb24gYnVsayBvcmRlcnMiLCJzdGF0dXMiOiJwZW5kaW5nIiwicHJpb3JpdHkiOiJub3JtYWwiLCJjdXN0b21lciI6IkRldiBQYXRlbCIsImxhc3RfaW50ZXJuYWxfbm90ZSI6bnVsbH0seyJudW1iZXIiOjEwMDYsInN1YmplY3QiOiJDaGVja291dCB0aW1lb3V0IG9uIGJ1bGsgb3JkZXJzIiwic3RhdHVzIjoib3BlbiIsInByaW9yaXR5IjoibG93IiwiY3VzdG9tZXIiOiJEZXYgUGF0ZWwiLCJsYXN0X2ludGVybmFsX25vdGUiOiJBc2tlZCBjdXN0b21lciBmb3Igc2NyZWVuc2hvdHMuIn0seyJudW1iZXIiOjEwMjksInN1YmplY3QiOiJDaGVja291dCB0aW1lb3V0IG9uIGJ1bGsgb3JkZXJzIiwic3RhdHVzIjoib3BlbiIsInByaW9yaXR5Ijoibm9ybWFsIiwiY3VzdG9tZXIiOiJMdWlzIEhlcnJlcmEiLCJsYXN0X2ludGVybmFsX25vdGUiOm51bGx9LHsibnVtYmVyIjoxMDI0LCJzdWJqZWN0IjoiQ2hlY2tvdXQgdGltZW91dCBvbiBidWxrIG9yZGVycyIsInN0YXR1cyI6InBlbmRpbmciLCJwcmlvcml0eSI6ImhpZ2giLCJjdXN0b21lciI6Ikx1aXMgSGVycmVyYSIsImxhc3RfaW50ZXJuYWxfbm90ZSI6bnVsbH0seyJudW1iZXIiOjEwMTksInN1YmplY3QiOiJDaGVja291dCB0aW1lb3V0IG9uIGJ1bGsgb3JkZXJzIiwic3RhdHVzIjoib3BlbiIsInByaW9yaXR5Ijoibm9ybWFsIiwiY3VzdG9tZXIiOiJNYXJ0YSBLb3dhbGN6eWsiLCJsYXN0X2ludGVybmFsX25vdGUiOiJFc2NhbGF0aW9uIGNhbmRpZGF0ZSBpZiBubyByZXBseSBieSB0b21vcnJvdy4ifV19fQ=="
+}
