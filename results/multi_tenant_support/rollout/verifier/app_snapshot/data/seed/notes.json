@@ -1,0 +1,1738 @@
+[
+ {
+  "note_id": 1,
+  "ticket_id": 1,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: duplicate consignment labels.",
+  "created_at": "2025-10-25T19:40:00Z"
+ },
+ {
+  "note_id": 2,
+  "ticket_id": 1,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-25T20:40:00Z"
+ },
+ {
+  "note_id": 3,
+  "ticket_id": 2,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: membership freeze not applied.",
+  "created_at": "2025-11-05T06:32:00Z"
+ },
+ {
+  "note_id": 4,
+  "ticket_id": 2,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-11-05T07:32:00Z"
+ },
+ {
+  "note_id": 5,
+  "ticket_id": 3,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: webhook retries flooding our endpoint.",
+  "created_at": "2025-11-07T08:54:00Z"
+ },
+ {
+  "note_id": 6,
+  "ticket_id": 4,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: duplicate consignment labels.",
+  "created_at": "2025-10-29T11:29:00Z"
+ },
+ {
+  "note_id": 7,
+  "ticket_id": 4,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-29T12:29:00Z"
+ },
+ {
+  "note_id": 8,
+  "ticket_id": 5,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: class booking double-charged.",
+  "created_at": "2025-11-10T06:57:00Z"
+ },
+ {
+  "note_id": 9,
+  "ticket_id": 5,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-11-10T07:57:00Z"
+ },
+ {
+  "note_id": 10,
+  "ticket_id": 6,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: size chart image broken.",
+  "created_at": "2025-10-26T14:09:00Z"
+ },
+ {
+  "note_id": 11,
+  "ticket_id": 6,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-26T15:09:00Z"
+ },
+ {
+  "note_id": 12,
+  "ticket_id": 7,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: api rate limit on manifest upload.",
+  "created_at": "2025-11-05T10:39:00Z"
+ },
+ {
+  "note_id": 13,
+  "ticket_id": 8,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: class booking double-charged.",
+  "created_at": "2025-10-24T22:32:00Z"
+ },
+ {
+  "note_id": 14,
+  "ticket_id": 8,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-10-24T23:32:00Z"
+ },
+ {
+  "note_id": 15,
+  "ticket_id": 9,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-03T11:50:00Z"
+ },
+ {
+  "note_id": 16,
+  "ticket_id": 9,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-03T12:50:00Z"
+ },
+ {
+  "note_id": 17,
+  "ticket_id": 10,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: customs document missing on export.",
+  "created_at": "2025-10-27T14:39:00Z"
+ },
+ {
+  "note_id": 18,
+  "ticket_id": 10,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-27T15:39:00Z"
+ },
+ {
+  "note_id": 19,
+  "ticket_id": 11,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: class booking double-charged.",
+  "created_at": "2025-11-03T04:12:00Z"
+ },
+ {
+  "note_id": 20,
+  "ticket_id": 11,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-03T05:12:00Z"
+ },
+ {
+  "note_id": 21,
+  "ticket_id": 12,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: gift card balance not applied.",
+  "created_at": "2025-10-29T09:19:00Z"
+ },
+ {
+  "note_id": 22,
+  "ticket_id": 13,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wrong vat rate on november invoice.",
+  "created_at": "2025-11-01T08:41:00Z"
+ },
+ {
+  "note_id": 23,
+  "ticket_id": 13,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-01T09:41:00Z"
+ },
+ {
+  "note_id": 24,
+  "ticket_id": 14,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: app push notifications silent.",
+  "created_at": "2025-11-02T03:44:00Z"
+ },
+ {
+  "note_id": 25,
+  "ticket_id": 15,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-10-25T10:47:00Z"
+ },
+ {
+  "note_id": 26,
+  "ticket_id": 15,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-10-25T11:47:00Z"
+ },
+ {
+  "note_id": 27,
+  "ticket_id": 16,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: pallet tracking shows wrong depot.",
+  "created_at": "2025-10-25T22:51:00Z"
+ },
+ {
+  "note_id": 28,
+  "ticket_id": 17,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: app push notifications silent.",
+  "created_at": "2025-10-27T16:34:00Z"
+ },
+ {
+  "note_id": 29,
+  "ticket_id": 17,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-27T17:34:00Z"
+ },
+ {
+  "note_id": 30,
+  "ticket_id": 18,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: checkout timeout on bulk orders.",
+  "created_at": "2025-10-31T17:51:00Z"
+ },
+ {
+  "note_id": 31,
+  "ticket_id": 18,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-31T18:51:00Z"
+ },
+ {
+  "note_id": 32,
+  "ticket_id": 19,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: duplicate consignment labels.",
+  "created_at": "2025-11-02T00:44:00Z"
+ },
+ {
+  "note_id": 33,
+  "ticket_id": 20,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: class booking double-charged.",
+  "created_at": "2025-10-27T14:29:00Z"
+ },
+ {
+  "note_id": 34,
+  "ticket_id": 20,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-27T15:29:00Z"
+ },
+ {
+  "note_id": 35,
+  "ticket_id": 21,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: inventory sync lagging by hours.",
+  "created_at": "2025-10-29T15:25:00Z"
+ },
+ {
+  "note_id": 36,
+  "ticket_id": 22,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: customs document missing on export.",
+  "created_at": "2025-10-29T22:02:00Z"
+ },
+ {
+  "note_id": 37,
+  "ticket_id": 22,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-10-29T23:02:00Z"
+ },
+ {
+  "note_id": 38,
+  "ticket_id": 23,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: trainer calendar off by one hour.",
+  "created_at": "2025-11-08T00:37:00Z"
+ },
+ {
+  "note_id": 39,
+  "ticket_id": 23,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-08T01:37:00Z"
+ },
+ {
+  "note_id": 40,
+  "ticket_id": 24,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: webhook retries flooding our endpoint.",
+  "created_at": "2025-11-01T23:35:00Z"
+ },
+ {
+  "note_id": 41,
+  "ticket_id": 24,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-02T00:35:00Z"
+ },
+ {
+  "note_id": 42,
+  "ticket_id": 25,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: pallet tracking shows wrong depot.",
+  "created_at": "2025-11-05T22:40:00Z"
+ },
+ {
+  "note_id": 43,
+  "ticket_id": 26,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: trainer calendar off by one hour.",
+  "created_at": "2025-10-28T19:52:00Z"
+ },
+ {
+  "note_id": 44,
+  "ticket_id": 26,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-28T20:52:00Z"
+ },
+ {
+  "note_id": 45,
+  "ticket_id": 27,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: inventory sync lagging by hours.",
+  "created_at": "2025-11-04T21:04:00Z"
+ },
+ {
+  "note_id": 46,
+  "ticket_id": 27,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-04T22:04:00Z"
+ },
+ {
+  "note_id": 47,
+  "ticket_id": 28,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-10-31T08:02:00Z"
+ },
+ {
+  "note_id": 48,
+  "ticket_id": 28,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-31T09:02:00Z"
+ },
+ {
+  "note_id": 49,
+  "ticket_id": 29,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: app push notifications silent.",
+  "created_at": "2025-10-31T22:54:00Z"
+ },
+ {
+  "note_id": 50,
+  "ticket_id": 30,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wholesale pricing not shown.",
+  "created_at": "2025-11-06T13:40:00Z"
+ },
+ {
+  "note_id": 51,
+  "ticket_id": 30,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-06T14:40:00Z"
+ },
+ {
+  "note_id": 52,
+  "ticket_id": 31,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: driver app crashes on sign-off.",
+  "created_at": "2025-11-03T05:31:00Z"
+ },
+ {
+  "note_id": 53,
+  "ticket_id": 32,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: trainer calendar off by one hour.",
+  "created_at": "2025-10-27T19:09:00Z"
+ },
+ {
+  "note_id": 54,
+  "ticket_id": 32,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-27T20:09:00Z"
+ },
+ {
+  "note_id": 55,
+  "ticket_id": 33,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-08T23:38:00Z"
+ },
+ {
+  "note_id": 56,
+  "ticket_id": 34,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: duplicate consignment labels.",
+  "created_at": "2025-10-30T23:17:00Z"
+ },
+ {
+  "note_id": 57,
+  "ticket_id": 34,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-10-31T00:17:00Z"
+ },
+ {
+  "note_id": 58,
+  "ticket_id": 35,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: membership freeze not applied.",
+  "created_at": "2025-10-27T18:11:00Z"
+ },
+ {
+  "note_id": 59,
+  "ticket_id": 35,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-27T19:11:00Z"
+ },
+ {
+  "note_id": 60,
+  "ticket_id": 36,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wholesale pricing not shown.",
+  "created_at": "2025-10-28T00:51:00Z"
+ },
+ {
+  "note_id": 61,
+  "ticket_id": 37,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: delivery window not honoured.",
+  "created_at": "2025-11-06T16:56:00Z"
+ },
+ {
+  "note_id": 62,
+  "ticket_id": 37,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-06T17:56:00Z"
+ },
+ {
+  "note_id": 63,
+  "ticket_id": 38,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: trainer calendar off by one hour.",
+  "created_at": "2025-10-27T10:08:00Z"
+ },
+ {
+  "note_id": 64,
+  "ticket_id": 38,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-27T11:08:00Z"
+ },
+ {
+  "note_id": 65,
+  "ticket_id": 39,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: gift card balance not applied.",
+  "created_at": "2025-10-28T17:09:00Z"
+ },
+ {
+  "note_id": 66,
+  "ticket_id": 40,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: delivery window not honoured.",
+  "created_at": "2025-10-29T18:39:00Z"
+ },
+ {
+  "note_id": 67,
+  "ticket_id": 41,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: app push notifications silent.",
+  "created_at": "2025-10-29T21:56:00Z"
+ },
+ {
+  "note_id": 68,
+  "ticket_id": 41,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-10-29T22:56:00Z"
+ },
+ {
+  "note_id": 69,
+  "ticket_id": 42,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: gift card balance not applied.",
+  "created_at": "2025-11-07T21:34:00Z"
+ },
+ {
+  "note_id": 70,
+  "ticket_id": 42,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-07T22:34:00Z"
+ },
+ {
+  "note_id": 71,
+  "ticket_id": 43,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: delivery window not honoured.",
+  "created_at": "2025-10-24T23:37:00Z"
+ },
+ {
+  "note_id": 72,
+  "ticket_id": 43,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-25T00:37:00Z"
+ },
+ {
+  "note_id": 73,
+  "ticket_id": 44,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: membership freeze not applied.",
+  "created_at": "2025-11-09T16:27:00Z"
+ },
+ {
+  "note_id": 74,
+  "ticket_id": 44,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-09T17:27:00Z"
+ },
+ {
+  "note_id": 75,
+  "ticket_id": 45,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: return label not generated.",
+  "created_at": "2025-11-08T04:53:00Z"
+ },
+ {
+  "note_id": 76,
+  "ticket_id": 46,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: api rate limit on manifest upload.",
+  "created_at": "2025-11-09T20:18:00Z"
+ },
+ {
+  "note_id": 77,
+  "ticket_id": 46,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-09T21:18:00Z"
+ },
+ {
+  "note_id": 78,
+  "ticket_id": 47,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: app push notifications silent.",
+  "created_at": "2025-11-09T16:31:00Z"
+ },
+ {
+  "note_id": 79,
+  "ticket_id": 48,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-09T11:07:00Z"
+ },
+ {
+  "note_id": 80,
+  "ticket_id": 48,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-09T12:07:00Z"
+ },
+ {
+  "note_id": 81,
+  "ticket_id": 49,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wrong vat rate on november invoice.",
+  "created_at": "2025-10-26T07:22:00Z"
+ },
+ {
+  "note_id": 82,
+  "ticket_id": 49,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-26T08:22:00Z"
+ },
+ {
+  "note_id": 83,
+  "ticket_id": 50,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: membership freeze not applied.",
+  "created_at": "2025-10-29T19:48:00Z"
+ },
+ {
+  "note_id": 84,
+  "ticket_id": 50,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-29T20:48:00Z"
+ },
+ {
+  "note_id": 85,
+  "ticket_id": 51,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-10-31T10:26:00Z"
+ },
+ {
+  "note_id": 86,
+  "ticket_id": 52,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: portal login loops on sso.",
+  "created_at": "2025-10-28T08:33:00Z"
+ },
+ {
+  "note_id": 87,
+  "ticket_id": 53,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: class booking double-charged.",
+  "created_at": "2025-10-30T14:19:00Z"
+ },
+ {
+  "note_id": 88,
+  "ticket_id": 54,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: size chart image broken.",
+  "created_at": "2025-11-02T01:51:00Z"
+ },
+ {
+  "note_id": 89,
+  "ticket_id": 55,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wrong vat rate on november invoice.",
+  "created_at": "2025-11-02T14:16:00Z"
+ },
+ {
+  "note_id": 90,
+  "ticket_id": 55,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-02T15:16:00Z"
+ },
+ {
+  "note_id": 91,
+  "ticket_id": 56,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: membership freeze not applied.",
+  "created_at": "2025-10-27T20:50:00Z"
+ },
+ {
+  "note_id": 92,
+  "ticket_id": 56,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-27T21:50:00Z"
+ },
+ {
+  "note_id": 93,
+  "ticket_id": 57,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: checkout timeout on bulk orders.",
+  "created_at": "2025-10-25T21:04:00Z"
+ },
+ {
+  "note_id": 94,
+  "ticket_id": 57,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-10-25T22:04:00Z"
+ },
+ {
+  "note_id": 95,
+  "ticket_id": 58,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-10-26T08:54:00Z"
+ },
+ {
+  "note_id": 96,
+  "ticket_id": 59,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: membership freeze not applied.",
+  "created_at": "2025-11-03T00:25:00Z"
+ },
+ {
+  "note_id": 97,
+  "ticket_id": 60,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wholesale pricing not shown.",
+  "created_at": "2025-11-09T03:54:00Z"
+ },
+ {
+  "note_id": 98,
+  "ticket_id": 60,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-09T04:54:00Z"
+ },
+ {
+  "note_id": 99,
+  "ticket_id": 61,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: customs document missing on export.",
+  "created_at": "2025-10-30T16:30:00Z"
+ },
+ {
+  "note_id": 100,
+  "ticket_id": 62,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: gift card balance not applied.",
+  "created_at": "2025-11-01T11:30:00Z"
+ },
+ {
+  "note_id": 101,
+  "ticket_id": 63,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: delivery window not honoured.",
+  "created_at": "2025-11-02T17:49:00Z"
+ },
+ {
+  "note_id": 102,
+  "ticket_id": 63,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-11-02T18:49:00Z"
+ },
+ {
+  "note_id": 103,
+  "ticket_id": 64,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: gift card balance not applied.",
+  "created_at": "2025-11-07T10:11:00Z"
+ },
+ {
+  "note_id": 104,
+  "ticket_id": 65,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: portal login loops on sso.",
+  "created_at": "2025-11-09T03:31:00Z"
+ },
+ {
+  "note_id": 105,
+  "ticket_id": 65,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-09T04:31:00Z"
+ },
+ {
+  "note_id": 106,
+  "ticket_id": 66,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-07T23:41:00Z"
+ },
+ {
+  "note_id": 107,
+  "ticket_id": 66,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-08T00:41:00Z"
+ },
+ {
+  "note_id": 108,
+  "ticket_id": 67,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wrong vat rate on november invoice.",
+  "created_at": "2025-10-28T22:03:00Z"
+ },
+ {
+  "note_id": 109,
+  "ticket_id": 67,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-28T23:03:00Z"
+ },
+ {
+  "note_id": 110,
+  "ticket_id": 68,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: checkout timeout on bulk orders.",
+  "created_at": "2025-10-26T08:46:00Z"
+ },
+ {
+  "note_id": 111,
+  "ticket_id": 69,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: pallet tracking shows wrong depot.",
+  "created_at": "2025-10-27T05:01:00Z"
+ },
+ {
+  "note_id": 112,
+  "ticket_id": 69,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-27T06:01:00Z"
+ },
+ {
+  "note_id": 113,
+  "ticket_id": 70,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: webhook retries flooding our endpoint.",
+  "created_at": "2025-11-03T18:27:00Z"
+ },
+ {
+  "note_id": 114,
+  "ticket_id": 71,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: pallet tracking shows wrong depot.",
+  "created_at": "2025-10-26T13:50:00Z"
+ },
+ {
+  "note_id": 115,
+  "ticket_id": 72,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: size chart image broken.",
+  "created_at": "2025-11-03T11:42:00Z"
+ },
+ {
+  "note_id": 116,
+  "ticket_id": 72,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-11-03T12:42:00Z"
+ },
+ {
+  "note_id": 117,
+  "ticket_id": 73,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: invoice total does not match po.",
+  "created_at": "2025-10-29T12:24:00Z"
+ },
+ {
+  "note_id": 118,
+  "ticket_id": 74,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: webhook retries flooding our endpoint.",
+  "created_at": "2025-11-08T09:28:00Z"
+ },
+ {
+  "note_id": 119,
+  "ticket_id": 74,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-08T10:28:00Z"
+ },
+ {
+  "note_id": 120,
+  "ticket_id": 75,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: driver app crashes on sign-off.",
+  "created_at": "2025-10-26T17:52:00Z"
+ },
+ {
+  "note_id": 121,
+  "ticket_id": 76,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: size chart image broken.",
+  "created_at": "2025-10-27T01:13:00Z"
+ },
+ {
+  "note_id": 122,
+  "ticket_id": 76,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-27T02:13:00Z"
+ },
+ {
+  "note_id": 123,
+  "ticket_id": 77,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: invoice total does not match po.",
+  "created_at": "2025-10-31T07:22:00Z"
+ },
+ {
+  "note_id": 124,
+  "ticket_id": 77,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-10-31T08:22:00Z"
+ },
+ {
+  "note_id": 125,
+  "ticket_id": 78,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: checkout timeout on bulk orders.",
+  "created_at": "2025-10-27T09:36:00Z"
+ },
+ {
+  "note_id": 126,
+  "ticket_id": 79,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-11-06T00:32:00Z"
+ },
+ {
+  "note_id": 127,
+  "ticket_id": 79,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-11-06T01:32:00Z"
+ },
+ {
+  "note_id": 128,
+  "ticket_id": 80,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: return label not generated.",
+  "created_at": "2025-10-28T13:58:00Z"
+ },
+ {
+  "note_id": 129,
+  "ticket_id": 81,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wrong vat rate on november invoice.",
+  "created_at": "2025-11-01T14:18:00Z"
+ },
+ {
+  "note_id": 130,
+  "ticket_id": 81,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-11-01T15:18:00Z"
+ },
+ {
+  "note_id": 131,
+  "ticket_id": 82,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wholesale pricing not shown.",
+  "created_at": "2025-11-03T23:26:00Z"
+ },
+ {
+  "note_id": 132,
+  "ticket_id": 82,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-11-04T00:26:00Z"
+ },
+ {
+  "note_id": 133,
+  "ticket_id": 83,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: invoice total does not match po.",
+  "created_at": "2025-10-24T22:30:00Z"
+ },
+ {
+  "note_id": 134,
+  "ticket_id": 83,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-24T23:30:00Z"
+ },
+ {
+  "note_id": 135,
+  "ticket_id": 84,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-10-30T09:22:00Z"
+ },
+ {
+  "note_id": 136,
+  "ticket_id": 84,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-30T10:22:00Z"
+ },
+ {
+  "note_id": 137,
+  "ticket_id": 85,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: api rate limit on manifest upload.",
+  "created_at": "2025-11-05T04:16:00Z"
+ },
+ {
+  "note_id": 138,
+  "ticket_id": 86,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: inventory sync lagging by hours.",
+  "created_at": "2025-10-29T15:02:00Z"
+ },
+ {
+  "note_id": 139,
+  "ticket_id": 86,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-10-29T16:02:00Z"
+ },
+ {
+  "note_id": 140,
+  "ticket_id": 87,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wrong vat rate on november invoice.",
+  "created_at": "2025-11-01T01:14:00Z"
+ },
+ {
+  "note_id": 141,
+  "ticket_id": 87,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-01T02:14:00Z"
+ },
+ {
+  "note_id": 142,
+  "ticket_id": 88,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: size chart image broken.",
+  "created_at": "2025-11-06T13:44:00Z"
+ },
+ {
+  "note_id": 143,
+  "ticket_id": 88,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-06T14:44:00Z"
+ },
+ {
+  "note_id": 144,
+  "ticket_id": 89,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: portal login loops on sso.",
+  "created_at": "2025-11-03T10:05:00Z"
+ },
+ {
+  "note_id": 145,
+  "ticket_id": 89,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-03T11:05:00Z"
+ },
+ {
+  "note_id": 146,
+  "ticket_id": 90,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-10-27T18:07:00Z"
+ },
+ {
+  "note_id": 147,
+  "ticket_id": 90,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-10-27T19:07:00Z"
+ },
+ {
+  "note_id": 148,
+  "ticket_id": 91,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: customs document missing on export.",
+  "created_at": "2025-10-31T08:23:00Z"
+ },
+ {
+  "note_id": 149,
+  "ticket_id": 91,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-31T09:23:00Z"
+ },
+ {
+  "note_id": 150,
+  "ticket_id": 92,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: checkout timeout on bulk orders.",
+  "created_at": "2025-11-08T19:27:00Z"
+ },
+ {
+  "note_id": 151,
+  "ticket_id": 92,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-08T20:27:00Z"
+ },
+ {
+  "note_id": 152,
+  "ticket_id": 93,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-10-27T04:16:00Z"
+ },
+ {
+  "note_id": 153,
+  "ticket_id": 93,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-10-27T05:16:00Z"
+ },
+ {
+  "note_id": 154,
+  "ticket_id": 94,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-01T23:50:00Z"
+ },
+ {
+  "note_id": 155,
+  "ticket_id": 95,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: duplicate consignment labels.",
+  "created_at": "2025-10-28T20:08:00Z"
+ },
+ {
+  "note_id": 156,
+  "ticket_id": 96,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: inventory sync lagging by hours.",
+  "created_at": "2025-10-27T09:46:00Z"
+ },
+ {
+  "note_id": 157,
+  "ticket_id": 96,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-27T10:46:00Z"
+ },
+ {
+  "note_id": 158,
+  "ticket_id": 97,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: api rate limit on manifest upload.",
+  "created_at": "2025-11-09T16:00:00Z"
+ },
+ {
+  "note_id": 159,
+  "ticket_id": 97,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-11-09T17:00:00Z"
+ },
+ {
+  "note_id": 160,
+  "ticket_id": 98,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-03T00:16:00Z"
+ },
+ {
+  "note_id": 161,
+  "ticket_id": 99,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: pallet tracking shows wrong depot.",
+  "created_at": "2025-11-01T16:50:00Z"
+ },
+ {
+  "note_id": 162,
+  "ticket_id": 99,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-11-01T17:50:00Z"
+ },
+ {
+  "note_id": 163,
+  "ticket_id": 100,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: size chart image broken.",
+  "created_at": "2025-10-25T03:11:00Z"
+ },
+ {
+  "note_id": 164,
+  "ticket_id": 101,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-10-26T06:29:00Z"
+ },
+ {
+  "note_id": 165,
+  "ticket_id": 102,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-06T21:36:00Z"
+ },
+ {
+  "note_id": 166,
+  "ticket_id": 102,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-06T22:36:00Z"
+ },
+ {
+  "note_id": 167,
+  "ticket_id": 103,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: checkout timeout on bulk pallet orders.",
+  "created_at": "2025-11-09T02:00:00Z"
+ },
+ {
+  "note_id": 168,
+  "ticket_id": 103,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-09T03:00:00Z"
+ },
+ {
+  "note_id": 169,
+  "ticket_id": 103,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Customer confirmed card ending 4421 was charged twice for order HL-88213; account ref HL-ACCT-7731-9420. Legal asked us to hold the refund until the chargeback review closes \u2014 do not share the review status with the customer yet.",
+  "created_at": "2025-11-09T04:00:00Z"
+ },
+ {
+  "note_id": 170,
+  "ticket_id": 103,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Any update on my refund?",
+  "created_at": "2025-11-09T22:00:00Z"
+ },
+ {
+  "note_id": 171,
+  "ticket_id": 104,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: checkout timeout on bulk orders.",
+  "created_at": "2025-11-09T06:00:00Z"
+ },
+ {
+  "note_id": 172,
+  "ticket_id": 104,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-09T07:00:00Z"
+ },
+ {
+  "note_id": 173,
+  "ticket_id": 104,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced on staging with 400-line carts; root cause is the inventory row lock in checkout. Account ref NW-ACCT-5518-2207 is the reporter's wholesale account.",
+  "created_at": "2025-11-09T09:00:00Z"
+ },
+ {
+  "note_id": 174,
+  "ticket_id": 104,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Still failing for our Monday order run.",
+  "created_at": "2025-11-10T04:00:00Z"
+ },
+ {
+  "note_id": 175,
+  "ticket_id": 105,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-11-04T19:44:00Z"
+ },
+ {
+  "note_id": 176,
+  "ticket_id": 106,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: return label not generated.",
+  "created_at": "2025-11-03T12:21:00Z"
+ },
+ {
+  "note_id": 177,
+  "ticket_id": 106,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-11-03T13:21:00Z"
+ },
+ {
+  "note_id": 178,
+  "ticket_id": 107,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: api rate limit on manifest upload.",
+  "created_at": "2025-11-09T01:28:00Z"
+ },
+ {
+  "note_id": 179,
+  "ticket_id": 107,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-09T02:28:00Z"
+ },
+ {
+  "note_id": 180,
+  "ticket_id": 108,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wholesale pricing not shown.",
+  "created_at": "2025-10-25T22:17:00Z"
+ },
+ {
+  "note_id": 181,
+  "ticket_id": 108,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-25T23:17:00Z"
+ },
+ {
+  "note_id": 182,
+  "ticket_id": 109,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: duplicate consignment labels.",
+  "created_at": "2025-10-31T07:33:00Z"
+ },
+ {
+  "note_id": 183,
+  "ticket_id": 110,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-11-08T20:30:00Z"
+ },
+ {
+  "note_id": 184,
+  "ticket_id": 111,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: driver app crashes on sign-off.",
+  "created_at": "2025-10-29T15:41:00Z"
+ },
+ {
+  "note_id": 185,
+  "ticket_id": 111,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-29T16:41:00Z"
+ },
+ {
+  "note_id": 186,
+  "ticket_id": 112,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: gift card balance not applied.",
+  "created_at": "2025-11-06T20:53:00Z"
+ },
+ {
+  "note_id": 187,
+  "ticket_id": 112,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-11-06T21:53:00Z"
+ },
+ {
+  "note_id": 188,
+  "ticket_id": 113,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: customs document missing on export.",
+  "created_at": "2025-11-06T16:45:00Z"
+ },
+ {
+  "note_id": 189,
+  "ticket_id": 114,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: promo code rejected at checkout.",
+  "created_at": "2025-10-25T11:55:00Z"
+ },
+ {
+  "note_id": 190,
+  "ticket_id": 114,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Escalation candidate if no reply by tomorrow.",
+  "created_at": "2025-10-25T12:55:00Z"
+ },
+ {
+  "note_id": 191,
+  "ticket_id": 115,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: invoice total does not match po.",
+  "created_at": "2025-11-01T18:44:00Z"
+ },
+ {
+  "note_id": 192,
+  "ticket_id": 115,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-11-01T19:44:00Z"
+ },
+ {
+  "note_id": 193,
+  "ticket_id": 116,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wholesale pricing not shown.",
+  "created_at": "2025-10-26T11:39:00Z"
+ },
+ {
+  "note_id": 194,
+  "ticket_id": 116,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-26T12:39:00Z"
+ },
+ {
+  "note_id": 195,
+  "ticket_id": 117,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-10-26T13:51:00Z"
+ },
+ {
+  "note_id": 196,
+  "ticket_id": 117,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-10-26T14:51:00Z"
+ },
+ {
+  "note_id": 197,
+  "ticket_id": 118,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: inventory sync lagging by hours.",
+  "created_at": "2025-11-01T23:45:00Z"
+ },
+ {
+  "note_id": 198,
+  "ticket_id": 118,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Waiting on engineering triage.",
+  "created_at": "2025-11-02T00:45:00Z"
+ },
+ {
+  "note_id": 199,
+  "ticket_id": 119,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-10-26T20:32:00Z"
+ },
+ {
+  "note_id": 200,
+  "ticket_id": 120,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wholesale pricing not shown.",
+  "created_at": "2025-10-25T23:33:00Z"
+ },
+ {
+  "note_id": 201,
+  "ticket_id": 120,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-26T00:33:00Z"
+ },
+ {
+  "note_id": 202,
+  "ticket_id": 121,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: portal login loops on sso.",
+  "created_at": "2025-11-02T08:30:00Z"
+ },
+ {
+  "note_id": 203,
+  "ticket_id": 121,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-02T09:30:00Z"
+ },
+ {
+  "note_id": 204,
+  "ticket_id": 122,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-10-28T05:26:00Z"
+ },
+ {
+  "note_id": 205,
+  "ticket_id": 122,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Checked logs, nothing obvious yet.",
+  "created_at": "2025-10-28T06:26:00Z"
+ },
+ {
+  "note_id": 206,
+  "ticket_id": 123,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: refund dispute \u2014 order hl-88213.",
+  "created_at": "2025-11-08T15:33:00Z"
+ },
+ {
+  "note_id": 207,
+  "ticket_id": 123,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-11-08T16:33:00Z"
+ },
+ {
+  "note_id": 208,
+  "ticket_id": 124,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: pallet tracking shows wrong depot.",
+  "created_at": "2025-10-29T20:31:00Z"
+ },
+ {
+  "note_id": 209,
+  "ticket_id": 125,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: invoice total does not match po.",
+  "created_at": "2025-10-31T22:06:00Z"
+ },
+ {
+  "note_id": 210,
+  "ticket_id": 126,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: driver app crashes on sign-off.",
+  "created_at": "2025-10-29T18:02:00Z"
+ },
+ {
+  "note_id": 211,
+  "ticket_id": 127,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: invoice total does not match po.",
+  "created_at": "2025-11-10T04:29:00Z"
+ },
+ {
+  "note_id": 212,
+  "ticket_id": 128,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: invoice total does not match po.",
+  "created_at": "2025-10-26T00:55:00Z"
+ },
+ {
+  "note_id": 213,
+  "ticket_id": 128,
+  "author": "beth.okoro",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-10-26T01:55:00Z"
+ },
+ {
+  "note_id": 214,
+  "ticket_id": 129,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: delivery window not honoured.",
+  "created_at": "2025-11-09T10:58:00Z"
+ },
+ {
+  "note_id": 215,
+  "ticket_id": 129,
+  "author": "sam.ortiz",
+  "visibility": "internal",
+  "body": "Asked customer for screenshots.",
+  "created_at": "2025-11-09T11:58:00Z"
+ },
+ {
+  "note_id": 216,
+  "ticket_id": 130,
+  "author": "customer-portal",
+  "visibility": "public",
+  "body": "Customer reported: wrong vat rate on november invoice.",
+  "created_at": "2025-10-30T05:09:00Z"
+ },
+ {
+  "note_id": 217,
+  "ticket_id": 130,
+  "author": "ravi.menon",
+  "visibility": "internal",
+  "body": "Reproduced; linked to internal incident.",
+  "created_at": "2025-10-30T06:09:00Z"
+ }
+]

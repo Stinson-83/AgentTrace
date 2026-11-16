@@ -1,0 +1,74 @@
+[
+  {
+    "customer_id": "cst_0001",
+    "tenant_id": "ten_hl",
+    "name": "Priya Raman",
+    "email": "priya.raman@harbourline-logistics.example",
+    "account_ref": "HL-ACCT-7731-9420",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0002",
+    "tenant_id": "ten_hl",
+    "name": "Owen Castle",
+    "email": "owen.castle@harbourline-logistics.example",
+    "account_ref": "HL-ACCT-2210-4471",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0003",
+    "tenant_id": "ten_hl",
+    "name": "Ingrid Solberg",
+    "email": "ingrid.solberg@harbourline-logistics.example",
+    "account_ref": "HL-ACCT-9087-1163",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0004",
+    "tenant_id": "ten_hl",
+    "name": "Kwame Mensah",
+    "email": "kwame.mensah@harbourline-logistics.example",
+    "account_ref": "HL-ACCT-3356-7802",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0005",
+    "tenant_id": "ten_nw",
+    "name": "Dev Patel",
+    "email": "dev.patel@northwind-outfitters.example",
+    "account_ref": "NW-ACCT-5518-2207",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0006",
+    "tenant_id": "ten_nw",
+    "name": "Marta Kowalczyk",
+    "email": "marta.k@northwind-outfitters.example",
+    "account_ref": "NW-ACCT-6621-9034",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0007",
+    "tenant_id": "ten_nw",
+    "name": "Luis Herrera",
+    "email": "luis.herrera@northwind-outfitters.example",
+    "account_ref": "NW-ACCT-1140-8859",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0008",
+    "tenant_id": "ten_cb",
+    "name": "Aisha Bello",
+    "email": "aisha.bello@cobaltfitness.example",
+    "account_ref": "CB-ACCT-4402-1198",
+    "created_at": "2024-01-01T00:00:00Z"
+  },
+  {
+    "customer_id": "cst_0009",
+    "tenant_id": "ten_cb",
+    "name": "Tom Nakamura",
+    "email": "tom.nakamura@cobaltfitness.example",
+    "account_ref": "CB-ACCT-7719-5530",
+    "created_at": "2024-01-01T00:00:00Z"
+  }
+]

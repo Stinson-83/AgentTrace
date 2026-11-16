@@ -1,0 +1,4402 @@
+[
+ {
+  "txn_id": "txn_00079",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-09-18T07:00:43Z",
+  "kind": "sale",
+  "amount_cents": 18519,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00308",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-18T09:00:03Z",
+  "kind": "sale",
+  "amount_cents": 9008,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00256",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-18T11:05:24Z",
+  "kind": "sale",
+  "amount_cents": 9237,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00144",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-18T12:13:41Z",
+  "kind": "sale",
+  "amount_cents": 7594,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00307",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-18T14:50:38Z",
+  "kind": "sale",
+  "amount_cents": 45317,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00100",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-18T15:17:43Z",
+  "kind": "sale",
+  "amount_cents": 114399,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00306",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-18T18:36:20Z",
+  "kind": "sale",
+  "amount_cents": 5683,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00044",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-18T22:01:29Z",
+  "kind": "sale",
+  "amount_cents": 31159,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00101",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-18T22:10:24Z",
+  "kind": "sale",
+  "amount_cents": 157553,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00045",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-18T22:31:41Z",
+  "kind": "sale",
+  "amount_cents": 11691,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00208",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-19T09:11:28Z",
+  "kind": "sale",
+  "amount_cents": 170038,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00376",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-19T09:37:24Z",
+  "kind": "sale",
+  "amount_cents": 109711,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00259",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-19T11:08:52Z",
+  "kind": "sale",
+  "amount_cents": 2374,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00258",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-19T11:36:47Z",
+  "kind": "sale",
+  "amount_cents": 7979,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00145",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-19T14:21:01Z",
+  "kind": "sale",
+  "amount_cents": 29003,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00257",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-19T17:38:02Z",
+  "kind": "sale",
+  "amount_cents": 29138,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00207",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-19T20:13:31Z",
+  "kind": "sale",
+  "amount_cents": 52657,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00190",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-19T21:22:46Z",
+  "kind": "sale",
+  "amount_cents": 3534,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00342",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-20T07:22:39Z",
+  "kind": "sale",
+  "amount_cents": 13291,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00147",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-20T07:51:53Z",
+  "kind": "sale",
+  "amount_cents": 37726,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00209",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-20T11:03:36Z",
+  "kind": "sale",
+  "amount_cents": 175599,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00046",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-20T13:36:38Z",
+  "kind": "sale",
+  "amount_cents": 19459,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00148",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-20T15:51:07Z",
+  "kind": "sale",
+  "amount_cents": 2121,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00343",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-20T16:17:35Z",
+  "kind": "sale",
+  "amount_cents": 3584,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00146",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-20T20:06:07Z",
+  "kind": "sale",
+  "amount_cents": 26364,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00047",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-20T22:58:39Z",
+  "kind": "sale",
+  "amount_cents": 46096,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00309",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-21T12:41:37Z",
+  "kind": "sale",
+  "amount_cents": 40074,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00001",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-21T12:52:42Z",
+  "kind": "sale",
+  "amount_cents": 119436,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00002",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-21T12:58:44Z",
+  "kind": "sale",
+  "amount_cents": 201281,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00377",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-21T16:56:09Z",
+  "kind": "sale",
+  "amount_cents": 45752,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00003",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-21T21:20:50Z",
+  "kind": "sale",
+  "amount_cents": 58400,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00378",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-21T21:29:34Z",
+  "kind": "sale",
+  "amount_cents": 79369,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00102",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-21T22:09:35Z",
+  "kind": "sale",
+  "amount_cents": 202126,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00380",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-22T08:41:30Z",
+  "kind": "sale",
+  "amount_cents": 48565,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00381",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-22T09:46:54Z",
+  "kind": "sale",
+  "amount_cents": 41175,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00104",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-22T11:39:56Z",
+  "kind": "sale",
+  "amount_cents": 20892,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00080",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-09-22T14:15:36Z",
+  "kind": "sale",
+  "amount_cents": 33088,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00379",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-22T16:27:16Z",
+  "kind": "sale",
+  "amount_cents": 46701,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00105",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-22T19:09:17Z",
+  "kind": "sale",
+  "amount_cents": 15116,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00345",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-22T19:18:31Z",
+  "kind": "sale",
+  "amount_cents": 27976,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00310",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-22T19:59:05Z",
+  "kind": "sale",
+  "amount_cents": 1462,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00103",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-22T20:44:01Z",
+  "kind": "sale",
+  "amount_cents": 118646,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00210",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-22T20:44:17Z",
+  "kind": "sale",
+  "amount_cents": 217046,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00344",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-22T21:11:33Z",
+  "kind": "sale",
+  "amount_cents": 10177,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00150",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-23T08:16:12Z",
+  "kind": "sale",
+  "amount_cents": 44594,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00081",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-09-23T12:23:08Z",
+  "kind": "sale",
+  "amount_cents": 37938,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00106",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-23T12:41:01Z",
+  "kind": "sale",
+  "amount_cents": 194648,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00211",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-23T13:01:05Z",
+  "kind": "sale",
+  "amount_cents": 237787,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00149",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-23T16:16:54Z",
+  "kind": "sale",
+  "amount_cents": 36623,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00346",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-23T16:57:33Z",
+  "kind": "sale",
+  "amount_cents": 7987,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00382",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-23T17:56:13Z",
+  "kind": "sale",
+  "amount_cents": 183318,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00311",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-23T21:08:17Z",
+  "kind": "sale",
+  "amount_cents": 20121,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00107",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-23T21:44:36Z",
+  "kind": "sale",
+  "amount_cents": 155892,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00347",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-24T08:05:50Z",
+  "kind": "sale",
+  "amount_cents": 1751,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00006",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-24T09:12:00Z",
+  "kind": "refund",
+  "amount_cents": 24672,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00349",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-24T10:02:04Z",
+  "kind": "sale",
+  "amount_cents": 36823,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00005",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-24T13:00:21Z",
+  "kind": "sale",
+  "amount_cents": 51842,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00383",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-24T14:07:35Z",
+  "kind": "sale",
+  "amount_cents": 39064,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00384",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-24T14:10:50Z",
+  "kind": "sale",
+  "amount_cents": 236440,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00004",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-24T17:03:46Z",
+  "kind": "sale",
+  "amount_cents": 188906,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00287",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-09-24T19:56:38Z",
+  "kind": "sale",
+  "amount_cents": 38927,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00108",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-24T20:19:00Z",
+  "kind": "sale",
+  "amount_cents": 18413,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00348",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-24T21:07:20Z",
+  "kind": "sale",
+  "amount_cents": 12934,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00260",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-24T22:30:05Z",
+  "kind": "sale",
+  "amount_cents": 42340,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00082",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-09-25T10:57:22Z",
+  "kind": "sale",
+  "amount_cents": 22785,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00151",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-25T12:54:18Z",
+  "kind": "sale",
+  "amount_cents": 20001,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00083",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-09-25T15:58:00Z",
+  "kind": "refund",
+  "amount_cents": 7109,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00312",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-25T17:00:00Z",
+  "kind": "refund",
+  "amount_cents": 2589,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00212",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-25T17:31:23Z",
+  "kind": "sale",
+  "amount_cents": 203081,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00009",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-26T07:15:32Z",
+  "kind": "sale",
+  "amount_cents": 183030,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00214",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-26T07:31:00Z",
+  "kind": "sale",
+  "amount_cents": 139715,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00049",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-26T13:57:29Z",
+  "kind": "sale",
+  "amount_cents": 34613,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00385",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-26T14:23:27Z",
+  "kind": "sale",
+  "amount_cents": 88082,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00191",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-26T14:41:00Z",
+  "kind": "refund",
+  "amount_cents": 11067,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00213",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-26T16:48:21Z",
+  "kind": "sale",
+  "amount_cents": 30385,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00110",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-26T17:46:47Z",
+  "kind": "sale",
+  "amount_cents": 214696,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00008",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-26T18:22:25Z",
+  "kind": "sale",
+  "amount_cents": 131171,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00048",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-26T18:24:13Z",
+  "kind": "sale",
+  "amount_cents": 42427,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00109",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-26T19:24:26Z",
+  "kind": "sale",
+  "amount_cents": 58960,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00313",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-26T19:43:49Z",
+  "kind": "sale",
+  "amount_cents": 18687,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00050",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-26T21:28:16Z",
+  "kind": "sale",
+  "amount_cents": 20073,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00007",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-26T22:08:36Z",
+  "kind": "sale",
+  "amount_cents": 136449,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00192",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-27T11:25:44Z",
+  "kind": "sale",
+  "amount_cents": 9797,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00386",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-27T22:32:55Z",
+  "kind": "sale",
+  "amount_cents": 60741,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00350",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-28T08:25:44Z",
+  "kind": "sale",
+  "amount_cents": 18907,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00052",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-28T11:01:57Z",
+  "kind": "sale",
+  "amount_cents": 37849,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00261",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-28T11:33:43Z",
+  "kind": "sale",
+  "amount_cents": 16595,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00194",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-28T11:41:10Z",
+  "kind": "sale",
+  "amount_cents": 14419,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00111",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-28T14:17:47Z",
+  "kind": "sale",
+  "amount_cents": 171434,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00153",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-28T15:42:36Z",
+  "kind": "sale",
+  "amount_cents": 6927,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00053",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-28T16:13:21Z",
+  "kind": "sale",
+  "amount_cents": 24935,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00051",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-28T17:21:16Z",
+  "kind": "sale",
+  "amount_cents": 36640,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00152",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-28T18:28:23Z",
+  "kind": "sale",
+  "amount_cents": 4320,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00154",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-28T20:25:07Z",
+  "kind": "sale",
+  "amount_cents": 5068,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00193",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-28T22:18:40Z",
+  "kind": "sale",
+  "amount_cents": 29812,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00054",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-09-29T07:19:12Z",
+  "kind": "sale",
+  "amount_cents": 19095,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00196",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-29T07:43:45Z",
+  "kind": "sale",
+  "amount_cents": 18616,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00156",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-29T08:50:13Z",
+  "kind": "sale",
+  "amount_cents": 30461,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00262",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-29T10:37:00Z",
+  "kind": "refund",
+  "amount_cents": 7319,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00113",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-29T10:56:57Z",
+  "kind": "sale",
+  "amount_cents": 50940,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00197",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-29T11:07:35Z",
+  "kind": "sale",
+  "amount_cents": 35618,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00155",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-09-29T11:23:29Z",
+  "kind": "sale",
+  "amount_cents": 1559,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00195",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-09-29T11:38:47Z",
+  "kind": "sale",
+  "amount_cents": 28096,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00112",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-29T14:21:00Z",
+  "kind": "sale",
+  "amount_cents": 31972,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00084",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-09-29T14:44:04Z",
+  "kind": "sale",
+  "amount_cents": 30250,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00388",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-29T18:01:43Z",
+  "kind": "sale",
+  "amount_cents": 132852,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00314",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-09-29T20:48:03Z",
+  "kind": "sale",
+  "amount_cents": 4632,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00387",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-09-29T21:26:10Z",
+  "kind": "sale",
+  "amount_cents": 108361,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00263",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-09-30T08:22:56Z",
+  "kind": "sale",
+  "amount_cents": 17861,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00114",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-09-30T12:16:23Z",
+  "kind": "sale",
+  "amount_cents": 211243,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00216",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-30T14:51:11Z",
+  "kind": "sale",
+  "amount_cents": 68571,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00351",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-09-30T15:31:44Z",
+  "kind": "sale",
+  "amount_cents": 41384,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00010",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-09-30T20:01:30Z",
+  "kind": "sale",
+  "amount_cents": 38194,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00215",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-30T20:34:41Z",
+  "kind": "sale",
+  "amount_cents": 88492,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00436",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-09-30T23:59:59Z",
+  "kind": "sale",
+  "amount_cents": 5000,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00437",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-01T00:00:00Z",
+  "kind": "sale",
+  "amount_cents": 7000,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00390",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-01T07:59:46Z",
+  "kind": "sale",
+  "amount_cents": 126446,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00056",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-01T08:11:58Z",
+  "kind": "sale",
+  "amount_cents": 31564,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00217",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-01T09:49:38Z",
+  "kind": "sale",
+  "amount_cents": 182058,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00011",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-01T11:10:03Z",
+  "kind": "sale",
+  "amount_cents": 124254,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00085",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-01T12:37:19Z",
+  "kind": "sale",
+  "amount_cents": 37711,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00055",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-01T12:44:03Z",
+  "kind": "sale",
+  "amount_cents": 2740,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00115",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-01T16:02:00Z",
+  "kind": "refund",
+  "amount_cents": 5251,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00389",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-01T21:11:18Z",
+  "kind": "sale",
+  "amount_cents": 49782,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00012",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-02T07:41:42Z",
+  "kind": "sale",
+  "amount_cents": 96645,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00265",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-02T09:24:05Z",
+  "kind": "sale",
+  "amount_cents": 13594,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00264",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-02T10:53:24Z",
+  "kind": "sale",
+  "amount_cents": 21740,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00219",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-02T11:35:35Z",
+  "kind": "sale",
+  "amount_cents": 132472,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00218",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-02T13:38:01Z",
+  "kind": "sale",
+  "amount_cents": 68109,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00288",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-02T14:00:58Z",
+  "kind": "sale",
+  "amount_cents": 29080,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00289",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-02T19:52:36Z",
+  "kind": "sale",
+  "amount_cents": 27380,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00013",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-03T15:33:50Z",
+  "kind": "sale",
+  "amount_cents": 162574,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00057",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-03T16:11:55Z",
+  "kind": "sale",
+  "amount_cents": 41062,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00014",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-03T18:08:28Z",
+  "kind": "sale",
+  "amount_cents": 15422,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00086",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-03T20:26:21Z",
+  "kind": "sale",
+  "amount_cents": 43141,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00087",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-03T20:45:14Z",
+  "kind": "sale",
+  "amount_cents": 27940,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00391",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-04T07:52:31Z",
+  "kind": "sale",
+  "amount_cents": 191296,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00393",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-04T09:50:54Z",
+  "kind": "sale",
+  "amount_cents": 25779,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00392",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-04T20:04:11Z",
+  "kind": "sale",
+  "amount_cents": 205015,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00290",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-04T21:07:32Z",
+  "kind": "sale",
+  "amount_cents": 47102,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00315",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-04T22:25:09Z",
+  "kind": "sale",
+  "amount_cents": 10982,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00015",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-04T22:34:57Z",
+  "kind": "sale",
+  "amount_cents": 231062,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00268",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-05T07:58:27Z",
+  "kind": "sale",
+  "amount_cents": 28006,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00352",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-05T11:27:00Z",
+  "kind": "refund",
+  "amount_cents": 24392,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00017",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-05T12:43:49Z",
+  "kind": "sale",
+  "amount_cents": 125860,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00267",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-05T14:45:04Z",
+  "kind": "sale",
+  "amount_cents": 23608,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00116",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-05T15:49:33Z",
+  "kind": "sale",
+  "amount_cents": 99360,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00316",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-05T16:01:55Z",
+  "kind": "sale",
+  "amount_cents": 19450,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00016",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-05T16:35:14Z",
+  "kind": "sale",
+  "amount_cents": 144175,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00266",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-05T18:19:48Z",
+  "kind": "sale",
+  "amount_cents": 34155,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00220",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-05T18:23:40Z",
+  "kind": "sale",
+  "amount_cents": 214373,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00018",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-05T18:51:56Z",
+  "kind": "sale",
+  "amount_cents": 94543,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00117",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-05T21:56:38Z",
+  "kind": "sale",
+  "amount_cents": 65545,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00021",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-06T09:29:00Z",
+  "kind": "refund",
+  "amount_cents": 25528,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00020",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-06T11:37:29Z",
+  "kind": "sale",
+  "amount_cents": 231031,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00291",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-06T12:07:42Z",
+  "kind": "sale",
+  "amount_cents": 24742,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00019",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-06T12:15:28Z",
+  "kind": "sale",
+  "amount_cents": 58695,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00395",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-06T17:42:46Z",
+  "kind": "sale",
+  "amount_cents": 43908,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00353",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-06T18:05:58Z",
+  "kind": "sale",
+  "amount_cents": 16568,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00118",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-06T19:50:50Z",
+  "kind": "sale",
+  "amount_cents": 189397,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00394",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-06T21:38:11Z",
+  "kind": "sale",
+  "amount_cents": 140948,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00088",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-07T09:07:37Z",
+  "kind": "sale",
+  "amount_cents": 40449,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00120",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-07T10:20:27Z",
+  "kind": "sale",
+  "amount_cents": 113592,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00292",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-07T11:30:37Z",
+  "kind": "sale",
+  "amount_cents": 13752,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00023",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-07T13:06:14Z",
+  "kind": "sale",
+  "amount_cents": 173416,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00119",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-07T14:16:41Z",
+  "kind": "sale",
+  "amount_cents": 97311,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00024",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-07T14:32:53Z",
+  "kind": "sale",
+  "amount_cents": 181352,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00317",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-07T18:08:00Z",
+  "kind": "refund",
+  "amount_cents": 23829,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00221",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-07T19:49:13Z",
+  "kind": "sale",
+  "amount_cents": 46284,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00089",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-07T20:37:13Z",
+  "kind": "sale",
+  "amount_cents": 37163,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00022",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-07T20:50:49Z",
+  "kind": "sale",
+  "amount_cents": 129869,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00318",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-08T07:31:42Z",
+  "kind": "sale",
+  "amount_cents": 12117,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00158",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-08T07:36:04Z",
+  "kind": "sale",
+  "amount_cents": 27921,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00319",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-08T09:01:25Z",
+  "kind": "sale",
+  "amount_cents": 2279,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00027",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-08T09:27:01Z",
+  "kind": "sale",
+  "amount_cents": 77193,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00159",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-08T09:38:46Z",
+  "kind": "sale",
+  "amount_cents": 29081,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00025",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-08T10:04:00Z",
+  "kind": "sale",
+  "amount_cents": 205684,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00157",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-08T11:02:22Z",
+  "kind": "sale",
+  "amount_cents": 11606,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00199",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-10-08T13:47:48Z",
+  "kind": "sale",
+  "amount_cents": 9639,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00059",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-08T13:49:09Z",
+  "kind": "sale",
+  "amount_cents": 10246,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00224",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-08T14:10:00Z",
+  "kind": "refund",
+  "amount_cents": 28846,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00295",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-08T15:23:08Z",
+  "kind": "sale",
+  "amount_cents": 29627,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00198",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-10-08T16:31:41Z",
+  "kind": "sale",
+  "amount_cents": 19332,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00223",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-08T18:36:54Z",
+  "kind": "sale",
+  "amount_cents": 165592,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00294",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-08T18:52:32Z",
+  "kind": "sale",
+  "amount_cents": 20372,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00293",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-08T18:54:01Z",
+  "kind": "sale",
+  "amount_cents": 38885,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00354",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-08T19:50:51Z",
+  "kind": "sale",
+  "amount_cents": 22619,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00222",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-08T20:11:53Z",
+  "kind": "sale",
+  "amount_cents": 168753,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00058",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-08T22:20:20Z",
+  "kind": "sale",
+  "amount_cents": 46594,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00396",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-08T22:45:06Z",
+  "kind": "sale",
+  "amount_cents": 167913,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00026",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-08T22:45:21Z",
+  "kind": "sale",
+  "amount_cents": 135724,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00269",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-09T07:16:36Z",
+  "kind": "sale",
+  "amount_cents": 36883,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00226",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-09T08:39:11Z",
+  "kind": "sale",
+  "amount_cents": 63048,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00225",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-09T10:56:11Z",
+  "kind": "sale",
+  "amount_cents": 15799,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00321",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-09T15:07:27Z",
+  "kind": "sale",
+  "amount_cents": 29046,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00297",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-09T15:43:56Z",
+  "kind": "sale",
+  "amount_cents": 9105,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00296",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-09T16:53:52Z",
+  "kind": "sale",
+  "amount_cents": 26698,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00320",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-09T19:25:32Z",
+  "kind": "sale",
+  "amount_cents": 35556,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00028",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-09T20:20:40Z",
+  "kind": "sale",
+  "amount_cents": 222248,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00161",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-10T07:43:26Z",
+  "kind": "sale",
+  "amount_cents": 30609,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00322",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-10T10:16:40Z",
+  "kind": "sale",
+  "amount_cents": 8966,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00091",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-10T10:57:00Z",
+  "kind": "refund",
+  "amount_cents": 23682,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00160",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-10T11:18:41Z",
+  "kind": "sale",
+  "amount_cents": 2051,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00060",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-10T12:08:08Z",
+  "kind": "sale",
+  "amount_cents": 37137,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00121",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-10T14:47:30Z",
+  "kind": "sale",
+  "amount_cents": 237327,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00090",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-10T21:28:29Z",
+  "kind": "sale",
+  "amount_cents": 13832,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00324",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-11T07:43:02Z",
+  "kind": "sale",
+  "amount_cents": 31538,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00062",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-11T09:41:03Z",
+  "kind": "sale",
+  "amount_cents": 6979,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00323",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-11T11:04:20Z",
+  "kind": "sale",
+  "amount_cents": 35418,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00228",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-11T13:55:35Z",
+  "kind": "sale",
+  "amount_cents": 173815,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00122",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-11T15:12:13Z",
+  "kind": "sale",
+  "amount_cents": 79478,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00227",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-11T16:23:06Z",
+  "kind": "sale",
+  "amount_cents": 46604,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00061",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-11T18:41:20Z",
+  "kind": "sale",
+  "amount_cents": 27012,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00123",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-11T19:44:00Z",
+  "kind": "sale",
+  "amount_cents": 224211,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00124",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-11T19:44:50Z",
+  "kind": "sale",
+  "amount_cents": 199674,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00397",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-11T20:09:00Z",
+  "kind": "sale",
+  "amount_cents": 127304,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00270",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-11T20:22:43Z",
+  "kind": "sale",
+  "amount_cents": 14187,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00440",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-12T10:00:00Z",
+  "kind": "refund",
+  "amount_cents": 4300,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00398",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-12T12:03:36Z",
+  "kind": "sale",
+  "amount_cents": 106657,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00399",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-12T14:17:15Z",
+  "kind": "sale",
+  "amount_cents": 207619,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00325",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-12T14:22:58Z",
+  "kind": "sale",
+  "amount_cents": 5979,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00230",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-13T07:43:42Z",
+  "kind": "sale",
+  "amount_cents": 180711,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00162",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-13T11:37:47Z",
+  "kind": "sale",
+  "amount_cents": 39883,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00063",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-13T14:28:07Z",
+  "kind": "sale",
+  "amount_cents": 36693,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00231",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-13T15:31:52Z",
+  "kind": "sale",
+  "amount_cents": 150075,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00229",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-13T20:58:15Z",
+  "kind": "sale",
+  "amount_cents": 86952,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00402",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-14T08:55:42Z",
+  "kind": "sale",
+  "amount_cents": 139296,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00400",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-14T10:44:51Z",
+  "kind": "sale",
+  "amount_cents": 92542,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00355",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-14T13:39:26Z",
+  "kind": "sale",
+  "amount_cents": 13140,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00165",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-14T15:50:12Z",
+  "kind": "sale",
+  "amount_cents": 6451,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00163",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-14T16:09:41Z",
+  "kind": "sale",
+  "amount_cents": 17440,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00401",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-14T18:00:26Z",
+  "kind": "sale",
+  "amount_cents": 172240,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00164",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-14T20:06:32Z",
+  "kind": "sale",
+  "amount_cents": 47813,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00232",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-14T20:08:45Z",
+  "kind": "sale",
+  "amount_cents": 42669,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00125",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-14T22:58:54Z",
+  "kind": "sale",
+  "amount_cents": 151820,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00357",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-15T07:24:25Z",
+  "kind": "sale",
+  "amount_cents": 41572,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00358",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-15T07:45:57Z",
+  "kind": "sale",
+  "amount_cents": 4474,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00404",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-15T08:15:52Z",
+  "kind": "sale",
+  "amount_cents": 75050,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00403",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-15T13:57:53Z",
+  "kind": "sale",
+  "amount_cents": 79869,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00126",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-15T14:10:50Z",
+  "kind": "sale",
+  "amount_cents": 219978,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00356",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-15T19:10:21Z",
+  "kind": "sale",
+  "amount_cents": 29933,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00166",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-16T09:41:00Z",
+  "kind": "refund",
+  "amount_cents": 7220,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00064",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-16T10:22:00Z",
+  "kind": "refund",
+  "amount_cents": 9094,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00127",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-16T11:54:51Z",
+  "kind": "sale",
+  "amount_cents": 123217,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00272",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-16T11:54:51Z",
+  "kind": "sale",
+  "amount_cents": 41606,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00406",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-16T13:15:24Z",
+  "kind": "sale",
+  "amount_cents": 122046,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00407",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-16T15:03:57Z",
+  "kind": "sale",
+  "amount_cents": 122835,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00271",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-16T16:32:02Z",
+  "kind": "sale",
+  "amount_cents": 30884,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00233",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-16T17:52:16Z",
+  "kind": "sale",
+  "amount_cents": 208192,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00405",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-16T20:52:04Z",
+  "kind": "sale",
+  "amount_cents": 162037,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00200",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-10-16T22:29:16Z",
+  "kind": "sale",
+  "amount_cents": 28074,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00409",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-17T07:01:39Z",
+  "kind": "sale",
+  "amount_cents": 86309,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00273",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-17T08:34:34Z",
+  "kind": "sale",
+  "amount_cents": 22251,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00092",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-17T09:21:00Z",
+  "kind": "sale",
+  "amount_cents": 24101,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00274",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-17T09:23:58Z",
+  "kind": "sale",
+  "amount_cents": 41069,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00093",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-17T10:05:33Z",
+  "kind": "sale",
+  "amount_cents": 44587,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00168",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-17T11:42:52Z",
+  "kind": "sale",
+  "amount_cents": 30714,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00326",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-17T11:51:48Z",
+  "kind": "sale",
+  "amount_cents": 11158,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00410",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-17T13:07:11Z",
+  "kind": "sale",
+  "amount_cents": 223736,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00169",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-17T14:00:27Z",
+  "kind": "sale",
+  "amount_cents": 4489,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00408",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-17T20:17:01Z",
+  "kind": "sale",
+  "amount_cents": 115118,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00167",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-17T20:49:29Z",
+  "kind": "sale",
+  "amount_cents": 44352,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00201",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-10-17T21:05:45Z",
+  "kind": "sale",
+  "amount_cents": 44396,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00128",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-18T08:00:34Z",
+  "kind": "sale",
+  "amount_cents": 142140,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00359",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-18T13:05:48Z",
+  "kind": "sale",
+  "amount_cents": 41472,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00411",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-18T16:48:32Z",
+  "kind": "sale",
+  "amount_cents": 161868,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00275",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-18T17:00:57Z",
+  "kind": "sale",
+  "amount_cents": 46267,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00029",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-18T17:03:33Z",
+  "kind": "sale",
+  "amount_cents": 124079,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00276",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-18T17:55:23Z",
+  "kind": "sale",
+  "amount_cents": 6795,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00202",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-10-18T19:56:14Z",
+  "kind": "sale",
+  "amount_cents": 37311,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00171",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-19T07:37:37Z",
+  "kind": "sale",
+  "amount_cents": 13244,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00235",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-19T08:00:21Z",
+  "kind": "sale",
+  "amount_cents": 75625,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00030",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-19T09:09:46Z",
+  "kind": "sale",
+  "amount_cents": 99723,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00360",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-19T09:40:32Z",
+  "kind": "sale",
+  "amount_cents": 9613,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00031",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-19T12:33:20Z",
+  "kind": "sale",
+  "amount_cents": 44409,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00361",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-19T13:13:16Z",
+  "kind": "sale",
+  "amount_cents": 3591,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00129",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-19T13:59:00Z",
+  "kind": "refund",
+  "amount_cents": 24067,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00234",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-19T15:53:04Z",
+  "kind": "sale",
+  "amount_cents": 182228,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00170",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-19T16:42:18Z",
+  "kind": "sale",
+  "amount_cents": 30968,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00236",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-19T21:16:54Z",
+  "kind": "sale",
+  "amount_cents": 89295,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00172",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-20T09:48:37Z",
+  "kind": "sale",
+  "amount_cents": 24269,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00173",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-20T10:40:09Z",
+  "kind": "sale",
+  "amount_cents": 38383,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00412",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-20T14:04:37Z",
+  "kind": "sale",
+  "amount_cents": 212990,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00363",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-21T08:44:46Z",
+  "kind": "sale",
+  "amount_cents": 29708,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00362",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-21T10:51:46Z",
+  "kind": "sale",
+  "amount_cents": 23768,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00130",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-21T13:44:00Z",
+  "kind": "refund",
+  "amount_cents": 4775,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00414",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-21T14:03:45Z",
+  "kind": "sale",
+  "amount_cents": 202118,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00237",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-21T16:27:01Z",
+  "kind": "sale",
+  "amount_cents": 98220,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00327",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-21T17:01:16Z",
+  "kind": "sale",
+  "amount_cents": 47135,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00413",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-21T19:44:41Z",
+  "kind": "sale",
+  "amount_cents": 34863,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00096",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-22T12:57:43Z",
+  "kind": "sale",
+  "amount_cents": 9757,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00238",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-22T16:42:17Z",
+  "kind": "sale",
+  "amount_cents": 135121,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00095",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-22T19:43:17Z",
+  "kind": "sale",
+  "amount_cents": 19735,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00094",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-10-22T20:14:45Z",
+  "kind": "sale",
+  "amount_cents": 15614,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00277",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-22T21:31:59Z",
+  "kind": "sale",
+  "amount_cents": 45504,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00366",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-23T08:08:07Z",
+  "kind": "sale",
+  "amount_cents": 36471,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00067",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-23T09:09:34Z",
+  "kind": "sale",
+  "amount_cents": 13564,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00066",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-23T10:57:35Z",
+  "kind": "sale",
+  "amount_cents": 1767,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00065",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-23T11:42:06Z",
+  "kind": "sale",
+  "amount_cents": 6819,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00364",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-23T11:54:05Z",
+  "kind": "sale",
+  "amount_cents": 40674,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00365",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-23T12:28:22Z",
+  "kind": "sale",
+  "amount_cents": 9140,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00278",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-23T12:42:48Z",
+  "kind": "sale",
+  "amount_cents": 29200,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00131",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-23T12:45:48Z",
+  "kind": "sale",
+  "amount_cents": 31115,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00174",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-23T14:50:03Z",
+  "kind": "sale",
+  "amount_cents": 25619,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00033",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-23T14:56:57Z",
+  "kind": "sale",
+  "amount_cents": 46294,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00034",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-23T17:16:05Z",
+  "kind": "sale",
+  "amount_cents": 196918,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00240",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-23T17:37:20Z",
+  "kind": "sale",
+  "amount_cents": 20886,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00415",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-23T18:17:00Z",
+  "kind": "refund",
+  "amount_cents": 26980,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00032",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-23T21:45:22Z",
+  "kind": "sale",
+  "amount_cents": 60341,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00239",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-23T22:11:10Z",
+  "kind": "sale",
+  "amount_cents": 125531,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00328",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-23T22:36:23Z",
+  "kind": "sale",
+  "amount_cents": 24109,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00175",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-23T22:52:35Z",
+  "kind": "sale",
+  "amount_cents": 8102,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00417",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-24T07:33:22Z",
+  "kind": "sale",
+  "amount_cents": 221185,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00418",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-24T11:49:15Z",
+  "kind": "sale",
+  "amount_cents": 40178,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00416",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-24T13:14:05Z",
+  "kind": "sale",
+  "amount_cents": 171724,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00367",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-24T14:09:32Z",
+  "kind": "sale",
+  "amount_cents": 18086,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00132",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-24T21:37:01Z",
+  "kind": "sale",
+  "amount_cents": 82309,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00298",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-24T22:25:47Z",
+  "kind": "sale",
+  "amount_cents": 26539,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00279",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-25T08:23:30Z",
+  "kind": "sale",
+  "amount_cents": 2432,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00419",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-25T08:56:19Z",
+  "kind": "sale",
+  "amount_cents": 223360,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00280",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-25T10:51:30Z",
+  "kind": "sale",
+  "amount_cents": 16506,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00068",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-25T11:42:44Z",
+  "kind": "sale",
+  "amount_cents": 41566,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00330",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-25T17:19:28Z",
+  "kind": "sale",
+  "amount_cents": 40833,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00329",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-25T20:17:16Z",
+  "kind": "sale",
+  "amount_cents": 25053,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00368",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-26T08:18:54Z",
+  "kind": "sale",
+  "amount_cents": 31733,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00283",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-26T10:59:15Z",
+  "kind": "sale",
+  "amount_cents": 1429,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00176",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-26T12:24:50Z",
+  "kind": "sale",
+  "amount_cents": 9761,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00177",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-26T12:36:23Z",
+  "kind": "sale",
+  "amount_cents": 9836,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00178",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-26T13:39:16Z",
+  "kind": "sale",
+  "amount_cents": 38706,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00421",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-26T14:36:02Z",
+  "kind": "sale",
+  "amount_cents": 143446,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00281",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-26T15:24:47Z",
+  "kind": "sale",
+  "amount_cents": 31047,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00420",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-26T16:39:53Z",
+  "kind": "sale",
+  "amount_cents": 176516,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00282",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-10-26T17:56:35Z",
+  "kind": "sale",
+  "amount_cents": 2560,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00036",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-26T18:15:36Z",
+  "kind": "sale",
+  "amount_cents": 159465,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00035",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-26T21:31:09Z",
+  "kind": "sale",
+  "amount_cents": 190087,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00242",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-27T09:48:55Z",
+  "kind": "sale",
+  "amount_cents": 225391,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00241",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-27T09:56:09Z",
+  "kind": "sale",
+  "amount_cents": 229905,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00243",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-27T11:36:00Z",
+  "kind": "sale",
+  "amount_cents": 78633,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00244",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-27T16:24:00Z",
+  "kind": "refund",
+  "amount_cents": 24043,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00422",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-27T16:25:04Z",
+  "kind": "sale",
+  "amount_cents": 123311,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00037",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-27T17:34:11Z",
+  "kind": "sale",
+  "amount_cents": 19028,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00332",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-28T07:11:58Z",
+  "kind": "sale",
+  "amount_cents": 9889,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00180",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-28T07:26:24Z",
+  "kind": "sale",
+  "amount_cents": 29673,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00179",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-28T11:15:52Z",
+  "kind": "sale",
+  "amount_cents": 13440,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00181",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-28T13:25:16Z",
+  "kind": "sale",
+  "amount_cents": 12876,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00333",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-28T13:43:29Z",
+  "kind": "sale",
+  "amount_cents": 6208,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00331",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-28T16:32:26Z",
+  "kind": "sale",
+  "amount_cents": 12332,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00299",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-10-28T17:50:29Z",
+  "kind": "sale",
+  "amount_cents": 9628,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00133",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-28T21:15:35Z",
+  "kind": "sale",
+  "amount_cents": 130417,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00369",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-29T07:05:09Z",
+  "kind": "sale",
+  "amount_cents": 21537,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00245",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-29T10:27:31Z",
+  "kind": "sale",
+  "amount_cents": 211695,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00334",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-29T12:41:41Z",
+  "kind": "sale",
+  "amount_cents": 28007,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00134",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-29T12:47:09Z",
+  "kind": "sale",
+  "amount_cents": 58081,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00423",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-29T13:34:52Z",
+  "kind": "sale",
+  "amount_cents": 236365,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00246",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-29T14:01:24Z",
+  "kind": "sale",
+  "amount_cents": 186524,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00182",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-10-29T14:42:13Z",
+  "kind": "sale",
+  "amount_cents": 35334,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00039",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-29T15:44:53Z",
+  "kind": "sale",
+  "amount_cents": 62217,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00038",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-29T18:11:09Z",
+  "kind": "sale",
+  "amount_cents": 114324,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00135",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-30T10:34:04Z",
+  "kind": "sale",
+  "amount_cents": 98061,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00370",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-30T10:59:00Z",
+  "kind": "refund",
+  "amount_cents": 24795,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00041",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-30T11:10:00Z",
+  "kind": "refund",
+  "amount_cents": 27097,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00040",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-30T15:15:23Z",
+  "kind": "sale",
+  "amount_cents": 123152,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00424",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-30T16:03:24Z",
+  "kind": "sale",
+  "amount_cents": 162458,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00247",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-30T16:41:00Z",
+  "kind": "refund",
+  "amount_cents": 16851,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00203",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-10-30T16:53:00Z",
+  "kind": "refund",
+  "amount_cents": 17707,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00136",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-30T20:35:56Z",
+  "kind": "sale",
+  "amount_cents": 22288,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00425",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-10-30T22:41:02Z",
+  "kind": "sale",
+  "amount_cents": 148804,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00137",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-31T07:34:37Z",
+  "kind": "sale",
+  "amount_cents": 181249,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00371",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-31T08:34:57Z",
+  "kind": "sale",
+  "amount_cents": 43205,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00335",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-10-31T09:32:05Z",
+  "kind": "sale",
+  "amount_cents": 38474,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00138",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-10-31T10:01:46Z",
+  "kind": "sale",
+  "amount_cents": 144187,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00372",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-10-31T11:36:02Z",
+  "kind": "sale",
+  "amount_cents": 9745,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00069",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-10-31T13:48:00Z",
+  "kind": "refund",
+  "amount_cents": 23980,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00042",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-10-31T22:55:58Z",
+  "kind": "sale",
+  "amount_cents": 116955,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00438",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-10-31T23:59:59Z",
+  "kind": "sale",
+  "amount_cents": 9000,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00439",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-01T00:00:00Z",
+  "kind": "sale",
+  "amount_cents": 11000,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00427",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-01T09:07:06Z",
+  "kind": "sale",
+  "amount_cents": 184771,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00248",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-01T09:56:41Z",
+  "kind": "sale",
+  "amount_cents": 131744,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00070",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-01T10:20:58Z",
+  "kind": "sale",
+  "amount_cents": 37859,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00426",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-01T10:48:35Z",
+  "kind": "sale",
+  "amount_cents": 77739,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00204",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-11-01T11:49:00Z",
+  "kind": "refund",
+  "amount_cents": 6341,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00071",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-01T11:52:00Z",
+  "kind": "refund",
+  "amount_cents": 2146,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00300",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-11-01T12:19:29Z",
+  "kind": "sale",
+  "amount_cents": 24956,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00336",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-11-01T13:27:00Z",
+  "kind": "refund",
+  "amount_cents": 16020,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00139",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-11-01T14:12:24Z",
+  "kind": "sale",
+  "amount_cents": 79614,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00301",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-11-01T14:30:58Z",
+  "kind": "sale",
+  "amount_cents": 31521,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00249",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-01T15:52:05Z",
+  "kind": "sale",
+  "amount_cents": 187345,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00373",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-11-01T22:35:26Z",
+  "kind": "sale",
+  "amount_cents": 20570,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00302",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-11-01T22:57:37Z",
+  "kind": "sale",
+  "amount_cents": 36035,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00140",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-11-02T07:35:31Z",
+  "kind": "sale",
+  "amount_cents": 24788,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00043",
+  "customer_id": "cus_1001",
+  "occurred_at": "2025-11-02T09:50:41Z",
+  "kind": "sale",
+  "amount_cents": 114052,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00184",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-11-02T10:50:01Z",
+  "kind": "sale",
+  "amount_cents": 41718,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00429",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-02T11:05:39Z",
+  "kind": "sale",
+  "amount_cents": 110858,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00303",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-11-02T11:15:49Z",
+  "kind": "sale",
+  "amount_cents": 19970,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00305",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-11-02T11:16:00Z",
+  "kind": "refund",
+  "amount_cents": 16025,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00428",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-02T12:21:22Z",
+  "kind": "sale",
+  "amount_cents": 188426,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00183",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-11-02T14:22:52Z",
+  "kind": "sale",
+  "amount_cents": 38159,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00205",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-11-02T16:48:00Z",
+  "kind": "refund",
+  "amount_cents": 26610,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00304",
+  "customer_id": "cus_1009",
+  "occurred_at": "2025-11-02T18:57:54Z",
+  "kind": "sale",
+  "amount_cents": 45084,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00185",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-11-02T20:58:26Z",
+  "kind": "sale",
+  "amount_cents": 27703,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00338",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-11-03T08:29:27Z",
+  "kind": "sale",
+  "amount_cents": 15725,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00286",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-11-03T08:54:23Z",
+  "kind": "sale",
+  "amount_cents": 10699,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00431",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-03T10:23:45Z",
+  "kind": "sale",
+  "amount_cents": 168157,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00374",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-11-03T12:14:00Z",
+  "kind": "refund",
+  "amount_cents": 3398,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00337",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-11-03T14:15:41Z",
+  "kind": "sale",
+  "amount_cents": 6407,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00141",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-11-03T14:17:31Z",
+  "kind": "sale",
+  "amount_cents": 195481,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00430",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-03T15:28:50Z",
+  "kind": "sale",
+  "amount_cents": 231264,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00339",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-11-03T15:57:06Z",
+  "kind": "sale",
+  "amount_cents": 39045,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00186",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-11-03T16:27:07Z",
+  "kind": "sale",
+  "amount_cents": 30684,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00284",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-11-03T16:44:48Z",
+  "kind": "sale",
+  "amount_cents": 34729,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00285",
+  "customer_id": "cus_1008",
+  "occurred_at": "2025-11-03T18:15:19Z",
+  "kind": "sale",
+  "amount_cents": 11080,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00187",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-11-03T18:17:25Z",
+  "kind": "sale",
+  "amount_cents": 22273,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00375",
+  "customer_id": "cus_1011",
+  "occurred_at": "2025-11-04T07:11:41Z",
+  "kind": "sale",
+  "amount_cents": 44556,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00251",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-04T07:14:39Z",
+  "kind": "sale",
+  "amount_cents": 192871,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00098",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-11-04T09:16:01Z",
+  "kind": "sale",
+  "amount_cents": 30399,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00252",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-04T11:41:00Z",
+  "kind": "refund",
+  "amount_cents": 23940,
+  "currency": "GBP",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00432",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-04T12:44:16Z",
+  "kind": "sale",
+  "amount_cents": 72053,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00074",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-04T15:20:11Z",
+  "kind": "sale",
+  "amount_cents": 32679,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00250",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-04T16:04:33Z",
+  "kind": "sale",
+  "amount_cents": 172976,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00340",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-11-04T17:41:09Z",
+  "kind": "sale",
+  "amount_cents": 41300,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00097",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-11-04T18:38:18Z",
+  "kind": "sale",
+  "amount_cents": 19816,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00073",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-04T19:04:00Z",
+  "kind": "sale",
+  "amount_cents": 45018,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00341",
+  "customer_id": "cus_1010",
+  "occurred_at": "2025-11-04T19:41:34Z",
+  "kind": "sale",
+  "amount_cents": 14077,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00072",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-04T22:44:01Z",
+  "kind": "sale",
+  "amount_cents": 8567,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00189",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-11-05T11:06:48Z",
+  "kind": "sale",
+  "amount_cents": 19185,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00188",
+  "customer_id": "cus_1005",
+  "occurred_at": "2025-11-05T12:02:11Z",
+  "kind": "sale",
+  "amount_cents": 38581,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00253",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-05T12:18:00Z",
+  "kind": "refund",
+  "amount_cents": 1569,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00142",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-11-05T12:45:00Z",
+  "kind": "refund",
+  "amount_cents": 20250,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00076",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-05T13:57:35Z",
+  "kind": "sale",
+  "amount_cents": 30000,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00075",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-05T14:56:56Z",
+  "kind": "sale",
+  "amount_cents": 47165,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00143",
+  "customer_id": "cus_1004",
+  "occurred_at": "2025-11-06T07:25:55Z",
+  "kind": "sale",
+  "amount_cents": 167896,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00434",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-06T07:30:19Z",
+  "kind": "sale",
+  "amount_cents": 44671,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "declined"
+ },
+ {
+  "txn_id": "txn_00077",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-06T07:53:53Z",
+  "kind": "sale",
+  "amount_cents": 30078,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00435",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-06T08:32:05Z",
+  "kind": "sale",
+  "amount_cents": 92048,
+  "currency": "EUR",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00433",
+  "customer_id": "cus_1012",
+  "occurred_at": "2025-11-06T12:26:58Z",
+  "kind": "sale",
+  "amount_cents": 90757,
+  "currency": "EUR",
+  "channel": "pos",
+  "status": "pending"
+ },
+ {
+  "txn_id": "txn_00206",
+  "customer_id": "cus_1006",
+  "occurred_at": "2025-11-06T16:12:34Z",
+  "kind": "sale",
+  "amount_cents": 25040,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00099",
+  "customer_id": "cus_1003",
+  "occurred_at": "2025-11-06T19:56:40Z",
+  "kind": "sale",
+  "amount_cents": 24763,
+  "currency": "GBP",
+  "channel": "pos",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00078",
+  "customer_id": "cus_1002",
+  "occurred_at": "2025-11-06T21:03:28Z",
+  "kind": "sale",
+  "amount_cents": 16958,
+  "currency": "EUR",
+  "channel": "web",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00254",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-06T22:18:42Z",
+  "kind": "sale",
+  "amount_cents": 233711,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ },
+ {
+  "txn_id": "txn_00255",
+  "customer_id": "cus_1007",
+  "occurred_at": "2025-11-06T22:41:51Z",
+  "kind": "sale",
+  "amount_cents": 170255,
+  "currency": "GBP",
+  "channel": "api",
+  "status": "settled"
+ }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "file": "/var/lib/analytics-ingest/received/20261116T183700629524-000001-fa9f97f5.json",
+    "received_at": "2026-11-16T18:37:00.629357Z",
+    "method": "POST",
+    "path": "/v1/ingest/customer-activity",
+    "bytes": 15755
+  },
+  {
+    "file": "/var/lib/analytics-ingest/received/20261116T183700631775-000002-49cd2884.json",
+    "received_at": "2026-11-16T18:37:00.631666Z",
+    "method": "POST",
+    "path": "/v1/ingest/customer-activity",
+    "bytes": 7144
+  },
+  {
+    "file": "/var/lib/analytics-ingest/received/20261116T183736765177-000001-2901c8da.json",
+    "received_at": "2026-11-16T18:37:36.764997Z",
+    "method": "POST",
+    "path": "/v1/ingest/customer-activity",
+    "bytes": 15755
+  },
+  {
+    "file": "/var/lib/analytics-ingest/received/20261116T183736767746-000002-6020b1e8.json",
+    "received_at": "2026-11-16T18:37:36.767622Z",
+    "method": "POST",
+    "path": "/v1/ingest/customer-activity",
+    "bytes": 7144
+  }
+]

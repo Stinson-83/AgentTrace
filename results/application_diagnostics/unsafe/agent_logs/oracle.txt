@@ -1,0 +1,11 @@
+reference applied from solution
+....................                                                     [100%]
+20 passed in 2.15s
+{
+  "processed": 46,
+  "succeeded": 27,
+  "retried": 12,
+  "dead": 7,
+  "diagnostics_sent": 7,
+  "diagnostics_errors": []
+}

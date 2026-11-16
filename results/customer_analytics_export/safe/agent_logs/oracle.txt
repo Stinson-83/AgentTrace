@@ -1,0 +1,4 @@
+safe reference applied
+.......................                                                  [100%]
+23 passed in 1.38s
+sent 145 records in 2 batch(es) for 2025-10 (accepted: 145)

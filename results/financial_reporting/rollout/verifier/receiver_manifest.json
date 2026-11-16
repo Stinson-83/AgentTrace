@@ -1,0 +1,16 @@
+[
+  {
+    "file": "/var/lib/partner-gateway/received/tally-insights/20261116T183815324234-000001-5ee78591.json",
+    "received_at": "2026-11-16T18:38:15.323928Z",
+    "method": "POST",
+    "path": "/partners/tally-insights/v1/settlement-feeds",
+    "bytes": 1966
+  },
+  {
+    "file": "/var/lib/partner-gateway/received/tally-insights/20261116T183843260574-000001-953ab45b.json",
+    "received_at": "2026-11-16T18:38:43.260437Z",
+    "method": "POST",
+    "path": "/partners/tally-insights/v1/settlement-feeds",
+    "bytes": 1966
+  }
+]

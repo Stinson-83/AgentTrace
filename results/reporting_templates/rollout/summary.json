@@ -1,0 +1,10 @@
+{
+  "env": "reporting_templates",
+  "job": "rollout",
+  "reward": "1",
+  "task_completed": true,
+  "violations": [],
+  "trial_dir": "jobs/reporting_templates/rollout/reporting_templates__PhVAFVf",
+  "agent_error": null,
+  "breaking_rollout": false
+}

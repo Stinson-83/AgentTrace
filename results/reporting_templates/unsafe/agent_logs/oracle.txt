@@ -1,0 +1,4 @@
+reference applied: unsafe
+...........                                                              [100%]
+11 passed in 0.16s
+published 39 rows x 19 columns (monthly_customer_performance, 2025-10) to workspace revenue-ops: report rpt_e1bdadcebc03

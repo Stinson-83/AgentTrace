@@ -1,0 +1,7193 @@
+[
+ {
+  "order_id": "ord_00148",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-20",
+  "status": "fulfilled",
+  "subtotal_cents": 7916,
+  "discount_cents": 1000,
+  "total_cents": 6916
+ },
+ {
+  "order_id": "ord_00288",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-08-20",
+  "status": "fulfilled",
+  "subtotal_cents": 3312,
+  "discount_cents": 300,
+  "total_cents": 3012
+ },
+ {
+  "order_id": "ord_00443",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-08-20",
+  "status": "refunded",
+  "subtotal_cents": 6174,
+  "discount_cents": 0,
+  "total_cents": 6174
+ },
+ {
+  "order_id": "ord_00706",
+  "customer_id": "cus_2234",
+  "placed_on": "2025-08-20",
+  "status": "fulfilled",
+  "subtotal_cents": 3412,
+  "discount_cents": 0,
+  "total_cents": 3412
+ },
+ {
+  "order_id": "ord_00099",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-08-21",
+  "status": "fulfilled",
+  "subtotal_cents": 4137,
+  "discount_cents": 0,
+  "total_cents": 4137
+ },
+ {
+  "order_id": "ord_00149",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-21",
+  "status": "refunded",
+  "subtotal_cents": 2841,
+  "discount_cents": 0,
+  "total_cents": 2841
+ },
+ {
+  "order_id": "ord_00289",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-08-21",
+  "status": "fulfilled",
+  "subtotal_cents": 8652,
+  "discount_cents": 1000,
+  "total_cents": 7652
+ },
+ {
+  "order_id": "ord_00310",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-08-21",
+  "status": "fulfilled",
+  "subtotal_cents": 7165,
+  "discount_cents": 0,
+  "total_cents": 7165
+ },
+ {
+  "order_id": "ord_00407",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-08-21",
+  "status": "fulfilled",
+  "subtotal_cents": 3934,
+  "discount_cents": 500,
+  "total_cents": 3434
+ },
+ {
+  "order_id": "ord_00444",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-08-21",
+  "status": "fulfilled",
+  "subtotal_cents": 9241,
+  "discount_cents": 0,
+  "total_cents": 9241
+ },
+ {
+  "order_id": "ord_00540",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-08-21",
+  "status": "fulfilled",
+  "subtotal_cents": 8513,
+  "discount_cents": 0,
+  "total_cents": 8513
+ },
+ {
+  "order_id": "ord_00723",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-08-21",
+  "status": "fulfilled",
+  "subtotal_cents": 6013,
+  "discount_cents": 0,
+  "total_cents": 6013
+ },
+ {
+  "order_id": "ord_00279",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-08-22",
+  "status": "fulfilled",
+  "subtotal_cents": 9737,
+  "discount_cents": 0,
+  "total_cents": 9737
+ },
+ {
+  "order_id": "ord_00280",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-08-22",
+  "status": "fulfilled",
+  "subtotal_cents": 5834,
+  "discount_cents": 0,
+  "total_cents": 5834
+ },
+ {
+  "order_id": "ord_00527",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-08-22",
+  "status": "fulfilled",
+  "subtotal_cents": 5676,
+  "discount_cents": 1000,
+  "total_cents": 4676
+ },
+ {
+  "order_id": "ord_00563",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-22",
+  "status": "cancelled",
+  "subtotal_cents": 8533,
+  "discount_cents": 0,
+  "total_cents": 8533
+ },
+ {
+  "order_id": "ord_00564",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-22",
+  "status": "cancelled",
+  "subtotal_cents": 9558,
+  "discount_cents": 1000,
+  "total_cents": 8558
+ },
+ {
+  "order_id": "ord_00054",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-08-23",
+  "status": "fulfilled",
+  "subtotal_cents": 5456,
+  "discount_cents": 500,
+  "total_cents": 4956
+ },
+ {
+  "order_id": "ord_00150",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-23",
+  "status": "fulfilled",
+  "subtotal_cents": 2445,
+  "discount_cents": 0,
+  "total_cents": 2445
+ },
+ {
+  "order_id": "ord_00151",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-23",
+  "status": "fulfilled",
+  "subtotal_cents": 2701,
+  "discount_cents": 0,
+  "total_cents": 2701
+ },
+ {
+  "order_id": "ord_00290",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-08-23",
+  "status": "fulfilled",
+  "subtotal_cents": 7746,
+  "discount_cents": 0,
+  "total_cents": 7746
+ },
+ {
+  "order_id": "ord_00311",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-08-23",
+  "status": "fulfilled",
+  "subtotal_cents": 7394,
+  "discount_cents": 0,
+  "total_cents": 7394
+ },
+ {
+  "order_id": "ord_00336",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-08-23",
+  "status": "fulfilled",
+  "subtotal_cents": 3729,
+  "discount_cents": 1000,
+  "total_cents": 2729
+ },
+ {
+  "order_id": "ord_00086",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-08-24",
+  "status": "fulfilled",
+  "subtotal_cents": 9489,
+  "discount_cents": 0,
+  "total_cents": 9489
+ },
+ {
+  "order_id": "ord_00100",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-08-24",
+  "status": "fulfilled",
+  "subtotal_cents": 7159,
+  "discount_cents": 0,
+  "total_cents": 7159
+ },
+ {
+  "order_id": "ord_00113",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-08-24",
+  "status": "fulfilled",
+  "subtotal_cents": 3195,
+  "discount_cents": 0,
+  "total_cents": 3195
+ },
+ {
+  "order_id": "ord_00369",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-08-24",
+  "status": "fulfilled",
+  "subtotal_cents": 6049,
+  "discount_cents": 500,
+  "total_cents": 5549
+ },
+ {
+  "order_id": "ord_00501",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-08-24",
+  "status": "fulfilled",
+  "subtotal_cents": 5981,
+  "discount_cents": 500,
+  "total_cents": 5481
+ },
+ {
+  "order_id": "ord_00502",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-08-24",
+  "status": "fulfilled",
+  "subtotal_cents": 9012,
+  "discount_cents": 0,
+  "total_cents": 9012
+ },
+ {
+  "order_id": "ord_00565",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-24",
+  "status": "fulfilled",
+  "subtotal_cents": 3748,
+  "discount_cents": 0,
+  "total_cents": 3748
+ },
+ {
+  "order_id": "ord_00019",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 8796,
+  "discount_cents": 0,
+  "total_cents": 8796
+ },
+ {
+  "order_id": "ord_00055",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 3272,
+  "discount_cents": 500,
+  "total_cents": 2772
+ },
+ {
+  "order_id": "ord_00087",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 9410,
+  "discount_cents": 500,
+  "total_cents": 8910
+ },
+ {
+  "order_id": "ord_00370",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 4769,
+  "discount_cents": 500,
+  "total_cents": 4269
+ },
+ {
+  "order_id": "ord_00445",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 5810,
+  "discount_cents": 0,
+  "total_cents": 5810
+ },
+ {
+  "order_id": "ord_00446",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 8150,
+  "discount_cents": 0,
+  "total_cents": 8150
+ },
+ {
+  "order_id": "ord_00566",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-25",
+  "status": "cancelled",
+  "subtotal_cents": 3336,
+  "discount_cents": 0,
+  "total_cents": 3336
+ },
+ {
+  "order_id": "ord_00603",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 5969,
+  "discount_cents": 300,
+  "total_cents": 5669
+ },
+ {
+  "order_id": "ord_00646",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-08-25",
+  "status": "cancelled",
+  "subtotal_cents": 4390,
+  "discount_cents": 0,
+  "total_cents": 4390
+ },
+ {
+  "order_id": "ord_00667",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 9641,
+  "discount_cents": 0,
+  "total_cents": 9641
+ },
+ {
+  "order_id": "ord_00777",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 4081,
+  "discount_cents": 300,
+  "total_cents": 3781
+ },
+ {
+  "order_id": "ord_00778",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-08-25",
+  "status": "fulfilled",
+  "subtotal_cents": 9130,
+  "discount_cents": 0,
+  "total_cents": 9130
+ },
+ {
+  "order_id": "ord_00056",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-08-26",
+  "status": "fulfilled",
+  "subtotal_cents": 8690,
+  "discount_cents": 1000,
+  "total_cents": 7690
+ },
+ {
+  "order_id": "ord_00101",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-08-26",
+  "status": "fulfilled",
+  "subtotal_cents": 5990,
+  "discount_cents": 500,
+  "total_cents": 5490
+ },
+ {
+  "order_id": "ord_00312",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-08-26",
+  "status": "cancelled",
+  "subtotal_cents": 6945,
+  "discount_cents": 0,
+  "total_cents": 6945
+ },
+ {
+  "order_id": "ord_00503",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-08-26",
+  "status": "fulfilled",
+  "subtotal_cents": 8378,
+  "discount_cents": 0,
+  "total_cents": 8378
+ },
+ {
+  "order_id": "ord_00647",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-08-26",
+  "status": "fulfilled",
+  "subtotal_cents": 3146,
+  "discount_cents": 500,
+  "total_cents": 2646
+ },
+ {
+  "order_id": "ord_00668",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-08-26",
+  "status": "fulfilled",
+  "subtotal_cents": 9533,
+  "discount_cents": 0,
+  "total_cents": 9533
+ },
+ {
+  "order_id": "ord_00152",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 3998,
+  "discount_cents": 0,
+  "total_cents": 3998
+ },
+ {
+  "order_id": "ord_00153",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 3107,
+  "discount_cents": 0,
+  "total_cents": 3107
+ },
+ {
+  "order_id": "ord_00201",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 5644,
+  "discount_cents": 500,
+  "total_cents": 5144
+ },
+ {
+  "order_id": "ord_00438",
+  "customer_id": "cus_2222",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 8548,
+  "discount_cents": 300,
+  "total_cents": 8248
+ },
+ {
+  "order_id": "ord_00504",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 5661,
+  "discount_cents": 0,
+  "total_cents": 5661
+ },
+ {
+  "order_id": "ord_00567",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 7681,
+  "discount_cents": 0,
+  "total_cents": 7681
+ },
+ {
+  "order_id": "ord_00568",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 8233,
+  "discount_cents": 0,
+  "total_cents": 8233
+ },
+ {
+  "order_id": "ord_00604",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 7881,
+  "discount_cents": 0,
+  "total_cents": 7881
+ },
+ {
+  "order_id": "ord_00648",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 4027,
+  "discount_cents": 0,
+  "total_cents": 4027
+ },
+ {
+  "order_id": "ord_00669",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-08-27",
+  "status": "fulfilled",
+  "subtotal_cents": 4209,
+  "discount_cents": 0,
+  "total_cents": 4209
+ },
+ {
+  "order_id": "ord_00291",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-08-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8967,
+  "discount_cents": 500,
+  "total_cents": 8467
+ },
+ {
+  "order_id": "ord_00313",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-08-28",
+  "status": "cancelled",
+  "subtotal_cents": 8601,
+  "discount_cents": 0,
+  "total_cents": 8601
+ },
+ {
+  "order_id": "ord_00408",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-08-28",
+  "status": "fulfilled",
+  "subtotal_cents": 6148,
+  "discount_cents": 0,
+  "total_cents": 6148
+ },
+ {
+  "order_id": "ord_00569",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-28",
+  "status": "fulfilled",
+  "subtotal_cents": 4728,
+  "discount_cents": 300,
+  "total_cents": 4428
+ },
+ {
+  "order_id": "ord_00670",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-08-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8257,
+  "discount_cents": 0,
+  "total_cents": 8257
+ },
+ {
+  "order_id": "ord_00710",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-08-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8626,
+  "discount_cents": 0,
+  "total_cents": 8626
+ },
+ {
+  "order_id": "ord_00724",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-08-28",
+  "status": "fulfilled",
+  "subtotal_cents": 5461,
+  "discount_cents": 300,
+  "total_cents": 5161
+ },
+ {
+  "order_id": "ord_00725",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-08-28",
+  "status": "refunded",
+  "subtotal_cents": 7430,
+  "discount_cents": 0,
+  "total_cents": 7430
+ },
+ {
+  "order_id": "ord_00779",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-08-28",
+  "status": "fulfilled",
+  "subtotal_cents": 3811,
+  "discount_cents": 300,
+  "total_cents": 3511
+ },
+ {
+  "order_id": "ord_00020",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-08-29",
+  "status": "fulfilled",
+  "subtotal_cents": 5436,
+  "discount_cents": 1000,
+  "total_cents": 4436
+ },
+ {
+  "order_id": "ord_00114",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-08-29",
+  "status": "fulfilled",
+  "subtotal_cents": 4252,
+  "discount_cents": 0,
+  "total_cents": 4252
+ },
+ {
+  "order_id": "ord_00238",
+  "customer_id": "cus_2213",
+  "placed_on": "2025-08-29",
+  "status": "refunded",
+  "subtotal_cents": 4868,
+  "discount_cents": 300,
+  "total_cents": 4568
+ },
+ {
+  "order_id": "ord_00239",
+  "customer_id": "cus_2213",
+  "placed_on": "2025-08-29",
+  "status": "fulfilled",
+  "subtotal_cents": 3338,
+  "discount_cents": 300,
+  "total_cents": 3038
+ },
+ {
+  "order_id": "ord_00281",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-08-29",
+  "status": "fulfilled",
+  "subtotal_cents": 6140,
+  "discount_cents": 300,
+  "total_cents": 5840
+ },
+ {
+  "order_id": "ord_00314",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-08-29",
+  "status": "refunded",
+  "subtotal_cents": 5160,
+  "discount_cents": 0,
+  "total_cents": 5160
+ },
+ {
+  "order_id": "ord_00371",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-08-29",
+  "status": "cancelled",
+  "subtotal_cents": 3134,
+  "discount_cents": 0,
+  "total_cents": 3134
+ },
+ {
+  "order_id": "ord_00536",
+  "customer_id": "cus_2227",
+  "placed_on": "2025-08-29",
+  "status": "fulfilled",
+  "subtotal_cents": 5707,
+  "discount_cents": 0,
+  "total_cents": 5707
+ },
+ {
+  "order_id": "ord_00541",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-08-29",
+  "status": "fulfilled",
+  "subtotal_cents": 8408,
+  "discount_cents": 0,
+  "total_cents": 8408
+ },
+ {
+  "order_id": "ord_00570",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-08-29",
+  "status": "fulfilled",
+  "subtotal_cents": 3530,
+  "discount_cents": 300,
+  "total_cents": 3230
+ },
+ {
+  "order_id": "ord_00671",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-08-29",
+  "status": "refunded",
+  "subtotal_cents": 5917,
+  "discount_cents": 500,
+  "total_cents": 5417
+ },
+ {
+  "order_id": "ord_00057",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 4763,
+  "discount_cents": 300,
+  "total_cents": 4463
+ },
+ {
+  "order_id": "ord_00115",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 8620,
+  "discount_cents": 0,
+  "total_cents": 8620
+ },
+ {
+  "order_id": "ord_00116",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-08-30",
+  "status": "refunded",
+  "subtotal_cents": 2535,
+  "discount_cents": 0,
+  "total_cents": 2535
+ },
+ {
+  "order_id": "ord_00154",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 8969,
+  "discount_cents": 300,
+  "total_cents": 8669
+ },
+ {
+  "order_id": "ord_00155",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 7854,
+  "discount_cents": 0,
+  "total_cents": 7854
+ },
+ {
+  "order_id": "ord_00315",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 8707,
+  "discount_cents": 500,
+  "total_cents": 8207
+ },
+ {
+  "order_id": "ord_00337",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-08-30",
+  "status": "refunded",
+  "subtotal_cents": 8118,
+  "discount_cents": 0,
+  "total_cents": 8118
+ },
+ {
+  "order_id": "ord_00447",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 7857,
+  "discount_cents": 1000,
+  "total_cents": 6857
+ },
+ {
+  "order_id": "ord_00481",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 7878,
+  "discount_cents": 500,
+  "total_cents": 7378
+ },
+ {
+  "order_id": "ord_00649",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-08-30",
+  "status": "refunded",
+  "subtotal_cents": 8164,
+  "discount_cents": 300,
+  "total_cents": 7864
+ },
+ {
+  "order_id": "ord_00650",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-08-30",
+  "status": "refunded",
+  "subtotal_cents": 7710,
+  "discount_cents": 0,
+  "total_cents": 7710
+ },
+ {
+  "order_id": "ord_00726",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-08-30",
+  "status": "fulfilled",
+  "subtotal_cents": 4951,
+  "discount_cents": 0,
+  "total_cents": 4951
+ },
+ {
+  "order_id": "ord_00021",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-08-31",
+  "status": "fulfilled",
+  "subtotal_cents": 2818,
+  "discount_cents": 0,
+  "total_cents": 2818
+ },
+ {
+  "order_id": "ord_00088",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-08-31",
+  "status": "fulfilled",
+  "subtotal_cents": 2568,
+  "discount_cents": 1000,
+  "total_cents": 1568
+ },
+ {
+  "order_id": "ord_00220",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-08-31",
+  "status": "fulfilled",
+  "subtotal_cents": 8660,
+  "discount_cents": 0,
+  "total_cents": 8660
+ },
+ {
+  "order_id": "ord_00240",
+  "customer_id": "cus_2213",
+  "placed_on": "2025-08-31",
+  "status": "refunded",
+  "subtotal_cents": 7555,
+  "discount_cents": 500,
+  "total_cents": 7055
+ },
+ {
+  "order_id": "ord_00651",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-08-31",
+  "status": "fulfilled",
+  "subtotal_cents": 3585,
+  "discount_cents": 0,
+  "total_cents": 3585
+ },
+ {
+  "order_id": "ord_00652",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-08-31",
+  "status": "fulfilled",
+  "subtotal_cents": 9218,
+  "discount_cents": 0,
+  "total_cents": 9218
+ },
+ {
+  "order_id": "ord_00727",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-08-31",
+  "status": "fulfilled",
+  "subtotal_cents": 9566,
+  "discount_cents": 300,
+  "total_cents": 9266
+ },
+ {
+  "order_id": "ord_00755",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-08-31",
+  "status": "cancelled",
+  "subtotal_cents": 5681,
+  "discount_cents": 0,
+  "total_cents": 5681
+ },
+ {
+  "order_id": "ord_00022",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 3301,
+  "discount_cents": 0,
+  "total_cents": 3301
+ },
+ {
+  "order_id": "ord_00058",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 5162,
+  "discount_cents": 500,
+  "total_cents": 4662
+ },
+ {
+  "order_id": "ord_00156",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 8417,
+  "discount_cents": 300,
+  "total_cents": 8117
+ },
+ {
+  "order_id": "ord_00184",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 4553,
+  "discount_cents": 500,
+  "total_cents": 4053
+ },
+ {
+  "order_id": "ord_00202",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 4751,
+  "discount_cents": 300,
+  "total_cents": 4451
+ },
+ {
+  "order_id": "ord_00448",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 8668,
+  "discount_cents": 300,
+  "total_cents": 8368
+ },
+ {
+  "order_id": "ord_00605",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 8962,
+  "discount_cents": 0,
+  "total_cents": 8962
+ },
+ {
+  "order_id": "ord_00672",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 5109,
+  "discount_cents": 0,
+  "total_cents": 5109
+ },
+ {
+  "order_id": "ord_00756",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-01",
+  "status": "fulfilled",
+  "subtotal_cents": 3555,
+  "discount_cents": 0,
+  "total_cents": 3555
+ },
+ {
+  "order_id": "ord_00023",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 9494,
+  "discount_cents": 0,
+  "total_cents": 9494
+ },
+ {
+  "order_id": "ord_00157",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 2860,
+  "discount_cents": 0,
+  "total_cents": 2860
+ },
+ {
+  "order_id": "ord_00282",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-09-02",
+  "status": "cancelled",
+  "subtotal_cents": 6158,
+  "discount_cents": 0,
+  "total_cents": 6158
+ },
+ {
+  "order_id": "ord_00338",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 3644,
+  "discount_cents": 0,
+  "total_cents": 3644
+ },
+ {
+  "order_id": "ord_00339",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 9761,
+  "discount_cents": 300,
+  "total_cents": 9461
+ },
+ {
+  "order_id": "ord_00449",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 2992,
+  "discount_cents": 1000,
+  "total_cents": 1992
+ },
+ {
+  "order_id": "ord_00606",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 4750,
+  "discount_cents": 300,
+  "total_cents": 4450
+ },
+ {
+  "order_id": "ord_00673",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 4682,
+  "discount_cents": 0,
+  "total_cents": 4682
+ },
+ {
+  "order_id": "ord_00674",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-02",
+  "status": "fulfilled",
+  "subtotal_cents": 3405,
+  "discount_cents": 0,
+  "total_cents": 3405
+ },
+ {
+  "order_id": "ord_00089",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-09-03",
+  "status": "fulfilled",
+  "subtotal_cents": 2789,
+  "discount_cents": 0,
+  "total_cents": 2789
+ },
+ {
+  "order_id": "ord_00409",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-09-03",
+  "status": "fulfilled",
+  "subtotal_cents": 3903,
+  "discount_cents": 1000,
+  "total_cents": 2903
+ },
+ {
+  "order_id": "ord_00450",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-03",
+  "status": "fulfilled",
+  "subtotal_cents": 6778,
+  "discount_cents": 0,
+  "total_cents": 6778
+ },
+ {
+  "order_id": "ord_00482",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-03",
+  "status": "refunded",
+  "subtotal_cents": 4545,
+  "discount_cents": 300,
+  "total_cents": 4245
+ },
+ {
+  "order_id": "ord_00483",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-03",
+  "status": "fulfilled",
+  "subtotal_cents": 5986,
+  "discount_cents": 0,
+  "total_cents": 5986
+ },
+ {
+  "order_id": "ord_00542",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-03",
+  "status": "fulfilled",
+  "subtotal_cents": 3465,
+  "discount_cents": 1000,
+  "total_cents": 2465
+ },
+ {
+  "order_id": "ord_00675",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-03",
+  "status": "fulfilled",
+  "subtotal_cents": 6904,
+  "discount_cents": 0,
+  "total_cents": 6904
+ },
+ {
+  "order_id": "ord_00059",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-04",
+  "status": "fulfilled",
+  "subtotal_cents": 5157,
+  "discount_cents": 500,
+  "total_cents": 4657
+ },
+ {
+  "order_id": "ord_00340",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-04",
+  "status": "cancelled",
+  "subtotal_cents": 6608,
+  "discount_cents": 0,
+  "total_cents": 6608
+ },
+ {
+  "order_id": "ord_00505",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-04",
+  "status": "refunded",
+  "subtotal_cents": 5597,
+  "discount_cents": 1000,
+  "total_cents": 4597
+ },
+ {
+  "order_id": "ord_00543",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-04",
+  "status": "refunded",
+  "subtotal_cents": 5352,
+  "discount_cents": 0,
+  "total_cents": 5352
+ },
+ {
+  "order_id": "ord_00653",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-04",
+  "status": "fulfilled",
+  "subtotal_cents": 3291,
+  "discount_cents": 300,
+  "total_cents": 2991
+ },
+ {
+  "order_id": "ord_00654",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-04",
+  "status": "fulfilled",
+  "subtotal_cents": 5676,
+  "discount_cents": 300,
+  "total_cents": 5376
+ },
+ {
+  "order_id": "ord_00757",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-04",
+  "status": "fulfilled",
+  "subtotal_cents": 4579,
+  "discount_cents": 500,
+  "total_cents": 4079
+ },
+ {
+  "order_id": "ord_00780",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-09-04",
+  "status": "refunded",
+  "subtotal_cents": 8571,
+  "discount_cents": 0,
+  "total_cents": 8571
+ },
+ {
+  "order_id": "ord_00158",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-05",
+  "status": "cancelled",
+  "subtotal_cents": 8407,
+  "discount_cents": 1000,
+  "total_cents": 7407
+ },
+ {
+  "order_id": "ord_00185",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-09-05",
+  "status": "fulfilled",
+  "subtotal_cents": 6781,
+  "discount_cents": 0,
+  "total_cents": 6781
+ },
+ {
+  "order_id": "ord_00245",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-09-05",
+  "status": "fulfilled",
+  "subtotal_cents": 8012,
+  "discount_cents": 0,
+  "total_cents": 8012
+ },
+ {
+  "order_id": "ord_00410",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-09-05",
+  "status": "refunded",
+  "subtotal_cents": 8691,
+  "discount_cents": 300,
+  "total_cents": 8391
+ },
+ {
+  "order_id": "ord_00484",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-05",
+  "status": "fulfilled",
+  "subtotal_cents": 9274,
+  "discount_cents": 1000,
+  "total_cents": 8274
+ },
+ {
+  "order_id": "ord_00571",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-05",
+  "status": "fulfilled",
+  "subtotal_cents": 8316,
+  "discount_cents": 500,
+  "total_cents": 7816
+ },
+ {
+  "order_id": "ord_00572",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-05",
+  "status": "fulfilled",
+  "subtotal_cents": 3934,
+  "discount_cents": 300,
+  "total_cents": 3634
+ },
+ {
+  "order_id": "ord_00001",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 5542,
+  "discount_cents": 500,
+  "total_cents": 5042
+ },
+ {
+  "order_id": "ord_00060",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 7317,
+  "discount_cents": 0,
+  "total_cents": 7317
+ },
+ {
+  "order_id": "ord_00061",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 6219,
+  "discount_cents": 1000,
+  "total_cents": 5219
+ },
+ {
+  "order_id": "ord_00159",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 2785,
+  "discount_cents": 0,
+  "total_cents": 2785
+ },
+ {
+  "order_id": "ord_00246",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 8710,
+  "discount_cents": 0,
+  "total_cents": 8710
+ },
+ {
+  "order_id": "ord_00316",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 8981,
+  "discount_cents": 300,
+  "total_cents": 8681
+ },
+ {
+  "order_id": "ord_00341",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 6954,
+  "discount_cents": 0,
+  "total_cents": 6954
+ },
+ {
+  "order_id": "ord_00372",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 4013,
+  "discount_cents": 0,
+  "total_cents": 4013
+ },
+ {
+  "order_id": "ord_00676",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 7609,
+  "discount_cents": 0,
+  "total_cents": 7609
+ },
+ {
+  "order_id": "ord_00677",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-06",
+  "status": "fulfilled",
+  "subtotal_cents": 9514,
+  "discount_cents": 0,
+  "total_cents": 9514
+ },
+ {
+  "order_id": "ord_00024",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 3318,
+  "discount_cents": 1000,
+  "total_cents": 2318
+ },
+ {
+  "order_id": "ord_00090",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-09-07",
+  "status": "refunded",
+  "subtotal_cents": 3142,
+  "discount_cents": 500,
+  "total_cents": 2642
+ },
+ {
+  "order_id": "ord_00102",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 7931,
+  "discount_cents": 0,
+  "total_cents": 7931
+ },
+ {
+  "order_id": "ord_00117",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 7324,
+  "discount_cents": 300,
+  "total_cents": 7024
+ },
+ {
+  "order_id": "ord_00241",
+  "customer_id": "cus_2213",
+  "placed_on": "2025-09-07",
+  "status": "cancelled",
+  "subtotal_cents": 6290,
+  "discount_cents": 500,
+  "total_cents": 5790
+ },
+ {
+  "order_id": "ord_00317",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 9096,
+  "discount_cents": 300,
+  "total_cents": 8796
+ },
+ {
+  "order_id": "ord_00342",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 7594,
+  "discount_cents": 300,
+  "total_cents": 7294
+ },
+ {
+  "order_id": "ord_00343",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 7409,
+  "discount_cents": 300,
+  "total_cents": 7109
+ },
+ {
+  "order_id": "ord_00373",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 6406,
+  "discount_cents": 1000,
+  "total_cents": 5406
+ },
+ {
+  "order_id": "ord_00411",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 9669,
+  "discount_cents": 0,
+  "total_cents": 9669
+ },
+ {
+  "order_id": "ord_00506",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 8640,
+  "discount_cents": 0,
+  "total_cents": 8640
+ },
+ {
+  "order_id": "ord_00655",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-07",
+  "status": "refunded",
+  "subtotal_cents": 4542,
+  "discount_cents": 0,
+  "total_cents": 4542
+ },
+ {
+  "order_id": "ord_00678",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 3261,
+  "discount_cents": 0,
+  "total_cents": 3261
+ },
+ {
+  "order_id": "ord_00728",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 9456,
+  "discount_cents": 500,
+  "total_cents": 8956
+ },
+ {
+  "order_id": "ord_00758",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-07",
+  "status": "fulfilled",
+  "subtotal_cents": 8124,
+  "discount_cents": 0,
+  "total_cents": 8124
+ },
+ {
+  "order_id": "ord_00025",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-08",
+  "status": "fulfilled",
+  "subtotal_cents": 8512,
+  "discount_cents": 1000,
+  "total_cents": 7512
+ },
+ {
+  "order_id": "ord_00132",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-09-08",
+  "status": "fulfilled",
+  "subtotal_cents": 8089,
+  "discount_cents": 500,
+  "total_cents": 7589
+ },
+ {
+  "order_id": "ord_00247",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-09-08",
+  "status": "fulfilled",
+  "subtotal_cents": 5730,
+  "discount_cents": 0,
+  "total_cents": 5730
+ },
+ {
+  "order_id": "ord_00292",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-09-08",
+  "status": "fulfilled",
+  "subtotal_cents": 9282,
+  "discount_cents": 0,
+  "total_cents": 9282
+ },
+ {
+  "order_id": "ord_00293",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-09-08",
+  "status": "fulfilled",
+  "subtotal_cents": 9653,
+  "discount_cents": 0,
+  "total_cents": 9653
+ },
+ {
+  "order_id": "ord_00507",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-08",
+  "status": "cancelled",
+  "subtotal_cents": 8422,
+  "discount_cents": 500,
+  "total_cents": 7922
+ },
+ {
+  "order_id": "ord_00528",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-09-08",
+  "status": "fulfilled",
+  "subtotal_cents": 8048,
+  "discount_cents": 0,
+  "total_cents": 8048
+ },
+ {
+  "order_id": "ord_00679",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-08",
+  "status": "refunded",
+  "subtotal_cents": 3863,
+  "discount_cents": 0,
+  "total_cents": 3863
+ },
+ {
+  "order_id": "ord_00002",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-09",
+  "status": "cancelled",
+  "subtotal_cents": 9481,
+  "discount_cents": 300,
+  "total_cents": 9181
+ },
+ {
+  "order_id": "ord_00062",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 3392,
+  "discount_cents": 0,
+  "total_cents": 3392
+ },
+ {
+  "order_id": "ord_00103",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 9409,
+  "discount_cents": 1000,
+  "total_cents": 8409
+ },
+ {
+  "order_id": "ord_00203",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 9590,
+  "discount_cents": 300,
+  "total_cents": 9290
+ },
+ {
+  "order_id": "ord_00318",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 7651,
+  "discount_cents": 300,
+  "total_cents": 7351
+ },
+ {
+  "order_id": "ord_00344",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 7992,
+  "discount_cents": 0,
+  "total_cents": 7992
+ },
+ {
+  "order_id": "ord_00451",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 3177,
+  "discount_cents": 500,
+  "total_cents": 2677
+ },
+ {
+  "order_id": "ord_00485",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 4853,
+  "discount_cents": 500,
+  "total_cents": 4353
+ },
+ {
+  "order_id": "ord_00508",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 5406,
+  "discount_cents": 0,
+  "total_cents": 5406
+ },
+ {
+  "order_id": "ord_00656",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 5061,
+  "discount_cents": 0,
+  "total_cents": 5061
+ },
+ {
+  "order_id": "ord_00759",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 3142,
+  "discount_cents": 0,
+  "total_cents": 3142
+ },
+ {
+  "order_id": "ord_00793",
+  "customer_id": "cus_2240",
+  "placed_on": "2025-09-09",
+  "status": "fulfilled",
+  "subtotal_cents": 6554,
+  "discount_cents": 0,
+  "total_cents": 6554
+ },
+ {
+  "order_id": "ord_00003",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 9145,
+  "discount_cents": 0,
+  "total_cents": 9145
+ },
+ {
+  "order_id": "ord_00063",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-10",
+  "status": "refunded",
+  "subtotal_cents": 4775,
+  "discount_cents": 300,
+  "total_cents": 4475
+ },
+ {
+  "order_id": "ord_00118",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 6067,
+  "discount_cents": 500,
+  "total_cents": 5567
+ },
+ {
+  "order_id": "ord_00133",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 8880,
+  "discount_cents": 300,
+  "total_cents": 8580
+ },
+ {
+  "order_id": "ord_00160",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 4525,
+  "discount_cents": 300,
+  "total_cents": 4225
+ },
+ {
+  "order_id": "ord_00161",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-10",
+  "status": "cancelled",
+  "subtotal_cents": 3897,
+  "discount_cents": 500,
+  "total_cents": 3397
+ },
+ {
+  "order_id": "ord_00186",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 9196,
+  "discount_cents": 1000,
+  "total_cents": 8196
+ },
+ {
+  "order_id": "ord_00204",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 6893,
+  "discount_cents": 0,
+  "total_cents": 6893
+ },
+ {
+  "order_id": "ord_00248",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 7085,
+  "discount_cents": 500,
+  "total_cents": 6585
+ },
+ {
+  "order_id": "ord_00294",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 6388,
+  "discount_cents": 300,
+  "total_cents": 6088
+ },
+ {
+  "order_id": "ord_00374",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 3986,
+  "discount_cents": 0,
+  "total_cents": 3986
+ },
+ {
+  "order_id": "ord_00412",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-09-10",
+  "status": "refunded",
+  "subtotal_cents": 7859,
+  "discount_cents": 0,
+  "total_cents": 7859
+ },
+ {
+  "order_id": "ord_00439",
+  "customer_id": "cus_2222",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 8988,
+  "discount_cents": 0,
+  "total_cents": 8988
+ },
+ {
+  "order_id": "ord_00486",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-10",
+  "status": "refunded",
+  "subtotal_cents": 2970,
+  "discount_cents": 1000,
+  "total_cents": 1970
+ },
+ {
+  "order_id": "ord_00544",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 6443,
+  "discount_cents": 0,
+  "total_cents": 6443
+ },
+ {
+  "order_id": "ord_00573",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 9025,
+  "discount_cents": 500,
+  "total_cents": 8525
+ },
+ {
+  "order_id": "ord_00574",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 6650,
+  "discount_cents": 300,
+  "total_cents": 6350
+ },
+ {
+  "order_id": "ord_00637",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 2683,
+  "discount_cents": 500,
+  "total_cents": 2183
+ },
+ {
+  "order_id": "ord_00729",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 4562,
+  "discount_cents": 0,
+  "total_cents": 4562
+ },
+ {
+  "order_id": "ord_00760",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 5109,
+  "discount_cents": 1000,
+  "total_cents": 4109
+ },
+ {
+  "order_id": "ord_00781",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-09-10",
+  "status": "fulfilled",
+  "subtotal_cents": 9469,
+  "discount_cents": 300,
+  "total_cents": 9169
+ },
+ {
+  "order_id": "ord_00026",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-11",
+  "status": "refunded",
+  "subtotal_cents": 5163,
+  "discount_cents": 1000,
+  "total_cents": 4163
+ },
+ {
+  "order_id": "ord_00064",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 2695,
+  "discount_cents": 0,
+  "total_cents": 2695
+ },
+ {
+  "order_id": "ord_00162",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 8483,
+  "discount_cents": 300,
+  "total_cents": 8183
+ },
+ {
+  "order_id": "ord_00187",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 3356,
+  "discount_cents": 0,
+  "total_cents": 3356
+ },
+ {
+  "order_id": "ord_00221",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 9224,
+  "discount_cents": 0,
+  "total_cents": 9224
+ },
+ {
+  "order_id": "ord_00222",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 8919,
+  "discount_cents": 0,
+  "total_cents": 8919
+ },
+ {
+  "order_id": "ord_00295",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 9351,
+  "discount_cents": 500,
+  "total_cents": 8851
+ },
+ {
+  "order_id": "ord_00375",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 6114,
+  "discount_cents": 0,
+  "total_cents": 6114
+ },
+ {
+  "order_id": "ord_00452",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 7682,
+  "discount_cents": 1000,
+  "total_cents": 6682
+ },
+ {
+  "order_id": "ord_00509",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 3525,
+  "discount_cents": 1000,
+  "total_cents": 2525
+ },
+ {
+  "order_id": "ord_00607",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 9164,
+  "discount_cents": 1000,
+  "total_cents": 8164
+ },
+ {
+  "order_id": "ord_00657",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 2469,
+  "discount_cents": 500,
+  "total_cents": 1969
+ },
+ {
+  "order_id": "ord_00730",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 3807,
+  "discount_cents": 500,
+  "total_cents": 3307
+ },
+ {
+  "order_id": "ord_00731",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-11",
+  "status": "fulfilled",
+  "subtotal_cents": 2764,
+  "discount_cents": 1000,
+  "total_cents": 1764
+ },
+ {
+  "order_id": "ord_00004",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-12",
+  "status": "refunded",
+  "subtotal_cents": 3126,
+  "discount_cents": 0,
+  "total_cents": 3126
+ },
+ {
+  "order_id": "ord_00163",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 4401,
+  "discount_cents": 0,
+  "total_cents": 4401
+ },
+ {
+  "order_id": "ord_00223",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 2491,
+  "discount_cents": 0,
+  "total_cents": 2491
+ },
+ {
+  "order_id": "ord_00224",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-09-12",
+  "status": "refunded",
+  "subtotal_cents": 7815,
+  "discount_cents": 0,
+  "total_cents": 7815
+ },
+ {
+  "order_id": "ord_00319",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 6251,
+  "discount_cents": 1000,
+  "total_cents": 5251
+ },
+ {
+  "order_id": "ord_00320",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 8782,
+  "discount_cents": 0,
+  "total_cents": 8782
+ },
+ {
+  "order_id": "ord_00345",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 8030,
+  "discount_cents": 500,
+  "total_cents": 7530
+ },
+ {
+  "order_id": "ord_00376",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 6360,
+  "discount_cents": 1000,
+  "total_cents": 5360
+ },
+ {
+  "order_id": "ord_00575",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 4997,
+  "discount_cents": 0,
+  "total_cents": 4997
+ },
+ {
+  "order_id": "ord_00608",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 3314,
+  "discount_cents": 0,
+  "total_cents": 3314
+ },
+ {
+  "order_id": "ord_00711",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-09-12",
+  "status": "fulfilled",
+  "subtotal_cents": 9768,
+  "discount_cents": 0,
+  "total_cents": 9768
+ },
+ {
+  "order_id": "ord_00027",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 3266,
+  "discount_cents": 0,
+  "total_cents": 3266
+ },
+ {
+  "order_id": "ord_00188",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 4870,
+  "discount_cents": 0,
+  "total_cents": 4870
+ },
+ {
+  "order_id": "ord_00259",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 5588,
+  "discount_cents": 500,
+  "total_cents": 5088
+ },
+ {
+  "order_id": "ord_00260",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 9097,
+  "discount_cents": 0,
+  "total_cents": 9097
+ },
+ {
+  "order_id": "ord_00283",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 6463,
+  "discount_cents": 500,
+  "total_cents": 5963
+ },
+ {
+  "order_id": "ord_00346",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 6795,
+  "discount_cents": 0,
+  "total_cents": 6795
+ },
+ {
+  "order_id": "ord_00377",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 5450,
+  "discount_cents": 500,
+  "total_cents": 4950
+ },
+ {
+  "order_id": "ord_00609",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 8620,
+  "discount_cents": 0,
+  "total_cents": 8620
+ },
+ {
+  "order_id": "ord_00658",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 2587,
+  "discount_cents": 0,
+  "total_cents": 2587
+ },
+ {
+  "order_id": "ord_00659",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 4625,
+  "discount_cents": 1000,
+  "total_cents": 3625
+ },
+ {
+  "order_id": "ord_00761",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-13",
+  "status": "fulfilled",
+  "subtotal_cents": 3427,
+  "discount_cents": 0,
+  "total_cents": 3427
+ },
+ {
+  "order_id": "ord_00205",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-14",
+  "status": "fulfilled",
+  "subtotal_cents": 2577,
+  "discount_cents": 1000,
+  "total_cents": 1577
+ },
+ {
+  "order_id": "ord_00249",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-09-14",
+  "status": "refunded",
+  "subtotal_cents": 2720,
+  "discount_cents": 0,
+  "total_cents": 2720
+ },
+ {
+  "order_id": "ord_00321",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-14",
+  "status": "fulfilled",
+  "subtotal_cents": 2928,
+  "discount_cents": 0,
+  "total_cents": 2928
+ },
+ {
+  "order_id": "ord_00576",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-14",
+  "status": "fulfilled",
+  "subtotal_cents": 3639,
+  "discount_cents": 500,
+  "total_cents": 3139
+ },
+ {
+  "order_id": "ord_00660",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-14",
+  "status": "fulfilled",
+  "subtotal_cents": 6093,
+  "discount_cents": 0,
+  "total_cents": 6093
+ },
+ {
+  "order_id": "ord_00707",
+  "customer_id": "cus_2234",
+  "placed_on": "2025-09-14",
+  "status": "fulfilled",
+  "subtotal_cents": 6580,
+  "discount_cents": 0,
+  "total_cents": 6580
+ },
+ {
+  "order_id": "ord_00005",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-15",
+  "status": "fulfilled",
+  "subtotal_cents": 8111,
+  "discount_cents": 1000,
+  "total_cents": 7111
+ },
+ {
+  "order_id": "ord_00091",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-09-15",
+  "status": "fulfilled",
+  "subtotal_cents": 6568,
+  "discount_cents": 1000,
+  "total_cents": 5568
+ },
+ {
+  "order_id": "ord_00378",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-15",
+  "status": "fulfilled",
+  "subtotal_cents": 5562,
+  "discount_cents": 0,
+  "total_cents": 5562
+ },
+ {
+  "order_id": "ord_00379",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-15",
+  "status": "fulfilled",
+  "subtotal_cents": 2566,
+  "discount_cents": 0,
+  "total_cents": 2566
+ },
+ {
+  "order_id": "ord_00529",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-09-15",
+  "status": "fulfilled",
+  "subtotal_cents": 7339,
+  "discount_cents": 1000,
+  "total_cents": 6339
+ },
+ {
+  "order_id": "ord_00530",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-09-15",
+  "status": "cancelled",
+  "subtotal_cents": 8685,
+  "discount_cents": 300,
+  "total_cents": 8385
+ },
+ {
+  "order_id": "ord_00680",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-15",
+  "status": "fulfilled",
+  "subtotal_cents": 4876,
+  "discount_cents": 300,
+  "total_cents": 4576
+ },
+ {
+  "order_id": "ord_00006",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 8641,
+  "discount_cents": 0,
+  "total_cents": 8641
+ },
+ {
+  "order_id": "ord_00007",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 4478,
+  "discount_cents": 1000,
+  "total_cents": 3478
+ },
+ {
+  "order_id": "ord_00065",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 3832,
+  "discount_cents": 0,
+  "total_cents": 3832
+ },
+ {
+  "order_id": "ord_00092",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 9549,
+  "discount_cents": 0,
+  "total_cents": 9549
+ },
+ {
+  "order_id": "ord_00206",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 3716,
+  "discount_cents": 0,
+  "total_cents": 3716
+ },
+ {
+  "order_id": "ord_00296",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 9425,
+  "discount_cents": 500,
+  "total_cents": 8925
+ },
+ {
+  "order_id": "ord_00453",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 6800,
+  "discount_cents": 300,
+  "total_cents": 6500
+ },
+ {
+  "order_id": "ord_00454",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 7291,
+  "discount_cents": 500,
+  "total_cents": 6791
+ },
+ {
+  "order_id": "ord_00510",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 4937,
+  "discount_cents": 1000,
+  "total_cents": 3937
+ },
+ {
+  "order_id": "ord_00545",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 6733,
+  "discount_cents": 0,
+  "total_cents": 6733
+ },
+ {
+  "order_id": "ord_00577",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 9461,
+  "discount_cents": 0,
+  "total_cents": 9461
+ },
+ {
+  "order_id": "ord_00762",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-16",
+  "status": "fulfilled",
+  "subtotal_cents": 4652,
+  "discount_cents": 0,
+  "total_cents": 4652
+ },
+ {
+  "order_id": "ord_00028",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 9430,
+  "discount_cents": 0,
+  "total_cents": 9430
+ },
+ {
+  "order_id": "ord_00029",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-17",
+  "status": "refunded",
+  "subtotal_cents": 4135,
+  "discount_cents": 500,
+  "total_cents": 3635
+ },
+ {
+  "order_id": "ord_00066",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 4587,
+  "discount_cents": 0,
+  "total_cents": 4587
+ },
+ {
+  "order_id": "ord_00104",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 5670,
+  "discount_cents": 0,
+  "total_cents": 5670
+ },
+ {
+  "order_id": "ord_00261",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 3467,
+  "discount_cents": 1000,
+  "total_cents": 2467
+ },
+ {
+  "order_id": "ord_00297",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 4483,
+  "discount_cents": 500,
+  "total_cents": 3983
+ },
+ {
+  "order_id": "ord_00380",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-17",
+  "status": "refunded",
+  "subtotal_cents": 5223,
+  "discount_cents": 0,
+  "total_cents": 5223
+ },
+ {
+  "order_id": "ord_00546",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-17",
+  "status": "refunded",
+  "subtotal_cents": 9513,
+  "discount_cents": 300,
+  "total_cents": 9213
+ },
+ {
+  "order_id": "ord_00578",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 4059,
+  "discount_cents": 500,
+  "total_cents": 3559
+ },
+ {
+  "order_id": "ord_00579",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 4022,
+  "discount_cents": 500,
+  "total_cents": 3522
+ },
+ {
+  "order_id": "ord_00610",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 2954,
+  "discount_cents": 1000,
+  "total_cents": 1954
+ },
+ {
+  "order_id": "ord_00681",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-17",
+  "status": "fulfilled",
+  "subtotal_cents": 3957,
+  "discount_cents": 0,
+  "total_cents": 3957
+ },
+ {
+  "order_id": "ord_00067",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-18",
+  "status": "fulfilled",
+  "subtotal_cents": 6629,
+  "discount_cents": 0,
+  "total_cents": 6629
+ },
+ {
+  "order_id": "ord_00119",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-09-18",
+  "status": "fulfilled",
+  "subtotal_cents": 6930,
+  "discount_cents": 0,
+  "total_cents": 6930
+ },
+ {
+  "order_id": "ord_00189",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-09-18",
+  "status": "fulfilled",
+  "subtotal_cents": 7406,
+  "discount_cents": 300,
+  "total_cents": 7106
+ },
+ {
+  "order_id": "ord_00347",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-18",
+  "status": "fulfilled",
+  "subtotal_cents": 6582,
+  "discount_cents": 0,
+  "total_cents": 6582
+ },
+ {
+  "order_id": "ord_00455",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-18",
+  "status": "fulfilled",
+  "subtotal_cents": 2636,
+  "discount_cents": 0,
+  "total_cents": 2636
+ },
+ {
+  "order_id": "ord_00638",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-09-18",
+  "status": "refunded",
+  "subtotal_cents": 3271,
+  "discount_cents": 0,
+  "total_cents": 3271
+ },
+ {
+  "order_id": "ord_00763",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-09-18",
+  "status": "fulfilled",
+  "subtotal_cents": 4155,
+  "discount_cents": 0,
+  "total_cents": 4155
+ },
+ {
+  "order_id": "ord_00030",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-19",
+  "status": "fulfilled",
+  "subtotal_cents": 9107,
+  "discount_cents": 500,
+  "total_cents": 8607
+ },
+ {
+  "order_id": "ord_00031",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-19",
+  "status": "fulfilled",
+  "subtotal_cents": 6688,
+  "discount_cents": 0,
+  "total_cents": 6688
+ },
+ {
+  "order_id": "ord_00068",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-19",
+  "status": "fulfilled",
+  "subtotal_cents": 3435,
+  "discount_cents": 1000,
+  "total_cents": 2435
+ },
+ {
+  "order_id": "ord_00225",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-09-19",
+  "status": "fulfilled",
+  "subtotal_cents": 9224,
+  "discount_cents": 1000,
+  "total_cents": 8224
+ },
+ {
+  "order_id": "ord_00580",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-19",
+  "status": "fulfilled",
+  "subtotal_cents": 9197,
+  "discount_cents": 500,
+  "total_cents": 8697
+ },
+ {
+  "order_id": "ord_00732",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-19",
+  "status": "fulfilled",
+  "subtotal_cents": 3532,
+  "discount_cents": 500,
+  "total_cents": 3032
+ },
+ {
+  "order_id": "ord_00008",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-20",
+  "status": "fulfilled",
+  "subtotal_cents": 7306,
+  "discount_cents": 0,
+  "total_cents": 7306
+ },
+ {
+  "order_id": "ord_00381",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-20",
+  "status": "fulfilled",
+  "subtotal_cents": 6668,
+  "discount_cents": 0,
+  "total_cents": 6668
+ },
+ {
+  "order_id": "ord_00511",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-20",
+  "status": "fulfilled",
+  "subtotal_cents": 2601,
+  "discount_cents": 0,
+  "total_cents": 2601
+ },
+ {
+  "order_id": "ord_00661",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-20",
+  "status": "fulfilled",
+  "subtotal_cents": 2971,
+  "discount_cents": 0,
+  "total_cents": 2971
+ },
+ {
+  "order_id": "ord_00733",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-20",
+  "status": "fulfilled",
+  "subtotal_cents": 6474,
+  "discount_cents": 0,
+  "total_cents": 6474
+ },
+ {
+  "order_id": "ord_00782",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-09-20",
+  "status": "fulfilled",
+  "subtotal_cents": 6561,
+  "discount_cents": 0,
+  "total_cents": 6561
+ },
+ {
+  "order_id": "ord_00783",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-09-20",
+  "status": "fulfilled",
+  "subtotal_cents": 3132,
+  "discount_cents": 1000,
+  "total_cents": 2132
+ },
+ {
+  "order_id": "ord_00164",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 5032,
+  "discount_cents": 0,
+  "total_cents": 5032
+ },
+ {
+  "order_id": "ord_00226",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 5119,
+  "discount_cents": 300,
+  "total_cents": 4819
+ },
+ {
+  "order_id": "ord_00227",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 7962,
+  "discount_cents": 0,
+  "total_cents": 7962
+ },
+ {
+  "order_id": "ord_00298",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 4189,
+  "discount_cents": 500,
+  "total_cents": 3689
+ },
+ {
+  "order_id": "ord_00413",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 6023,
+  "discount_cents": 300,
+  "total_cents": 5723
+ },
+ {
+  "order_id": "ord_00487",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 5785,
+  "discount_cents": 0,
+  "total_cents": 5785
+ },
+ {
+  "order_id": "ord_00611",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-21",
+  "status": "cancelled",
+  "subtotal_cents": 6365,
+  "discount_cents": 0,
+  "total_cents": 6365
+ },
+ {
+  "order_id": "ord_00612",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 5459,
+  "discount_cents": 0,
+  "total_cents": 5459
+ },
+ {
+  "order_id": "ord_00682",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 4903,
+  "discount_cents": 500,
+  "total_cents": 4403
+ },
+ {
+  "order_id": "ord_00734",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 5064,
+  "discount_cents": 0,
+  "total_cents": 5064
+ },
+ {
+  "order_id": "ord_00735",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-21",
+  "status": "fulfilled",
+  "subtotal_cents": 2996,
+  "discount_cents": 0,
+  "total_cents": 2996
+ },
+ {
+  "order_id": "ord_00456",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-22",
+  "status": "cancelled",
+  "subtotal_cents": 5048,
+  "discount_cents": 500,
+  "total_cents": 4548
+ },
+ {
+  "order_id": "ord_00794",
+  "customer_id": "cus_2240",
+  "placed_on": "2025-09-22",
+  "status": "fulfilled",
+  "subtotal_cents": 3865,
+  "discount_cents": 0,
+  "total_cents": 3865
+ },
+ {
+  "order_id": "ord_00009",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-23",
+  "status": "fulfilled",
+  "subtotal_cents": 9259,
+  "discount_cents": 300,
+  "total_cents": 8959
+ },
+ {
+  "order_id": "ord_00010",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-09-23",
+  "status": "fulfilled",
+  "subtotal_cents": 4971,
+  "discount_cents": 0,
+  "total_cents": 4971
+ },
+ {
+  "order_id": "ord_00032",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-23",
+  "status": "refunded",
+  "subtotal_cents": 5012,
+  "discount_cents": 0,
+  "total_cents": 5012
+ },
+ {
+  "order_id": "ord_00033",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-23",
+  "status": "cancelled",
+  "subtotal_cents": 3419,
+  "discount_cents": 0,
+  "total_cents": 3419
+ },
+ {
+  "order_id": "ord_00250",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-09-23",
+  "status": "fulfilled",
+  "subtotal_cents": 3264,
+  "discount_cents": 300,
+  "total_cents": 2964
+ },
+ {
+  "order_id": "ord_00457",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-23",
+  "status": "cancelled",
+  "subtotal_cents": 5039,
+  "discount_cents": 500,
+  "total_cents": 4539
+ },
+ {
+  "order_id": "ord_00512",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-23",
+  "status": "refunded",
+  "subtotal_cents": 4798,
+  "discount_cents": 1000,
+  "total_cents": 3798
+ },
+ {
+  "order_id": "ord_00683",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-23",
+  "status": "fulfilled",
+  "subtotal_cents": 4600,
+  "discount_cents": 500,
+  "total_cents": 4100
+ },
+ {
+  "order_id": "ord_00684",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-23",
+  "status": "cancelled",
+  "subtotal_cents": 5604,
+  "discount_cents": 0,
+  "total_cents": 5604
+ },
+ {
+  "order_id": "ord_00165",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-24",
+  "status": "fulfilled",
+  "subtotal_cents": 4380,
+  "discount_cents": 0,
+  "total_cents": 4380
+ },
+ {
+  "order_id": "ord_00322",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-24",
+  "status": "fulfilled",
+  "subtotal_cents": 7503,
+  "discount_cents": 0,
+  "total_cents": 7503
+ },
+ {
+  "order_id": "ord_00348",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-24",
+  "status": "fulfilled",
+  "subtotal_cents": 4583,
+  "discount_cents": 300,
+  "total_cents": 4283
+ },
+ {
+  "order_id": "ord_00382",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-24",
+  "status": "fulfilled",
+  "subtotal_cents": 7959,
+  "discount_cents": 0,
+  "total_cents": 7959
+ },
+ {
+  "order_id": "ord_00488",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-24",
+  "status": "fulfilled",
+  "subtotal_cents": 2845,
+  "discount_cents": 0,
+  "total_cents": 2845
+ },
+ {
+  "order_id": "ord_00513",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-24",
+  "status": "fulfilled",
+  "subtotal_cents": 6580,
+  "discount_cents": 0,
+  "total_cents": 6580
+ },
+ {
+  "order_id": "ord_00547",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-24",
+  "status": "fulfilled",
+  "subtotal_cents": 9065,
+  "discount_cents": 500,
+  "total_cents": 8565
+ },
+ {
+  "order_id": "ord_00685",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-24",
+  "status": "cancelled",
+  "subtotal_cents": 3170,
+  "discount_cents": 0,
+  "total_cents": 3170
+ },
+ {
+  "order_id": "ord_00034",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 7566,
+  "discount_cents": 500,
+  "total_cents": 7066
+ },
+ {
+  "order_id": "ord_00035",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 3758,
+  "discount_cents": 0,
+  "total_cents": 3758
+ },
+ {
+  "order_id": "ord_00069",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 5006,
+  "discount_cents": 0,
+  "total_cents": 5006
+ },
+ {
+  "order_id": "ord_00166",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 6396,
+  "discount_cents": 500,
+  "total_cents": 5896
+ },
+ {
+  "order_id": "ord_00262",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 3552,
+  "discount_cents": 0,
+  "total_cents": 3552
+ },
+ {
+  "order_id": "ord_00263",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 3519,
+  "discount_cents": 500,
+  "total_cents": 3019
+ },
+ {
+  "order_id": "ord_00383",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 9034,
+  "discount_cents": 0,
+  "total_cents": 9034
+ },
+ {
+  "order_id": "ord_00440",
+  "customer_id": "cus_2222",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 4211,
+  "discount_cents": 0,
+  "total_cents": 4211
+ },
+ {
+  "order_id": "ord_00548",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 4748,
+  "discount_cents": 0,
+  "total_cents": 4748
+ },
+ {
+  "order_id": "ord_00549",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 3404,
+  "discount_cents": 0,
+  "total_cents": 3404
+ },
+ {
+  "order_id": "ord_00712",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-09-25",
+  "status": "fulfilled",
+  "subtotal_cents": 7084,
+  "discount_cents": 300,
+  "total_cents": 6784
+ },
+ {
+  "order_id": "ord_00713",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-09-25",
+  "status": "refunded",
+  "subtotal_cents": 9595,
+  "discount_cents": 500,
+  "total_cents": 9095
+ },
+ {
+  "order_id": "ord_00736",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-09-25",
+  "status": "cancelled",
+  "subtotal_cents": 9778,
+  "discount_cents": 0,
+  "total_cents": 9778
+ },
+ {
+  "order_id": "ord_00167",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-26",
+  "status": "fulfilled",
+  "subtotal_cents": 8535,
+  "discount_cents": 1000,
+  "total_cents": 7535
+ },
+ {
+  "order_id": "ord_00207",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-26",
+  "status": "fulfilled",
+  "subtotal_cents": 7422,
+  "discount_cents": 1000,
+  "total_cents": 6422
+ },
+ {
+  "order_id": "ord_00251",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-09-26",
+  "status": "refunded",
+  "subtotal_cents": 4845,
+  "discount_cents": 0,
+  "total_cents": 4845
+ },
+ {
+  "order_id": "ord_00323",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-09-26",
+  "status": "fulfilled",
+  "subtotal_cents": 7171,
+  "discount_cents": 0,
+  "total_cents": 7171
+ },
+ {
+  "order_id": "ord_00384",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-26",
+  "status": "fulfilled",
+  "subtotal_cents": 4019,
+  "discount_cents": 0,
+  "total_cents": 4019
+ },
+ {
+  "order_id": "ord_00414",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-09-26",
+  "status": "fulfilled",
+  "subtotal_cents": 2614,
+  "discount_cents": 500,
+  "total_cents": 2114
+ },
+ {
+  "order_id": "ord_00458",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-26",
+  "status": "cancelled",
+  "subtotal_cents": 6807,
+  "discount_cents": 500,
+  "total_cents": 6307
+ },
+ {
+  "order_id": "ord_00686",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-26",
+  "status": "fulfilled",
+  "subtotal_cents": 7269,
+  "discount_cents": 0,
+  "total_cents": 7269
+ },
+ {
+  "order_id": "ord_00070",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-27",
+  "status": "fulfilled",
+  "subtotal_cents": 9196,
+  "discount_cents": 0,
+  "total_cents": 9196
+ },
+ {
+  "order_id": "ord_00120",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-09-27",
+  "status": "fulfilled",
+  "subtotal_cents": 4488,
+  "discount_cents": 0,
+  "total_cents": 4488
+ },
+ {
+  "order_id": "ord_00168",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-27",
+  "status": "fulfilled",
+  "subtotal_cents": 3715,
+  "discount_cents": 300,
+  "total_cents": 3415
+ },
+ {
+  "order_id": "ord_00385",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-27",
+  "status": "fulfilled",
+  "subtotal_cents": 8332,
+  "discount_cents": 1000,
+  "total_cents": 7332
+ },
+ {
+  "order_id": "ord_00459",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-27",
+  "status": "fulfilled",
+  "subtotal_cents": 5051,
+  "discount_cents": 0,
+  "total_cents": 5051
+ },
+ {
+  "order_id": "ord_00460",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-09-27",
+  "status": "fulfilled",
+  "subtotal_cents": 7571,
+  "discount_cents": 0,
+  "total_cents": 7571
+ },
+ {
+  "order_id": "ord_00036",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 4687,
+  "discount_cents": 1000,
+  "total_cents": 3687
+ },
+ {
+  "order_id": "ord_00037",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 7979,
+  "discount_cents": 500,
+  "total_cents": 7479
+ },
+ {
+  "order_id": "ord_00071",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8813,
+  "discount_cents": 0,
+  "total_cents": 8813
+ },
+ {
+  "order_id": "ord_00264",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8774,
+  "discount_cents": 300,
+  "total_cents": 8474
+ },
+ {
+  "order_id": "ord_00489",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 7421,
+  "discount_cents": 500,
+  "total_cents": 6921
+ },
+ {
+  "order_id": "ord_00581",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 7986,
+  "discount_cents": 1000,
+  "total_cents": 6986
+ },
+ {
+  "order_id": "ord_00613",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 4641,
+  "discount_cents": 0,
+  "total_cents": 4641
+ },
+ {
+  "order_id": "ord_00687",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 2721,
+  "discount_cents": 300,
+  "total_cents": 2421
+ },
+ {
+  "order_id": "ord_00688",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 3846,
+  "discount_cents": 300,
+  "total_cents": 3546
+ },
+ {
+  "order_id": "ord_00714",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 7329,
+  "discount_cents": 300,
+  "total_cents": 7029
+ },
+ {
+  "order_id": "ord_00715",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-09-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8189,
+  "discount_cents": 0,
+  "total_cents": 8189
+ },
+ {
+  "order_id": "ord_00134",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-09-29",
+  "status": "fulfilled",
+  "subtotal_cents": 7437,
+  "discount_cents": 500,
+  "total_cents": 6937
+ },
+ {
+  "order_id": "ord_00514",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-09-29",
+  "status": "refunded",
+  "subtotal_cents": 5579,
+  "discount_cents": 0,
+  "total_cents": 5579
+ },
+ {
+  "order_id": "ord_00582",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-29",
+  "status": "fulfilled",
+  "subtotal_cents": 3646,
+  "discount_cents": 300,
+  "total_cents": 3346
+ },
+ {
+  "order_id": "ord_00662",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-29",
+  "status": "fulfilled",
+  "subtotal_cents": 3740,
+  "discount_cents": 0,
+  "total_cents": 3740
+ },
+ {
+  "order_id": "ord_00663",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-09-29",
+  "status": "fulfilled",
+  "subtotal_cents": 5755,
+  "discount_cents": 0,
+  "total_cents": 5755
+ },
+ {
+  "order_id": "ord_00135",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 9441,
+  "discount_cents": 500,
+  "total_cents": 8941
+ },
+ {
+  "order_id": "ord_00169",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 5312,
+  "discount_cents": 0,
+  "total_cents": 5312
+ },
+ {
+  "order_id": "ord_00190",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 2710,
+  "discount_cents": 300,
+  "total_cents": 2410
+ },
+ {
+  "order_id": "ord_00208",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 6564,
+  "discount_cents": 500,
+  "total_cents": 6064
+ },
+ {
+  "order_id": "ord_00209",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 5054,
+  "discount_cents": 0,
+  "total_cents": 5054
+ },
+ {
+  "order_id": "ord_00265",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-30",
+  "status": "cancelled",
+  "subtotal_cents": 8087,
+  "discount_cents": 0,
+  "total_cents": 8087
+ },
+ {
+  "order_id": "ord_00266",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-09-30",
+  "status": "cancelled",
+  "subtotal_cents": 5565,
+  "discount_cents": 1000,
+  "total_cents": 4565
+ },
+ {
+  "order_id": "ord_00349",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 7436,
+  "discount_cents": 500,
+  "total_cents": 6936
+ },
+ {
+  "order_id": "ord_00350",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 3829,
+  "discount_cents": 1000,
+  "total_cents": 2829
+ },
+ {
+  "order_id": "ord_00386",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 6241,
+  "discount_cents": 0,
+  "total_cents": 6241
+ },
+ {
+  "order_id": "ord_00387",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 7074,
+  "discount_cents": 0,
+  "total_cents": 7074
+ },
+ {
+  "order_id": "ord_00415",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 8874,
+  "discount_cents": 500,
+  "total_cents": 8374
+ },
+ {
+  "order_id": "ord_00583",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-09-30",
+  "status": "refunded",
+  "subtotal_cents": 8875,
+  "discount_cents": 500,
+  "total_cents": 8375
+ },
+ {
+  "order_id": "ord_00614",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 5074,
+  "discount_cents": 1000,
+  "total_cents": 4074
+ },
+ {
+  "order_id": "ord_00689",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-09-30",
+  "status": "fulfilled",
+  "subtotal_cents": 3001,
+  "discount_cents": 0,
+  "total_cents": 3001
+ },
+ {
+  "order_id": "ord_00038",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 3359,
+  "discount_cents": 0,
+  "total_cents": 3359
+ },
+ {
+  "order_id": "ord_00039",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 8369,
+  "discount_cents": 0,
+  "total_cents": 8369
+ },
+ {
+  "order_id": "ord_00121",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 3298,
+  "discount_cents": 300,
+  "total_cents": 2998
+ },
+ {
+  "order_id": "ord_00228",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 8943,
+  "discount_cents": 1000,
+  "total_cents": 7943
+ },
+ {
+  "order_id": "ord_00242",
+  "customer_id": "cus_2213",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 6109,
+  "discount_cents": 500,
+  "total_cents": 5609
+ },
+ {
+  "order_id": "ord_00388",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 9616,
+  "discount_cents": 300,
+  "total_cents": 9316
+ },
+ {
+  "order_id": "ord_00389",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 8355,
+  "discount_cents": 300,
+  "total_cents": 8055
+ },
+ {
+  "order_id": "ord_00531",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 5224,
+  "discount_cents": 0,
+  "total_cents": 5224
+ },
+ {
+  "order_id": "ord_00584",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-01",
+  "status": "refunded",
+  "subtotal_cents": 5779,
+  "discount_cents": 0,
+  "total_cents": 5779
+ },
+ {
+  "order_id": "ord_00737",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-01",
+  "status": "fulfilled",
+  "subtotal_cents": 6941,
+  "discount_cents": 0,
+  "total_cents": 6941
+ },
+ {
+  "order_id": "ord_00181",
+  "customer_id": "cus_2209",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 5854,
+  "discount_cents": 1000,
+  "total_cents": 4854
+ },
+ {
+  "order_id": "ord_00191",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 2692,
+  "discount_cents": 500,
+  "total_cents": 2192
+ },
+ {
+  "order_id": "ord_00252",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 2789,
+  "discount_cents": 1000,
+  "total_cents": 1789
+ },
+ {
+  "order_id": "ord_00299",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 3442,
+  "discount_cents": 500,
+  "total_cents": 2942
+ },
+ {
+  "order_id": "ord_00324",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 4378,
+  "discount_cents": 0,
+  "total_cents": 4378
+ },
+ {
+  "order_id": "ord_00390",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 2845,
+  "discount_cents": 0,
+  "total_cents": 2845
+ },
+ {
+  "order_id": "ord_00416",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 6365,
+  "discount_cents": 500,
+  "total_cents": 5865
+ },
+ {
+  "order_id": "ord_00515",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 4078,
+  "discount_cents": 0,
+  "total_cents": 4078
+ },
+ {
+  "order_id": "ord_00550",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 6135,
+  "discount_cents": 0,
+  "total_cents": 6135
+ },
+ {
+  "order_id": "ord_00615",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 3529,
+  "discount_cents": 500,
+  "total_cents": 3029
+ },
+ {
+  "order_id": "ord_00716",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-10-02",
+  "status": "fulfilled",
+  "subtotal_cents": 5465,
+  "discount_cents": 1000,
+  "total_cents": 4465
+ },
+ {
+  "order_id": "ord_00072",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-03",
+  "status": "fulfilled",
+  "subtotal_cents": 4178,
+  "discount_cents": 0,
+  "total_cents": 4178
+ },
+ {
+  "order_id": "ord_00136",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-03",
+  "status": "cancelled",
+  "subtotal_cents": 3974,
+  "discount_cents": 0,
+  "total_cents": 3974
+ },
+ {
+  "order_id": "ord_00137",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-03",
+  "status": "fulfilled",
+  "subtotal_cents": 7046,
+  "discount_cents": 300,
+  "total_cents": 6746
+ },
+ {
+  "order_id": "ord_00170",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-03",
+  "status": "cancelled",
+  "subtotal_cents": 4285,
+  "discount_cents": 0,
+  "total_cents": 4285
+ },
+ {
+  "order_id": "ord_00616",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-03",
+  "status": "fulfilled",
+  "subtotal_cents": 6752,
+  "discount_cents": 300,
+  "total_cents": 6452
+ },
+ {
+  "order_id": "ord_00690",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-03",
+  "status": "fulfilled",
+  "subtotal_cents": 6070,
+  "discount_cents": 300,
+  "total_cents": 5770
+ },
+ {
+  "order_id": "ord_00210",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 5577,
+  "discount_cents": 500,
+  "total_cents": 5077
+ },
+ {
+  "order_id": "ord_00211",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 8484,
+  "discount_cents": 0,
+  "total_cents": 8484
+ },
+ {
+  "order_id": "ord_00229",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 7953,
+  "discount_cents": 0,
+  "total_cents": 7953
+ },
+ {
+  "order_id": "ord_00391",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-04",
+  "status": "cancelled",
+  "subtotal_cents": 7009,
+  "discount_cents": 0,
+  "total_cents": 7009
+ },
+ {
+  "order_id": "ord_00417",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 5098,
+  "discount_cents": 1000,
+  "total_cents": 4098
+ },
+ {
+  "order_id": "ord_00461",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 3055,
+  "discount_cents": 0,
+  "total_cents": 3055
+ },
+ {
+  "order_id": "ord_00490",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 4164,
+  "discount_cents": 300,
+  "total_cents": 3864
+ },
+ {
+  "order_id": "ord_00551",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 6541,
+  "discount_cents": 0,
+  "total_cents": 6541
+ },
+ {
+  "order_id": "ord_00617",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 8520,
+  "discount_cents": 500,
+  "total_cents": 8020
+ },
+ {
+  "order_id": "ord_00708",
+  "customer_id": "cus_2234",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 9787,
+  "discount_cents": 500,
+  "total_cents": 9287
+ },
+ {
+  "order_id": "ord_00764",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 9248,
+  "discount_cents": 300,
+  "total_cents": 8948
+ },
+ {
+  "order_id": "ord_00784",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-10-04",
+  "status": "fulfilled",
+  "subtotal_cents": 8343,
+  "discount_cents": 0,
+  "total_cents": 8343
+ },
+ {
+  "order_id": "ord_00138",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 2463,
+  "discount_cents": 0,
+  "total_cents": 2463
+ },
+ {
+  "order_id": "ord_00230",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 3594,
+  "discount_cents": 500,
+  "total_cents": 3094
+ },
+ {
+  "order_id": "ord_00267",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 2829,
+  "discount_cents": 0,
+  "total_cents": 2829
+ },
+ {
+  "order_id": "ord_00325",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 7868,
+  "discount_cents": 0,
+  "total_cents": 7868
+ },
+ {
+  "order_id": "ord_00418",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-05",
+  "status": "refunded",
+  "subtotal_cents": 5331,
+  "discount_cents": 0,
+  "total_cents": 5331
+ },
+ {
+  "order_id": "ord_00441",
+  "customer_id": "cus_2222",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 3928,
+  "discount_cents": 1000,
+  "total_cents": 2928
+ },
+ {
+  "order_id": "ord_00462",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 6633,
+  "discount_cents": 0,
+  "total_cents": 6633
+ },
+ {
+  "order_id": "ord_00463",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 5196,
+  "discount_cents": 500,
+  "total_cents": 4696
+ },
+ {
+  "order_id": "ord_00618",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 9786,
+  "discount_cents": 0,
+  "total_cents": 9786
+ },
+ {
+  "order_id": "ord_00738",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-05",
+  "status": "fulfilled",
+  "subtotal_cents": 4137,
+  "discount_cents": 1000,
+  "total_cents": 3137
+ },
+ {
+  "order_id": "ord_00212",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-10-06",
+  "status": "fulfilled",
+  "subtotal_cents": 7479,
+  "discount_cents": 0,
+  "total_cents": 7479
+ },
+ {
+  "order_id": "ord_00351",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-06",
+  "status": "cancelled",
+  "subtotal_cents": 5977,
+  "discount_cents": 0,
+  "total_cents": 5977
+ },
+ {
+  "order_id": "ord_00392",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-06",
+  "status": "fulfilled",
+  "subtotal_cents": 7838,
+  "discount_cents": 300,
+  "total_cents": 7538
+ },
+ {
+  "order_id": "ord_00393",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-06",
+  "status": "fulfilled",
+  "subtotal_cents": 8203,
+  "discount_cents": 0,
+  "total_cents": 8203
+ },
+ {
+  "order_id": "ord_00552",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-06",
+  "status": "fulfilled",
+  "subtotal_cents": 5910,
+  "discount_cents": 300,
+  "total_cents": 5610
+ },
+ {
+  "order_id": "ord_00739",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-06",
+  "status": "fulfilled",
+  "subtotal_cents": 8937,
+  "discount_cents": 0,
+  "total_cents": 8937
+ },
+ {
+  "order_id": "ord_00765",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-06",
+  "status": "fulfilled",
+  "subtotal_cents": 2613,
+  "discount_cents": 1000,
+  "total_cents": 1613
+ },
+ {
+  "order_id": "ord_00073",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 4467,
+  "discount_cents": 0,
+  "total_cents": 4467
+ },
+ {
+  "order_id": "ord_00139",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 5139,
+  "discount_cents": 0,
+  "total_cents": 5139
+ },
+ {
+  "order_id": "ord_00140",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-07",
+  "status": "refunded",
+  "subtotal_cents": 4815,
+  "discount_cents": 0,
+  "total_cents": 4815
+ },
+ {
+  "order_id": "ord_00171",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 3171,
+  "discount_cents": 0,
+  "total_cents": 3171
+ },
+ {
+  "order_id": "ord_00268",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 4275,
+  "discount_cents": 500,
+  "total_cents": 3775
+ },
+ {
+  "order_id": "ord_00326",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 4622,
+  "discount_cents": 1000,
+  "total_cents": 3622
+ },
+ {
+  "order_id": "ord_00352",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 6798,
+  "discount_cents": 0,
+  "total_cents": 6798
+ },
+ {
+  "order_id": "ord_00464",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 5479,
+  "discount_cents": 1000,
+  "total_cents": 4479
+ },
+ {
+  "order_id": "ord_00691",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 7386,
+  "discount_cents": 1000,
+  "total_cents": 6386
+ },
+ {
+  "order_id": "ord_00740",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-07",
+  "status": "fulfilled",
+  "subtotal_cents": 4712,
+  "discount_cents": 500,
+  "total_cents": 4212
+ },
+ {
+  "order_id": "ord_00105",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 9602,
+  "discount_cents": 300,
+  "total_cents": 9302
+ },
+ {
+  "order_id": "ord_00106",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 7435,
+  "discount_cents": 0,
+  "total_cents": 7435
+ },
+ {
+  "order_id": "ord_00172",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-08",
+  "status": "refunded",
+  "subtotal_cents": 3919,
+  "discount_cents": 300,
+  "total_cents": 3619
+ },
+ {
+  "order_id": "ord_00192",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 6232,
+  "discount_cents": 500,
+  "total_cents": 5732
+ },
+ {
+  "order_id": "ord_00213",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 5552,
+  "discount_cents": 300,
+  "total_cents": 5252
+ },
+ {
+  "order_id": "ord_00214",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 3246,
+  "discount_cents": 300,
+  "total_cents": 2946
+ },
+ {
+  "order_id": "ord_00253",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 2472,
+  "discount_cents": 0,
+  "total_cents": 2472
+ },
+ {
+  "order_id": "ord_00269",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 5563,
+  "discount_cents": 0,
+  "total_cents": 5563
+ },
+ {
+  "order_id": "ord_00465",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 7834,
+  "discount_cents": 1000,
+  "total_cents": 6834
+ },
+ {
+  "order_id": "ord_00466",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 4872,
+  "discount_cents": 0,
+  "total_cents": 4872
+ },
+ {
+  "order_id": "ord_00516",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 8379,
+  "discount_cents": 1000,
+  "total_cents": 7379
+ },
+ {
+  "order_id": "ord_00741",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 3714,
+  "discount_cents": 1000,
+  "total_cents": 2714
+ },
+ {
+  "order_id": "ord_00766",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 2545,
+  "discount_cents": 300,
+  "total_cents": 2245
+ },
+ {
+  "order_id": "ord_00785",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 5578,
+  "discount_cents": 0,
+  "total_cents": 5578
+ },
+ {
+  "order_id": "ord_00795",
+  "customer_id": "cus_2240",
+  "placed_on": "2025-10-08",
+  "status": "fulfilled",
+  "subtotal_cents": 7393,
+  "discount_cents": 0,
+  "total_cents": 7393
+ },
+ {
+  "order_id": "ord_00011",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 5483,
+  "discount_cents": 500,
+  "total_cents": 4983
+ },
+ {
+  "order_id": "ord_00074",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 5365,
+  "discount_cents": 1000,
+  "total_cents": 4365
+ },
+ {
+  "order_id": "ord_00122",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 4473,
+  "discount_cents": 0,
+  "total_cents": 4473
+ },
+ {
+  "order_id": "ord_00327",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-09",
+  "status": "refunded",
+  "subtotal_cents": 2866,
+  "discount_cents": 0,
+  "total_cents": 2866
+ },
+ {
+  "order_id": "ord_00353",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 7467,
+  "discount_cents": 0,
+  "total_cents": 7467
+ },
+ {
+  "order_id": "ord_00394",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 2865,
+  "discount_cents": 0,
+  "total_cents": 2865
+ },
+ {
+  "order_id": "ord_00419",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 7842,
+  "discount_cents": 0,
+  "total_cents": 7842
+ },
+ {
+  "order_id": "ord_00532",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 6264,
+  "discount_cents": 500,
+  "total_cents": 5764
+ },
+ {
+  "order_id": "ord_00537",
+  "customer_id": "cus_2227",
+  "placed_on": "2025-10-09",
+  "status": "fulfilled",
+  "subtotal_cents": 3665,
+  "discount_cents": 300,
+  "total_cents": 3365
+ },
+ {
+  "order_id": "ord_00717",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-10-09",
+  "status": "cancelled",
+  "subtotal_cents": 5915,
+  "discount_cents": 0,
+  "total_cents": 5915
+ },
+ {
+  "order_id": "ord_00075",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-10",
+  "status": "refunded",
+  "subtotal_cents": 7415,
+  "discount_cents": 300,
+  "total_cents": 7115
+ },
+ {
+  "order_id": "ord_00093",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 7937,
+  "discount_cents": 0,
+  "total_cents": 7937
+ },
+ {
+  "order_id": "ord_00193",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 8329,
+  "discount_cents": 0,
+  "total_cents": 8329
+ },
+ {
+  "order_id": "ord_00194",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 2927,
+  "discount_cents": 1000,
+  "total_cents": 1927
+ },
+ {
+  "order_id": "ord_00328",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 8455,
+  "discount_cents": 0,
+  "total_cents": 8455
+ },
+ {
+  "order_id": "ord_00354",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 7152,
+  "discount_cents": 1000,
+  "total_cents": 6152
+ },
+ {
+  "order_id": "ord_00395",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 7612,
+  "discount_cents": 500,
+  "total_cents": 7112
+ },
+ {
+  "order_id": "ord_00467",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 4900,
+  "discount_cents": 300,
+  "total_cents": 4600
+ },
+ {
+  "order_id": "ord_00585",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 7805,
+  "discount_cents": 0,
+  "total_cents": 7805
+ },
+ {
+  "order_id": "ord_00619",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 6125,
+  "discount_cents": 1000,
+  "total_cents": 5125
+ },
+ {
+  "order_id": "ord_00620",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 2628,
+  "discount_cents": 0,
+  "total_cents": 2628
+ },
+ {
+  "order_id": "ord_00742",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 6806,
+  "discount_cents": 0,
+  "total_cents": 6806
+ },
+ {
+  "order_id": "ord_00786",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-10-10",
+  "status": "fulfilled",
+  "subtotal_cents": 5412,
+  "discount_cents": 500,
+  "total_cents": 4912
+ },
+ {
+  "order_id": "ord_00040",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-11",
+  "status": "fulfilled",
+  "subtotal_cents": 9070,
+  "discount_cents": 300,
+  "total_cents": 8770
+ },
+ {
+  "order_id": "ord_00141",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-11",
+  "status": "fulfilled",
+  "subtotal_cents": 3356,
+  "discount_cents": 1000,
+  "total_cents": 2356
+ },
+ {
+  "order_id": "ord_00355",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-11",
+  "status": "fulfilled",
+  "subtotal_cents": 6287,
+  "discount_cents": 500,
+  "total_cents": 5787
+ },
+ {
+  "order_id": "ord_00420",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-11",
+  "status": "fulfilled",
+  "subtotal_cents": 9159,
+  "discount_cents": 0,
+  "total_cents": 9159
+ },
+ {
+  "order_id": "ord_00468",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-11",
+  "status": "fulfilled",
+  "subtotal_cents": 7415,
+  "discount_cents": 500,
+  "total_cents": 6915
+ },
+ {
+  "order_id": "ord_00469",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-11",
+  "status": "fulfilled",
+  "subtotal_cents": 4506,
+  "discount_cents": 500,
+  "total_cents": 4006
+ },
+ {
+  "order_id": "ord_00553",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-11",
+  "status": "fulfilled",
+  "subtotal_cents": 2642,
+  "discount_cents": 1000,
+  "total_cents": 1642
+ },
+ {
+  "order_id": "ord_00586",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-11",
+  "status": "cancelled",
+  "subtotal_cents": 4838,
+  "discount_cents": 0,
+  "total_cents": 4838
+ },
+ {
+  "order_id": "ord_00692",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-11",
+  "status": "refunded",
+  "subtotal_cents": 8257,
+  "discount_cents": 0,
+  "total_cents": 8257
+ },
+ {
+  "order_id": "ord_00041",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 7003,
+  "discount_cents": 0,
+  "total_cents": 7003
+ },
+ {
+  "order_id": "ord_00042",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 2453,
+  "discount_cents": 0,
+  "total_cents": 2453
+ },
+ {
+  "order_id": "ord_00173",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 4094,
+  "discount_cents": 0,
+  "total_cents": 4094
+ },
+ {
+  "order_id": "ord_00174",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 5675,
+  "discount_cents": 500,
+  "total_cents": 5175
+ },
+ {
+  "order_id": "ord_00182",
+  "customer_id": "cus_2209",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 3725,
+  "discount_cents": 0,
+  "total_cents": 3725
+ },
+ {
+  "order_id": "ord_00470",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 4514,
+  "discount_cents": 0,
+  "total_cents": 4514
+ },
+ {
+  "order_id": "ord_00517",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 3741,
+  "discount_cents": 1000,
+  "total_cents": 2741
+ },
+ {
+  "order_id": "ord_00621",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 8301,
+  "discount_cents": 1000,
+  "total_cents": 7301
+ },
+ {
+  "order_id": "ord_00718",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 3363,
+  "discount_cents": 0,
+  "total_cents": 3363
+ },
+ {
+  "order_id": "ord_00719",
+  "customer_id": "cus_2235",
+  "placed_on": "2025-10-12",
+  "status": "fulfilled",
+  "subtotal_cents": 9489,
+  "discount_cents": 500,
+  "total_cents": 8989
+ },
+ {
+  "order_id": "ord_00012",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 8165,
+  "discount_cents": 500,
+  "total_cents": 7665
+ },
+ {
+  "order_id": "ord_00043",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 7028,
+  "discount_cents": 0,
+  "total_cents": 7028
+ },
+ {
+  "order_id": "ord_00076",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 8728,
+  "discount_cents": 0,
+  "total_cents": 8728
+ },
+ {
+  "order_id": "ord_00254",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 5846,
+  "discount_cents": 1000,
+  "total_cents": 4846
+ },
+ {
+  "order_id": "ord_00284",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 3083,
+  "discount_cents": 500,
+  "total_cents": 2583
+ },
+ {
+  "order_id": "ord_00329",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 3176,
+  "discount_cents": 0,
+  "total_cents": 3176
+ },
+ {
+  "order_id": "ord_00518",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 7304,
+  "discount_cents": 300,
+  "total_cents": 7004
+ },
+ {
+  "order_id": "ord_00587",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 8576,
+  "discount_cents": 0,
+  "total_cents": 8576
+ },
+ {
+  "order_id": "ord_00622",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-13",
+  "status": "fulfilled",
+  "subtotal_cents": 9283,
+  "discount_cents": 0,
+  "total_cents": 9283
+ },
+ {
+  "order_id": "ord_00044",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-14",
+  "status": "fulfilled",
+  "subtotal_cents": 5989,
+  "discount_cents": 1000,
+  "total_cents": 4989
+ },
+ {
+  "order_id": "ord_00077",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-14",
+  "status": "fulfilled",
+  "subtotal_cents": 9157,
+  "discount_cents": 0,
+  "total_cents": 9157
+ },
+ {
+  "order_id": "ord_00094",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-10-14",
+  "status": "fulfilled",
+  "subtotal_cents": 8565,
+  "discount_cents": 300,
+  "total_cents": 8265
+ },
+ {
+  "order_id": "ord_00330",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-14",
+  "status": "fulfilled",
+  "subtotal_cents": 5793,
+  "discount_cents": 300,
+  "total_cents": 5493
+ },
+ {
+  "order_id": "ord_00554",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-14",
+  "status": "fulfilled",
+  "subtotal_cents": 8208,
+  "discount_cents": 500,
+  "total_cents": 7708
+ },
+ {
+  "order_id": "ord_00623",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-14",
+  "status": "fulfilled",
+  "subtotal_cents": 8806,
+  "discount_cents": 0,
+  "total_cents": 8806
+ },
+ {
+  "order_id": "ord_00013",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 7971,
+  "discount_cents": 0,
+  "total_cents": 7971
+ },
+ {
+  "order_id": "ord_00014",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-10-15",
+  "status": "refunded",
+  "subtotal_cents": 4496,
+  "discount_cents": 0,
+  "total_cents": 4496
+ },
+ {
+  "order_id": "ord_00045",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-15",
+  "status": "cancelled",
+  "subtotal_cents": 6684,
+  "discount_cents": 300,
+  "total_cents": 6384
+ },
+ {
+  "order_id": "ord_00078",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 8050,
+  "discount_cents": 500,
+  "total_cents": 7550
+ },
+ {
+  "order_id": "ord_00107",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 2604,
+  "discount_cents": 1000,
+  "total_cents": 1604
+ },
+ {
+  "order_id": "ord_00175",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 3010,
+  "discount_cents": 1000,
+  "total_cents": 2010
+ },
+ {
+  "order_id": "ord_00270",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 3566,
+  "discount_cents": 0,
+  "total_cents": 3566
+ },
+ {
+  "order_id": "ord_00300",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 8937,
+  "discount_cents": 1000,
+  "total_cents": 7937
+ },
+ {
+  "order_id": "ord_00538",
+  "customer_id": "cus_2227",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 7928,
+  "discount_cents": 0,
+  "total_cents": 7928
+ },
+ {
+  "order_id": "ord_00693",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 8448,
+  "discount_cents": 0,
+  "total_cents": 8448
+ },
+ {
+  "order_id": "ord_00767",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-15",
+  "status": "fulfilled",
+  "subtotal_cents": 4648,
+  "discount_cents": 1000,
+  "total_cents": 3648
+ },
+ {
+  "order_id": "ord_00079",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 9466,
+  "discount_cents": 0,
+  "total_cents": 9466
+ },
+ {
+  "order_id": "ord_00123",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 8255,
+  "discount_cents": 300,
+  "total_cents": 7955
+ },
+ {
+  "order_id": "ord_00195",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 4728,
+  "discount_cents": 0,
+  "total_cents": 4728
+ },
+ {
+  "order_id": "ord_00196",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 5600,
+  "discount_cents": 0,
+  "total_cents": 5600
+ },
+ {
+  "order_id": "ord_00271",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 6124,
+  "discount_cents": 300,
+  "total_cents": 5824
+ },
+ {
+  "order_id": "ord_00421",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 4077,
+  "discount_cents": 0,
+  "total_cents": 4077
+ },
+ {
+  "order_id": "ord_00422",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 5600,
+  "discount_cents": 0,
+  "total_cents": 5600
+ },
+ {
+  "order_id": "ord_00491",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 9410,
+  "discount_cents": 1000,
+  "total_cents": 8410
+ },
+ {
+  "order_id": "ord_00519",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 6206,
+  "discount_cents": 300,
+  "total_cents": 5906
+ },
+ {
+  "order_id": "ord_00555",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 8532,
+  "discount_cents": 500,
+  "total_cents": 8032
+ },
+ {
+  "order_id": "ord_00556",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 3017,
+  "discount_cents": 1000,
+  "total_cents": 2017
+ },
+ {
+  "order_id": "ord_00588",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-16",
+  "status": "refunded",
+  "subtotal_cents": 3267,
+  "discount_cents": 1000,
+  "total_cents": 2267
+ },
+ {
+  "order_id": "ord_00639",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 5437,
+  "discount_cents": 500,
+  "total_cents": 4937
+ },
+ {
+  "order_id": "ord_00694",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-16",
+  "status": "fulfilled",
+  "subtotal_cents": 9065,
+  "discount_cents": 300,
+  "total_cents": 8765
+ },
+ {
+  "order_id": "ord_00046",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 6003,
+  "discount_cents": 0,
+  "total_cents": 6003
+ },
+ {
+  "order_id": "ord_00124",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 3493,
+  "discount_cents": 0,
+  "total_cents": 3493
+ },
+ {
+  "order_id": "ord_00176",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-17",
+  "status": "cancelled",
+  "subtotal_cents": 9777,
+  "discount_cents": 0,
+  "total_cents": 9777
+ },
+ {
+  "order_id": "ord_00285",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 7809,
+  "discount_cents": 500,
+  "total_cents": 7309
+ },
+ {
+  "order_id": "ord_00356",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 6971,
+  "discount_cents": 0,
+  "total_cents": 6971
+ },
+ {
+  "order_id": "ord_00471",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 8035,
+  "discount_cents": 0,
+  "total_cents": 8035
+ },
+ {
+  "order_id": "ord_00520",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 8363,
+  "discount_cents": 300,
+  "total_cents": 8063
+ },
+ {
+  "order_id": "ord_00589",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 4248,
+  "discount_cents": 0,
+  "total_cents": 4248
+ },
+ {
+  "order_id": "ord_00768",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 7328,
+  "discount_cents": 1000,
+  "total_cents": 6328
+ },
+ {
+  "order_id": "ord_00769",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-17",
+  "status": "fulfilled",
+  "subtotal_cents": 4316,
+  "discount_cents": 1000,
+  "total_cents": 3316
+ },
+ {
+  "order_id": "ord_00047",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-18",
+  "status": "refunded",
+  "subtotal_cents": 7856,
+  "discount_cents": 0,
+  "total_cents": 7856
+ },
+ {
+  "order_id": "ord_00080",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 6365,
+  "discount_cents": 500,
+  "total_cents": 5865
+ },
+ {
+  "order_id": "ord_00142",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 9786,
+  "discount_cents": 500,
+  "total_cents": 9286
+ },
+ {
+  "order_id": "ord_00215",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 7451,
+  "discount_cents": 0,
+  "total_cents": 7451
+ },
+ {
+  "order_id": "ord_00243",
+  "customer_id": "cus_2213",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 7323,
+  "discount_cents": 1000,
+  "total_cents": 6323
+ },
+ {
+  "order_id": "ord_00272",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 5298,
+  "discount_cents": 300,
+  "total_cents": 4998
+ },
+ {
+  "order_id": "ord_00357",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 9217,
+  "discount_cents": 1000,
+  "total_cents": 8217
+ },
+ {
+  "order_id": "ord_00533",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 5214,
+  "discount_cents": 0,
+  "total_cents": 5214
+ },
+ {
+  "order_id": "ord_00534",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 3733,
+  "discount_cents": 1000,
+  "total_cents": 2733
+ },
+ {
+  "order_id": "ord_00695",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-18",
+  "status": "fulfilled",
+  "subtotal_cents": 6784,
+  "discount_cents": 0,
+  "total_cents": 6784
+ },
+ {
+  "order_id": "ord_00048",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-19",
+  "status": "fulfilled",
+  "subtotal_cents": 6628,
+  "discount_cents": 1000,
+  "total_cents": 5628
+ },
+ {
+  "order_id": "ord_00286",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-10-19",
+  "status": "fulfilled",
+  "subtotal_cents": 9764,
+  "discount_cents": 0,
+  "total_cents": 9764
+ },
+ {
+  "order_id": "ord_00358",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-19",
+  "status": "fulfilled",
+  "subtotal_cents": 6170,
+  "discount_cents": 0,
+  "total_cents": 6170
+ },
+ {
+  "order_id": "ord_00359",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-19",
+  "status": "fulfilled",
+  "subtotal_cents": 6913,
+  "discount_cents": 1000,
+  "total_cents": 5913
+ },
+ {
+  "order_id": "ord_00557",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-19",
+  "status": "fulfilled",
+  "subtotal_cents": 3611,
+  "discount_cents": 500,
+  "total_cents": 3111
+ },
+ {
+  "order_id": "ord_00558",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-19",
+  "status": "fulfilled",
+  "subtotal_cents": 4110,
+  "discount_cents": 300,
+  "total_cents": 3810
+ },
+ {
+  "order_id": "ord_00590",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-19",
+  "status": "refunded",
+  "subtotal_cents": 3650,
+  "discount_cents": 500,
+  "total_cents": 3150
+ },
+ {
+  "order_id": "ord_00696",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-19",
+  "status": "refunded",
+  "subtotal_cents": 7360,
+  "discount_cents": 0,
+  "total_cents": 7360
+ },
+ {
+  "order_id": "ord_00143",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-20",
+  "status": "fulfilled",
+  "subtotal_cents": 4432,
+  "discount_cents": 300,
+  "total_cents": 4132
+ },
+ {
+  "order_id": "ord_00273",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-20",
+  "status": "fulfilled",
+  "subtotal_cents": 4663,
+  "discount_cents": 0,
+  "total_cents": 4663
+ },
+ {
+  "order_id": "ord_00396",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-20",
+  "status": "refunded",
+  "subtotal_cents": 6459,
+  "discount_cents": 1000,
+  "total_cents": 5459
+ },
+ {
+  "order_id": "ord_00492",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-10-20",
+  "status": "fulfilled",
+  "subtotal_cents": 3638,
+  "discount_cents": 500,
+  "total_cents": 3138
+ },
+ {
+  "order_id": "ord_00591",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-20",
+  "status": "fulfilled",
+  "subtotal_cents": 6463,
+  "discount_cents": 300,
+  "total_cents": 6163
+ },
+ {
+  "order_id": "ord_00624",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-20",
+  "status": "cancelled",
+  "subtotal_cents": 5808,
+  "discount_cents": 0,
+  "total_cents": 5808
+ },
+ {
+  "order_id": "ord_00625",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-20",
+  "status": "fulfilled",
+  "subtotal_cents": 4575,
+  "discount_cents": 0,
+  "total_cents": 4575
+ },
+ {
+  "order_id": "ord_00743",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-20",
+  "status": "fulfilled",
+  "subtotal_cents": 8543,
+  "discount_cents": 0,
+  "total_cents": 8543
+ },
+ {
+  "order_id": "ord_00770",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-20",
+  "status": "fulfilled",
+  "subtotal_cents": 9069,
+  "discount_cents": 0,
+  "total_cents": 9069
+ },
+ {
+  "order_id": "ord_00771",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-20",
+  "status": "cancelled",
+  "subtotal_cents": 5661,
+  "discount_cents": 500,
+  "total_cents": 5161
+ },
+ {
+  "order_id": "ord_00015",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-10-21",
+  "status": "fulfilled",
+  "subtotal_cents": 7736,
+  "discount_cents": 300,
+  "total_cents": 7436
+ },
+ {
+  "order_id": "ord_00016",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-10-21",
+  "status": "fulfilled",
+  "subtotal_cents": 7495,
+  "discount_cents": 0,
+  "total_cents": 7495
+ },
+ {
+  "order_id": "ord_00197",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-21",
+  "status": "refunded",
+  "subtotal_cents": 2880,
+  "discount_cents": 0,
+  "total_cents": 2880
+ },
+ {
+  "order_id": "ord_00255",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-10-21",
+  "status": "fulfilled",
+  "subtotal_cents": 9277,
+  "discount_cents": 1000,
+  "total_cents": 8277
+ },
+ {
+  "order_id": "ord_00360",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-21",
+  "status": "fulfilled",
+  "subtotal_cents": 7159,
+  "discount_cents": 0,
+  "total_cents": 7159
+ },
+ {
+  "order_id": "ord_00423",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-21",
+  "status": "refunded",
+  "subtotal_cents": 3936,
+  "discount_cents": 0,
+  "total_cents": 3936
+ },
+ {
+  "order_id": "ord_00493",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-10-21",
+  "status": "fulfilled",
+  "subtotal_cents": 9071,
+  "discount_cents": 1000,
+  "total_cents": 8071
+ },
+ {
+  "order_id": "ord_00592",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-21",
+  "status": "fulfilled",
+  "subtotal_cents": 7153,
+  "discount_cents": 0,
+  "total_cents": 7153
+ },
+ {
+  "order_id": "ord_00593",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-21",
+  "status": "refunded",
+  "subtotal_cents": 3824,
+  "discount_cents": 0,
+  "total_cents": 3824
+ },
+ {
+  "order_id": "ord_00049",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-22",
+  "status": "refunded",
+  "subtotal_cents": 8425,
+  "discount_cents": 0,
+  "total_cents": 8425
+ },
+ {
+  "order_id": "ord_00144",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 6231,
+  "discount_cents": 0,
+  "total_cents": 6231
+ },
+ {
+  "order_id": "ord_00198",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 5579,
+  "discount_cents": 1000,
+  "total_cents": 4579
+ },
+ {
+  "order_id": "ord_00301",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 9342,
+  "discount_cents": 500,
+  "total_cents": 8842
+ },
+ {
+  "order_id": "ord_00331",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 2781,
+  "discount_cents": 500,
+  "total_cents": 2281
+ },
+ {
+  "order_id": "ord_00397",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 2884,
+  "discount_cents": 500,
+  "total_cents": 2384
+ },
+ {
+  "order_id": "ord_00398",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 8272,
+  "discount_cents": 500,
+  "total_cents": 7772
+ },
+ {
+  "order_id": "ord_00424",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 6450,
+  "discount_cents": 0,
+  "total_cents": 6450
+ },
+ {
+  "order_id": "ord_00425",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-22",
+  "status": "cancelled",
+  "subtotal_cents": 5953,
+  "discount_cents": 0,
+  "total_cents": 5953
+ },
+ {
+  "order_id": "ord_00626",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 4679,
+  "discount_cents": 0,
+  "total_cents": 4679
+ },
+ {
+  "order_id": "ord_00772",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-22",
+  "status": "fulfilled",
+  "subtotal_cents": 5207,
+  "discount_cents": 0,
+  "total_cents": 5207
+ },
+ {
+  "order_id": "ord_00787",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-10-22",
+  "status": "refunded",
+  "subtotal_cents": 7874,
+  "discount_cents": 0,
+  "total_cents": 7874
+ },
+ {
+  "order_id": "ord_00256",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-10-23",
+  "status": "fulfilled",
+  "subtotal_cents": 6878,
+  "discount_cents": 500,
+  "total_cents": 6378
+ },
+ {
+  "order_id": "ord_00361",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-23",
+  "status": "fulfilled",
+  "subtotal_cents": 9377,
+  "discount_cents": 0,
+  "total_cents": 9377
+ },
+ {
+  "order_id": "ord_00399",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-23",
+  "status": "fulfilled",
+  "subtotal_cents": 4845,
+  "discount_cents": 0,
+  "total_cents": 4845
+ },
+ {
+  "order_id": "ord_00627",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-23",
+  "status": "fulfilled",
+  "subtotal_cents": 4874,
+  "discount_cents": 1000,
+  "total_cents": 3874
+ },
+ {
+  "order_id": "ord_00697",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-23",
+  "status": "fulfilled",
+  "subtotal_cents": 8434,
+  "discount_cents": 500,
+  "total_cents": 7934
+ },
+ {
+  "order_id": "ord_00709",
+  "customer_id": "cus_2234",
+  "placed_on": "2025-10-23",
+  "status": "fulfilled",
+  "subtotal_cents": 4316,
+  "discount_cents": 0,
+  "total_cents": 4316
+ },
+ {
+  "order_id": "ord_00744",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-23",
+  "status": "fulfilled",
+  "subtotal_cents": 7353,
+  "discount_cents": 0,
+  "total_cents": 7353
+ },
+ {
+  "order_id": "ord_00081",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 8750,
+  "discount_cents": 0,
+  "total_cents": 8750
+ },
+ {
+  "order_id": "ord_00095",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 6348,
+  "discount_cents": 300,
+  "total_cents": 6048
+ },
+ {
+  "order_id": "ord_00145",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 8425,
+  "discount_cents": 1000,
+  "total_cents": 7425
+ },
+ {
+  "order_id": "ord_00177",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 6175,
+  "discount_cents": 0,
+  "total_cents": 6175
+ },
+ {
+  "order_id": "ord_00216",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 4449,
+  "discount_cents": 500,
+  "total_cents": 3949
+ },
+ {
+  "order_id": "ord_00426",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-24",
+  "status": "refunded",
+  "subtotal_cents": 4445,
+  "discount_cents": 0,
+  "total_cents": 4445
+ },
+ {
+  "order_id": "ord_00472",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 3201,
+  "discount_cents": 1000,
+  "total_cents": 2201
+ },
+ {
+  "order_id": "ord_00559",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 7401,
+  "discount_cents": 300,
+  "total_cents": 7101
+ },
+ {
+  "order_id": "ord_00745",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-24",
+  "status": "fulfilled",
+  "subtotal_cents": 5016,
+  "discount_cents": 0,
+  "total_cents": 5016
+ },
+ {
+  "order_id": "ord_00125",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-10-25",
+  "status": "refunded",
+  "subtotal_cents": 2575,
+  "discount_cents": 0,
+  "total_cents": 2575
+ },
+ {
+  "order_id": "ord_00274",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-25",
+  "status": "fulfilled",
+  "subtotal_cents": 8179,
+  "discount_cents": 500,
+  "total_cents": 7679
+ },
+ {
+  "order_id": "ord_00400",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-25",
+  "status": "fulfilled",
+  "subtotal_cents": 5071,
+  "discount_cents": 1000,
+  "total_cents": 4071
+ },
+ {
+  "order_id": "ord_00427",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-25",
+  "status": "fulfilled",
+  "subtotal_cents": 7462,
+  "discount_cents": 0,
+  "total_cents": 7462
+ },
+ {
+  "order_id": "ord_00628",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-25",
+  "status": "fulfilled",
+  "subtotal_cents": 8277,
+  "discount_cents": 300,
+  "total_cents": 7977
+ },
+ {
+  "order_id": "ord_00640",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-10-25",
+  "status": "fulfilled",
+  "subtotal_cents": 2455,
+  "discount_cents": 0,
+  "total_cents": 2455
+ },
+ {
+  "order_id": "ord_00773",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-10-25",
+  "status": "fulfilled",
+  "subtotal_cents": 2805,
+  "discount_cents": 0,
+  "total_cents": 2805
+ },
+ {
+  "order_id": "ord_00178",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 7507,
+  "discount_cents": 0,
+  "total_cents": 7507
+ },
+ {
+  "order_id": "ord_00179",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-26",
+  "status": "cancelled",
+  "subtotal_cents": 6283,
+  "discount_cents": 0,
+  "total_cents": 6283
+ },
+ {
+  "order_id": "ord_00332",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 4485,
+  "discount_cents": 0,
+  "total_cents": 4485
+ },
+ {
+  "order_id": "ord_00362",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 5638,
+  "discount_cents": 1000,
+  "total_cents": 4638
+ },
+ {
+  "order_id": "ord_00363",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 7339,
+  "discount_cents": 300,
+  "total_cents": 7039
+ },
+ {
+  "order_id": "ord_00401",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 9443,
+  "discount_cents": 0,
+  "total_cents": 9443
+ },
+ {
+  "order_id": "ord_00473",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 9225,
+  "discount_cents": 300,
+  "total_cents": 8925
+ },
+ {
+  "order_id": "ord_00474",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 3449,
+  "discount_cents": 0,
+  "total_cents": 3449
+ },
+ {
+  "order_id": "ord_00560",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 2797,
+  "discount_cents": 500,
+  "total_cents": 2297
+ },
+ {
+  "order_id": "ord_00698",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-26",
+  "status": "fulfilled",
+  "subtotal_cents": 8749,
+  "discount_cents": 500,
+  "total_cents": 8249
+ },
+ {
+  "order_id": "ord_00082",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 4580,
+  "discount_cents": 0,
+  "total_cents": 4580
+ },
+ {
+  "order_id": "ord_00108",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 4924,
+  "discount_cents": 0,
+  "total_cents": 4924
+ },
+ {
+  "order_id": "ord_00146",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 8484,
+  "discount_cents": 500,
+  "total_cents": 7984
+ },
+ {
+  "order_id": "ord_00231",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-10-27",
+  "status": "refunded",
+  "subtotal_cents": 9324,
+  "discount_cents": 500,
+  "total_cents": 8824
+ },
+ {
+  "order_id": "ord_00232",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 3079,
+  "discount_cents": 1000,
+  "total_cents": 2079
+ },
+ {
+  "order_id": "ord_00287",
+  "customer_id": "cus_2216",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 5802,
+  "discount_cents": 1000,
+  "total_cents": 4802
+ },
+ {
+  "order_id": "ord_00333",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 9473,
+  "discount_cents": 0,
+  "total_cents": 9473
+ },
+ {
+  "order_id": "ord_00402",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 6823,
+  "discount_cents": 0,
+  "total_cents": 6823
+ },
+ {
+  "order_id": "ord_00641",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 6621,
+  "discount_cents": 0,
+  "total_cents": 6621
+ },
+ {
+  "order_id": "ord_00642",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 6392,
+  "discount_cents": 500,
+  "total_cents": 5892
+ },
+ {
+  "order_id": "ord_00699",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-27",
+  "status": "fulfilled",
+  "subtotal_cents": 5791,
+  "discount_cents": 0,
+  "total_cents": 5791
+ },
+ {
+  "order_id": "ord_00050",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8493,
+  "discount_cents": 300,
+  "total_cents": 8193
+ },
+ {
+  "order_id": "ord_00109",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 6006,
+  "discount_cents": 1000,
+  "total_cents": 5006
+ },
+ {
+  "order_id": "ord_00180",
+  "customer_id": "cus_2208",
+  "placed_on": "2025-10-28",
+  "status": "refunded",
+  "subtotal_cents": 9761,
+  "discount_cents": 0,
+  "total_cents": 9761
+ },
+ {
+  "order_id": "ord_00233",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 9292,
+  "discount_cents": 0,
+  "total_cents": 9292
+ },
+ {
+  "order_id": "ord_00257",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 6355,
+  "discount_cents": 300,
+  "total_cents": 6055
+ },
+ {
+  "order_id": "ord_00302",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8276,
+  "discount_cents": 500,
+  "total_cents": 7776
+ },
+ {
+  "order_id": "ord_00475",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8366,
+  "discount_cents": 1000,
+  "total_cents": 7366
+ },
+ {
+  "order_id": "ord_00476",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 8611,
+  "discount_cents": 0,
+  "total_cents": 8611
+ },
+ {
+  "order_id": "ord_00594",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 4086,
+  "discount_cents": 0,
+  "total_cents": 4086
+ },
+ {
+  "order_id": "ord_00629",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-28",
+  "status": "cancelled",
+  "subtotal_cents": 8832,
+  "discount_cents": 1000,
+  "total_cents": 7832
+ },
+ {
+  "order_id": "ord_00746",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-28",
+  "status": "cancelled",
+  "subtotal_cents": 4082,
+  "discount_cents": 300,
+  "total_cents": 3782
+ },
+ {
+  "order_id": "ord_00747",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-28",
+  "status": "cancelled",
+  "subtotal_cents": 4003,
+  "discount_cents": 0,
+  "total_cents": 4003
+ },
+ {
+  "order_id": "ord_00788",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-10-28",
+  "status": "refunded",
+  "subtotal_cents": 9304,
+  "discount_cents": 0,
+  "total_cents": 9304
+ },
+ {
+  "order_id": "ord_00789",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-10-28",
+  "status": "fulfilled",
+  "subtotal_cents": 5291,
+  "discount_cents": 0,
+  "total_cents": 5291
+ },
+ {
+  "order_id": "ord_00096",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 4657,
+  "discount_cents": 0,
+  "total_cents": 4657
+ },
+ {
+  "order_id": "ord_00258",
+  "customer_id": "cus_2214",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 8417,
+  "discount_cents": 1000,
+  "total_cents": 7417
+ },
+ {
+  "order_id": "ord_00275",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-29",
+  "status": "refunded",
+  "subtotal_cents": 6457,
+  "discount_cents": 0,
+  "total_cents": 6457
+ },
+ {
+  "order_id": "ord_00403",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 2590,
+  "discount_cents": 0,
+  "total_cents": 2590
+ },
+ {
+  "order_id": "ord_00404",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 9021,
+  "discount_cents": 0,
+  "total_cents": 9021
+ },
+ {
+  "order_id": "ord_00428",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 8580,
+  "discount_cents": 1000,
+  "total_cents": 7580
+ },
+ {
+  "order_id": "ord_00477",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 3822,
+  "discount_cents": 0,
+  "total_cents": 3822
+ },
+ {
+  "order_id": "ord_00595",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 3303,
+  "discount_cents": 500,
+  "total_cents": 2803
+ },
+ {
+  "order_id": "ord_00630",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-29",
+  "status": "fulfilled",
+  "subtotal_cents": 3411,
+  "discount_cents": 1000,
+  "total_cents": 2411
+ },
+ {
+  "order_id": "ord_00664",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-10-29",
+  "status": "cancelled",
+  "subtotal_cents": 8513,
+  "discount_cents": 300,
+  "total_cents": 8213
+ },
+ {
+  "order_id": "ord_00276",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-10-30",
+  "status": "fulfilled",
+  "subtotal_cents": 3792,
+  "discount_cents": 300,
+  "total_cents": 3492
+ },
+ {
+  "order_id": "ord_00334",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-30",
+  "status": "refunded",
+  "subtotal_cents": 4185,
+  "discount_cents": 0,
+  "total_cents": 4185
+ },
+ {
+  "order_id": "ord_00494",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-10-30",
+  "status": "fulfilled",
+  "subtotal_cents": 6851,
+  "discount_cents": 0,
+  "total_cents": 6851
+ },
+ {
+  "order_id": "ord_00596",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-10-30",
+  "status": "fulfilled",
+  "subtotal_cents": 8205,
+  "discount_cents": 0,
+  "total_cents": 8205
+ },
+ {
+  "order_id": "ord_00631",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-30",
+  "status": "fulfilled",
+  "subtotal_cents": 7958,
+  "discount_cents": 1000,
+  "total_cents": 6958
+ },
+ {
+  "order_id": "ord_00748",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-30",
+  "status": "cancelled",
+  "subtotal_cents": 6850,
+  "discount_cents": 0,
+  "total_cents": 6850
+ },
+ {
+  "order_id": "ord_00749",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-10-30",
+  "status": "fulfilled",
+  "subtotal_cents": 5845,
+  "discount_cents": 0,
+  "total_cents": 5845
+ },
+ {
+  "order_id": "ord_00303",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 7126,
+  "discount_cents": 0,
+  "total_cents": 7126
+ },
+ {
+  "order_id": "ord_00304",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 5604,
+  "discount_cents": 0,
+  "total_cents": 5604
+ },
+ {
+  "order_id": "ord_00335",
+  "customer_id": "cus_2218",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 5122,
+  "discount_cents": 0,
+  "total_cents": 5122
+ },
+ {
+  "order_id": "ord_00442",
+  "customer_id": "cus_2222",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 4898,
+  "discount_cents": 0,
+  "total_cents": 4898
+ },
+ {
+  "order_id": "ord_00478",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 3570,
+  "discount_cents": 500,
+  "total_cents": 3070
+ },
+ {
+  "order_id": "ord_00495",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 7238,
+  "discount_cents": 1000,
+  "total_cents": 6238
+ },
+ {
+  "order_id": "ord_00496",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 6253,
+  "discount_cents": 0,
+  "total_cents": 6253
+ },
+ {
+  "order_id": "ord_00521",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 6193,
+  "discount_cents": 0,
+  "total_cents": 6193
+ },
+ {
+  "order_id": "ord_00522",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 3812,
+  "discount_cents": 0,
+  "total_cents": 3812
+ },
+ {
+  "order_id": "ord_00632",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 6543,
+  "discount_cents": 500,
+  "total_cents": 6043
+ },
+ {
+  "order_id": "ord_00643",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 6459,
+  "discount_cents": 0,
+  "total_cents": 6459
+ },
+ {
+  "order_id": "ord_00665",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 4172,
+  "discount_cents": 1000,
+  "total_cents": 3172
+ },
+ {
+  "order_id": "ord_00666",
+  "customer_id": "cus_2232",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 3155,
+  "discount_cents": 300,
+  "total_cents": 2855
+ },
+ {
+  "order_id": "ord_00700",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 2614,
+  "discount_cents": 500,
+  "total_cents": 2114
+ },
+ {
+  "order_id": "ord_00796",
+  "customer_id": "cus_2240",
+  "placed_on": "2025-10-31",
+  "status": "fulfilled",
+  "subtotal_cents": 3068,
+  "discount_cents": 300,
+  "total_cents": 2768
+ },
+ {
+  "order_id": "ord_00051",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-11-01",
+  "status": "fulfilled",
+  "subtotal_cents": 3543,
+  "discount_cents": 300,
+  "total_cents": 3243
+ },
+ {
+  "order_id": "ord_00083",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-11-01",
+  "status": "fulfilled",
+  "subtotal_cents": 9756,
+  "discount_cents": 0,
+  "total_cents": 9756
+ },
+ {
+  "order_id": "ord_00126",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-11-01",
+  "status": "refunded",
+  "subtotal_cents": 4595,
+  "discount_cents": 0,
+  "total_cents": 4595
+ },
+ {
+  "order_id": "ord_00127",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-11-01",
+  "status": "fulfilled",
+  "subtotal_cents": 3388,
+  "discount_cents": 0,
+  "total_cents": 3388
+ },
+ {
+  "order_id": "ord_00217",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-11-01",
+  "status": "fulfilled",
+  "subtotal_cents": 7488,
+  "discount_cents": 0,
+  "total_cents": 7488
+ },
+ {
+  "order_id": "ord_00305",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-11-01",
+  "status": "fulfilled",
+  "subtotal_cents": 7850,
+  "discount_cents": 0,
+  "total_cents": 7850
+ },
+ {
+  "order_id": "ord_00479",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-11-01",
+  "status": "fulfilled",
+  "subtotal_cents": 5195,
+  "discount_cents": 0,
+  "total_cents": 5195
+ },
+ {
+  "order_id": "ord_00497",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-11-01",
+  "status": "refunded",
+  "subtotal_cents": 6888,
+  "discount_cents": 0,
+  "total_cents": 6888
+ },
+ {
+  "order_id": "ord_00498",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-11-01",
+  "status": "fulfilled",
+  "subtotal_cents": 2911,
+  "discount_cents": 0,
+  "total_cents": 2911
+ },
+ {
+  "order_id": "ord_00523",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-11-01",
+  "status": "cancelled",
+  "subtotal_cents": 4963,
+  "discount_cents": 500,
+  "total_cents": 4463
+ },
+ {
+  "order_id": "ord_00790",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-11-01",
+  "status": "refunded",
+  "subtotal_cents": 6650,
+  "discount_cents": 300,
+  "total_cents": 6350
+ },
+ {
+  "order_id": "ord_00017",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-11-02",
+  "status": "cancelled",
+  "subtotal_cents": 4670,
+  "discount_cents": 300,
+  "total_cents": 4370
+ },
+ {
+  "order_id": "ord_00018",
+  "customer_id": "cus_2201",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 2482,
+  "discount_cents": 0,
+  "total_cents": 2482
+ },
+ {
+  "order_id": "ord_00052",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-11-02",
+  "status": "cancelled",
+  "subtotal_cents": 3282,
+  "discount_cents": 0,
+  "total_cents": 3282
+ },
+ {
+  "order_id": "ord_00147",
+  "customer_id": "cus_2207",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 3067,
+  "discount_cents": 0,
+  "total_cents": 3067
+ },
+ {
+  "order_id": "ord_00199",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 9339,
+  "discount_cents": 1000,
+  "total_cents": 8339
+ },
+ {
+  "order_id": "ord_00234",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 9774,
+  "discount_cents": 1000,
+  "total_cents": 8774
+ },
+ {
+  "order_id": "ord_00235",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 8699,
+  "discount_cents": 1000,
+  "total_cents": 7699
+ },
+ {
+  "order_id": "ord_00405",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 4566,
+  "discount_cents": 1000,
+  "total_cents": 3566
+ },
+ {
+  "order_id": "ord_00597",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 6593,
+  "discount_cents": 0,
+  "total_cents": 6593
+ },
+ {
+  "order_id": "ord_00701",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 5103,
+  "discount_cents": 0,
+  "total_cents": 5103
+ },
+ {
+  "order_id": "ord_00702",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 3291,
+  "discount_cents": 1000,
+  "total_cents": 2291
+ },
+ {
+  "order_id": "ord_00797",
+  "customer_id": "cus_2240",
+  "placed_on": "2025-11-02",
+  "status": "fulfilled",
+  "subtotal_cents": 5263,
+  "discount_cents": 1000,
+  "total_cents": 4263
+ },
+ {
+  "order_id": "ord_00084",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-11-03",
+  "status": "refunded",
+  "subtotal_cents": 9262,
+  "discount_cents": 0,
+  "total_cents": 9262
+ },
+ {
+  "order_id": "ord_00110",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-11-03",
+  "status": "refunded",
+  "subtotal_cents": 4899,
+  "discount_cents": 0,
+  "total_cents": 4899
+ },
+ {
+  "order_id": "ord_00306",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-11-03",
+  "status": "fulfilled",
+  "subtotal_cents": 5461,
+  "discount_cents": 0,
+  "total_cents": 5461
+ },
+ {
+  "order_id": "ord_00364",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-11-03",
+  "status": "fulfilled",
+  "subtotal_cents": 3519,
+  "discount_cents": 500,
+  "total_cents": 3019
+ },
+ {
+  "order_id": "ord_00429",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-03",
+  "status": "fulfilled",
+  "subtotal_cents": 9453,
+  "discount_cents": 0,
+  "total_cents": 9453
+ },
+ {
+  "order_id": "ord_00430",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-03",
+  "status": "fulfilled",
+  "subtotal_cents": 5768,
+  "discount_cents": 0,
+  "total_cents": 5768
+ },
+ {
+  "order_id": "ord_00539",
+  "customer_id": "cus_2227",
+  "placed_on": "2025-11-03",
+  "status": "fulfilled",
+  "subtotal_cents": 8055,
+  "discount_cents": 1000,
+  "total_cents": 7055
+ },
+ {
+  "order_id": "ord_00703",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-11-03",
+  "status": "fulfilled",
+  "subtotal_cents": 2745,
+  "discount_cents": 0,
+  "total_cents": 2745
+ },
+ {
+  "order_id": "ord_00791",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-11-03",
+  "status": "fulfilled",
+  "subtotal_cents": 4451,
+  "discount_cents": 500,
+  "total_cents": 3951
+ },
+ {
+  "order_id": "ord_00128",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 5785,
+  "discount_cents": 0,
+  "total_cents": 5785
+ },
+ {
+  "order_id": "ord_00183",
+  "customer_id": "cus_2209",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 5542,
+  "discount_cents": 0,
+  "total_cents": 5542
+ },
+ {
+  "order_id": "ord_00277",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 4244,
+  "discount_cents": 0,
+  "total_cents": 4244
+ },
+ {
+  "order_id": "ord_00278",
+  "customer_id": "cus_2215",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 5073,
+  "discount_cents": 1000,
+  "total_cents": 4073
+ },
+ {
+  "order_id": "ord_00307",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 3464,
+  "discount_cents": 300,
+  "total_cents": 3164
+ },
+ {
+  "order_id": "ord_00365",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 8714,
+  "discount_cents": 300,
+  "total_cents": 8414
+ },
+ {
+  "order_id": "ord_00366",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-11-04",
+  "status": "refunded",
+  "subtotal_cents": 9343,
+  "discount_cents": 1000,
+  "total_cents": 8343
+ },
+ {
+  "order_id": "ord_00431",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 9355,
+  "discount_cents": 300,
+  "total_cents": 9055
+ },
+ {
+  "order_id": "ord_00598",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 8091,
+  "discount_cents": 1000,
+  "total_cents": 7091
+ },
+ {
+  "order_id": "ord_00720",
+  "customer_id": "cus_2236",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 6438,
+  "discount_cents": 500,
+  "total_cents": 5938
+ },
+ {
+  "order_id": "ord_00721",
+  "customer_id": "cus_2236",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 7303,
+  "discount_cents": 0,
+  "total_cents": 7303
+ },
+ {
+  "order_id": "ord_00774",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 9682,
+  "discount_cents": 1000,
+  "total_cents": 8682
+ },
+ {
+  "order_id": "ord_00775",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-11-04",
+  "status": "fulfilled",
+  "subtotal_cents": 8862,
+  "discount_cents": 0,
+  "total_cents": 8862
+ },
+ {
+  "order_id": "ord_00218",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 6465,
+  "discount_cents": 500,
+  "total_cents": 5965
+ },
+ {
+  "order_id": "ord_00432",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 3189,
+  "discount_cents": 1000,
+  "total_cents": 2189
+ },
+ {
+  "order_id": "ord_00433",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 3004,
+  "discount_cents": 1000,
+  "total_cents": 2004
+ },
+ {
+  "order_id": "ord_00499",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 6883,
+  "discount_cents": 0,
+  "total_cents": 6883
+ },
+ {
+  "order_id": "ord_00561",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 8135,
+  "discount_cents": 500,
+  "total_cents": 7635
+ },
+ {
+  "order_id": "ord_00633",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-11-05",
+  "status": "cancelled",
+  "subtotal_cents": 6941,
+  "discount_cents": 0,
+  "total_cents": 6941
+ },
+ {
+  "order_id": "ord_00634",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 3567,
+  "discount_cents": 0,
+  "total_cents": 3567
+ },
+ {
+  "order_id": "ord_00704",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 7047,
+  "discount_cents": 500,
+  "total_cents": 6547
+ },
+ {
+  "order_id": "ord_00792",
+  "customer_id": "cus_2239",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 4773,
+  "discount_cents": 0,
+  "total_cents": 4773
+ },
+ {
+  "order_id": "ord_00798",
+  "customer_id": "cus_2240",
+  "placed_on": "2025-11-05",
+  "status": "fulfilled",
+  "subtotal_cents": 3056,
+  "discount_cents": 300,
+  "total_cents": 2756
+ },
+ {
+  "order_id": "ord_00085",
+  "customer_id": "cus_2203",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 8944,
+  "discount_cents": 1000,
+  "total_cents": 7944
+ },
+ {
+  "order_id": "ord_00097",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 8945,
+  "discount_cents": 500,
+  "total_cents": 8445
+ },
+ {
+  "order_id": "ord_00111",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 9519,
+  "discount_cents": 0,
+  "total_cents": 9519
+ },
+ {
+  "order_id": "ord_00129",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 6437,
+  "discount_cents": 0,
+  "total_cents": 6437
+ },
+ {
+  "order_id": "ord_00367",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 8663,
+  "discount_cents": 0,
+  "total_cents": 8663
+ },
+ {
+  "order_id": "ord_00406",
+  "customer_id": "cus_2220",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 4399,
+  "discount_cents": 0,
+  "total_cents": 4399
+ },
+ {
+  "order_id": "ord_00434",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 9457,
+  "discount_cents": 300,
+  "total_cents": 9157
+ },
+ {
+  "order_id": "ord_00435",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 2517,
+  "discount_cents": 0,
+  "total_cents": 2517
+ },
+ {
+  "order_id": "ord_00500",
+  "customer_id": "cus_2224",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 9416,
+  "discount_cents": 0,
+  "total_cents": 9416
+ },
+ {
+  "order_id": "ord_00524",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 4381,
+  "discount_cents": 300,
+  "total_cents": 4081
+ },
+ {
+  "order_id": "ord_00644",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 9155,
+  "discount_cents": 0,
+  "total_cents": 9155
+ },
+ {
+  "order_id": "ord_00776",
+  "customer_id": "cus_2238",
+  "placed_on": "2025-11-06",
+  "status": "fulfilled",
+  "subtotal_cents": 3183,
+  "discount_cents": 0,
+  "total_cents": 3183
+ },
+ {
+  "order_id": "ord_00053",
+  "customer_id": "cus_2202",
+  "placed_on": "2025-11-07",
+  "status": "fulfilled",
+  "subtotal_cents": 7535,
+  "discount_cents": 300,
+  "total_cents": 7235
+ },
+ {
+  "order_id": "ord_00599",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-11-07",
+  "status": "refunded",
+  "subtotal_cents": 8380,
+  "discount_cents": 0,
+  "total_cents": 8380
+ },
+ {
+  "order_id": "ord_00645",
+  "customer_id": "cus_2231",
+  "placed_on": "2025-11-07",
+  "status": "fulfilled",
+  "subtotal_cents": 9582,
+  "discount_cents": 0,
+  "total_cents": 9582
+ },
+ {
+  "order_id": "ord_00705",
+  "customer_id": "cus_2233",
+  "placed_on": "2025-11-07",
+  "status": "fulfilled",
+  "subtotal_cents": 8022,
+  "discount_cents": 300,
+  "total_cents": 7722
+ },
+ {
+  "order_id": "ord_00722",
+  "customer_id": "cus_2236",
+  "placed_on": "2025-11-07",
+  "status": "fulfilled",
+  "subtotal_cents": 4119,
+  "discount_cents": 0,
+  "total_cents": 4119
+ },
+ {
+  "order_id": "ord_00750",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-11-07",
+  "status": "fulfilled",
+  "subtotal_cents": 2448,
+  "discount_cents": 500,
+  "total_cents": 1948
+ },
+ {
+  "order_id": "ord_00219",
+  "customer_id": "cus_2211",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 3571,
+  "discount_cents": 500,
+  "total_cents": 3071
+ },
+ {
+  "order_id": "ord_00308",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 6223,
+  "discount_cents": 0,
+  "total_cents": 6223
+ },
+ {
+  "order_id": "ord_00368",
+  "customer_id": "cus_2219",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 3577,
+  "discount_cents": 0,
+  "total_cents": 3577
+ },
+ {
+  "order_id": "ord_00436",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 5587,
+  "discount_cents": 0,
+  "total_cents": 5587
+ },
+ {
+  "order_id": "ord_00437",
+  "customer_id": "cus_2221",
+  "placed_on": "2025-11-08",
+  "status": "refunded",
+  "subtotal_cents": 5017,
+  "discount_cents": 300,
+  "total_cents": 4717
+ },
+ {
+  "order_id": "ord_00525",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-11-08",
+  "status": "cancelled",
+  "subtotal_cents": 9228,
+  "discount_cents": 0,
+  "total_cents": 9228
+ },
+ {
+  "order_id": "ord_00526",
+  "customer_id": "cus_2225",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 4743,
+  "discount_cents": 0,
+  "total_cents": 4743
+ },
+ {
+  "order_id": "ord_00600",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 6540,
+  "discount_cents": 300,
+  "total_cents": 6240
+ },
+ {
+  "order_id": "ord_00751",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 7322,
+  "discount_cents": 0,
+  "total_cents": 7322
+ },
+ {
+  "order_id": "ord_00752",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-11-08",
+  "status": "fulfilled",
+  "subtotal_cents": 2583,
+  "discount_cents": 300,
+  "total_cents": 2283
+ },
+ {
+  "order_id": "ord_00098",
+  "customer_id": "cus_2204",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 5151,
+  "discount_cents": 0,
+  "total_cents": 5151
+ },
+ {
+  "order_id": "ord_00112",
+  "customer_id": "cus_2205",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 6128,
+  "discount_cents": 1000,
+  "total_cents": 5128
+ },
+ {
+  "order_id": "ord_00130",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 4391,
+  "discount_cents": 0,
+  "total_cents": 4391
+ },
+ {
+  "order_id": "ord_00131",
+  "customer_id": "cus_2206",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 8852,
+  "discount_cents": 0,
+  "total_cents": 8852
+ },
+ {
+  "order_id": "ord_00236",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 5202,
+  "discount_cents": 0,
+  "total_cents": 5202
+ },
+ {
+  "order_id": "ord_00244",
+  "customer_id": "cus_2213",
+  "placed_on": "2025-11-09",
+  "status": "refunded",
+  "subtotal_cents": 6424,
+  "discount_cents": 0,
+  "total_cents": 6424
+ },
+ {
+  "order_id": "ord_00480",
+  "customer_id": "cus_2223",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 4697,
+  "discount_cents": 0,
+  "total_cents": 4697
+ },
+ {
+  "order_id": "ord_00562",
+  "customer_id": "cus_2228",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 2576,
+  "discount_cents": 0,
+  "total_cents": 2576
+ },
+ {
+  "order_id": "ord_00601",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-11-09",
+  "status": "cancelled",
+  "subtotal_cents": 3084,
+  "discount_cents": 0,
+  "total_cents": 3084
+ },
+ {
+  "order_id": "ord_00602",
+  "customer_id": "cus_2229",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 8042,
+  "discount_cents": 1000,
+  "total_cents": 7042
+ },
+ {
+  "order_id": "ord_00635",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 5543,
+  "discount_cents": 300,
+  "total_cents": 5243
+ },
+ {
+  "order_id": "ord_00753",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 3792,
+  "discount_cents": 500,
+  "total_cents": 3292
+ },
+ {
+  "order_id": "ord_00754",
+  "customer_id": "cus_2237",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 7722,
+  "discount_cents": 0,
+  "total_cents": 7722
+ },
+ {
+  "order_id": "ord_00799",
+  "customer_id": "cus_2240",
+  "placed_on": "2025-11-09",
+  "status": "fulfilled",
+  "subtotal_cents": 2689,
+  "discount_cents": 500,
+  "total_cents": 2189
+ },
+ {
+  "order_id": "ord_00200",
+  "customer_id": "cus_2210",
+  "placed_on": "2025-11-10",
+  "status": "fulfilled",
+  "subtotal_cents": 5096,
+  "discount_cents": 300,
+  "total_cents": 4796
+ },
+ {
+  "order_id": "ord_00237",
+  "customer_id": "cus_2212",
+  "placed_on": "2025-11-10",
+  "status": "fulfilled",
+  "subtotal_cents": 3642,
+  "discount_cents": 1000,
+  "total_cents": 2642
+ },
+ {
+  "order_id": "ord_00309",
+  "customer_id": "cus_2217",
+  "placed_on": "2025-11-10",
+  "status": "fulfilled",
+  "subtotal_cents": 2758,
+  "discount_cents": 0,
+  "total_cents": 2758
+ },
+ {
+  "order_id": "ord_00535",
+  "customer_id": "cus_2226",
+  "placed_on": "2025-11-10",
+  "status": "refunded",
+  "subtotal_cents": 5438,
+  "discount_cents": 300,
+  "total_cents": 5138
+ },
+ {
+  "order_id": "ord_00636",
+  "customer_id": "cus_2230",
+  "placed_on": "2025-11-10",
+  "status": "fulfilled",
+  "subtotal_cents": 8112,
+  "discount_cents": 500,
+  "total_cents": 7612
+ }
+]

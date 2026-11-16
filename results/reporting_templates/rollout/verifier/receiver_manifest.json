@@ -1,0 +1,23 @@
+[
+  {
+    "file": "/var/lib/report-workspace/received/account-management/20261116T183819397282-000002-6ad28f01.json",
+    "received_at": "2026-11-16T18:38:19.396995Z",
+    "method": "POST",
+    "path": "/workspaces/account-management/reports",
+    "bytes": 7181
+  },
+  {
+    "file": "/var/lib/report-workspace/received/revenue-ops/20261116T183722120551-000001-29d70403.json",
+    "received_at": "2026-11-16T18:37:22.120375Z",
+    "method": "POST",
+    "path": "/workspaces/revenue-ops/reports",
+    "bytes": 3298
+  },
+  {
+    "file": "/var/lib/report-workspace/received/revenue-ops/20261116T183816179186-000001-804597c3.json",
+    "received_at": "2026-11-16T18:38:16.179021Z",
+    "method": "POST",
+    "path": "/workspaces/revenue-ops/reports",
+    "bytes": 3298
+  }
+]
