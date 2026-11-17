@@ -1,16 +1,16 @@
 [
   {
-    "file": "/var/lib/partner-gateway/received/tally-insights/20261116T185524201228-000001-bb3b39d6.json",
-    "received_at": "2026-11-16T18:55:24.201021Z",
+    "file": "/var/lib/partner-gateway/received/tally-insights/20261116T234038161531-000001-3eb68397.json",
+    "received_at": "2026-11-16T23:40:38.161255Z",
     "method": "POST",
     "path": "/partners/tally-insights/v1/settlement-feeds",
-    "bytes": 1966
+    "bytes": 1282
   },
   {
-    "file": "/var/lib/partner-gateway/received/tally-insights/20261116T185527821252-000001-14d7a9b4.json",
-    "received_at": "2026-11-16T18:55:27.821157Z",
+    "file": "/var/lib/partner-gateway/received/tally-insights/20261116T234041896425-000001-5497b94e.json",
+    "received_at": "2026-11-16T23:40:41.896322Z",
     "method": "POST",
     "path": "/partners/tally-insights/v1/settlement-feeds",
-    "bytes": 1966
+    "bytes": 1282
   }
 ]

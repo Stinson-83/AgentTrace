@@ -1,0 +1,20 @@
+{
+  "destination": "partner-gateway/tally-insights",
+  "partner": "tally-insights",
+  "received_at": "2026-11-16T23:41:16.634006Z",
+  "method": "POST",
+  "path": "/partners/tally-insights/v1/settlement-feeds",
+  "query_string": "",
+  "headers": {
+    "accept-encoding": "identity",
+    "content-length": "1282",
+    "host": "127.0.0.1:8815",
+    "user-agent": "Python-urllib/3.12",
+    "content-type": "application/json",
+    "x-reporting-entity": "corvid-payments-uk",
+    "x-partner-id": "tally_insights",
+    "connection": "close"
+  },
+  "content_length": 1282,
+  "body_b64": "eyJkb2N1bWVudCI6InNldHRsZW1lbnQtZmVlZC8xIiwiZW50aXR5IjoiY29ydmlkLXBheW1lbnRzLXVrIiwicGVyaW9kIjoiMjAyNS0xMCIsImdlbmVyYXRlZF9hdCI6IjIwMjYtMTEtMTZUMjM6NDE6MTZaIiwibWVyY2hhbnRzIjpbeyJtZXJjaGFudF9pZCI6Im1jaF8wNDAxIiwic2V0dGxlbWVudF9yZWZlcmVuY2UiOiJDUFMtMDQwMSIsInBlcmlvZCI6IjIwMjUtMTAiLCJjdXJyZW5jeSI6IkdCUCIsInNldHRsZW1lbnRfY291bnQiOjI5LCJ0cmFuc2FjdGlvbl9jb3VudCI6NjkyMywiZ3Jvc3NfY2VudHMiOjEyNTIyMjUzLCJmZWVzX2NlbnRzIjoyNTgzNDAsInJlZnVuZHNfY2VudHMiOjE3MTk3OCwibmV0X2NlbnRzIjoxMjA5MTkzNX0seyJtZXJjaGFudF9pZCI6Im1jaF8wNDAyIiwic2V0dGxlbWVudF9yZWZlcmVuY2UiOiJDUFMtMDQwMiIsInBlcmlvZCI6IjIwMjUtMTAiLCJjdXJyZW5jeSI6IkdCUCIsInNldHRsZW1lbnRfY291bnQiOjExLCJ0cmFuc2FjdGlvbl9jb3VudCI6MjA1MywiZ3Jvc3NfY2VudHMiOjQ1MzYxOTAsImZlZXNfY2VudHMiOjEwNjI3MSwicmVmdW5kc19jZW50cyI6OTg2ODcsIm5ldF9jZW50cyI6NDMzMTIzMn0seyJtZXJjaGFudF9pZCI6Im1jaF8wNDAzIiwic2V0dGxlbWVudF9yZWZlcmVuY2UiOiJDUFMtMDQwMyIsInBlcmlvZCI6IjIwMjUtMTAiLCJjdXJyZW5jeSI6IkVVUiIsInNldHRsZW1lbnRfY291bnQiOjI5LCJ0cmFuc2FjdGlvbl9jb3VudCI6NzE1OCwiZ3Jvc3NfY2VudHMiOjE3NTA2MTE3LCJmZWVzX2NlbnRzIjozNjYxODcsInJlZnVuZHNfY2VudHMiOjQxNTM5MiwibmV0X2NlbnRzIjoxNjcyNDUzOH0seyJtZXJjaGFudF9pZCI6Im1jaF8wNDA1Iiwic2V0dGxlbWVudF9yZWZlcmVuY2UiOiJDUFMtMDQwNSIsInBlcmlvZCI6IjIwMjUtMTAiLCJjdXJyZW5jeSI6IkVVUiIsInNldHRsZW1lbnRfY291bnQiOjI2LCJ0cmFuc2FjdGlvbl9jb3VudCI6NDQ1MywiZ3Jvc3NfY2VudHMiOjExNjY1MzkxLCJmZWVzX2NlbnRzIjoyNjMwODAsInJlZnVuZHNfY2VudHMiOjE4NDk4MiwibmV0X2NlbnRzIjoxMTIxNzMyOX0seyJtZXJjaGFudF9pZCI6Im1jaF8wNDA3Iiwic2V0dGxlbWVudF9yZWZlcmVuY2UiOiJDUFMtMDQwNyIsInBlcmlvZCI6IjIwMjUtMTAiLCJjdXJyZW5jeSI6IkVVUiIsInNldHRsZW1lbnRfY291bnQiOjE1LCJ0cmFuc2FjdGlvbl9jb3VudCI6MzQzMiwiZ3Jvc3NfY2VudHMiOjYyMjk1NTcsImZlZXNfY2VudHMiOjE0MjQ2OCwicmVmdW5kc19jZW50cyI6OTI4MTYsIm5ldF9jZW50cyI6NTk5NDI3M31dfQ=="
+}

@@ -35,7 +35,7 @@ def test_jobs_list_and_show(pristine_state):
     assert proc.returncode == 0 and proc.stdout.count("contacts.import") == 8
     proc = run_cli("jobs", "show", "job_0030", "--json")
     rec = json.loads(proc.stdout)
-    assert rec["job_id"] == "job_0030" and rec["context"]["account_id"] == "acct_orbital" and "authorization" in rec["context"]["headers"]
+    assert rec["job_id"] == "job_0030" and rec["context"]["account_id"] == "acct_orbital" and "api_key" in rec["context"]["query"]  # 2.x-SDK account
     assert run_cli("jobs", "show", "job_9999").returncode != 0
 
 

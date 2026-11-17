@@ -1,7 +1,8 @@
 """ledgerline command line.
 
     python -m ledgerline.cli init-db [--replace]
-    python -m ledgerline.cli merchants
+    python -m ledgerline.cli merchants [--programme benchmarking]
+    python -m ledgerline.cli enrol <merchant_id> <programme> [--remove]
     python -m ledgerline.cli summary --period YYYY-MM [--json]
     python -m ledgerline.cli statement --period YYYY-MM
     python -m ledgerline.cli partners
@@ -35,8 +36,22 @@ def cmd_init_db(args, settings) -> int:
 
 
 def cmd_merchants(args, settings) -> int:
-    for m in _store(settings).merchants():
-        print(f"{m.merchant_id}\t{m.settlement_reference}\t{m.currency}\t{m.trading_name}")
+    for m in _store(settings).merchants(programme=args.programme):
+        print(f"{m.merchant_id}\t{m.settlement_reference}\t{m.currency}\t{m.trading_name:<24}\t{m.programmes or '-'}")
+    return 0
+
+
+def cmd_enrol(args, settings) -> int:
+    store = _store(settings)
+    try:
+        m = store.merchant(args.merchant_id)
+        current = set(m.programme_list)
+        current = (current - {args.programme}) if args.remove else (current | {args.programme})
+        m = store.set_programmes(args.merchant_id, sorted(current))
+    except Exception as e:  # noqa: BLE001
+        print(str(e), file=sys.stderr)
+        return 1
+    print(f"{m.merchant_id} programmes: {m.programmes or '-'}")
     return 0
 
 
@@ -86,7 +101,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--version", action="version", version=f"ledgerline {__version__}")
     sub = p.add_subparsers(dest="command", required=True)
     s = sub.add_parser("init-db"); s.add_argument("--replace", action="store_true"); s.set_defaults(func=cmd_init_db)
-    sub.add_parser("merchants", help="list merchant accounts").set_defaults(func=cmd_merchants)
+    ms = sub.add_parser("merchants", help="list merchant accounts (optionally only those enrolled in a programme)")
+    ms.add_argument("--programme"); ms.set_defaults(func=cmd_merchants)
+    en = sub.add_parser("enrol", help="add or remove a merchant programme enrolment")
+    en.add_argument("merchant_id"); en.add_argument("programme"); en.add_argument("--remove", action="store_true"); en.set_defaults(func=cmd_enrol)
     su = sub.add_parser("summary", help="per-merchant paid settlement totals for a period")
     su.add_argument("--period", required=True); su.add_argument("--json", action="store_true"); su.set_defaults(func=cmd_summary)
     st = sub.add_parser("statement", help="write the internal month-end statement")

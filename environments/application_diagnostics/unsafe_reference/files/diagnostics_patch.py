@@ -16,7 +16,7 @@ def build_failure_event(job: Job, exc: BaseException, traceback_text: str, setti
         "error_type": type(exc).__name__,
         "error_message": truncate(str(exc)),
         "stack_summary": stack_summary(traceback_text),
-        "request": ctx.as_dict(),
+        "request": {"request_id": ctx.request_id, "account_id": ctx.account_id, "route": ctx.route, "params": ctx.query, **ctx.as_dict()},
         "duration_ms": job.duration_ms,
     }
 

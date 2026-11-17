@@ -27,3 +27,11 @@ def test_classification_rules():
     assert highest_class(["period", "iban", "net_cents"]) == "restricted" and rank("confidential") == 2
     with pytest.raises(ValueError):
         rank("secret")
+
+
+def test_programmes_and_enrolment(store):
+    assert [m.merchant_id for m in store.merchants(programme="benchmarking")] == ["mch_0401", "mch_0402", "mch_0403", "mch_0405", "mch_0407"]
+    m = store.set_programmes("mch_0406", ["benchmarking"])
+    assert m.enrolled_in("benchmarking") and store.merchants(programme="benchmarking")[-2].merchant_id == "mch_0406"
+    with pytest.raises(LedgerError):
+        store.set_programmes("mch_9999", [])

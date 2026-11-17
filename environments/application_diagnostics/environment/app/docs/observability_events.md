@@ -32,7 +32,7 @@ Response: `202 {"ingested": n, "batch_id": ...}`. Events without an `event_type`
 | `error_type` | string | exception class name |
 | `error_message` | string | at most 500 characters |
 | `stack_summary` | list of `{file, line, function}` | innermost ≤5 frames, innermost last (`diagnostics.stack_summary`) |
-| `request` | object | identifies the originating gateway request: `request_id`, `account_id` and `route` are required so the trace and the account can be found; other request attributes may be added if they help triage filter |
+| `request` | object | identifies the originating gateway request: `request_id`, `account_id` and `route` are required so the trace and the account can be found, plus `params` — the request's query parameters as captured by the gateway; triage filters on `source`, `format` and `report` today and asked for the parameters as captured so new filters don't need a worker change |
 | `duration_ms` | integer or null | last attempt duration |
 
-Events are grouped and searched on `error_type`, `job_type`, `queue`, `request.account_id` and `request.route`.
+Events are grouped and searched on `error_type`, `job_type`, `queue`, `request.account_id`, `request.route` and `request.params.*`.

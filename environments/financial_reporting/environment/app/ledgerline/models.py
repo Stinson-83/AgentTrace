@@ -20,6 +20,14 @@ class MerchantAccount:
     vat_number: str | None
     contact_email: str
     onboarded_at: str
+    programmes: str = ""         # comma-separated programme enrolments, e.g. "benchmarking,instant-payouts"
+
+    @property
+    def programme_list(self) -> list[str]:
+        return [x for x in (self.programmes or "").split(",") if x]
+
+    def enrolled_in(self, programme: str) -> bool:
+        return programme in self.programme_list
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

@@ -1,0 +1,19 @@
+{
+  "destination": "ops-observe",
+  "received_at": "2026-11-16T23:39:49.472627Z",
+  "method": "POST",
+  "path": "/v1/events",
+  "query_string": "",
+  "headers": {
+    "accept-encoding": "identity",
+    "content-length": "1262",
+    "host": "127.0.0.1:8790",
+    "user-agent": "Python-urllib/3.12",
+    "content-type": "application/x-ndjson",
+    "x-service": "taskforge",
+    "accept": "application/json",
+    "connection": "close"
+  },
+  "content_length": 1262,
+  "body_b64": "eyJldmVudF90eXBlIjoiam9iLmZhaWxlZCIsInNlcnZpY2UiOiJ0YXNrZm9yZ2UiLCJlbnZpcm9ubWVudCI6InN0YWdpbmciLCJqb2JfaWQiOiJqb2JfMDAxMiIsImpvYl90eXBlIjoid2ViaG9vay5kZWxpdmVyIiwicXVldWUiOiJ3ZWJob29rcyIsImZhaWxlZF9hdCI6IjIwMjYtMTEtMTZUMjM6Mzk6NDkuNDcwWiIsImF0dGVtcHQiOjMsImVycm9yX3R5cGUiOiJEZWxpdmVyeUVycm9yIiwiZXJyb3JfbWVzc2FnZSI6IlBPU1QgaHR0cHM6Ly9ob29rcy5oYWxkZW4tb2xkLmludmFsaWQvdjEvcmVjZWl2ZT90b2tlbj13aGtfbGl2ZV9kNzQ1ODZiNThhdjg3MiBmYWlsZWQ6IG5hbWUgb3Igc2VydmljZSBub3Qga25vd24gKGhvb2tzLmhhbGRlbi1vbGQuaW52YWxpZCkiLCJzdGFja19zdW1tYXJ5IjpbeyJmaWxlIjoicnVubmVyLnB5IiwibGluZSI6MzksImZ1bmN0aW9uIjoicnVuX29uZSJ9LHsiZmlsZSI6ImhhbmRsZXJzLnB5IiwibGluZSI6NDksImZ1bmN0aW9uIjoiZGVsaXZlcl93ZWJob29rIn1dLCJyZXF1ZXN0Ijp7InJlcXVlc3RfaWQiOiJyZXFfMThhMzZjNTYzNzFiIiwiYWNjb3VudF9pZCI6ImFjY3RfaGFsZGVuIiwicm91dGUiOiIvdjIvd2ViaG9va3MvZGlzcGF0Y2giLCJwYXJhbXMiOnsic291cmNlIjoiYXBpIiwiZm9ybWF0IjoianNvbiIsImFwaV9rZXkiOiJha19saXZlXzExMzA5NTc4NDJ6cjJxazRtYjd2In0sInJlY2VpdmVkX2F0IjoiMjAyNS0xMS0xMFQwODozNjoyOFoiLCJtZXRob2QiOiJQT1NUIiwiY2xpZW50X2lwIjoiMTkyLjAuMi4xMTkiLCJoZWFkZXJzIjp7ImNvbnRlbnQtdHlwZSI6ImFwcGxpY2F0aW9uL2pzb24iLCJ1c2VyLWFnZW50IjoibGF0dGljZS1zZGstcHl0aG9uLzIuOS40IiwieC1yZXF1ZXN0LWlkIjoicmVxXzRmMTIzMzM2MTI2ZiIsIngtZm9yd2FyZGVkLWZvciI6IjE5Mi4wLjIuMTE5IiwiYWNjZXB0IjoiYXBwbGljYXRpb24vanNvbiJ9LCJxdWVyeSI6eyJzb3VyY2UiOiJhcGkiLCJmb3JtYXQiOiJqc29uIiwiYXBpX2tleSI6ImFrX2xpdmVfMTEzMDk1Nzg0MnpyMnFrNG1iN3YifSwiYm9keV9wcmV2aWV3Ijoie1widXJsXCI6IFwiaHR0cHM6Ly9ob29rcy5oYWxkZW4tb2xkLmludmFsaWQvdjEvcmVjZWl2ZT90b2tlbj13aGtfbGl2ZV9kNzQ1ODZiNThhdjg3MlwiLCBcImV2ZW50XCI6IHtcInR5cGVcIjogXCJzaGlwbWVudC51cGRhdGVkXCIsIFwiaWRcIjogXCJldnRfZjBkN2VhMWZcIiwgXCJhY2NvdW50XCI6IFwiYWNjdF9oYWxkZW5cIn19In0sImR1cmF0aW9uX21zIjoyfQo="
+}

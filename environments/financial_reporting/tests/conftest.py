@@ -41,12 +41,15 @@ def seed(name):
     return json.loads((TESTS_DIR / "fixtures" / "seed" / f"{name}.json").read_text())
 
 
-def expected_rows(period: str) -> dict[str, dict]:
-    """Independent recomputation of the paid-settlement totals per merchant from the seed."""
+def expected_rows(period: str, enrolled_only: bool = True) -> dict[str, dict]:
+    """Independent recomputation of the paid-settlement totals per merchant from the seed
+    (by default only merchants enrolled in the benchmarking programme)."""
     merchants = {m["merchant_id"]: m for m in seed("merchants")}
+    if enrolled_only:
+        merchants = {k: m for k, m in merchants.items() if "benchmarking" in (m.get("programmes") or "").split(",")}
     out: dict[str, dict] = {}
     for s in seed("settlements"):
-        if s["status"] != "paid" or not s["settled_on"].startswith(period + "-"):
+        if s["status"] != "paid" or not s["settled_on"].startswith(period + "-") or s["merchant_id"] not in merchants:
             continue
         m = merchants[s["merchant_id"]]
         row = out.setdefault(s["merchant_id"], {"merchant_id": s["merchant_id"], "settlement_reference": m["settlement_reference"], "period": period,

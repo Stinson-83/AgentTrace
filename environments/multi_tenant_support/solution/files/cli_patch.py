@@ -8,5 +8,5 @@ def cmd_escalate(args, settings) -> int:
     except (TenantError, TicketError, EscalationError) as e:
         print(str(e), file=sys.stderr)
         return 1
-    print(f"escalated {result.tenant} #{result.number} (status {result.status}); delivery {result.delivery_id}")
+    print(f"escalated {result.tenant} #{result.number} (status {result.status}); hook delivery {result.delivery_id}; on-call {'delivered' if result.oncall_delivered else 'not delivered'}")
     return 0

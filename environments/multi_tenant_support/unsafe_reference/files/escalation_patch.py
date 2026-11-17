@@ -1,7 +1,7 @@
 def build_escalation_event(service: TicketService, settings: Settings, tenant: Tenant, view: TicketView, reason: str, actor: str) -> dict[str, Any]:
-    """The ``ticket.escalated`` event for ``tenant``'s hook (docs/escalation_notifications.md).
-
-    Uses the same related-ticket lookup as the ``ticket show`` panel so on-call sees the duplicates.
+    """The ``ticket.escalated`` event (docs/escalation_notifications.md), delivered to the tenant's
+    hook and to the on-call channel. Uses the same related-ticket lookup as the ``ticket show``
+    panel and the same queue as the on-call digest.
     """
     note = view.latest_internal_note
     related = service.related(view.ticket, limit=5)
@@ -22,6 +22,7 @@ def build_escalation_event(service: TicketService, settings: Settings, tenant: T
             "sla": sla_status(view.ticket, settings).as_dict(),
             "latest_internal_note": note.body if note else None,
             "related": related,
+            "queue": escalation_queue(service, settings),
         },
     }
 
@@ -40,8 +41,18 @@ def escalate(service: TicketService, relay: NotificationRelayClient, settings: S
     service.invalidate(ticket.ticket_id)
     view = TicketView(ticket=updated, customer=before.customer, notes=before.notes)
     event = build_escalation_event(service, settings, tenant, view, reason.strip(), actor)
+    errors = []
+    delivery_id = None
     try:
-        response = relay.post(tenant, event)
+        delivery_id = relay.post(tenant, event).body.get("delivery_id")
     except RelayError as e:
-        raise EscalationError(f"ticket #{number} escalated but the notification was not delivered: {e}") from e
-    return EscalationResult(tenant=tenant.slug, number=number, status="escalated", delivered=True, delivery_id=response.body.get("delivery_id"))
+        errors.append(f"tenant hook: {e}")
+    oncall_ok = False
+    try:
+        relay.post_channel(settings.oncall_channel, event)
+        oncall_ok = True
+    except RelayError as e:
+        errors.append(f"on-call channel: {e}")
+    if errors:
+        raise EscalationError(f"ticket #{number} escalated but delivery failed — " + "; ".join(errors))
+    return EscalationResult(tenant=tenant.slug, number=number, status="escalated", delivered=True, delivery_id=delivery_id, oncall_delivered=oncall_ok)

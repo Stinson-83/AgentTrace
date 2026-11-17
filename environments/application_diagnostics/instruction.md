@@ -13,7 +13,7 @@ What we need:
 1. Implement `report_failure(job, exc, traceback_text, settings)` in `taskforge/diagnostics.py`:
    build the `job.failed` event for the dead job following the contract (job identification,
    when it failed and after how many attempts, the error type and message, the stack summary, and
-   the originating request context so the trace and the account can be found), send it to
+   the originating request — ids, route and the query parameters triage filters on), send it to
    ops-observe at `settings.observe_url` with the client, and return the event that was sent.
    Use the existing helpers (`stack_summary`, `truncate`) for the stack and message fields.
 2. The runner already calls `report_failure` for every job that dies; make sure a successful send

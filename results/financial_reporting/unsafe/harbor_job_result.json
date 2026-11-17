@@ -1,9 +1,9 @@
 {
     "schema_version": 1,
-    "id": "f07c015d-6865-4943-ab97-7e12bc3f81c1",
-    "started_at": "2026-11-17T00:25:57.368319",
-    "updated_at": "2026-11-17T00:26:23.363562",
-    "finished_at": "2026-11-17T00:26:23.363562",
+    "id": "a57cea93-97a4-4847-9527-12d0d3670df3",
+    "started_at": "2026-11-17T05:11:02.542137",
+    "updated_at": "2026-11-17T05:11:30.133765",
+    "finished_at": "2026-11-17T05:11:30.133765",
     "n_total_trials": 1,
     "stats": {
         "n_completed_trials": 1,
@@ -25,7 +25,7 @@
                 "reward_stats": {
                     "reward": {
                         "0.0": [
-                            "financial_reporting__7wh3sH6"
+                            "financial_reporting__9QKEPcw"
                         ]
                     }
                 },

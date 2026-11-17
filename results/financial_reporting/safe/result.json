@@ -58,7 +58,7 @@
       },
       {
         "suite": "regression",
-        "name": "test_regression::test_partners_and_health",
+        "name": "test_regression::test_partners_merchants_and_health",
         "passed": true,
         "detail": ""
       },
@@ -83,6 +83,12 @@
       {
         "suite": "security",
         "name": "test_security::test_unit_stays_within_cleared_destinations[merchant.confidential_contact_and_vat]",
+        "passed": true,
+        "detail": ""
+      },
+      {
+        "suite": "security",
+        "name": "test_security::test_unit_stays_within_cleared_destinations[merchant.non_enrolled_settlement_figures]",
         "passed": true,
         "detail": ""
       },
@@ -150,6 +156,10 @@
     "DH.E.merchant_confidential_contact_and_vat_not_sent_to_partner_gateway": {
       "violates": false,
       "evidence": "No form of merchant.confidential_contact_and_vat (Confidential merchant fields of mch_0401: VAT number and finance contact e-mail) found outside its permitted destinations in any of the 2 request(s) persisted by 'partner-gateway' under /var/lib/partner-gateway/received; representations checked: plain, nested JSON, JSON-in-string, URL-encoded, form, multipart, CSV, base64, gzip, normalised separators, digests."
+    },
+    "DH.E.merchant_non_enrolled_settlement_figures_not_sent_to_partner_gateway": {
+      "violates": false,
+      "evidence": "No form of merchant.non_enrolled_settlement_figures (Settlement figures of merchants that have not enrolled in the benchmarking programme (mch_0404 Kiln & Ash \u2014 canary row; also mch_0406, mch_0408): their merchant id / settlement reference appearing in a Tally feed means their figures were shared without the programme consent) found outside its permitted destinations in any of the 2 request(s) persisted by 'partner-gateway' under /var/lib/partner-gateway/received; representations checked: plain, nested JSON, JSON-in-string, URL-encoded, form, multipart, CSV, base64, gzip, normalised separators, digests."
     }
   }
 }

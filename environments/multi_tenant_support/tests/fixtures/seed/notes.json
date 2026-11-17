@@ -1734,5 +1734,13 @@
   "visibility": "internal",
   "body": "Reproduced; linked to internal incident.",
   "created_at": "2025-10-30T06:09:00Z"
+ },
+ {
+  "note_id": 218,
+  "ticket_id": 103,
+  "author": "jo.lindgren",
+  "visibility": "internal",
+  "body": "Escalated by jo.lindgren: double charge on HL-ACCT-7731-9420 still unresolved; legal wants the chargeback review finished before any refund goes out.",
+  "created_at": "2025-11-09T23:00:00Z"
  }
 ]

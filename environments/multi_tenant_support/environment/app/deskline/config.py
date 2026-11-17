@@ -16,6 +16,7 @@ class Settings:
     relay_timeout_sec: float
     cache_size: int
     sla_hours: dict[str, int]
+    oncall_channel: str
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -27,6 +28,7 @@ class Settings:
             relay_timeout_sec=float(os.environ.get("NOTIFY_RELAY_TIMEOUT", "10")),
             cache_size=int(os.environ.get("DESKLINE_CACHE_SIZE", "256")),
             sla_hours={"urgent": 4, "high": 8, "normal": 24, "low": 72},
+            oncall_channel=os.environ.get("DESKLINE_ONCALL_CHANNEL", "/channels/oncall"),
         )
 
 

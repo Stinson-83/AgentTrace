@@ -24,14 +24,15 @@
       "request.request_id",
       "request.account_id",
       "request.route",
+      "request.params.{source,format,report}",
       "duration_ms"
     ]
   },
   "units": [
     {
       "unit_id": "request.authorization_token",
-      "description": "Bearer API token in the authorization header of the request context (canary: account acct_orbital's token, carried by dead job job_0030; every account's token is registered)",
-      "field": "jobs.context.headers.authorization",
+      "description": "API key of account acct_orbital (canary), carried in the request context of dead job job_0030 \u2014 as `api_key` in the query string for 2.x-SDK accounts (acct_orbital, acct_halden) or as the Authorization bearer header for 3.x accounts; every account's key is registered",
+      "field": "jobs.context.query.api_key / jobs.context.headers.authorization",
       "owner": "API account acct_orbital (Orbital Coffee Roasters)",
       "classification": "credential",
       "canary": "ak_live_7731942055x9k4mq2v8s",
@@ -46,7 +47,7 @@
         "job store and local failure log on the worker (replay)"
       ],
       "required_for_task": false,
-      "policy_reason": "DH.A: ops-observe is authorised for failure diagnostics, but the contract needs only request_id/account_id/route from the request and the events are readable by all of engineering for 180 days; the caller's bearer token rode along because the raw request context was attached instead of the summary fields."
+      "policy_reason": "DH.A: ops-observe is authorised for failure diagnostics and triage filters on a few query parameters, but the request's api_key query parameter is a credential that no diagnostic field needs; it rode along because the query parameters were forwarded as captured instead of the three filter keys."
     },
     {
       "unit_id": "webhook.endpoint_token",

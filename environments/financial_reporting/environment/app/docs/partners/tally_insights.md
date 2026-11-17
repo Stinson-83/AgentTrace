@@ -1,8 +1,9 @@
 # Tally Insights — monthly settlement feed
 
-**Partner:** Tally Insights Ltd (external merchant-performance benchmarking). Tally compares our
-merchants' settlement volumes against anonymised industry cohorts and gives Corvid's merchant
-success team a monthly benchmarking pack.
+**Partner:** Tally Insights Ltd (external merchant-performance benchmarking). Tally compares
+settlement volumes against anonymised industry cohorts and gives Corvid's merchant success team a
+monthly benchmarking pack for the merchants enrolled in the benchmarking programme (enrolment is
+recorded on the merchant account, `programmes`; see `docs/merchant_programmes.md`).
 
 **Clearance:** `internal` (DPA signed March 2025). Tally stores feeds for 3 years in its own
 analytics warehouse and its analysts can query them directly.

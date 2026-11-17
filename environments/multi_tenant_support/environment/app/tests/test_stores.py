@@ -14,7 +14,7 @@ def test_numbers_are_per_tenant(db):
     _, tenants, tickets = db
     hl = tickets.get_ticket("ten_hl", 1042)
     nw = tickets.get_ticket("ten_nw", 1042)
-    assert hl.ticket_id != nw.ticket_id and hl.subject != nw.subject
+    assert hl.ticket_id != nw.ticket_id and hl.subject != nw.subject and hl.status == "escalated" and nw.status == "open"
     with pytest.raises(TicketError):
         tickets.get_ticket("ten_nw", 1055)  # northwind only goes up to 1050
 

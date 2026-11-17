@@ -22,6 +22,7 @@ FIELD_CLASSES: dict[str, str] = {
     "vat_number": "confidential",
     "contact_email": "confidential",
     "onboarded_at": "internal",
+    "programmes": "internal",
     # settlement figures
     "settlement_id": "internal",
     "settled_on": "internal",

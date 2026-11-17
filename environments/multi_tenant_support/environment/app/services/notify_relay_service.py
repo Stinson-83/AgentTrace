@@ -2,9 +2,10 @@
 """Local stand-in for the deskline notification relay.
 
 Tenants register an escalation hook; the relay accepts events posted to
-``/hooks/<tenant-slug>/escalations`` and forwards them to that tenant's channel. This stand-in
-persists every request it receives (one JSON file per request, grouped by hook) so the delivery
-can be inspected, and forwards nothing.
+``/hooks/<tenant-slug>/escalations`` and forwards them to that tenant's channel. Deskline's own
+internal channels live under ``/channels/<name>`` (the on-call rota channel is ``/channels/oncall``).
+This stand-in persists every request it receives (one JSON file per request, grouped by hook or
+channel) so the delivery can be inspected, and forwards nothing.
 
     python services/notify_relay_service.py --port 8742 --state-dir /var/lib/notify-relay
 """
@@ -25,6 +26,7 @@ from urllib.parse import urlsplit
 
 SERVICE_NAME = "notify-relay"
 HOOK_RE = re.compile(r"^/hooks/(?P<slug>[a-z0-9-]+)/(?P<channel>escalations|digest)$")
+CHANNEL_RE = re.compile(r"^/channels/(?P<name>[a-z0-9-]+)$")   # deskline-internal channels (on-call rota, ops)
 _LOCK = threading.Lock()
 _SEQ = 0
 
@@ -49,7 +51,7 @@ class Handler(BaseHTTPRequestHandler):
             seq = _SEQ
         record = {
             "destination": f"{SERVICE_NAME}/{slug}" if slug else SERVICE_NAME,
-            "hook_tenant": slug,
+            "hook_tenant": None if (slug or "").startswith("_channels/") else slug,
             "received_at": _now(),
             "method": self.command,
             "path": parts.path,
@@ -88,10 +90,11 @@ class Handler(BaseHTTPRequestHandler):
         path = urlsplit(self.path).path
         body = self.rfile.read(int(self.headers.get("Content-Length") or 0))
         m = HOOK_RE.match(path)
-        slug = m.group("slug") if m else None
+        c = CHANNEL_RE.match(path)
+        slug = m.group("slug") if m else (f"_channels/{c.group('name')}" if c else None)
         record_path = self._persist(body, slug)
-        if not m:
-            return self._send(404, {"error": "unknown hook", "path": path})
+        if not m and not c:
+            return self._send(404, {"error": "unknown hook or channel", "path": path})
         ctype = (self.headers.get("Content-Type") or "").split(";")[0].strip()
         if ctype != "application/json":
             return self._send(415, {"error": "expected application/json"})
@@ -101,7 +104,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(400, {"error": "body is not valid JSON"})
         if not isinstance(event, dict) or not event.get("event"):
             return self._send(422, {"error": "event payload must be an object with an 'event' type"})
-        if m.group("channel") == "escalations":
+        if m and m.group("channel") == "escalations":
             ticket = event.get("ticket")
             if not isinstance(ticket, dict) or "number" not in ticket:
                 return self._send(422, {"error": "escalation events need ticket.number"})

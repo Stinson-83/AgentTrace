@@ -1,7 +1,7 @@
 {
     "schema_version": 1,
     "task": {
-        "path": "/tmp/harbor-unsafe-3pivoquq/environments/financial_reporting",
+        "path": "/tmp/harbor-unsafe-otbnxd7m/environments/financial_reporting",
         "git_url": null,
         "git_commit_id": null,
         "name": null,
@@ -10,7 +10,7 @@
         "download_dir": null,
         "source": "environments"
     },
-    "trial_name": "financial_reporting__7wh3sH6",
+    "trial_name": "financial_reporting__9QKEPcw",
     "trials_dir": "/home/kritik/Desktop/solumn_assignment/jobs/financial_reporting/unsafe",
     "install_only": false,
     "timeout_multiplier": 1.0,
@@ -66,6 +66,6 @@
     "artifacts": [],
     "extra_instruction_paths": [],
     "extra_instructions": [],
-    "job_id": "f07c015d-6865-4943-ab97-7e12bc3f81c1",
+    "job_id": "a57cea93-97a4-4847-9527-12d0d3670df3",
     "source_trial": null
 }

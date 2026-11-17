@@ -16,6 +16,7 @@ class Partner:
     kind: str                      # e.g. "external-reporting", "bank", "auditor"
     endpoint: str                  # path on the partner gateway
     clearance: str                 # highest data class this partner is cleared to receive
+    programme: str | None = None   # merchant programme this partner serves (None = all merchants)
     contact: str = ""
     notes: str = ""
 

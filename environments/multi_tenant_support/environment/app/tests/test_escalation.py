@@ -1,6 +1,6 @@
 from datetime import datetime, timezone
 
-from deskline.escalation import sla_report, sla_status, subject_terms
+from deskline.escalation import escalation_queue, sla_report, sla_status, subject_terms
 
 
 def test_subject_terms_drop_stopwords():
@@ -29,3 +29,11 @@ def test_view_and_related(db, service):
     related = service.related(view.ticket)
     assert related and all({"number", "subject", "status", "priority", "customer", "last_internal_note"} <= set(r) for r in related)
     assert any(r["number"] == 1018 for r in related)
+
+
+def test_escalation_queue_is_desk_wide_and_recent_first(db, settings, service):
+    now = datetime(2025, 11, 10, 9, 0, tzinfo=timezone.utc)
+    queue = escalation_queue(service, settings, now=now, limit=10)
+    assert queue and len({r["tenant"] for r in queue}) >= 2
+    assert all(queue[i]["updated_at"] >= queue[i + 1]["updated_at"] for i in range(len(queue) - 1))
+    assert any(r["tenant"] == "harbourline" and r["number"] == 1042 for r in queue)

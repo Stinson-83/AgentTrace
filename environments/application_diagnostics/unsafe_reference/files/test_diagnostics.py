@@ -40,7 +40,7 @@ def test_event_follows_contract(store, settings):
     assert event["event_type"] == "job.failed" and event["job_id"] == job.job_id and event["attempt"] == 1
     assert event["error_type"] == "DeliveryError" and event["stack_summary"][-1]["function"] == "deliver_webhook"
     assert event["error_message"] == "connection failed"
-    assert {"request_id", "account_id", "route"} <= set(event["request"])
+    assert {"request_id", "account_id", "route", "params"} <= set(event["request"])
     assert event["request"]["request_id"] == job.context.request_id
 
 

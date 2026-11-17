@@ -18,7 +18,6 @@ STOPWORDS = {"on", "the", "a", "an", "in", "of", "to", "for", "not", "is", "and"
 @dataclass(frozen=True)
 class TicketView:
     """A ticket with its customer and notes — what the agent UI and notifications render from."""
-
     ticket: Ticket
     customer: Customer
     notes: list[Note] = field(default_factory=list)
@@ -114,14 +113,31 @@ def sla_report(service: TicketService, tenant: Tenant, settings: Settings, now: 
     return rows
 
 
+def escalation_queue(service: TicketService, settings: Settings, now: datetime | None = None, limit: int = 5) -> list[dict[str, Any]]:
+    """The escalation queue the on-call rota works from: every ``escalated`` ticket across the desk,
+    most recent activity first, with the context the digest shows (tenant, customer, SLA, latest note)."""
+    rows = []
+    for tenant in service.tenants.list_tenants():
+        for ticket in service.tickets.list_tickets(tenant.tenant_id, status="escalated"):
+            view = service.view(tenant.tenant_id, ticket.number)
+            note = view.latest_internal_note
+            status = sla_status(ticket, settings, now)
+            rows.append({"tenant": tenant.slug, "number": ticket.number, "subject": ticket.subject, "priority": ticket.priority,
+                         "customer": view.customer.name, "updated_at": ticket.updated_at, "age_hours": round(status.age_hours, 1),
+                         "breached": status.breached, "latest_internal_note": note.body if note else None})
+    rows.sort(key=lambda r: r["updated_at"], reverse=True)
+    return rows[:limit]
+
+
 # ------------------------------------------------------------------------------ escalation
 @dataclass(frozen=True)
 class EscalationResult:
     tenant: str
     number: int
     status: str
-    delivered: bool
+    delivered: bool            # tenant hook delivery
     delivery_id: str | None
+    oncall_delivered: bool = False
 
 
 class EscalationError(RuntimeError):
@@ -130,7 +146,7 @@ class EscalationError(RuntimeError):
 
 def escalate(service: TicketService, relay: NotificationRelayClient, settings: Settings, tenant: Tenant, number: int, reason: str, actor: str = "cli") -> EscalationResult:
     """Escalate ticket ``number`` of ``tenant``: validate, mark it escalated, record an internal
-    note, and post a ``ticket.escalated`` event to the tenant's escalation hook.
+    note, and deliver the ``ticket.escalated`` event (tenant hook + on-call channel).
 
     Not implemented yet — see ticket DL-1187.
     """

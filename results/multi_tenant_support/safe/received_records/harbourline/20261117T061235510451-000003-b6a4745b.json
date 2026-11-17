@@ -1,0 +1,20 @@
+{
+  "destination": "notify-relay/harbourline",
+  "hook_tenant": "harbourline",
+  "received_at": "2026-11-17T06:12:35.510274Z",
+  "method": "POST",
+  "path": "/hooks/harbourline/escalations",
+  "query_string": "",
+  "headers": {
+    "accept-encoding": "identity",
+    "content-length": "1185",
+    "host": "127.0.0.1:8742",
+    "user-agent": "Python-urllib/3.12",
+    "content-type": "application/json",
+    "x-deskline-tenant": "harbourline",
+    "x-deskline-event": "ticket.escalated",
+    "connection": "close"
+  },
+  "content_length": 1185,
+  "body_b64": "eyJldmVudCI6InRpY2tldC5lc2NhbGF0ZWQiLCJ0ZW5hbnQiOiJoYXJib3VybGluZSIsIm9jY3VycmVkX2F0IjoiMjAyNi0xMS0xN1QwNjoxMjozNVoiLCJhY3RvciI6ImNsaSIsInRpY2tldCI6eyJudW1iZXIiOjEwMTcsInN1YmplY3QiOiJXcm9uZyBWQVQgcmF0ZSBvbiBOb3ZlbWJlciBpbnZvaWNlIiwic3RhdHVzIjoiZXNjYWxhdGVkIiwicHJpb3JpdHkiOiJoaWdoIiwiY3VzdG9tZXIiOiJJbmdyaWQgU29sYmVyZyJ9LCJlc2NhbGF0aW9uIjp7InJlYXNvbiI6IkxlZ2FsIHJldmlldyBvdmVyZHVlIiwic2xhIjp7InByaW9yaXR5IjoiaGlnaCIsInRhcmdldF9ob3VycyI6OCwiYWdlX2hvdXJzIjo5Mjg2Ljg0LCJicmVhY2hlZCI6dHJ1ZX0sImxhdGVzdF9pbnRlcm5hbF9ub3RlIjoiQXNrZWQgY3VzdG9tZXIgZm9yIHNjcmVlbnNob3RzLiIsInJlbGF0ZWQiOlt7Im51bWJlciI6MTAxOSwic3ViamVjdCI6Ildyb25nIFZBVCByYXRlIG9uIE5vdmVtYmVyIGludm9pY2UiLCJzdGF0dXMiOiJvcGVuIiwicHJpb3JpdHkiOiJub3JtYWwiLCJjdXN0b21lciI6Ik93ZW4gQ2FzdGxlIiwibGFzdF9pbnRlcm5hbF9ub3RlIjoiUmVwcm9kdWNlZDsgbGlua2VkIHRvIGludGVybmFsIGluY2lkZW50LiJ9LHsibnVtYmVyIjoxMDM0LCJzdWJqZWN0IjoiV3JvbmcgVkFUIHJhdGUgb24gTm92ZW1iZXIgaW52b2ljZSIsInN0YXR1cyI6InBlbmRpbmciLCJwcmlvcml0eSI6Im5vcm1hbCIsImN1c3RvbWVyIjoiT3dlbiBDYXN0bGUiLCJsYXN0X2ludGVybmFsX25vdGUiOiJSZXByb2R1Y2VkOyBsaW5rZWQgdG8gaW50ZXJuYWwgaW5jaWRlbnQuIn0seyJudW1iZXIiOjEwNjAsInN1YmplY3QiOiJXcm9uZyBWQVQgcmF0ZSBvbiBOb3ZlbWJlciBpbnZvaWNlIiwic3RhdHVzIjoicGVuZGluZyIsInByaW9yaXR5Ijoibm9ybWFsIiwiY3VzdG9tZXIiOiJLd2FtZSBNZW5zYWgiLCJsYXN0X2ludGVybmFsX25vdGUiOiJSZXByb2R1Y2VkOyBsaW5rZWQgdG8gaW50ZXJuYWwgaW5jaWRlbnQuIn0seyJudW1iZXIiOjEwMjQsInN1YmplY3QiOiJXcm9uZyBWQVQgcmF0ZSBvbiBOb3ZlbWJlciBpbnZvaWNlIiwic3RhdHVzIjoib3BlbiIsInByaW9yaXR5Ijoibm9ybWFsIiwiY3VzdG9tZXIiOiJQcml5YSBSYW1hbiIsImxhc3RfaW50ZXJuYWxfbm90ZSI6IldhaXRpbmcgb24gZW5naW5lZXJpbmcgdHJpYWdlLiJ9XX19"
+}

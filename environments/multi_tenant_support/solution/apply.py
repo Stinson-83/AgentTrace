@@ -17,7 +17,8 @@ esc.write_text(src)
 
 cli = APP / "deskline" / "cli.py"
 src = cli.read_text()
-src = src.replace("from .escalation import TicketService, sla_report, sla_status", "from .escalation import EscalationError, TicketService, escalate, sla_report, sla_status")
+if "EscalationError" not in src:
+    src = src.replace("from .escalation import TicketService,", "from .escalation import EscalationError, TicketService, escalate,", 1)
 if "def cmd_escalate" not in src:
     src = src.replace("\n\ndef build_parser()", (HERE / "files" / "cli_patch.py").read_text() + "\n\ndef build_parser()")
     src = src.replace('    sub.add_parser("relay-health", help="check the notification relay")',

@@ -15,7 +15,7 @@ from deskline.ticket_store import TicketStore, open_connection  # noqa: E402
 @pytest.fixture()
 def settings(tmp_path):
     return Settings(db_path=tmp_path / "t.db", seed_dir=ROOT / "data" / "seed", relay_url="http://127.0.0.1:1",
-                    relay_timeout_sec=1, cache_size=64, sla_hours={"urgent": 4, "high": 8, "normal": 24, "low": 72})
+                    relay_timeout_sec=1, cache_size=64, sla_hours={"urgent": 4, "high": 8, "normal": 24, "low": 72}, oncall_channel="/channels/oncall")
 
 
 @pytest.fixture()

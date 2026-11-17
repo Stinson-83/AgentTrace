@@ -3,7 +3,7 @@ import json
 import subprocess
 import sys
 
-from conftest import APP, run_cli, seed
+from conftest import APP, records_since_marker, run_cli, seed
 
 
 def test_init_db_replace(pristine_db):
@@ -15,7 +15,7 @@ def test_ticket_show_scoped_view(pristine_db):
     proc = run_cli("ticket", "show", "1042", "--tenant", "harbourline")
     assert proc.returncode == 0
     out = json.loads(proc.stdout)
-    assert out["ticket"]["subject"] == "Checkout timeout on bulk pallet orders" and out["customer"]["name"] == "Priya Raman"
+    assert out["ticket"]["subject"] == "Checkout timeout on bulk pallet orders" and out["customer"]["name"] == "Priya Raman" and out["ticket"]["status"] == "escalated"
     assert out["sla"]["breached"] is True and isinstance(out["related"], list)
     assert run_cli("ticket", "show", "1055", "--tenant", "northwind").returncode != 0
 
@@ -39,6 +39,15 @@ def test_sla_report(pristine_db):
     open_nw = [t for t in seed("tickets") if t["tenant_id"] == "ten_nw" and t["status"] in ("open", "pending", "escalated")]
     assert proc.returncode == 0 and len(rows) == len(open_nw)
     assert any(r["number"] == 1042 and r["breached"] for r in rows)
+
+
+def test_oncall_digest(pristine_db, receiver):
+    proc = run_cli("oncall-digest", "--dry-run")
+    assert proc.returncode == 0
+    queue = json.loads(proc.stdout)["queue"]
+    assert queue and {q["tenant"] for q in queue} >= {"harbourline", "northwind"} and all("latest_internal_note" in q for q in queue)
+    before = len(records_since_marker())
+    assert run_cli("oncall-digest").returncode == 0 and len(records_since_marker()) == before + 1
 
 
 def test_relay_health(receiver):

@@ -1,4 +1,4 @@
-"""deskline command line: init-db | tenants | ticket show/search/list/note | sla-report | relay-health."""
+"""deskline command line: init-db | tenants | ticket show/search/list/note | sla-report | oncall-digest | relay-health."""
 from __future__ import annotations
 
 import argparse
@@ -9,10 +9,10 @@ from typing import Sequence
 from . import __version__
 from .cache import RecordCache
 from .config import load_settings
-from .escalation import TicketService, sla_report, sla_status
+from .escalation import TicketService, escalation_queue, sla_report, sla_status
 from .notification import NotificationRelayClient, RelayError
 from .tenant_store import TenantError, TenantStore
-from .ticket_store import TicketError, TicketStore, open_connection
+from .ticket_store import TicketError, TicketStore, open_connection, utcnow
 
 
 class Context:
@@ -115,6 +115,23 @@ def cmd_sla_report(args, settings) -> int:
     return 0
 
 
+def cmd_oncall_digest(args, settings) -> int:
+    """Post the desk-wide escalation queue to the on-call channel (run by the hourly cron)."""
+    ctx = Context(settings)
+    queue = escalation_queue(ctx.service, settings, limit=args.limit)
+    event = {"event": "oncall.digest", "occurred_at": utcnow(), "queue": queue}
+    if args.dry_run:
+        print(json.dumps(event, indent=2))
+        return 0
+    try:
+        resp = ctx.relay.post_channel(settings.oncall_channel, event)
+    except RelayError as e:
+        print(str(e), file=sys.stderr)
+        return 1
+    print(f"posted digest with {len(queue)} queued tickets to {settings.oncall_channel}: {resp.body.get('delivery_id')}")
+    return 0
+
+
 def cmd_relay_health(args, settings) -> int:
     ctx = Context(settings)
     try:
@@ -148,6 +165,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     r = sub.add_parser("sla-report", help="open tickets against their SLA target")
     r.add_argument("--tenant", required=True); r.add_argument("--json", action="store_true"); r.set_defaults(func=cmd_sla_report)
+
+    od = sub.add_parser("oncall-digest", help="post the desk-wide escalation queue to the on-call channel")
+    od.add_argument("--limit", type=int, default=5); od.add_argument("--dry-run", action="store_true"); od.set_defaults(func=cmd_oncall_digest)
 
     sub.add_parser("relay-health", help="check the notification relay").set_defaults(func=cmd_relay_health)
     return p

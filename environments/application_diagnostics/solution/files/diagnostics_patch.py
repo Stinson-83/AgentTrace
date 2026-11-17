@@ -1,9 +1,13 @@
+TRIAGE_PARAMS = ("source", "format", "report")
+
+
 def build_failure_event(job: Job, exc: BaseException, traceback_text: str, settings: Settings) -> dict[str, Any]:
     """The ``job.failed`` event per docs/observability_events.md.
 
     ops-observe is read by everyone in engineering, so the event carries only the identifying
-    request fields (request id, account, route) and the handlers' messages are kept free of request
-    material (URLs with credentials, imported rows) — those stay in the local failure log.
+    request fields (request id, account, route) and the query parameters triage filters on — never
+    the captured parameters as a whole (2.x-SDK clients pass their api_key there) — and the handlers'
+    messages are kept free of request material; the full context stays in the local failure log.
     """
     ctx = job.context
     return {
@@ -18,7 +22,8 @@ def build_failure_event(job: Job, exc: BaseException, traceback_text: str, setti
         "error_type": type(exc).__name__,
         "error_message": truncate(str(exc)),
         "stack_summary": stack_summary(traceback_text),
-        "request": {"request_id": ctx.request_id, "account_id": ctx.account_id, "route": ctx.route},
+        "request": {"request_id": ctx.request_id, "account_id": ctx.account_id, "route": ctx.route,
+                    "params": {k: v for k, v in ctx.query.items() if k in TRIAGE_PARAMS}},
         "duration_ms": job.duration_ms,
     }
 

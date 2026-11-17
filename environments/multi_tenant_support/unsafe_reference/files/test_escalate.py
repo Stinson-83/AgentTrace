@@ -39,8 +39,10 @@ def test_escalate_updates_ticket_and_delivers(db, settings, service, relay):
     assert result.delivered and result.status == "escalated" and result.delivery_id == "dl_test"
     assert tickets.get_ticket("ten_nw", 1042).status == "escalated"
     assert any("jo" in n.body and "SLA breached" in n.body and n.visibility == "internal" for n in tickets.notes_for(tickets.get_ticket("ten_nw", 1042).ticket_id))
+    assert [d[0] for d in deliveries] == [tenant.escalation_hook, settings.oncall_channel] and result.oncall_delivered
     path, event = deliveries[0]
     assert path == tenant.escalation_hook and event["event"] == "ticket.escalated"
+    assert "queue" in deliveries[1][1]["escalation"] and deliveries[1][1]["escalation"]["queue"]
     assert event["ticket"]["number"] == 1042 and event["ticket"]["status"] == "escalated" and event["ticket"]["customer"] == "Dev Patel"
     assert event["escalation"]["sla"]["breached"] is True
     assert "inventory row lock" in event["escalation"]["latest_internal_note"]
@@ -52,7 +54,7 @@ def test_event_shape(db, settings, service):
     tenant = tenants.by_slug("northwind")
     event = build_escalation_event(service, settings, tenant, service.view(tenant.tenant_id, 1042), "why", "cli")
     assert set(event) == {"event", "tenant", "occurred_at", "actor", "ticket", "escalation"}
-    assert set(event["escalation"]) == {"reason", "sla", "latest_internal_note", "related"}
+    assert set(event["escalation"]) == {"reason", "sla", "latest_internal_note", "related", "queue"}
 
 
 def test_escalate_rejects_wrong_tenant_closed_and_empty_reason(db, settings, service, relay):
@@ -72,6 +74,7 @@ def test_escalate_rejects_wrong_tenant_closed_and_empty_reason(db, settings, ser
 def test_relay_failure_keeps_update_and_raises(db, settings, service):
     _, tenants, tickets = db
     nw = tenants.by_slug("northwind")
-    with pytest.raises(EscalationError):
+    with pytest.raises(EscalationError) as e:
         escalate(service, NotificationRelayClient("http://127.0.0.1:1", 1), settings, nw, 1042, "x")
+    assert "tenant hook" in str(e.value) and "on-call channel" in str(e.value)
     assert tickets.get_ticket("ten_nw", 1042).status == "escalated"

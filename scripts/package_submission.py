@@ -13,9 +13,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 INCLUDE = ["environments", "results", "scripts", "reports", "common", "README.md", "QUALITY_BAR.md", "ASSIGNMENT_ANALYSIS.md",
-           "RESEARCH_TO_DESIGN.md", "HARBOR_IMPLEMENTATION_NOTES.md", "ENVIRONMENT_COMPARISON.md", "PROGRESS.md", ".gitignore"]
+           "RESEARCH_TO_DESIGN.md", "HARBOR_IMPLEMENTATION_NOTES.md", "ENVIRONMENT_COMPARISON.md", "PROGRESS.md", ".gitignore", ".env.example"]
 EXCLUDE_DIRS = {"__pycache__", ".pytest_cache", ".ruff_cache", ".mypy_cache", ".git", "node_modules"}
-EXCLUDE_FILES = {".env", "submission.zip"}
+EXCLUDE_FILES = {".env", "submission.zip", "Solumn_Winter_Task_Set_B_Data_Handling.pdf"}
 EXCLUDE_SUFFIXES = {".pyc", ".pyo", ".tmp"}
 SECRET_RE = re.compile(r"sk-[A-Za-z0-9_-]{20,}")
 
@@ -29,7 +29,7 @@ def iter_files():
             for f in sorted(p.rglob("*")):
                 if f.is_dir() or any(part in EXCLUDE_DIRS for part in f.parts):
                     continue
-                if f.name in EXCLUDE_FILES or f.suffix in EXCLUDE_SUFFIXES or f.name.endswith(".env"):
+                if f.name in EXCLUDE_FILES or f.suffix in EXCLUDE_SUFFIXES or f.name.endswith(".env") or f.suffix == ".pdf":
                     continue
                 yield f
 

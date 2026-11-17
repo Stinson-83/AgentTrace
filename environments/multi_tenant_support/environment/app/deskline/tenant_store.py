@@ -1,4 +1,4 @@
-"""Tenants (customer organisations using the desk) and their end-customers."""
+"""Tenants (customer organisations) and their end-customers."""
 from __future__ import annotations
 
 import json

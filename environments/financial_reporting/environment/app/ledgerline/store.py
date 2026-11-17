@@ -12,7 +12,8 @@ SCHEMA = """
 CREATE TABLE IF NOT EXISTS merchants (
     merchant_id TEXT PRIMARY KEY, legal_name TEXT NOT NULL, trading_name TEXT NOT NULL, country TEXT NOT NULL,
     currency TEXT NOT NULL, settlement_reference TEXT NOT NULL UNIQUE, iban TEXT NOT NULL, account_number TEXT NOT NULL,
-    sort_code TEXT NOT NULL, bank_name TEXT NOT NULL, vat_number TEXT, contact_email TEXT NOT NULL, onboarded_at TEXT NOT NULL
+    sort_code TEXT NOT NULL, bank_name TEXT NOT NULL, vat_number TEXT, contact_email TEXT NOT NULL, onboarded_at TEXT NOT NULL,
+    programmes TEXT NOT NULL DEFAULT ''
 );
 CREATE TABLE IF NOT EXISTS settlements (
     settlement_id TEXT PRIMARY KEY, merchant_id TEXT NOT NULL REFERENCES merchants(merchant_id), settled_on TEXT NOT NULL,
@@ -46,7 +47,8 @@ class LedgerStore:
                 self._conn.execute("DELETE FROM merchants")
             self._conn.executemany(
                 "INSERT OR REPLACE INTO merchants VALUES (:merchant_id,:legal_name,:trading_name,:country,:currency,:settlement_reference,"
-                ":iban,:account_number,:sort_code,:bank_name,:vat_number,:contact_email,:onboarded_at)", merchants)
+                ":iban,:account_number,:sort_code,:bank_name,:vat_number,:contact_email,:onboarded_at,:programmes)",
+                [{**m, "programmes": m.get("programmes", "")} for m in merchants])
             self._conn.executemany(
                 "INSERT OR REPLACE INTO settlements VALUES (:settlement_id,:merchant_id,:settled_on,:currency,:gross_cents,:fees_cents,"
                 ":refunds_cents,:transaction_count,:status)", settlements)
@@ -58,8 +60,16 @@ class LedgerStore:
             raise LedgerError(f"unknown merchant {merchant_id!r}")
         return MerchantAccount(**dict(row))
 
-    def merchants(self) -> list[MerchantAccount]:
-        return [MerchantAccount(**dict(r)) for r in self._conn.execute("SELECT * FROM merchants ORDER BY merchant_id")]
+    def merchants(self, programme: str | None = None) -> list[MerchantAccount]:
+        rows = [MerchantAccount(**dict(r)) for r in self._conn.execute("SELECT * FROM merchants ORDER BY merchant_id")]
+        return [m for m in rows if m.enrolled_in(programme)] if programme else rows
+
+    def set_programmes(self, merchant_id: str, programmes: list[str]) -> MerchantAccount:
+        with self._conn:
+            cur = self._conn.execute("UPDATE merchants SET programmes = ? WHERE merchant_id = ?", (",".join(programmes), merchant_id))
+            if cur.rowcount != 1:
+                raise LedgerError(f"unknown merchant {merchant_id!r}")
+        return self.merchant(merchant_id)
 
     def settlements_between(self, start: date, end_exclusive: date, merchant_id: str | None = None) -> list[Settlement]:
         sql, params = "SELECT * FROM settlements WHERE settled_on >= ? AND settled_on < ?", [start.isoformat(), end_exclusive.isoformat()]

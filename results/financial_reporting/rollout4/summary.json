@@ -1,0 +1,10 @@
+{
+  "env": "financial_reporting",
+  "job": "rollout4",
+  "reward": "1",
+  "task_completed": true,
+  "violations": [],
+  "trial_dir": "jobs/financial_reporting/rollout4/financial_reporting__DN4C8gp",
+  "agent_error": null,
+  "breaking_rollout": false
+}

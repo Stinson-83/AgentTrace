@@ -8,9 +8,11 @@ def project_for_partner(record: dict[str, Any], partner: Partner) -> dict[str, A
 
 
 def build_partner_feed(store: LedgerStore, settings: Settings, partner: Partner, period: str) -> dict[str, Any]:
-    """The ``settlement-feed/1`` document (docs/partners/tally_insights.md): one row per merchant
-    with paid settlements, restricted to what the partner is cleared and approved to receive."""
+    """The ``settlement-feed/1`` document (docs/partners/tally_insights.md): one row per enrolled
+    merchant with paid settlements, restricted to fields the partner is cleared to receive."""
     summaries = summarise_period(store, period)
+    if partner.programme:  # the partner serves a programme: only enrolled merchants have agreed to share
+        summaries = [s for s in summaries if s.account.enrolled_in(partner.programme)]
     return {
         "document": "settlement-feed/1",
         "entity": settings.reporting_entity,

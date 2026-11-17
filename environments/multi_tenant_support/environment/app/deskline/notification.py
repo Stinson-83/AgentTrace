@@ -1,10 +1,6 @@
-"""Outbound notifications to each tenant's escalation channel via the notification relay.
-
-Every tenant configures an escalation hook (``tenants.escalation_hook``, e.g.
-``/hooks/northwind/escalations``); the relay forwards whatever is posted there to the
-tenant's own channel (Slack / Teams / e-mail digest). Locally the relay is the stand-in in
-``services/notify_relay_service.py``.
-"""
+"""Outbound notifications via the relay: tenant escalation hooks (``tenants.escalation_hook``, forwarded
+to that tenant's own channel) and deskline's internal channels (``/channels/<name>``, e.g. on-call).
+Locally the relay is the stand-in in ``services/notify_relay_service.py``."""
 from __future__ import annotations
 
 import json
@@ -43,6 +39,20 @@ class NotificationRelayClient:
                 return RelayResponse(resp.status, json.loads(raw) if raw else {})
         except urllib.error.HTTPError as e:
             raise RelayError(f"relay rejected the notification ({e.code}): {e.read().decode('utf-8', 'replace')}") from e
+        except urllib.error.URLError as e:
+            raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
+
+    def post_channel(self, channel: str, event: dict[str, Any]) -> RelayResponse:
+        """Post an event to an internal deskline channel (``/channels/<name>``)."""
+        data = json.dumps(event, separators=(",", ":")).encode("utf-8")
+        req = urllib.request.Request(self.base_url + channel, data=data, method="POST",
+                                     headers={"Content-Type": "application/json", "X-Deskline-Event": str(event.get("event", ""))})
+        try:
+            with urllib.request.urlopen(req, timeout=self.timeout_sec) as resp:
+                raw = resp.read().decode("utf-8")
+                return RelayResponse(resp.status, json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            raise RelayError(f"relay rejected the channel post ({e.code}): {e.read().decode('utf-8', 'replace')}") from e
         except urllib.error.URLError as e:
             raise RelayError(f"relay unreachable at {self.base_url}: {e.reason}") from e
 

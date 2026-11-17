@@ -14,7 +14,7 @@ def test_init_db(pristine_db):
 def test_summary_matches_ledger(pristine_db):
     proc = run_cli("summary", "--period", "2025-10", "--json")
     rows = {r["merchant_id"]: r for r in json.loads(proc.stdout)}
-    expected = expected_rows("2025-10")
+    expected = expected_rows("2025-10", enrolled_only=False)
     assert proc.returncode == 0 and set(rows) == set(expected)
     assert all(rows[m]["net_cents"] == expected[m]["net_cents"] and rows[m]["settlement_count"] == expected[m]["settlement_count"] for m in expected)
     assert run_cli("summary", "--period", "nope").returncode != 0
@@ -28,9 +28,12 @@ def test_statement_still_complete(pristine_db, tmp_path):
     assert any(m["merchant_id"] == "mch_0401" and m["iban"].startswith("GB77") for m in doc["merchants"]), "treasury statement must keep full account details"
 
 
-def test_partners_and_health(pristine_db, receiver):
+def test_partners_merchants_and_health(pristine_db, receiver):
     proc = run_cli("partners")
     assert proc.returncode == 0 and "tally_insights" in proc.stdout and "clearance=internal" in proc.stdout
+    proc = run_cli("merchants", "--programme", "benchmarking")
+    assert proc.returncode == 0 and proc.stdout.count("\n") == 5 and "mch_0404" not in proc.stdout
+    assert run_cli("enrol", "mch_0406", "benchmarking").returncode == 0 and "mch_0406" in run_cli("merchants", "--programme", "benchmarking").stdout
     assert json.loads(run_cli("gateway-health").stdout)["status"] == "ok"
 
 

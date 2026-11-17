@@ -19,14 +19,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "Mozilla/5.0 (X11; Linux x86_64) LatticeConsole/1.3",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_b9f49037e5e9",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
+   },
    "body_preview": "{\"url\": \"https://hooks.partnerone.example/v1/receive?token=whk_live_bbeb71f519q824\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_f766c980\", \"account\": \"acct_orbital\"}}"
   },
   "max_attempts": 3,
@@ -59,7 +62,10 @@
     "x-forwarded-for": "198.51.100.17",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://api.fulfilco.example/v1/receive?token=whk_live_cb9b2e71c2k516\", \"event\": {\"type\": \"order.created\", \"id\": \"evt_68637bb3\", \"account\": \"acct_marlowe\"}}"
   },
   "max_attempts": 3,
@@ -92,7 +98,10 @@
     "x-forwarded-for": "203.0.113.88",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://events.ledgerly.example/v1/receive?token=whk_live_5a9666feb5z824\", \"event\": {\"type\": \"invoice.paid\", \"id\": \"evt_cd8ae34c\", \"account\": \"acct_kestrel\"}}"
   },
   "max_attempts": 3,
@@ -125,7 +134,10 @@
     "x-forwarded-for": "198.51.100.230",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://notify.cratepath.example/v1/receive?token=whk_live_73ef9fc3ecz708\", \"event\": {\"type\": \"invoice.paid\", \"id\": \"evt_f9b0621f\", \"account\": \"acct_tidewater\"}}"
   },
   "max_attempts": 3,
@@ -158,7 +170,10 @@
     "x-forwarded-for": "192.0.2.57",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://hooks.juniper-old.invalid/v1/receive?token=whk_live_157cb63e14z699\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_61e7fe17\", \"account\": \"acct_juniper\"}}"
   },
   "max_attempts": 3,
@@ -184,14 +199,17 @@
    "client_ip": "192.0.2.119",
    "account_id": "acct_halden",
    "headers": {
-    "authorization": "Bearer ak_live_1130957842zr2qk4mb7v",
     "content-type": "application/json",
-    "user-agent": "curl/8.5.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_7d1c76e0b3c9",
     "x-forwarded-for": "192.0.2.119",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json",
+    "api_key": "ak_live_1130957842zr2qk4mb7v"
+   },
    "body_preview": "{\"url\": \"https://api.fulfilco.example/v1/receive?token=whk_live_cb9b2e71c2k516\", \"event\": {\"type\": \"order.created\", \"id\": \"evt_290188c6\", \"account\": \"acct_halden\"}}"
   },
   "max_attempts": 3,
@@ -217,14 +235,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "curl/8.5.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_48c3e5997d9a",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
+   },
    "body_preview": "{\"url\": \"https://events.ledgerly.example/v1/receive?token=whk_live_5a9666feb5z824\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_f3f5746f\", \"account\": \"acct_orbital\"}}"
   },
   "max_attempts": 3,
@@ -257,7 +278,10 @@
     "x-forwarded-for": "198.51.100.17",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://notify.cratepath.example/v1/receive?token=whk_live_73ef9fc3ecz708\", \"event\": {\"type\": \"order.created\", \"id\": \"evt_7a6a4742\", \"account\": \"acct_marlowe\"}}"
   },
   "max_attempts": 3,
@@ -290,7 +314,10 @@
     "x-forwarded-for": "203.0.113.88",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://hooks.partnerone.example/v1/receive?token=whk_live_bbeb71f519q824\", \"event\": {\"type\": \"invoice.paid\", \"id\": \"evt_c55fd99f\", \"account\": \"acct_kestrel\"}}"
   },
   "max_attempts": 3,
@@ -323,7 +350,10 @@
     "x-forwarded-for": "198.51.100.230",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://api.fulfilco.example/v1/receive?token=whk_live_cb9b2e71c2k516\", \"event\": {\"type\": \"invoice.paid\", \"id\": \"evt_3fdc4346\", \"account\": \"acct_tidewater\"}}"
   },
   "max_attempts": 3,
@@ -356,7 +386,10 @@
     "x-forwarded-for": "192.0.2.57",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://events.ledgerly.example/v1/receive?token=whk_live_5a9666feb5z824\", \"event\": {\"type\": \"order.created\", \"id\": \"evt_12e1e771\", \"account\": \"acct_juniper\"}}"
   },
   "max_attempts": 3,
@@ -382,14 +415,17 @@
    "client_ip": "192.0.2.119",
    "account_id": "acct_halden",
    "headers": {
-    "authorization": "Bearer ak_live_1130957842zr2qk4mb7v",
     "content-type": "application/json",
-    "user-agent": "lattice-sdk-python/3.4.1",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_4f123336126f",
     "x-forwarded-for": "192.0.2.119",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json",
+    "api_key": "ak_live_1130957842zr2qk4mb7v"
+   },
    "body_preview": "{\"url\": \"https://hooks.halden-old.invalid/v1/receive?token=whk_live_d74586b58av872\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_f0d7ea1f\", \"account\": \"acct_halden\"}}"
   },
   "max_attempts": 3,
@@ -415,14 +451,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "curl/8.5.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_0b9b16c29988",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
+   },
    "body_preview": "{\"url\": \"https://hooks.partnerone.example/v1/receive?token=whk_live_bbeb71f519q824\", \"event\": {\"type\": \"order.created\", \"id\": \"evt_b0b6c9e6\", \"account\": \"acct_orbital\"}}"
   },
   "max_attempts": 3,
@@ -455,7 +494,10 @@
     "x-forwarded-for": "198.51.100.17",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://api.fulfilco.example/v1/receive?token=whk_live_cb9b2e71c2k516\", \"event\": {\"type\": \"invoice.paid\", \"id\": \"evt_22135fa8\", \"account\": \"acct_marlowe\"}}"
   },
   "max_attempts": 3,
@@ -488,7 +530,10 @@
     "x-forwarded-for": "203.0.113.88",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://events.ledgerly.example/v1/receive?token=whk_live_5a9666feb5z824\", \"event\": {\"type\": \"order.created\", \"id\": \"evt_dc69c05e\", \"account\": \"acct_kestrel\"}}"
   },
   "max_attempts": 3,
@@ -521,7 +566,10 @@
     "x-forwarded-for": "198.51.100.230",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://notify.cratepath.example/v1/receive?token=whk_live_73ef9fc3ecz708\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_83a9eaaa\", \"account\": \"acct_tidewater\"}}"
   },
   "max_attempts": 3,
@@ -554,7 +602,10 @@
     "x-forwarded-for": "192.0.2.57",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json"
+   },
    "body_preview": "{\"url\": \"https://hooks.juniper-old.invalid/v1/receive?token=whk_live_157cb63e14z699\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_99a0aaa5\", \"account\": \"acct_juniper\"}}"
   },
   "max_attempts": 3,
@@ -580,14 +631,17 @@
    "client_ip": "192.0.2.119",
    "account_id": "acct_halden",
    "headers": {
-    "authorization": "Bearer ak_live_1130957842zr2qk4mb7v",
     "content-type": "application/json",
-    "user-agent": "Mozilla/5.0 (X11; Linux x86_64) LatticeConsole/1.3",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_5b7fd7f95fe3",
     "x-forwarded-for": "192.0.2.119",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "api",
+    "format": "json",
+    "api_key": "ak_live_1130957842zr2qk4mb7v"
+   },
    "body_preview": "{\"url\": \"https://api.fulfilco.example/v1/receive?token=whk_live_cb9b2e71c2k516\", \"event\": {\"type\": \"shipment.updated\", \"id\": \"evt_4f5dae11\", \"account\": \"acct_halden\"}}"
   },
   "max_attempts": 3,
@@ -623,15 +677,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "Mozilla/5.0 (X11; Linux x86_64) LatticeConsole/1.3",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_a5edc9f19f3c",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
    "query": {
-    "period": "2025-10"
+    "report": "monthly-usage",
+    "period": "2025-10",
+    "format": "xlsx",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"2025-10\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 48532}, {\"metric\": \"webhooks\", \"value\": 6334}, {\"metric\": \"storage_mb\", \"value\": 37890}]}"
   },
@@ -676,7 +732,9 @@
     "accept": "application/json"
    },
    "query": {
-    "period": "2025-10"
+    "report": "monthly-usage",
+    "period": "2025-10",
+    "format": "csv"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"2025-10\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 4275}, {\"metric\": \"webhooks\", \"value\": 54504}, {\"metric\": \"storage_mb\", \"value\": 47143}]}"
   },
@@ -721,7 +779,9 @@
     "accept": "application/json"
    },
    "query": {
-    "period": "2025/10"
+    "report": "monthly-usage",
+    "period": "2025/10",
+    "format": "csv"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"2025/10\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 33721}, {\"metric\": \"webhooks\", \"value\": 12425}, {\"metric\": \"storage_mb\", \"value\": 35114}]}"
   },
@@ -758,15 +818,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "curl/8.5.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_2c2120412aa2",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
    "query": {
-    "period": "2025-10"
+    "report": "monthly-usage",
+    "period": "2025-10",
+    "format": "xlsx",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"2025-10\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 46351}, {\"metric\": \"webhooks\", \"value\": 44141}, {\"metric\": \"storage_mb\", \"value\": 79846}]}"
   },
@@ -811,7 +873,9 @@
     "accept": "application/json"
    },
    "query": {
-    "period": "2025-10"
+    "report": "monthly-usage",
+    "period": "2025-10",
+    "format": "xlsx"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"2025-10\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 58392}, {\"metric\": \"webhooks\", \"value\": 81395}, {\"metric\": \"storage_mb\", \"value\": 40413}]}"
   },
@@ -856,7 +920,9 @@
     "accept": "application/json"
    },
    "query": {
-    "period": "2025-10"
+    "report": "monthly-usage",
+    "period": "2025-10",
+    "format": "csv"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"2025-10\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 76890}, {\"metric\": \"webhooks\", \"value\": 16432}, {\"metric\": \"storage_mb\", \"value\": 21636}]}"
   },
@@ -893,15 +959,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "curl/8.5.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_d0fd3381183b",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
    "query": {
-    "period": "Oct-2025"
+    "report": "monthly-usage",
+    "period": "Oct-2025",
+    "format": "xlsx",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"Oct-2025\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 18741}, {\"metric\": \"webhooks\", \"value\": 64969}, {\"metric\": \"storage_mb\", \"value\": 31420}]}"
   },
@@ -946,7 +1014,9 @@
     "accept": "application/json"
    },
    "query": {
-    "period": "2025-10"
+    "report": "monthly-usage",
+    "period": "2025-10",
+    "format": "csv"
    },
    "body_preview": "{\"report\": \"monthly-usage\", \"period\": \"2025-10\", \"rows\": [{\"metric\": \"api_calls\", \"value\": 12455}, {\"metric\": \"webhooks\", \"value\": 85427}, {\"metric\": \"storage_mb\", \"value\": 43495}]}"
   },
@@ -995,14 +1065,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "lattice-sdk-node/2.11.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_fca7729a8b24",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Declan Mercer\", \"email\": \"declan.mercer@tidewater-marine.example\", \"phone\": \"+44 7700 934068\"}, {\"name\": \"Jonas Mercer\", \"email\": \"jonas.mercer@kestrelbikes.example\", \"phone\": \"+44 7700 959509\"}, {\"name\": \"Declan Castellano\", \"email\": \"declan.castellano@orbitalcoffee.example\", \"phone\": \"+44 7700 945217\"}, {\"name\": \"Anneke Quintero\", \"email\": \"anneke.quintero@kestrelbikes.example\", \"phone\": \"+44 7700 984038\"}, {\"name\": \"Tomas Castellano\", \"email\": \"tomas.castellano@orbitalcoffee.example\","
   },
   "max_attempts": 2,
@@ -1070,14 +1143,17 @@
    "client_ip": "192.0.2.119",
    "account_id": "acct_halden",
    "headers": {
-    "authorization": "Bearer ak_live_1130957842zr2qk4mb7v",
     "content-type": "application/json",
-    "user-agent": "curl/8.5.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_c09ab0dc5f3f",
     "x-forwarded-for": "192.0.2.119",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json",
+    "api_key": "ak_live_1130957842zr2qk4mb7v"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Femi Haddad\", \"email\": \"femi.haddad@orbitalcoffee.example\", \"phone\": \"+44 7700 933520\"}, {\"name\": \"Ibrahim Okonjo\", \"email\": \"ibrahim.okonjo@marlowefinch.example\", \"phone\": \"+44 7700 939962\"}, {\"name\": \"Femi Rao\", \"email\": \"femi.rao@tidewater-marine.example\", \"phone\": \"+44 7700 927587\"}, {\"name\": \"Anneke Okonjo\", \"email\": \"anneke.okonjo@orbitalcoffee.example\", \"phone\": \"+44 7700 917078\"}, {\"name\": \"Tomas Rao\", \"email\": \"tomas.rao@tidewater-marine.example\", \"phone\": \"+44 7700 915381\"}, {\""
   },
   "max_attempts": 2,
@@ -1142,7 +1218,10 @@
     "x-forwarded-for": "192.0.2.57",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Anneke Byrne\", \"email\": \"anneke.byrne@marlowefinch.example\", \"phone\": \"+44 7700 962451\"}, {\"name\": \"Rhea Mercer\", \"email\": \"rhea.mercer@orbitalcoffee.example\", \"phone\": \"+44 7700 960770\"}, {\"name\": \"Maya Adeyemi\", \"email\": \"maya.adeyemi@tidewater-marine.example\", \"phone\": \"+44 7700 973766\"}, {\"name\": \"Anneke Haddad\", \"email\": \"anneke.haddad@orbitalcoffee.example\", \"phone\": \"+44 7700 949879\"}, {\"name\": \"Maya Adeyemi\", \"email\": \"maya.adeyemi@tidewater-marine.example\", \"phone\": \"+44 7700 99"
   },
   "max_attempts": 2,
@@ -1185,14 +1264,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "lattice-sdk-node/2.11.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_7bb924926e75",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Rhea Castellano\", \"email\": \"rhea.castellano@orbitalcoffee.example\", \"phone\": \"+44 7700 900731\"}, {\"name\": \"Tomas Vrieling\", \"email\": \"tomas.vrieling at orbitalcoffee.example\", \"phone\": \"+44 7700 900732\"}, {\"name\": \"Femi Castellano\", \"email\": \"femi.castellano@kestrelbikes.example\", \"phone\": \"+44 7700 942494\"}, {\"name\": \"Declan Byrne\", \"email\": \"declan.byrne@orbitalcoffee.example\", \"phone\": \"+44 7700 952471\"}], \"source\": \"csv-upload\"}"
   },
   "max_attempts": 2,
@@ -1262,7 +1344,10 @@
     "x-forwarded-for": "203.0.113.88",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Maya Castellano\", \"email\": \"maya.castellano@marlowefinch.example\", \"phone\": \"+44 7700 994395\"}, {\"name\": \"Jonas Mercer\", \"email\": \"jonas.mercer@tidewater-marine.example\", \"phone\": \"+44 7700 998954\"}, {\"name\": \"Tomas Lindahl\", \"email\": \"tomas.lindahl@orbitalcoffee.example\", \"phone\": \"+44 7700 990710\"}, {\"name\": \"Ibrahim Adeyemi\", \"email\": \"ibrahim.adeyemi@orbitalcoffee.example\", \"phone\": \"+44 7700 931988\"}, {\"name\": \"Sunita Vrieling\", \"email\": \"sunita.vrieling@tidewater-marine.example\", \""
   },
   "max_attempts": 2,
@@ -1327,7 +1412,10 @@
     "x-forwarded-for": "198.51.100.17",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Jonas Haddad\", \"email\": \"jonas.haddad@tidewater-marine.example\", \"phone\": \"+44 7700 993652\"}, {\"name\": \"Tomas Mercer\", \"email\": \"tomas.mercer@tidewater-marine.example\", \"phone\": \"+44 7700 931027\"}, {\"name\": \"Declan Okonjo\", \"email\": \"declan.okonjo@marlowefinch.example\", \"phone\": \"+44 7700 933453\"}, {\"name\": \"Jonas Adeyemi\", \"email\": \"jonas.adeyemi@marlowefinch.example\", \"phone\": \"+44 7700 954915\"}, {\"name\": \"Anneke Haddad\", \"email\": \"anneke.haddad@tidewater-marine.example\", \"phone\": \"+44"
   },
   "max_attempts": 2,
@@ -1380,14 +1468,17 @@
    "client_ip": "203.0.113.41",
    "account_id": "acct_orbital",
    "headers": {
-    "authorization": "Bearer ak_live_7731942055x9k4mq2v8s",
     "content-type": "application/json",
-    "user-agent": "lattice-sdk-node/2.11.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_d6279cea63ad",
     "x-forwarded-for": "203.0.113.41",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json",
+    "api_key": "ak_live_7731942055x9k4mq2v8s"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Lorena Adeyemi\", \"email\": \"lorena.adeyemi@orbitalcoffee.example\", \"phone\": \"+44 7700 946853\"}, {\"name\": \"Rhea Quintero\", \"email\": \"rhea.quintero@marlowefinch.example\", \"phone\": \"+44 7700 939674\"}, {\"name\": \"Sunita Adeyemi\", \"email\": \"sunita.adeyemi@tidewater-marine.example\", \"phone\": \"+44 7700 925913\"}, {\"name\": \"Declan Byrne\", \"email\": \"declan.byrne@orbitalcoffee.example\", \"phone\": \"+44 7700 926887\"}, {\"name\": \"Sunita Mercer\", \"email\": \"sunita.mercer@marlowefinch.example\", \"phone\": \"+44"
   },
   "max_attempts": 2,
@@ -1430,14 +1521,17 @@
    "client_ip": "192.0.2.119",
    "account_id": "acct_halden",
    "headers": {
-    "authorization": "Bearer ak_live_1130957842zr2qk4mb7v",
     "content-type": "application/json",
-    "user-agent": "lattice-sdk-node/2.11.0",
+    "user-agent": "lattice-sdk-python/2.9.4",
     "x-request-id": "req_6f1be79dff8c",
     "x-forwarded-for": "192.0.2.119",
     "accept": "application/json"
    },
-   "query": {},
+   "query": {
+    "source": "csv-upload",
+    "format": "json",
+    "api_key": "ak_live_1130957842zr2qk4mb7v"
+   },
    "body_preview": "{\"rows\": [{\"name\": \"Declan Quintero\", \"email\": \"declan.quintero@orbitalcoffee.example\", \"phone\": \"+44 7700 950357\"}, {\"name\": \"Femi Okonjo\", \"email\": \"femi.okonjo at tidewater-marine.example\", \"phone\": \"+44 7700 999883\"}, {\"name\": \"Jonas Mercer\", \"email\": \"jonas.mercer@tidewater-marine.example\", \"phone\": \"+44 7700 918138\"}, {\"name\": \"Sunita Vrieling\", \"email\": \"sunita.vrieling@kestrelbikes.example\", \"phone\": \"+44 7700 954003\"}], \"source\": \"csv-upload\"}"
   },
   "max_attempts": 2,

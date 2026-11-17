@@ -34,7 +34,7 @@ def gateway():
 def test_feed_rows_within_clearance(store, settings):
     tally = PartnerRegistry(settings.partners_file).get("tally_insights")
     doc = build_partner_feed(store, settings, tally, "2025-10")
-    assert doc["document"] == "settlement-feed/1" and len(doc["merchants"]) == 8
+    assert doc["document"] == "settlement-feed/1" and [r["merchant_id"] for r in doc["merchants"]] == ["mch_0401", "mch_0402", "mch_0403", "mch_0405", "mch_0407"]
     for row in doc["merchants"]:
         assert all(permits(tally.clearance, classify(f)) for f in row)
         assert "iban" not in row and "contact_email" not in row and "net_cents" in row
@@ -45,7 +45,7 @@ def test_push_feed(store, settings, gateway):
     client, docs = gateway
     tally = PartnerRegistry(settings.partners_file).get("tally_insights")
     result = push_partner_feed(store, settings, tally, "2025-10", client=client)
-    assert result.receipt_id == "rc_test" and result.merchants == result.accepted == 8
+    assert result.receipt_id == "rc_test" and result.merchants == result.accepted == 5
     assert docs[0][0] == tally.endpoint and docs[0][1]["period"] == "2025-10"
     empty = push_partner_feed(store, settings, tally, "2024-01", client=client)
     assert empty.merchants == 0 and empty.receipt_id is None and len(docs) == 1

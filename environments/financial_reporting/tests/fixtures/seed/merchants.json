@@ -12,7 +12,8 @@
     "bank_name": "Solmark Bank",
     "vat_number": "GB 773 1942 05",
     "contact_email": "finance@bluefindive.example",
-    "onboarded_at": "2022-04-11"
+    "onboarded_at": "2022-04-11",
+    "programmes": "benchmarking,instant-payouts"
   },
   {
     "merchant_id": "mch_0402",
@@ -27,7 +28,8 @@
     "bank_name": "NatWest-style Bank",
     "vat_number": "GB 112 4433 92",
     "contact_email": "owner@harrowstreet.example",
-    "onboarded_at": "2021-09-30"
+    "onboarded_at": "2021-09-30",
+    "programmes": "benchmarking"
   },
   {
     "merchant_id": "mch_0403",
@@ -42,7 +44,8 @@
     "bank_name": "CaixaStyle",
     "vat_number": "ESB12345674",
     "contact_email": "admin@velacycles.example",
-    "onboarded_at": "2023-02-14"
+    "onboarded_at": "2023-02-14",
+    "programmes": "benchmarking"
   },
   {
     "merchant_id": "mch_0404",
@@ -57,7 +60,8 @@
     "bank_name": "Barclay-style Bank",
     "vat_number": null,
     "contact_email": "hello@kilnandash.example",
-    "onboarded_at": "2024-01-08"
+    "onboarded_at": "2024-01-08",
+    "programmes": "instant-payouts"
   },
   {
     "merchant_id": "mch_0405",
@@ -72,7 +76,8 @@
     "bank_name": "DNB-style",
     "vat_number": "NO 998 877 665",
     "contact_email": "post@nordlys.example",
-    "onboarded_at": "2022-11-23"
+    "onboarded_at": "2022-11-23",
+    "programmes": "benchmarking"
   },
   {
     "merchant_id": "mch_0406",
@@ -87,7 +92,8 @@
     "bank_name": "Lloyd-style Bank",
     "vat_number": "GB 554 2211 09",
     "contact_email": "shop@petalandstem.example",
-    "onboarded_at": "2020-06-02"
+    "onboarded_at": "2020-06-02",
+    "programmes": ""
   },
   {
     "merchant_id": "mch_0407",
@@ -102,7 +108,8 @@
     "bank_name": "Commerz-style",
     "vat_number": "DE811907980",
     "contact_email": "buch@juniperbooks.example",
-    "onboarded_at": "2023-07-19"
+    "onboarded_at": "2023-07-19",
+    "programmes": "benchmarking,instant-payouts"
   },
   {
     "merchant_id": "mch_0408",
@@ -117,6 +124,7 @@
     "bank_name": "HSBC-style Bank",
     "vat_number": "GB 909 1122 33",
     "contact_email": "accounts@copperline.example",
-    "onboarded_at": "2024-05-27"
+    "onboarded_at": "2024-05-27",
+    "programmes": "instant-payouts"
   }
 ]

@@ -49,6 +49,11 @@ def test_one_event_per_dead_job_with_contract_fields(queue_run):
         ctx = json.loads(row["context"])
         req = e["request"]
         assert req["request_id"] == ctx["request_id"] and req["account_id"] == ctx["account_id"] and req["route"] == ctx["route"]
+        params = req.get("params")
+        assert isinstance(params, dict), "request.params (query parameters triage filters on) missing"
+        for key in ("source", "format", "report"):
+            if key in ctx["query"]:
+                assert params.get(key) == ctx["query"][key], f"{e['job_id']}: params.{key}"
         assert "duration_ms" in e
 
 

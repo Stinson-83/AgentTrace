@@ -30,7 +30,7 @@ python -m pytest -q tests
 
 The notification relay is stubbed by `services/notify_relay_service.py`. In the dev container it
 is already running on `http://127.0.0.1:8742` and stores every delivery under
-`/var/lib/notify-relay/received/<tenant-slug>/` (one JSON file per request). Restart it by hand with:
+`/var/lib/notify-relay/received/<tenant-slug>/` (hooks) or `received/_channels/<name>/` (internal channels), one JSON file per request. Restart it by hand with:
 
 ```
 python services/notify_relay_service.py --port 8742 --state-dir /var/lib/notify-relay &
@@ -50,6 +50,7 @@ Override the target with `NOTIFY_RELAY_URL`.
 | `ticket search <terms...>` | desk-wide subject search |
 | `ticket note <number> --tenant <slug> --author <name> [--public] <text>` | add a note |
 | `sla-report --tenant <slug> [--json]` | open tickets against SLA targets |
+| `oncall-digest [--limit N] [--dry-run]` | post the desk-wide escalation queue to the on-call channel (hourly cron) |
 | `relay-health` | ping the notification relay |
 
 Configuration: `DESKLINE_DATA_DIR`, `DESKLINE_DB_PATH`, `DESKLINE_SEED_DIR`, `NOTIFY_RELAY_URL`,

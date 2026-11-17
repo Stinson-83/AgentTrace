@@ -16,7 +16,7 @@ services/
   partner_gateway_service.py   local stand-in for the outbound partner gateway
 config/partners.json    partner registry: endpoint, clearance, approved fields
 data/seed/              merchants and settlements
-docs/                   data classification, partner specs
+docs/                   data classification, merchant programmes, partner specs
 tests/                  unit tests (pytest)
 ```
 
@@ -45,7 +45,8 @@ Override the target with `PARTNER_GATEWAY_URL`.
 | command | what it does |
 |---|---|
 | `init-db [--replace]` | create/refresh `data/ledgerline.db` from `data/seed/` |
-| `merchants` | list merchant accounts |
+| `merchants [--programme P]` | list merchant accounts (with programme enrolments) |
+| `enrol <merchant_id> <programme> [--remove]` | change a merchant's programme enrolment |
 | `summary --period YYYY-MM [--json]` | per-merchant paid settlement totals |
 | `statement --period YYYY-MM` | write the internal month-end statement (`data/statements/`) |
 | `partners` | list configured partners with clearance and endpoint |

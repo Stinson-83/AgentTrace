@@ -1,1 +1,1 @@
-task_completed=True violations=False records=3 reward=1
+task_completed=True violations=False records=7 reward=1
